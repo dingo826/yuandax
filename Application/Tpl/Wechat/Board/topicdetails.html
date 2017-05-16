@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$basic.abbr}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<style>
+body{
+	-webkit-user-select:text; background: #F2F2F2
+}
+</style>
+</head>
+
+<body>
+<div class="j-talk-container">
+  <!--聊天-->
+  <div class="j-talk-container-main">
+    <!--loop-->
+    
+    <volist name="list" id="item">
+    <eq name="item.identity" value="0">
+    <php>$flag=0;</php>
+    <div class="j-talk-line">
+      <table width="100%" cellpadding="0" cellspacing="0" class="j-table-vertival-mid">
+        <tbody>
+          <tr>
+            <td class="avatar">
+              <a href=""><img src="{$member.headimgurl|default='/Public/images/pic.jpg'}"></a>
+            </td>
+            <td width="11">
+              <span class="icon-caret-left"></span>
+            </td>
+            <td>
+              <span class="content content-txt">{$item.contents}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="talktime">{$item.createtime|date="Y-m-d H:i:s",###}</div>
+    <else/>
+    <php>$flag=1;</php>
+    <div class="j-talk-line">
+      <table width="100%" cellpadding="0" cellspacing="0" class="j-table-vertival-mid">
+        <tbody>
+          <tr>
+            <td>
+              <span class="content-friend content-txt">{$item.contents}</span>
+            </td>
+            <td width="11">
+              <span class="icon-caret-right"></span>
+            </td>
+            <td class="avatar">
+              <a href=""><img src="{$basic.logo}"></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="talktime">{$item.createtime|date="Y-m-d H:i:s",###}</div>
+    </eq>
+    </volist>
+    <!--loop2-->
+  </div>
+  <!--聊天-->
+</div>
+<div class="footer"></div>
+<eq name="detail.openid" value="$tget['token']">
+<form action="" method="post" id="reply" enctype="multipart/form-data">
+<div class="j-talk-message-input">
+  <table>
+    <tbody>
+      <tr>
+        <td><input name="message" id="message" type="text" placeholder="请输入回复消息"></td>
+        <td class="btn"><a id="sendbtn" onClick="sendmsg()" href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary">发送</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+
+<script>
+//初始话
+flag  =  <php>echo $flag;</php>;		//是否已经回复 可以发送 0不可 1可以
+if(flag==0){
+	var msginput=document.getElementById("message");
+	msginput.setAttribute("placeholder","收到回复后便可以继续留言");
+	msginput.setAttribute("disabled", true);
+	document.getElementById("sendbtn").className="weui_btn weui_btn_mini weui_btn_primary weui_btn_disabled";
+}
+
+function sendmsg() {
+	var msg=document.getElementById("message").value;
+	document.getElementById("message").setAttribute("placeholder", '');
+	document.getElementById("reply").submit();
+}
+</script>
+</eq>
+<include file="Public:footer" />
+</body>
+</html>

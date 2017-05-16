@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>社区圈子</title>
+
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/swiper/swiper.min.css">
+</head>
+
+<body>
+<!-- 幻灯 -->
+<div id="swiper" class="swiper-container">
+	<div class="swiper-wrapper">
+		<!-- loop -->
+		<div class="swiper-slide"><img src="__PUBLIC__/images/circle/01.jpg"></div>
+		<!-- loop -->
+		
+		<!-- loop -->
+		<div class="swiper-slide"><img src="__PUBLIC__/images/circle/02.jpg"></div>
+		<!-- loop -->
+		
+		<!-- loop -->
+		<div class="swiper-slide"><img src="__PUBLIC__/images/circle/03.jpg"></div>
+		<!-- loop -->
+	</div>
+	<div class="swiper-pagination"></div>
+</div>
+<!-- 幻灯 -->
+
+<div class="weui_panel circle-newlist">
+  <div class="weui_panel_hd">圈子信息</div>
+  <div class="weui_panel_bd">
+    <div class="weui_media_box weui_media_small_appmsg">
+      <div class="weui_cells weui_cells_access">
+        <!-- loop -->
+        <volist name="newsList" id="item">
+        <a class="weui_cell" href="{:U('article/index?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref=mp.weixin.qq.com')}">
+          <div class="weui_cell_hd"><img src="{$item.picurl}"></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>{$item.title}</p>
+          </div>
+          <span class="weui_cell_ft"></span>
+        </a>
+        </volist>
+        <!-- loop -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<include file="menu" />
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/plugin/swiper/swiper.min.js"></script>
+<script>
+//图片滚动对象
+var swiper = new Swiper('#swiper', {
+	pagination: '.swiper-pagination',
+	loop:true,
+	autoplay: 5000
+});
+</script>
+<include file="Public:footer" />
+</body>
+</html>

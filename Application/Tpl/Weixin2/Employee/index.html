@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	社区团队
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('employee/add')}"><span class="icon-plus"></span> 添加人员</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="table table-bordered table-hover table-striped">
+                        	<tbody>
+                            	<tr class="success">
+                                	<td class="j-w-20"><input id="j_all" type="checkbox"></td>
+                                    <td class="j-w-50">头像</td>
+                                    <td class="j-w-65">姓名</td>
+                                    <td class="j-max-w-150">电话</td>
+                                    <td>岗位</td>
+                                    <td class="j-w-30">排序</td>
+                                    <td>操作</td>
+                                </tr>
+                                
+                                <!--loop-->
+                                <volist name="list" id="item">
+                                <tr class="j-vtcl-mid">
+                                	<td class="j-w-20"><input type="checkbox"></td>
+                                    <td class="j-w-50"><img src="{$item.avater}"></td>
+                                    <td class="j-w-65">{$item.name}</td>
+                                    <td>{$item.mphone}</td>
+                                    <td>{$item.dname}</td>
+                                    <td class="j-w-30">{$item.sort}</td>
+                                    <td class="j-w15">
+                                    	<!--<a href="javascript:;" onClick="" class="j-delete-1 j-block-2"><span class="icon-search"></span> 预览</a>-->
+                                        <a href="{:U('employee/edit?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-pencil"></span> 编辑</a>
+                                        <a href="javascript::" onclick="J_delete(this)" data-url="{:U('employee/del?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                    </td>
+                                </tr>
+                                </volist>
+                                <!--loop-->
+                            </tbody>
+                        </table>
+                        </form>
+                        <!--表单-->
+                        
+                        <div class="j-m">
+                        	<div class="j-page">{$page}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="j-msgdialog">
+	<div class="dialog-check">
+    	
+    </div>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/jqplugin/jquery.validate.min.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+//删除
+
+$(this).ready(function(e) {
+	$("#j_all").bind("change",function(e){
+		var r=$(e.target).attr("checked");
+		
+		if(r){
+			$("#s_form input[type='checkbox']").attr("checked","true");
+		}else{
+			$("#s_form input[type='checkbox']").removeAttr("checked");
+		}
+	});
+});;
+</script>
+</body>
+</html>

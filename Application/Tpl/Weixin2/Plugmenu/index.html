@@ -1,0 +1,435 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	快捷菜单
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('plugmenu/add')}"><span class="icon-plus"></span> 添加菜单</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    	<div class="j-m j-h10"></div>
+                    
+                    	<!--预览框-->
+                    	<div id="viewport" class="j-viewport j-tsm-06">
+                        	<div class="j-view-1">
+                            	<div class="container">
+                                	<iframe style="border:none; height:99%; width:100%" src="{:C(HTTP_DOMIN)}/?g=wechat&wid={$weixin.id}&wxref=mp.weixin.qq.com" id="webapp_view" name="webapp_view"></iframe>
+                                </div>
+                            </div>
+                            <a href="javascript:;" class="j-viewport-show icon-eye-open"></a>
+                        </div>
+                        <!--预览框-->
+                        
+                    	<!--表单-->
+                    	<form action="{:U('plugmenu/homemenu')}" method="post" id="s_form" autocomplete="off">
+                        <div class="j-m j-h1"></div>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                        	<tbody>
+                            	<tr>
+                                	<td class="j-viewport-w"><div class="j-m" style="min-height:440px"></div></td>
+                                    <td class="j-formbk">
+                                    	<div class="j-m">
+                                        	<!--模板-->
+                                        	<div class="tabbable"> <!-- Only for left/right tabs -->
+                                              <ul class="nav nav-tabs nomargin">
+                                                <li class="active"><a href="#tab1" data-toggle="tab">分类列表</a></li>
+                                                <li><a href="#tab2" data-toggle="tab">模板设置</a></li>
+                                              </ul>
+                                              
+                                              <div class="tab-content tab-content-full">
+                                                    <div class="tab-pane active" id="tab1">
+                                                    	<!--#tab1-->
+                                                    	<table class="table">
+                                                        	<tbody>
+                                                            	<tr class="first-noborder">
+                                                                	<td class="j-w-25">标志</td>
+                                                                    <td>名称</td>
+                                                                    <td>显示顺序</td>
+                                                                    <td>类型</td>
+                                                                    <td>启用</td>
+                                                                    <td>操作</td>
+                                                                </tr>
+                                                                
+                                                                <notempty name="list">
+                                                                <!--loop-->
+                                                                <volist name="list" id="item">
+                                                                <tr>
+                                                                	<td><span class="{$item.icon}"></span></td>
+                                                                    <td>{$item.name}</td>
+                                                                    <td>{$item.sort}</td>
+                                                                    <td>{$type[$item[type]]}</td>
+                                                                    <td>
+                                                                        
+                                                                        <a <eq name="item.is_show" value="0"> class="j-fcolor-5 j-bold"  href="{:U('plugmenu/setshow?id='.$item['id'].'&isshow=1')}"</eq>>启用</a> 
+                                        | 
+                                        <a <eq name="item.is_show" value="1"> class="j-fcolor-5 j-bold"  href="{:U('plugmenu/setshow?id='.$item['id'].'&isshow=0')}"</eq>>不启用</a>
+                                                                    </td>
+                                                                    <td>
+                                                                    	<a href="{:U('plugmenu/edit?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-pencil"></span> 编辑</a>
+                                        								<a href="javascript:;" onclick="J_delete(this)" data-url="{:U('plugmenu/del?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                                                    </td>
+                                                                </tr>
+                                                                </volist>
+                                                                <!--loop-->
+                                                                <else/>
+                                                                
+                                                                 <!--norecords-->
+                                                                <tr>
+                                                                    <td colspan="6">
+                                                                    	<div class="j-fcolor-2 j-m j-txtct">
+                                                                        	您还没添加菜单 <a href="{:U('plugmenu/add')}">点击添加</a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <!--norecords-->
+                                                                
+                                                                </notempty>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    
+                                                    <div class="tab-pane" id="tab2">
+                                                      	<!--#tab2-->
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                                                        	<tbody>
+                                                            	
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="" name="homemenu"> 样式0</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <input type="text" value="{$dlist.namecolor}" class="jscolor j-w-80" name="namecolor">
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                            	<tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="1" name="homemenu"> 样式1</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <img src="/static/weixin/image/plugmenu/plugmenu_b_1.png">
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="2" name="homemenu"> 样式2</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <img src="/static/weixin/image/plugmenu/plugmenu_b.png">
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="3" name="homemenu"> 样式3</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <img src="/static/weixin/image/plugmenu/plugmenu_b3.png">
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="4" name="homemenu"> 样式4</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <img src="/static/weixin/image/plugmenu/plugmenu_b4.png" />
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="6" name="homemenu"> 样式5</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <img src="/static/weixin/image/plugmenu/plugmenu_b6.png" />
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="7" name="homemenu"> 样式6</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <img src="/static/weixin/image/plugmenu/plugmenu_b7.png" />
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	<label><input type="radio" value="8" name="homemenu"> 样式7</label>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           无
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                	<td>
+                                                                    	<!--start-input:text-->
+                                                                        <div class="textarea-group">
+                                                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="j-w-100 j-input-lalel">
+                                                                                        	页面版权
+                                                                                        </td>
+                                                                                        <td>
+                                                                                           <input type="text" value="{$dlist.copyright}" name="copyright">
+                                                                                        </td>
+                                                                                        <td class="j-w-15">
+                                                                                        	
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--end-input:text-->
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                        
+                                                        <div class="j-m j-h20"></div>
+                                            
+                                                        <div class="j-m">
+                                                            <input type="submit" class="j-button-red j-pct" value="保存">
+                                                        </div>
+                                                    </div>
+                                                    
+                                              </div>
+                                            </div>
+                                            <!--模板-->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/jqplugin/jscolor.min.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+$("input[name='homemenu'][value='{$dlist.homemenu|default='8'}'").attr("checked",true);
+//背景上传
+function upload_bg(a,type){
+	if(J_Uploader.isruning==true){
+		J_msgshow("正在上传请稍等");
+	}else{
+		J_Uploader.upload_url=''; //上传地址
+		J_Uploader.callback	=function(data){
+			$("#bg_imgview").html('<img src="'+data.path+'">');
+			$("#show_bg_img").val(data.path);
+		};
+		
+		J_Uploader.uploading=function(){
+			J_msgshow("正在上传背景");
+		};
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype=type;
+		J_Uploader.addlist();
+	}
+}
+
+function selectaction_buffer(e){
+	var cssClass=$(e.target).parent().attr("class");
+	$(e.target).parent().parent().parent().find("a").removeClass("active");
+	$(e.target).parent().parent().parent().find("a").removeClass("new-active");
+	
+	var check=/new/;
+	
+	if(check.test(cssClass)){
+		$(e.target).parent().addClass("new-active");
+	}else{
+		$(e.target).parent().addClass("active");
+	}
+}
+</script>
+</body>
+</html>

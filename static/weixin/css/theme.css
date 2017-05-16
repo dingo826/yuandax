@@ -1,0 +1,518 @@
+/* 分页样式 */
+.j-page{float:right}
+.j-page li{float:left; margin:0 1px}
+.j-page-c{margin: 0; padding: 0 10px}
+.j-page-c .pages{margin: 0}
+
+/* 头像强制拉伸 */
+.j-avatar{width:50px; height:50px}
+
+/* 仿微信聊天 */
+.j-talk-container{background:#F2F2F2}
+.j-talk-container .talktime{text-align:center; color:#777; width:100%; clear:both; padding:5px 0; margin-bottom:25px}
+.j-talk-container-main{width:100%; height:500px; overflow-x:hidden; overflow-y:auto}
+.j-talk-container-main .loadmore{display:block; text-align:center; padding:10px 0; background:#efefef}
+.j-talk-container-main .newmsg-mention{color:#F33; text-align:center; padding:10px 0; display:block}
+.j-talk-line .avatar{width:45px}
+.j-talk-line .avatar img{width:45px; height:45px}
+.j-talk-line .icon-caret-left{color:#FFF; font-size:30px; margin-top:5px; float:left; margin-left:2px}
+.j-talk-line .icon-caret-right{color:#b2e866; font-size:30px; margin-top:5px; float:left; margin-left:-2px}
+.j-talk-line .content{padding:13px 15px; border-radius:4px; background:#FFF; margin-left:-2px; font-size:13px; min-height:15px; word-break:break-all; float:left}
+.j-talk-line .content-friend{padding:13px 15px; border-radius:4px; background:#b2e866; font-size:13px; min-height:15px; word-break:break-all; float:right}
+.j-talk-line .content-friend img,.j-talk-line .content img,.j-talk-line .content video,.j-talk-line .content-friend video,.j-talk-line .content audio,.j-talk-line .content-friend audio{max-width:325px; margin:0 auto; display:block}
+.j-talk-line .content-txt img{display:inline-block}
+
+/* 搜索框 */
+.searchbox-btn{color:#FFF; background:#32b5f2; padding:7px 15px}
+
+/* 微官网模板 */
+.j-templatelist li{float:left; width:170px; margin:15px; height: 353px; position: relative;}
+.j-templatelist .tplimg{width: 144px; left: 14px; position: absolute; top: 60px; height: 236px; overflow: hidden;}
+.j-templatelist li a{display:block; background:url(../image/radio_iphone0.png) no-repeat center top; background-size:100%; margin:0 auto; height: 353px;}
+.j-templatelist li a img{width: 100%;}
+.j-templatelist li a:hover,.j-templatelist li a.active{background:url(../image/radio_iphone.png) no-repeat center top; background-size:100%}
+.j-templatelist li a.new{background:url(../image/radio_iphone0-xp.png) no-repeat center top; background-size:100%}
+.j-templatelist li a.new:hover,.j-templatelist li a.active.new{background:url(../image/radio_iphone_xp.png) no-repeat center top; background-size:100%}
+
+
+/* 栏目分类图标列表 */
+.j-iconlist{width:98%; margin:0 auto; overflow:hidden}
+.j-iconlist li{float:left; width:35px; height:35px; margin:5px 8px}
+.j-iconlist li a{cursor:pointer; font-size:30px; padding:5px 8px; border:1px solid #FFF; box-sizing:border-box}
+.j-iconlist li a:hover{border:1px solid #333}
+
+/* 消息提醒 */
+.j-msgdialog{position:fixed; top:45%; width:100%; display:none; z-index:100}
+.j-msgdialog .dialog{background:rgba(0,0,0,0.5); font-size:16px; color:#FFF; width:150px; margin:0 auto; padding:10px; border-radius:4px; text-align:center}
+.j-msgdialog .dialog-check{font-size:16px; color:#FFF; min-height:150px; width:150px; margin:0 auto; padding:10px; border-radius:4px; text-align:center; border:1px solid #CCC; overflow:hidden;}
+.j-msgdialog .dialog-check .msg{}
+.j-msgdialog .dialog-check .checkbtn{}
+
+/* 对话框内容自定 */
+.j-dialog{position:fixed; top:75px; width:100%}
+.j-dialog .container{width:50%; max-width:400px; max-height:500px; min-width:310px; margin:0px auto; border:1px solid #CCC; border-radius:4px; background:#FFF; box-shadow:0px 0px 10px #DFDFDF; overflow-x:hidden; overflow-y:auto}
+.j-dialog .title{font-size:16px; padding:8px 15px}
+.j-dialog .title a{float:right; color:#CCC}
+.j-dialog .content{padding:8px 15px; font-size:14px}
+
+
+/* 发送图文消息预览 */
+.j-dialog-viewnew{position:fixed; width:100%; height:100%; background:rgba(50,50,50,0.6)}
+.j-dialog-viewnew .container{width:80%; max-width:600px; margin:0px auto; margin-top:6%; background:#FFF; border-radius:4px; overflow:hidden}
+.j-dialog-viewnew .headtitle{font-size:16px; padding:2%; border-bottom:1px solid #e5e5e5; width:96%; margin:0 auto}
+.j-dialog-viewnew .content-a{padding:5px 3px; height:200px; width:90%; margin:20px auto; overflow-x:hidden; overflow-y:auto; border:1px solid #dddddd}
+.j-dialog-viewnew tr:hover{background:#f4f5f9}
+.j-dialog-viewnew li{margin:5px auto; cursor:pointer}
+
+
+/* 头部 */
+.j-header{background:#FFF; border-bottom:solid 1px #ddd; position:relative}
+.j-header .sn{font-size:20px; text-shadow:0 1px 1px rgba(45,114,17,0.2)}
+.j-header .vs{background:#ccc; border-radius:9px; padding:2px 3px; color:#FFF; box-shadow: 1px 1px 1px rgba(0,0,0,0.2) inset; text-shadow: 1px 1px 1px rgba(0,0,0,0.2);}
+.j-header .url{color:#666}
+.header-right li{float:left; margin-right:5px; font-size:14px}
+.header-right .dropdown-menu{border-radius:2px}
+.dropdown-menu-1{margin-left:-95px}
+.dropdown-menu-2{margin-left:-120px}
+.dropdown-menu-3{margin-left:-135px}
+.header-right .dropdown-menu li{float:none; margin:0}
+.header-right .dropdown-menu li a{padding:5px 0}
+.header-right .dropdown-menu li a:hover{background:#60d295; color:#FFF}
+.header-right .dropdown-menu li a:hover .j-fcolor-3{color:#FFF}
+li.phone a:active{color:#60d295}
+/* logo样式解决掉落 */
+.j-header div.j-fl:first-child a{display:block; width:220px; float:left}
+
+/* 内容导航 */
+.j-nav-new{width: 97%; margin: 20px auto 0 auto}
+.j-nav-new .item{float: left; display: block; position: relative; margin-top: 1px; border:1px solid #CCC; box-sizing: border-box; overflow: hidden; margin-right: 10px; padding: 6px 0; width: 90px; text-align: center; font-size: 16px; border-bottom: none}
+.j-nav-new .item:hover{background: #FFF}
+.j-nav-new .item:before{content: " ";position: absolute; width: 100%; height: 3px; top: -4px; left: 0; background: #999; transition: all .6s; -webkit-transition: all .6s;}
+.j-nav-new .item:hover:before{top: 0px}
+.j-nav-new .item.active{padding: 8px 0; background: #FFF; margin-top: -4px; border:1px solid #FFF;}
+.j-nav-new .item.active:before{content: " ";position: absolute; width: 100%; height: 3px; top: -1px; left: 0; background: #19c083}
+
+.j-nav li{float:left}
+.j-nav{margin-left:10px; position:absolute; top:40px}
+.j-nav li{margin-right:10px}
+.j-nav li a{display:block; padding:5px; min-width: 80px; text-align:center; border:1px solid #CCC; border-bottom:none; box-sizing:border-box; font-size:14px}
+.j-nav li a:hover{border-top:2px solid #999; background:rgba(204,204,204,0.3)}
+.j-nav li a.active{padding:9px 5px; margin-top:-8px; border-top:2px solid #19c083; background:rgba(204,204,204,0.3)}
+
+/* 改版头部 */
+.j-header-caculates-c{position: absolute; left: 210px; top: 10px; right: 150px; bottom: 0; text-align: center}
+.j-header-caculates{border:1px solid #EEE; border-radius: 20px; padding: 8px 16px; display: inline-block}
+.j-header-caculates .divide{width: 1px; height: 28px; display: inline-block; margin: 0 8px; background: #EEE}
+.j-header-caculates .item{font-size: 16px; cursor: pointer; font-weight: bold; color: #0C9; display: inline-block}
+.j-header-caculates .item:hover{transform: scale(1.1); -webkit-transform: scale(1.1)}
+.j-header-caculates .item span{float: left; line-height: 28px}
+.j-header-caculates .item .fa{font-size: 28px}
+.j-header-caculates .item .txt{margin-left: 10px}
+.j-header-caculates .item .txt-count{margin-left: 3px; max-width: 70px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap}
+
+/* 内容 */
+.j-container{vertical-align:top}
+.j-centent{position: absolute; left: 110px; right: 0; top: 72px; bottom: 0; overflow-x: hidden; overflow-y: auto}
+.j-centent .box{background:#FFF; width:97%; margin:0 auto}
+.j-centent .box .spacing{padding:10px 15px; margin: 0}
+.j-centent .box .title{color:#333; font-size:24px}
+.j-centent .box-top-addon{margin: 8px 0 0 0; padding: 0 10px}
+
+.j-assetmenu{position: absolute; left: 0; top: 72px; width: 110px; bottom: 0}
+
+/* 分界线 */
+.j-hr-1{height: 1px; background: #0099ff; margin: 0 10px; padding: 0}
+
+.j-assetmenu{background:#19c083}
+.j-assetmenu .j-wrap-2::-webkit-scrollbar{width:0px}
+.j-assetmenu .item{display:block; color:#eef8e6; height:80px; box-sizing:border-box; border-bottom:1px solid #17ad76; border-top:1px solid #2ec68e; text-align:center; font-size:13px; font-weight:bold; line-height:22px}
+.j-assetmenu .item:hover,.j-assetmenu .active{background:rgba(0,0,0,0.1); color:#FFF;}
+
+.j-assetmenu.new .item{height: 100px; font-size: 16px}
+.j-assetmenu.new .item .fa{font-size: 40px; margin-top: 15px}
+
+/* 图标 */
+.j-icon-1{display:inline-block; width:90px; height:90px}
+
+/* 首页样式 */
+.j-top-left{background:#7cbae5; border-radius:4px; overflow:hidden}
+.j-top-left a{display:block; overflow:hidden; color:#FFF; text-align:center}
+.j-top-right{background:#60d295; border-radius:4px; overflow:hidden}
+.j-top-right a{display:block; overflow:hidden; color:#FFF; text-align:center}
+.j-top-left a .j-fz-30,.j-top-right a .j-fz-30{max-width:80px; max-height:30px; overflow:hidden; display:inline-block}
+
+.j-bottom-box{border-radius:4px; border:1px solid #e7e7e7; display:block; float:left; box-sizing:border-box; margin:1%; overflow:hidden; height:110px}
+.j-bottom-box .tbl{width:95%; height:86px; margin:0 auto; padding:5px 2.5% 5px 2.5%}
+.j-bottom-box .tbl td,.j-bottom-box .tbl tr{border:none; vertical-align:top; padding:0px}
+.j-bottom-box .icon{width:90px; text-align:center; border-radius:4px; position: relative}
+.j-bottom-box .icon.msg:after{content: " "; position: absolute; background: #F00; right: -2px; top: -2px; width: 8px; height: 8px; display: block; border-radius: 50%}
+.j-bottom-box .icon .j-fcolor-1{font-size:60px}
+.j-bottom-box .t{font-size:20px; font-weight:bold}
+.j-bottom-box .desc{max-height:60px; font-size:13px; line-height:20px; text-overflow:ellipsis; overflow: hidden;  box-sizing: content-box;}
+
+.j-footer{width:97%; margin:0 auto; font-size:13px; color:#717171; font-size: 13px}
+.j-footer li{float:left; display:block; padding:5px 0}
+.j-footer li a{color:#717171; font-size: 13px}
+.j-footer li a:after{content:"|"; padding:0 10px}
+
+.j-footer.new a{font-size: 14px; line-height: 25px}
+.j-footer.new li a:after{content:" "; padding:0 5px; display: inline-block}
+.j-footer .qr .qrcode{display: none; opacity: 0; position: absolute; width: 200px; box-shadow: 0 0 4px rgba(0,0,0,.5); text-align: center; margin-top: -220px;}
+.j-footer .qr .qrcode img{max-width: 98%}
+.j-footer .qr:hover .qrcode{display: block; opacity: 1}
+
+.j-footer .icons{color: #FFF; padding: 6px; border-radius: 50%}
+
+/* 新按钮样式 */
+.j-newbtn{font-size: 14px; color: #FFF; box-sizing: border-box; background: #0099ff; border-radius: 4px; padding: 6px 12px; margin: 0 4px; cursor: pointer; font-family: inherit; border:none; outline: none}
+.j-newbtn-o{background: none; color: #0099ff; border:1px solid #0099ff}
+.j-newbtn.large{width: 200px; padding: 12px; font-size: 16px; font-weight: bold}
+.j-newbtn.mid{padding: 12px 50px; font-size: 16px; font-weight: bold}
+.j-newbtn:hover{opacity: .5}
+.j-newbtn.red{background: #fb6b5b}
+.j-newbtn.red-o{background: none; color: #fb6b5b; border:1px solid #fb6b5b}
+.j-newbtn.lock{pointer-events: none; background: #999!important; color: #FFF!important}
+.j-newbtn.green{background: #16ac75}
+.j-newbtn-group .j-newbtn:first-child{margin-left: 0}
+.j-newbtn-group .j-newbtn:last-child{margin-right: 0}
+
+/* 按钮样式 */
+.j-button-red{border:none; outline:none; background:#fb6b5b; border-radius:4px; color:#FFF; font-weight:bold; padding:8px 50px; display:block; transition:all .6s; text-align:center}
+.j-button-red:hover,.j-button-red-2:hover{background:#e83925}
+.j-button-red-2{display:block; width:100px; padding:8px 0}
+.j-button-white{border:1px solid #CCC; outline:none; background:#FFF; border-radius:4px; font-weight:bold; padding:8px 50px; display:block; transition:all .6s; color:#999; box-sizing:border-box; text-align:center}
+.j-button-white:hover{background:rgba(1,1,1,0.1); color:#FFF}
+.j-button-green{border:1px solid #1cc386; outline:none; background:#1dcd8d; border-radius:4px; font-weight:bold; padding:8px 50px; display:block; transition:all .6s; color:#FFF; box-sizing:border-box}
+.j-button-green:hover{background:#19b47b}
+.j-button-red:disabled:hover,.j-button-green:disabled:hover,.j-button-red:disabled,.j-button-green:disabled{background:#999;border:1px solid #999}
+
+.j-button-upload,.j-button-upload-red{border:1px solid #CCC; display:block; background:#FFF; width:100px; padding:10px 0; text-align:center; border-radius:4px; font-size:14px; margin-top:15px}
+.j-button-upload-red{background:#fb6b5b; color:#FFF; border:1px solid #fb6b5b}
+.j-button-upload-red:hover{background:#e83925}
+.j-upload-file{opacity:0; position:absolute; width:100px; height:38px; margin-top:15px}
+.uploadform{width:100px}
+.uploadimg{width:90px; min-height:65px; margin-right:4px}
+.uploadimg img{max-height:100px}
+/* 批量上传 */
+.multi-upload-form{width:100px}
+.multi-upload-btn{border:none; font-size: 14px; outline:none; background:#1cc386; border-radius:4px; font-weight:bold; display:block; width: 100px; padding: 10px 0; transition:all .6s; color:#FFF; box-sizing:border-box; text-align:center}
+.multi-upload-file{opacity:0; position:absolute; width:100px; height:38px;}
+.multi-upload-filelist{height: 200px; overflow-y:auto; overflow-x: hidden; }
+.multi-upload-filelist .listitem{float: left; width: 30%; margin-right: 5%;}
+.multi-upload-filelist .listitem:nth-child(3n){margin-right: 0}
+.multi-upload-filelist .listitem .pic{height: 80px}
+.multi-upload-filelist .listitem .pic img{max-width: 100%; max-height: 100%; display: block; margin: 0 auto}
+.multi-upload-filelist .listitem .insertbtn{text-align: center; margin: 5px}
+
+/* 表格表单布局 */
+form .j-input-lalel{font-size:14px}
+.j-formbk{background:#f4f5f9; vertical-align:top; border:1px solid #e7e7eb; box-sizing:border-box}
+.j-formbk .nav{background:#FFF}
+.nav li a{font-size:14px; cursor:pointer; border-radius:0; padding:8px 15px; margin-right:0; line-height:25px}
+.j-formbk .nomargin{margin-bottom:0px}
+.nav .active a,.nav .active a:hover,.nav .active a:focus{background:#f4f5f9}
+.nav li:first-child a,.nav li:first-child a:hover,.nav li:first-child a:focus{border-left:none; border-top:none;  padding-bottom:9px}
+.j-formbk .tab-content{width:98%; margin:0 auto}
+.j-formbk .tab-content-full{width:100%}
+.j-formbk .first-noborder td{border-top:none}
+.j-formbk .j-typeselect{width:120px}
+td.j-pictd img{width: 70px; height: 50px}
+
+.j-table{width:100%; border:0; border-spacing: 0}
+
+.j-table-vertival-top td{vertical-align:top}
+.j-table-vertival-mid td{vertical-align:middle}
+.j-table-sortline-dashed tr{border-bottom:dashed 1px #CCCCCC}
+.j-table-sortline-solid tr{border:solid 1px #CCCCCC}
+.j-table-noborder tr{border:none}
+.j-table-bk-1{background:#f4f5f9}
+.input-group,.input-group-full,.input-group-auto,.textarea-group{padding:10px 0}
+.input-group input[type="text"],.input-group input[type="passwordpic"]{width:85%}
+.div-editor{border:1px #eee solid; box-sizing:border-box; background:#FFF}
+.div-editor .emotion{width:96%; margin:0px auto}
+.div-editor .emotion .emotionlist{background:#f6f6f6; border-radius:3px; margin-top:20px}
+.div-editor .emotion .eitem{background-image:url(../image/face/default.gif); background-repeat:no-repeat; width:24px; height:24px; cursor:pointer; float:left; display:block; margin:3px; box-sizing:border-box}
+.div-editor .emotion span{display:block; background:url(../image/biaoqing.png) no-repeat; width:18px; height:18px}
+.div-editor .editor{border:1px #eee solid; width:92%; display:block; margin:10px auto; resize:none; padding:8px; word-break:break-all; min-height:50px}
+.div-editor .editor div{width:100%}
+.newslist .img img{width:70px; height:39px}
+.newslist table{margin-bottom:0px}
+.newslist .j-news-zixun,.newslist .newstype-search{height:307px; overflow-y:auto; overflow-x:hidden}
+.newslist .pagination{margin:8px 4px 8px 0; display: none}
+.newslist .pagination li{cursor:pointer}
+.newslist .pagination li.active a{color: #fb6b5b}
+.newslist .papernewsarticle-list{display: none; min-height: 280px}
+
+/* 全窗口弹窗 */
+.j-dialog-window{display:none; background: rgba(0,0,0,.5); position: fixed; left: 0; right: 0; top: 0; bottom: 0; overflow: hidden}
+.j-dialog-content{margin: 0 auto; overflow-x: hidden; overflow-y: auto; height: 100%}
+.j-dialog-content-subwindow{height: 100%; width: 100%}
+.j-dialog-content .close{position: absolute; right: 8px; top: 8px; color: #FFF; font-size: 50px; opacity: 1}
+.j-dialog-content-subwindow .j-table{height: 100%}
+
+/* 删除样式 */
+.j-delete-1 span{color:#0C3}
+.j-delete-1:hover span{color:#000}
+
+.j-vtcl-top td{vertical-align:top}
+.j-vtcl-mid td{vertical-align:middle}
+
+.check_right{color:#3C3; margin-left:3px}
+.check_false{color:#F00; margin-left:3px}
+
+
+/* 内容页导航 */
+.j-nav-bottom{display:none}
+
+/* 预览框 */
+.j-viewport .j-view-1{background:url(../image/u200.jpg) no-repeat; width:320px; height:440px; background-size:100% 100%; float:left}
+.j-view-1 .container{width:100%; height:346px; overflow-y:auto; overflow-x:hidden; margin-top:54px}
+.j-view-1 .box-zixun{background:#FFF; border-radius:3px; border:1px solid #CCC}
+.j-view-1 .box-zixun .img{display:block; height:160px; width:100%; background-repeat:no-repeat; background-size:cover; background-position: center center;}
+.j-view-1 .box-zixun .news_title{font-size:14px}
+.j-viewport-show{font-size:24px; line-height:30px; width:30px; height:30px; background:#19c083; color:#FFF; border-radius:50%; text-align:center; margin-top:175px; opacity:.5; position:absolute; margin-left:320px}
+.j-viewport-show:active{opacity:1}
+.box-zixun-list .news_title{display:block; height:30px; background:rgba(0,0,0,.5); color:#FFF; line-height:30px; overflow:hidden; position:relative; top:130px}
+.box-zixun-list a,#box-zixun-1{position: relative}
+.box-zixun-list .delete,#box-zixun-1 .delete{position: absolute; cursor: pointer; left: 160px; top: 0; height: 50px; right: 0; background: rgba(0,0,0,.5); font-size: 14px; color: #FFF; border-radius: 0 0 0 50px; transition: all .6s; -webkit-transition: all .6s;}
+.box-zixun-list a:hover .delete,#box-zixun-1:hover .delete{left: 0; top:0;  height: 100%; right: 0; font-size: 25px; border-radius: 0}
+.box-zixun-list a .delete table,#box-zixun-1 .delete table{width: 100%; height: 100%}
+.box-zixun-list a .delete table td,#box-zixun-1 .delete table td{text-align: center}
+.box-zixun-list a.lista{padding:10px 0; display:block; border-top:1px solid #E3E3E3}
+.box-zixun-list a.lista:first-child{border:none}
+.box-zixun-list a.lista .j-w-50 img{width:50px; height:50px}
+
+/* 居民卡预览 */
+.idcard{width: 100%; padding: 10px 0}
+.idcard .card{border-radius: 8px; height: 180px; overflow: hidden; background-repeat: no-repeat;background-size: cover; margin: 10px auto; color: #FFF; background: #ccc; width: 90%; max-width: 350px; -webkit-box-shadow:0px 2px 10px #333333; box-shadow:0px 2px 10px #333333; position: relative;}
+.idcard .card a{color: #FFF}
+.idcard .card .user{position: absolute; left: 15px; top:15px}
+.idcard .card .user .table td{padding: 1px 3px}
+.idcard .card .user .avatar img{width: 50px; height: 50px;border-radius: 50%}
+.idcard .card .number{font-size: 20px; position: absolute; left: 15px; bottom: 15px}
+.idcard .card .logo{position: absolute; right: 15px; top: 15px}
+.idcard .card .logo img{width: 50px; height: 50px; border-radius: 5px}
+.idcard .card .info{position: absolute; right: -7px; bottom: -7px; font-size: 20px; background: #FFF; padding: 8px 10px; border-radius: 50%}
+.idcard .card .info a{color: #585858}
+/* 选择项居中 */
+table .txtmid{text-align:center}
+
+/* 预览框 */
+.j-viewport{position:absolute; width:330px; height:440px; margin-left:5px}
+.j-viewport-w{width:340px}
+.j-viewport-show{display:none}
+
+
+/* 首页样式 */
+.j-top-left{width:60%; height:100px}
+.j-top-left a{height:100%; width:33.33%;}
+.j-top-right{width:38%; height:100px}
+.j-top-right a{height:100%; width:50%}
+.j-top-left a:hover,.j-top-right a:hover{background:rgba(0,0,0,0.1)}
+.j-bottom-box{width:31.333333%}
+.j-bottom-box:hover{background:#f4f5f9}
+
+/* 表单表格内布局 */
+.j-table .input-group{width:45%; float:left; margin-left:2.5%}
+.j-table .input-group-full{width:98%; margin:0 auto}
+.textarea-group{width:95%; margin-left:2.5%}
+
+.uploadform:hover .j-button-upload{background:#19c083; color:#FFF}
+
+/* 社区相册 */
+.j-sortlist{padding:0; border-left:1px solid #CCC; width:200px}
+.j-sortlist .nav li a{border:none; border-radius:0; border-left:2px solid #f4f5f9; background:#f4f5f9}
+.j-sortlist .nav li a:hover,.j-sortlist .nav li a.active{background:#FFF; border-radius:0; border-left:2px solid #000}
+.j-piclist{width:98%; margin:8px auto}
+.j-piclist .d-3{width:30%; margin-left:2.5%; float:left; margin-bottom:25px}
+.j-piclist .d-4{width:22%; margin-left:2.4%; float:left; margin-bottom:25px}
+.j-piclist .pic{background:#FFF; padding:5px; transition:all 0.6s; display: block;}
+.j-piclist .pic:hover{box-shadow:0px 4px 6px #DBDBDB}
+.j-piclist .pic .piccontainer{height: 200px}
+.j-piclist .pic img{display:block; max-height: 200px; max-width: 100%; margin: 0 auto}
+.j-piclist .pic .title{font-size:14px; font-weight:bold; height:25px; overflow:hidden; line-height:25px; text-overflow:initial;}
+.j-piclist .pic .count{color:#CCC}
+.j-piclist .edit{position:absolute; background:rgba(0,0,0,0.5); padding:10px}
+.j-piclist .edit .j-delete-1{font-size:16px; color:#FFF; cursor:pointer; display: inline-block;}
+.j-piclist .editabletitle input[type="text"]{display:block}
+
+/* 图文弹出框选择 */
+.j-article-dialog{height: 300px; overflow-x: hidden; overflow-y: auto; border:1px solid #CCC; margin: 10px 15px; padding: 0; font-size: 14px}
+.j-article-dialog table{width: 100%; border: 0 ; border-spacing: 0; padding: 0; margin: 0 auto}
+.j-article-dialog td{padding: 8px}
+.j-article-dialog tr:hover,.j-article-dialog tr.checked{background-color: #f1f1f1; cursor: pointer;}
+
+/* 图文选择列表 */
+.article-list{margin: 0; padding: 0; border-radius: 1px solid #CCC; height: 250px; overflow-y: auto;}
+.article-list td{padding: 8px}
+.article-list label{display: block;}
+.article-list .item.on,.article-list .item:hover{background: #f3f2f3}
+.article-list .cover{width: 80px}
+.article-list .cover img{max-height: 80px; max-width: 100%}
+.article-list .title{}
+.article-list .input{width: 25px}
+.article-list-page{margin: 0; padding: 0 8px}
+.article-list-page td{padding: 8px 0}
+.article-list-page .searchbtn{text-align: left; width: 60px}
+.article-list-page .page-btn{border:1px solid #DDD; padding: 4px 8px; border-radius: 6px}
+.newslist .input-prepend{margin: 5px 6px}
+
+/* 新闻图文 */
+.newsarticle-typelist a{font-size: 14px; font-weight: bold; margin-right: 20px; display: inline-block; padding: 0 0 8px 0}
+.newsarticle-typelist a.active{color: #0ae}
+.newsarticle-searchbox.form-search{display: inline-block; padding: 6px 6px 6px 0}
+.newsarticle-searchbox.form-search .input-append  .search-query,.newsarticle-searchbox.form-search .input-append .btn{border-radius: 0}
+.newsarticle-searchbox.form-search .input-append  .search-query{width: 300px}
+
+/* 调研图表 */
+.j-chart{background-color: #FFF; margin: 0 auto; padding: 15px;}
+.j-chart .chart-b{width: 90%; margin: 0 auto}
+.j-chart .chart-s{width: 100%; border-left: dotted 1px #e7e7eb;}
+.j-chart canvas {-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; user-select: none}
+.j-chart .data-questionlist{width: 90%; margin: 10px auto;}
+.j-chart .data-questionlist .item{width: 100%; border:1px solid #e7e7eb; margin: 15px auto}
+.j-chart .data-questionlist .head{margin: 0 auto; padding: 8px 15px; background-color: #f4f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 16px; border-bottom: 1px solid #e7e7eb}
+.j-chart .answer{margin: 15px; font-size: 16px;}
+.j-chart .answer:before{display: inline-block; border-radius: 50%; color: #FFF; width: 25px; height: 25px; line-height: 25px; text-align: center;}
+.j-chart .answer:nth-child(1):before{content: "A"; background-color: #F7464A}
+.j-chart .answer:nth-child(2):before{content: "B"; background-color: #46BFBD}
+.j-chart .answer:nth-child(3):before{content: "C"; background-color: #FDB45C}
+.j-chart .answer:nth-child(4):before{content: "D"; background-color: #949FB1}
+.j-chart .answer:nth-child(5):before{content: "E"; background-color: #4D5360}
+.j-chart-dialog{}
+.j-chart-dialog .modal-body{max-height: 300px; font-size: 14px}
+.j-chart-dialog .modal-body .result{color: #bfbfbf}
+.j-chart-dialog .modal-body .result div{width: 95%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.j-chart-dialog .modal-body .checked{color: #19c083}
+.j-chart-dialog .result div:nth-child(1):before{content: "A. "}
+.j-chart-dialog .result div:nth-child(2):before{content: "B. "}
+.j-chart-dialog .result div:nth-child(3):before{content: "C. "}
+.j-chart-dialog .result div:nth-child(4):before{content: "D. "}
+.j-chart-dialog .result div:nth-child(5):before{content: "E. "}
+
+/* kingedit微信编辑器 */
+.weixin-kingedit{position: absolute; z-index: 100; width: 100%; height: 100%; min-width: 1000px; background: rgba(0,0,0,0.5); overflow-x: hidden; overflow-y: auto; display: none; top:0;}
+.weixin-kingedit .c{width: 1000px; margin: 0 auto; background: #cbcbcb; height: 100%; position: relative;}
+.weixin-kingedit .c-2{float:left; box-sizing: border-box; width: 49.5%; height: 100%; background: #FFF; overflow-x: hidden; overflow-y: auto}
+.weixin-kingedit .editor{margin-right: 1%}
+.weixin-kingedit .maker{}
+.weixin-kingedit .color-msg{font-size: 18px; padding: 4px; font-weight: bold; text-align: center}
+.weixin-kingedit .main-content{height: 100%}
+.weixin-kingedit .right-menu{width: 100px; float: right; height: 100%; overflow-y:auto; overflow-x: hidden;}
+.weixin-kingedit .right-menu a{display: block; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; background: #16a16e; color: #FFF; padding: 8px 0; font-size: 16px; box-sizing: border-box; margin: 2px auto; cursor: pointer;}
+.weixin-kingedit .right-menu a:hover,.weixin-kingedit .right-menu a.on{opacity: 0.6}
+.weixin-kingedit .right-menu a.close-btn{background: #fb6b5b}
+.weixin-kingedit .jscolor{width: 100%; text-align: center; padding:8px 0; border-radius: 0; }
+.weixin-kingedit .list-container{display: none}
+.weixin-kingedit .left-content{width: 385px; float: left; height: 100%; overflow-y:auto; overflow-x: hidden; border-right: 1px solid #CCC}
+.weixin-kingedit .left-content .item{margin: 8px; padding: 8px; box-sizing: border-box; border:1px dashed #FFF; cursor: pointer;}
+.weixin-kingedit .left-content .item:hover,.weixin-kingedit .left-content .item.selected{border:1px dashed #CCC;}
+.weixin-kingedit .weixin-kingedit-okbtn{display: block; margin: 15px; background: #16a16e; text-align: center; color: #FFF; padding: 8px 0; font-size: 16px; border-radius: 4px}
+
+
+/* 群发队伍 */
+.masslist{position: relative; margin: 0 5px; padding: 10px 0; font-size: 14px}
+.masslist .timeline{background: #00c481; height: 2px; position: absolute; top: 38px; left: 4px; right: 4px}
+.masslist .timeline:before{content: " "; float: left; border-radius: 50%; display: block; width: 12px; height: 12px; background: #00c481; margin-top: -6px}
+.masslist .timeline:after{content: " "; float: right; border-color: #00c481 #00c481 rgba(0,0,0,0) rgba(0,0,0,0); border-width: 0 13px 13px 0; border-style: solid; transform: rotate(45deg); -webkit-transform: rotate(45deg); margin-top: -6px}
+.masslist .list{margin: 0 auto; padding: 0 10px}
+.masslist .item{position: relative; float: left; display: block; width: 20%}
+.masslist .item:after{content: " "; position: absolute; top: 17px; right: 0; width: 1px; height: 25px; background: #00c481}
+.masslist .item:last-child:after{display: none}
+.masslist .item .c{margin: 0; padding: 4px}
+.masslist .item .time{text-align: center}
+.masslist .item .commands{position: absolute; top: 38px; left: 0; right: 0; display:none}
+.masslist .item .commands.hide{display: none}
+.masslist .item .commands div{display: inline-block; text-align: center; width: 31%}
+.masslist .item .commands div.rebuild{width: 36%}
+.masslist .item .commands div a:hover{opacity: .5; cursor: pointer}
+.masslist .item .commands .pre{color: #0099FF}
+.masslist .item .commands .back{color: #0099FF}
+.masslist .item .commands .rebuild{color: #38CC87}
+.masslist .item .commands .del{color: #F00}
+.masslist .item:first-child .pre{color: #CCC; pointer-events: none}
+.masslist .item:last-child .back{color: #CCC; pointer-events: none}
+.masslist .articles{border:1px solid #CCC; margin-top: 44px}
+.masslist .articles .ilist{position: relative; margin: 0; padding: 8px; border-top: 1px solid #CCC}
+.masslist .articles .ilist .cover{float: right; width: 35%; text-align: center}
+.masslist .articles .ilist .cover img{display: block; max-width: 100%; max-height: 80px}
+.masslist .articles .ilist .title{float: left; width: 63%; font-size: 14px}
+.masslist .articles .ilist:first-child{border-top: none}
+.masslist .articles .ilist:first-child .cover{float: none; width: 100%; background-size: cover; background-position: center center; height: 160px}
+.masslist .articles .ilist:first-child .title{float: none; width: auto; position: absolute; bottom: 8px; left: 8px; right: 8px; background: rgba(0,0,0,.5); color: #FFF; padding: 4px 8px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis}
+.masslist .item .nodata{display: block; text-align: center; color: #CCC; margin: 16px 0 8px 0}
+.masslist .item .hotchange{display: none; transition:all .6s; -webkit-transition:all .6s}
+.masslist .item .hotchange .timesetting:hover{opacity: .5}
+.masslist .item .commondbtns .cbtn{width: 50%; color: #38CC87; font-weight: bold; padding: 8px 0; text-align: center; display: block; float:left; border-left: 1px solid #CCC; border-bottom: 1px solid #CCC; box-sizing: border-box}
+.masslist .item .commondbtns .cbtn:last-child{border-right: 1px solid #CCC}
+.masslist .item .commondbtns .cbtn:hover{background: #38CC87; color: #FFF; cursor: pointer; border-color: #38CC87}
+.masslist .articles~.nodata{display: none}
+.masslist .articles~.commands{display: block}
+.masslist .item:first-child .articles~ .hotchange{display: block; cursor: pointer}
+.masslist .item .timesetting .control{background: #38CC87; color: #FFF; display: block; width: 100%; text-align: center; padding: 8px 0; font-weight: bold}
+.masslist .item:first-child .hotchange .timesetting~.commondbtns{display: none}
+.masslist .item.issended .nodata{display: block!important; position: absolute; top: 20px; left: 0; right: 0}
+.masslist .item.issended .commands{display: none!important}
+.masslist .item.issended .hotchange{display: none!important}
+.masslist .item.issended~.item:nth-child(2) .commands .pre{color: #CCC; pointer-events: none}
+
+.mass-dialog{position: absolute; left: 0; right: 0; top: 0; bottom: 0; font-size: 14px; display: none}
+.mass-dialog .cancel{color: #F00}
+.mass-dialog .cancel:hover{opacity: .5}
+.mass-dialog-c{width: 450px; margin: 150px auto 0 auto; box-shadow: 0px 2px 6px rgba(0,0,0,.5); background: #FFF}
+.mass-dialog-head{margin: 0; padding: 10px 8px; border-bottom: 1px solid #CCC; font-size: 16px}
+.mass-dialog-bottom{border-top: 1px solid #CCC; text-align: center; margin: 0; padding: 16px 6px}
+.mass-confirmbox{margin: 0; padding: 30px 50px;}
+.mass-confirmbox .confirm-title{font-weight: bold; font-size: 16px; padding: 8px 0}
+.mass-dialog .confirm-btn{border-radius: 4px; background: #FFF; border: 1px solid #CCC; margin: 16px 8px; padding: 6px 24px; cursor: pointer}
+.mass-dialog .confirm-btn:hover{opacity: .5}
+.mass-dialog .confirm-btn.green{background: #33ae00; border: 1px solid #33ae00; color: #FFF}
+.mass-dialog .confirm-btn.loading{background: #CCC!important; color: #FFF!important; pointer-events: none}
+.mass-timetable{margin: 0; padding: 8px;}
+.mass-timetable .timetable-title{font-size: 16px; padding: 8px 0; font-weight: bold}
+.mass-timetable .timetable table{width: 100%; margin-bottom: 10px}
+.mass-timetable .timetable table td{border:1px solid #CCC; padding: 0}
+.mass-timetable .timetable table td a{display: block; padding: 6px 0; text-align: center; cursor: pointer}
+.mass-timetable .timetable a:hover,.mass-timetable .timetable a.active{background: #38CC87; color: #FFF}
+.mass-timetable .timetable table td a.lock{background: #CCC!important; color: #FFF!important; pointer-events: none}
+
+/* 栏目分类 */
+.categorylist{margin: 0; padding: 10px; min-height: 350px}
+.categorylist .item{width: 18%; height: 240px; position: relative; margin: 8px 1%; border:1px solid #CCC; border-radius: 3px; float: left; box-sizing: border-box}
+.categorylist .item .c .a-sort{display: block}
+.categorylist .item .c.unshow .a-sort:after{content: "不显示"; position: absolute; top: 33px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5); bottom: 0; color: #FFF; text-align: center; font-size: 20px; font-weight: bold; line-height: 150px}
+.categorylist .icon-cver{display:block; margin: 10px; border:8px solid #CCC; border-radius: 5px; height: 120px}
+.categorylist .icon-cver table{width: 100%; height: 120px;}
+.categorylist .icon-cver table td{border: none; padding: 0; border-spacing: 0; vertical-align: middle; font-size: 45px; text-align: center}
+.categorylist .icon-cver table td div{height: 120px; margin: 0; background-repeat: no-repeat; background-size: contain; background-position: center center}
+.categorylist .commands{border-bottom: 1px solid #CCC;margin: 0; padding: 8px 0; font-size: 14px}
+.categorylist .commands span{text-align: center; float: left; width: 25%}
+.categorylist .commands span a:hover{opacity: .5; cursor: pointer}
+.categorylist .commands .pre{color: #0099FF}
+.categorylist .commands .back{color: #0099FF}
+.categorylist .commands .edit{color: #38CC87}
+.categorylist .commands .del{color: #F00}
+.categorylist .item:first-child .commands a.pre,.categorylist .item:last-child .commands a.back{pointer-events: none; color: #CCC}{pointer-events: none; color: #CCC}
+.categorylist .c-title{font-weight: bold}
+.categorylist .c-title,.categorylist .c-descs{text-align: center; font-size: 14px; margin: 0; padding: 2px 6px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis}
+
+/* 表格列表样式 */
+.j-common-tablelist{margin: 0; padding: 10px}
+.j-common-tablelist.centertxt td,.j-common-tablelist.centertxt th{text-align: center}
+.j-common-tablelist table thead tr th{background: #efeeec}
+.j-common-tablelist table tbody tr td{vertical-align: middle}
+.j-common-tablelist .color-1 a,.j-common-tablelist .color-1{color: #0099FF}
+.j-common-tablelist .color-2 a,.j-common-tablelist .color-2{color: #F7464A}
+.j-common-tablelist .important{border:1px dashed #F7464A; color: #F7464A; padding: 6px 16px; border-radius: 4px}
+
+/* iphone7 微信框 */
+.j-iphone7box{margin: 0; padding: 0}
+.j-iphone7box table{column-span: 0; column-width: 0; border: 0; margin: 0 auto}
+.j-iphone7box table td{text-align: center; vertical-align: middle}
+.j-iphone7box table td .phone{width: 330px}
+.j-iphone7box .iphone-machine{position: relative; box-shadow: 0 3px 6px rgba(0,0,0,.3)}
+.j-iphone7box .iphone-screen{position: absolute; left: 0; right: 0; top: 51px; bottom: 0}
+.j-iphone7box .iphone-wxframe{height: 100%}
+.j-iphone7box iframe{width: 100%; height: 100%; border:none; padding: 0; margin: 0; outline: none}
+.j-iphone7box iframe::-webkit-scrollbar{width: 0}
+.j-iphone7box .phonenumber{font-size: 30px; font-weight: bold}

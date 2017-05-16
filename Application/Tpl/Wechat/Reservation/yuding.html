@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$dlist.title}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="headcover">
+  <img src="{$dlist.headpic}">
+</div>
+
+<form action="" method="post" onSubmit="return Validator.Validate(this,4)">
+<div class="weui_panel">
+  <div class="weui_panel_bd">
+    <div class="weui_media_box weui_media_text">
+      <p class="weui_media_desc">{$dlist.info}</p>
+    </div>
+  </div>
+</div>
+        
+<div class="weui_cells weui_cells_form date-form">
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">联系人</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+        <input name="truename" class="weui_input" type="text" placeholder="请输入联系人姓名" value="{$member.name}" datatype="Require" msg="请输入联系人姓名">
+    </div>
+  </div>
+  
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">手机</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+        <input name="tel" class="weui_input" type="text" placeholder="请输入联系手机号码" value="{$member.tel}" datatype="Mobile" msg="请正确输入手机号码">
+    </div>
+  </div>
+  
+  <div class="weui_cell weui_cell_select weui_select_after">
+      <div class="weui_cell_hd">
+        日期
+      </div>
+      <script>
+	  function seweek(val) {
+		  $(".weeksele").hide();
+		  $("#i"+val).show();									
+	  }
+	  </script>
+      <div class="weui_cell_bd weui_cell_primary">
+        <select id="dateslect" class="weui_select" name="date" datatype="Require" msg="请选择预约日期">
+          <volist name="daytimearr" id="vo">
+		  <option value="{$vo}">{$vo|date="m月d日",###} 周{$vo|Weekname}</option>
+          </volist>
+        </select>
+      </div>
+  </div>
+  
+  <div class="weui_cell weui_cell_select weui_select_after">
+      <div class="weui_cell_hd">
+        时间
+      </div>
+      <div class="weui_cell_bd weui_cell_primary">
+        <volist name="daytimearr" key="k" id="vo">
+        <select name="timepart" id="i{$vo}" class="weui_select" <neq name="k" value="1">style="display: none;"</neq>>
+            <neq name="dtimelist[$vo]['morn']" value="-1"><option <lt name="dtimelist[$vo]['mornsynums']" value="1">disabled</lt> value="1">上午(<eq name="dlist['nummodel']" value="2">可预约{$dtimelist[$vo]['mornsynums']}人,</eq>已有{$dtimelist[$vo]['morcount']|default='0'}人预约)</option></neq>
+            <neq name="dtimelist[$vo]['aftn']" value="-1"><option <lt name="dtimelist[$vo]['aftnsynums']" value="1">disabled</lt> value="2">下午(<eq name="dlist['nummodel']" value="2">可预约{$dtimelist[$vo]['aftnsynums']}人,</eq>已有{$dtimelist[$vo]['aftcount']|default='0'}人预约)</option></neq>
+            <if condition="($dtimelist[$vo]['morn'] eq -1) and ($dtimelist[$vo]['aftn'] eq -1)"><option>无法预约</option></if>
+        </select>
+        </volist>
+      </div>
+  </div>
+</div>
+
+<div class="weui_panel date-form">
+  <div class="weui_panel_hd">办事指南</div>
+  <div class="weui_panel_bd">
+    <div class="weui_media_box weui_media_small_appmsg">
+      <div class="weui_cells weui_cells_access">
+        <!-- loop -->
+        <volist name="plist" id="item">
+        <a class="weui_cell" href="{:U('article/index?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref=mp.weixin.qq.com')}">
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>{$item.title}</p>
+          </div>
+          <span class="weui_cell_ft"></span>
+        </a>
+        </volist>
+        <!-- loop -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="weui_btn_area">
+   <input type="submit" class="weui_btn weui_btn_primary" value="预约">
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script>
+//生成预约时间
+function createDateSelect(){
+  var i=0;
+  var c=0;
+  var now=new Date();
+  var dayseconds;
+  var week=['','一','二','三','四','五','六','七'];
+  while(i<=4){
+    c++;
+    var timestamp=parseInt(now.getTime()/1000);
+    var month=now.getMonth()+1;
+    var date=now.getDate();
+    var day=now.getDay()+1;
+    
+    now.setTime(timestamp*1000+86400000);
+    
+    if(day!=6 && day!=7){
+      i++;
+      var option =document.createElement('option');
+      option.value=timestamp;
+      option.innerHTML = month+"月"+date+"日 周"+week[day];
+      document.getElementById("dateslect").appendChild(option);
+    }
+  }
+}
+</script>
+
+<include file="Public:footer" />
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* 滚动 */
+.swiper-container{width: 100%}
+.swiper-slide{width: 100%; padding: 0}
+.swiper-slide img{width:100%; display:block;margin:0 auto;}
+
+/* 菜单 */
+.menu{padding:0; margin: 8px;}
+.menu .item{color: #FFF; display: block; float: left; height: 82px; box-sizing: border-box; margin-bottom: 10px;}
+.menu .item .icon{font-size: 40px; text-align: center;}
+.menu .item .title{text-overflow: ellipsis; white-space: nowrap; overflow: hidden; margin: 0 auto; font-weight: bold; padding: 10px 0 0 10px}
+.menu .item:active{opacity: 0.6}
+
+.menu .line:nth-child(n) .item:nth-of-type(1){width: 38%; background-color: #35aae7;}
+.menu .line:nth-child(n) .item:nth-of-type(2){width: 29%; background-color: #678ce1; margin-left: 2%}
+.menu .line:nth-child(n) .item:nth-of-type(3){width: 29%; background-color: #8c67df; margin-left: 2%}
+
+.menu .line:nth-child(2n) .item:nth-of-type(1){width: 49%; background-color: #84d018}
+.menu .line:nth-child(2n) .item:nth-of-type(2){width: 49%; background-color: #14c760; margin-left2%}
+
+.menu .line:nth-child(3n) .item:nth-of-type(1){background: #f3b613}
+.menu .line:nth-child(3n) .item:nth-of-type(2){background: #ff8a4a}
+.menu .line:nth-child(3n) .item:nth-of-type(3){background: #fc5366}
+
+.footer{line-height: 50px; clear: both; text-align: center;}
+.footer a{font-size: 12px; text-shadow:2px 2px 5px #FFF;}

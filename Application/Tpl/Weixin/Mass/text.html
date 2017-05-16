@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	信息群发
+                        <div class="j-fr">
+                            <a class="j-fz-14" href="{:U('record')}"><span class="icon-list"></span> 群发记录</a>
+                        </div>
+                    </div>
+                    
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    	<div class="j-m j-h10"></div>
+                    
+                    	<!--预览框-->
+                    	<div id="viewport" class="j-viewport j-tsm-06">
+                        	<div class="j-view-1">
+                            	<div class="container">
+                                	<!--自定义文本-->
+                                	<div id="txt_view" class="j-m-spacing">
+                                    	<div class="j-m j-h10"></div>
+                                    	<div class="j-m j-talk-line">
+                                        	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            	<tbody>
+                                                	<tr class="j-vtcl-top">
+                                                    	<td class="avatar"><img src="/avatar.php?size=s&id={$weixin.id}&rand={:mt_rand()}"></td>
+                                                        <td class="j-w-11"><span class="icon-caret-left"></span></td>
+                                                        <td>
+                                                            <div id="talkingtxt" class="content content-txt">
+                                                            	请设置群发内容！
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="j-m j-h10"></div>
+                                    </div>
+                                    <!--自定义文本-->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--预览框-->
+                        
+                    	<!--表单-->
+                    	<form action="{:U('send')}" method="post" id="s_form" autocomplete="off" onSubmit="return Validator.Validate(this,4)">
+                        <div class="j-m j-h1"></div>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                        	<tbody>
+                            	<tr>
+                                	<td class="j-viewport-w"><div class="j-m" style="min-height:440px"></div></td>
+                                    <td class="j-formbk">
+                                    	<div class="j-m">
+                                        	<div class="tabbable">
+                                              <ul class="nav nav-tabs">
+                                                <li class="active"><a>文本</a></li>
+                                                <li><a href="{:U('index')}">社区资讯</a></li>
+                                              </ul>
+                                              <div class="tab-content">
+                                                <div class="tab-pane active" id="tab1">
+                                                 
+                                                  <div class="j-m">
+                                                  	<table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                    	<tr>
+                                                        	<td class="j-fz-14 j-w-75">发送时间：</td>
+                                                            <td class="j-w-75"><label class="j-lh30" onClick="select_send_mod(1)"><input checked type="radio" name="immediately" value="1"> 立即发送</label></td>
+                                                            <td class="j-w-90"><label onClick="select_send_mod(2)" class="j-ml10 j-lh30"><input type="radio" name="immediately" value="0"> 定时发送</label></td>
+                                                            <td>
+																<span class="j_timepicker j-hide"><input class="j-w70 j-max-w-150" name="sendtime" placeholder="选择发送时间" type="text" id="timepickers-1"></span>&nbsp;
+															</td>
+                                                        </tr>
+                                                    </table>
+                                                  </div>
+                                                  
+                                                  <div class="j-m j-h5"></div>
+                                                  
+                                                  <!--模式选择-->
+                                                  <include file="Public:diveditor" />
+                                                  <!--模式选择-->
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+					<div class="j-m j-h1 j-bkcl2"></div>
+					<div class="j-m j-h20"></div>             
+						<div class="j-m">
+                            <div class="j-w-300 j-pct">
+                              <input type="hidden" id="type" name="type" value="text">
+                              <input type="hidden" id="ispreview" name="ispreview" value="0">
+                              <input type="hidden" id="previewwechatid" name="previewwechatid" value="">
+                              <input type="submit" class="j-button-red j-fl" value="确定">
+                              <input onClick="J_dialog_viewnew()" type="button" class="j-button-white j-fr" value="预览">
+						    </div>
+						</div>
+                    <div class="j-m j-h20"></div>
+					</form>
+                    <!--表单-->
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+
+<script src="/static/weixin/js/emotionedit.js"></script>
+<script src="/static/plugin/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/plugin/datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/static/js/validator.js"></script>
+
+
+<script>
+$(this).ready(function(e) {
+	//时间选择器
+	$("#timepickers-1").datetimepicker({
+    	format: 'yyyy/mm/dd hh:ii',
+		language:  'zh-CN',
+	});
+});
+
+//选择发送方式 立即或者定时
+function select_send_mod(id){
+	if(id==1){
+		$(".j_timepicker").hide();
+		$("#timepickers-1").removeAttr("datatype").removeAttr("msg");
+		
+	}else{
+		$(".j_timepicker").css("display","inline-block");
+		$("#timepickers-1").attr("datatype","Require").attr("msg","请选择时间");
+	}
+}
+</script>
+</body>
+</html>

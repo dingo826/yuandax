@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	{$detail.name}圈子成员
+                        <div class="j-fr">
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                                
+                              <ul class="nav nav-tabs nomargin">
+                                <li <empty name="Think.get.stype"> class="active"</empty>><a <notempty name="Think.get.stype">href="{:U('member?id='.$detail['id'])}"</notempty>>全部</a></li>
+                                <li <eq name="Think.get.stype" value="1"> class="active"</eq>><a <neq name="Think.get.stype" value="1">href="{:U('member?id='.$detail['id'].'&stype=1')}"</neq>>待批准</a></li>
+                              </ul>
+                              
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table j-table-vertival-mid">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td width="80">头像</td>
+                                                <td>名称</td>
+                                                <td width="70">性别</td>                                                
+                                                <td width="70">类型</td>
+                                                <td width="70">状态</td>
+                                                <td width="70">时间</td>
+                                                <td width="150">操作</td>
+                                            </tr>
+                                            
+                                            <notempty name="list">
+                                            <!--loop-->
+                                            <volist name="list" id="item">
+                                            <tr>
+                                                <td><a href=""><img src="{$item.bigheadimgurl}"></a></td>
+                                                <td>{$item.name}</td>                                               
+                                                <td><eq name="item.sex" value="1" ><span class="label label-info">男</span></eq><eq name="item.sex" value="2"><span class="label label-warning">女</span></eq><eq name="item.real_name" value="1"><span class="text-sk  btn-warning ">实</span></eq></td>
+                                                <td><span class="label">成员</span></td>
+                                                <td><neq name="item.status" value="1">待审核<else />正常</neq></td>
+                                                <td>{$item.etime|date='Y-m-d H:i:s',###}</td>
+                                                <td>
+                                                	<neq name="item.status" value="1"><a href="{:U('review?circleid='.$id.'&id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-pencil"></span> 审核通过</a></neq>
+                                        			<a href="javascript:;" onclick="J_delete(this)" data-url="{:U('delmember?circleid='.$id.'&id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                                </td>
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                            <else/>
+                                            
+                                            <!--norecords-->
+                                              <tr>
+                                                  <td colspan="7">
+                                                      <div class="j-fcolor-2 j-m j-txtct">
+                                                          暂无成员加入圈子
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <!--norecords-->
+                                              </notempty>
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$page}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+function search_key(){
+	location.href="/weixin/circle/index/keyword/"+$("input[name='keyword']").val();
+}
+
+$(this).ready(function(e) {
+	
+});
+</script>
+</body>
+</html>

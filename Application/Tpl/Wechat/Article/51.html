@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/article.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/template/article/51/css/css.css" rel="stylesheet">
+</head>
+
+<body>
+<eq name="detail.show_cover_pic" value="1">
+<div class="headcover">
+  <img src="{$detail.picurl}">
+</div>
+</eq>
+
+<div class="article">
+  <div class="title">
+    <div class="t">{$detail.title}</div>
+    <div class="time">{$detail.etime|date="Y-m-d",###}<span class="author">{$basic.abbr}</span></div>
+    <div class="clear"></div>
+  </div>
+  
+  <div class="content">{$detail.content}</div>
+
+  <notempty name="sourceurl">
+  <div class="bootomlink">
+    <a href="{$sourceurl}">阅读原文</a>
+  </div>
+  </notempty>
+</div>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<include file="Public:share" />
+<include file="Public:wximgview" />
+</body>
+</html>

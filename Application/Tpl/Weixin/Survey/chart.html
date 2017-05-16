@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	{$detail.title} 调研统计
+                      <div class="j-fr">
+                        <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                      </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                              <ul class="nav nav-tabs nomargin">
+                                <li class="active"><a>统计数据</a></li>
+                                <li><a href="{:U('userdata?id='.$tget['id'])}">用户数据</a></li>
+                              </ul>
+                              
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                  <!-- 调研图表 -->
+                                	<div class="j-chart">
+                                    <div class="chart-b">
+                                      <canvas id="canvas-1"></canvas>
+                                    </div>
+                                    
+                                    <div class="data-questionlist">
+                                      <!-- loop -->
+                                      <volist name="piedata" id="item">
+                                      <div class="item">
+                                        <div class="head">
+                                          {$item.title}
+                                        </div>
+                                        
+                                        <div class="content">
+                                          <table class="j-table">
+                                            <tbody>
+                                              <tr>
+                                                <td>
+                                                  <volist name="item.vlist" id="vitem">
+                                                  <div class="answer"> {$vitem.option}(<span>{$vitem.valnum}</span>人)</div>
+                                                  </volist>
+                                                </td>
+                                                <td width="400">
+                                                  <div class="chart-s">
+                                                    <canvas></canvas>
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                      </volist>
+                                      <!-- loop -->
+                                      
+                                    </div>
+                                  </div>
+                                  <!-- 调研图表 -->
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/plugin/chart/Chart.bundle.min.js"></script>
+
+<script>
+$(this).ready(function(e) {
+  var data=[];
+  var color="rgba(69,130,255,.8)"
+  
+  var config = {
+    type: 'line',
+    data: {
+        labels: [{$vftime}],
+        datasets: [{
+            label: "调研人数统计",
+            data: [{$vfcount}],
+            fill: false,
+            borderDash: [5, 5],
+            borderColor : color,
+            backgroundColor : color,
+            pointBorderColor : color,
+            pointBackgroundColor : color,
+            pointBorderWidth : 5
+        }]
+    },
+    options: {
+        responsive: true,
+        legend: {
+            position: 'top',
+        },
+        hover: {
+            mode: 'label'
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: '统计日期'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: '参加人数'
+                }
+            }]
+        },
+        title: {
+            display: true,
+            text: '统计结果'
+        }
+    }
+  };   
+	var ctx = document.getElementById("canvas-1").getContext("2d");
+  window.myLine = new Chart(ctx, config);
+
+  
+  //答案选择图表
+  $(".data-questionlist .item").each(function(index,el){
+    var bgColorlist=["#F7464A","#46BFBD","#FDB45C","#949FB1","#4D5360"];
+    var labellist=["A","B","C","D","E"];
+    var labels=[];
+    var data=[];
+    var backgroundColor=[];
+    
+    $(this).find(".answer").each(function(i,answer){
+      data[i]             = parseInt($(this).find("span").html());
+      labels[i]           = labellist[i];
+      backgroundColor[i]  = bgColorlist[i];
+    });
+    
+    var config2 = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColor,
+            }],
+            labels: labels
+        },
+        options: {
+            responsive: true
+        }
+    };
+    
+    var ctx2 = $(this).find("canvas")[0].getContext("2d");
+    var myLine = new Chart(ctx2, config2);
+  });
+});
+</script>
+</body>
+</html>

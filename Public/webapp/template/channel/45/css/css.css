@@ -1,0 +1,31 @@
+/* 背景 */
+body{background-color:#ebe9e8}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 联系电话 */
+.telephone{margin: 8px 15px; padding: 8px 0; background-color: #ea5946; border-radius: 5px; text-align: center; color: #FFF; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 15px; background-color: #FFF; border-radius: 6px;}
+.menu .item{display: block; height: 60px; border-bottom: 1px solid #e8e8e8}
+.menu .item:first-child .icon{border-radius: 6px 0 0 0;}
+.menu .item:last-child .icon{border-radius: 0 0 0 6px;}
+.menu .item:last-child{border-bottom: none}
+.menu .item:active{opacity: 0.6}
+.menu .item .icon{text-align: center; font-size: 30px; line-height: 60px; float: left; color: #FFF; padding: 0 15px}
+.menu .item .title{float: left; line-height: 60px; margin-left: 8px}
+
+/* 颜色 */
+.menu .item:nth-child(n) .icon{background-color: #d87570}
+.menu .item:nth-child(2n) .icon{background-color: #bc4040}
+.menu .item:nth-child(3n) .icon{background-color: #6f9e98}
+.menu .item:nth-child(4n) .icon{background-color: #b2cebf}
+
+.menu .item:nth-child(4n+1) .icon{background-color: #d87570}
+.menu .item:nth-child(4n+2) .icon{background-color: #bc4040}
+.menu .item:nth-child(4n+3) .icon{background-color: #6f9e98}
+.menu .item:nth-child(4n+4) .icon{background-color: #b2cebf}
+
+.footer{line-height: 50px; clear: both; text-align: center; height: 10px}

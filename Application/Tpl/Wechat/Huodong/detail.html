@@ -1,0 +1,542 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/style/article.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/style/activity.css">
+</head>
+
+<body>
+<div class="j-flex j-flex-vtc wrap">
+  <div class="flex content">
+    <div class="activity-headbk">
+      <div class="activity-head j-flex j-flex-center">
+        <div class="avatar">
+          <img src="{$basic.logo}">
+        </div>
+        <div class="flex username">
+          {$basic.abbr}
+        </div>
+        <div>
+          {$detail.ctime|date="Y-m-d",###}
+        </div>
+        <div class="fix">
+        </div>
+      </div>
+
+      <div class="activity-title">
+        {$detail.title}
+      </div>
+
+      <div class="activity-time">
+        <div>报名时间 {$detail.bbtime|date="Y/m/d H:i",###} - {$detail.betime|date="Y/m/d H:i",###}</div>
+        <div>活动时间 {$detail.hdbtime|date="Y/m/d H:i",###} - {$detail.hdetime|date="Y/m/d H:i",###}</div>
+      </div>
+    </div>
+
+    <div class="activity-aim j-flex j-flex-center">
+      <div class="flex">
+        <div class="c">
+          <div class="count">{$detail.minnum}-{$detail.maxnum}<span>人</span></div>
+          <div class="txt">活动名额</div>
+        </div>
+      </div>
+      
+      <div class="flex">
+        <div class="c">
+          <div class="count">{$detail.cost}<span>元</span></div>
+          <div class="txt">费用</div>
+        </div>
+      </div>
+      
+      <div class="flex">
+        <div class="c">
+          <div class="count" id="jishi"></div>
+          <div class="txt">报名截止</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="article">
+      {$detail.content}
+    </div>
+  </div>
+
+  <div class="activity-menu-h"></div>
+</div>
+
+<div class="activity-comunity" style="display: none;">
+  <div class="header">
+    <div class="content j-flex j-flex-center">
+      <div class="flex">评论 <span class="activity-theme-color">0</span> 条</div>
+      <div>
+        <a class="activity-theme-color" id="add-comunity-btn"><span class="icon-comments-alt"></span> 评论</a>
+      </div>
+    </div>
+  </div>
+  
+  <div id="conment-list">
+    <!-- loop -->
+    <div class="item">
+      <div class="content j-flex j-flex-center">
+        <div class="avatar"><img src="image/test.jpg"></div>
+        <div class="flex username">用户名</div>
+        <div class="time">2016-8-4 15:48</div>
+      </div>
+      <div class="txt-content">
+        输出评论内容
+      </div>
+    </div>
+    <!-- loop -->
+    
+    <!-- loop -->
+    <div class="item">
+      <div class="content j-flex j-flex-center">
+        <div class="avatar"><img src="image/test.jpg"></div>
+        <div class="flex username">用户名</div>
+        <div class="time">2016-8-4 15:48</div>
+      </div>
+      <div class="txt-content">
+        输出评论内容
+      </div>
+    </div>
+    <!-- loop -->
+    
+    <!-- loop -->
+    <div class="item">
+      <div class="content j-flex j-flex-center">
+        <div class="avatar"><img src="image/test.jpg"></div>
+        <div class="flex username">用户名</div>
+        <div class="time">2016-8-4 15:48</div>
+      </div>
+      <div class="txt-content">
+        输出评论内容
+      </div>
+    </div>
+    <!-- loop -->
+  </div>
+  
+  <div class="loading">
+    <span class="icon-spinner icon-spin icon-2x"></span>
+    <div>加载完毕</div>
+  </div>
+</div>
+
+<div class="activity-menu j-flex j-flex-center">
+  <div class="flex">
+    <div class="c">
+      <div class="icon"><span class="icon-user"></span></div>
+      <div class="txt">报名<span>{$detail.nums}</span></div>
+    </div>
+  </div>
+  <div class="flex-2">
+    <egt name="detail.nums" value="$detail['maxnum']"><a href="javascript:;" class="btn red">报名名额已满</a><else/>
+    <empty name="mbaom"><a href="javascript:;" id="submit-btn" class="btn">报名</a><else/>
+    <a href="javascript:;" class="btn red">已报名</a></empty></egt>
+  </div>
+  <div class="flex">
+    <div class="c good-action">
+      <div class="icon"><span class="icon-heart <eq name="isdianz" value="1"> color-red</eq>"></span></div>
+      <div class="txt">点赞<span>{$detail.dianzs|default='0'}</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 报名表单 -->
+<form class="activity-form-data" action="" method="post" enctype="multipart/form-data">
+<div class="activity-form-hide"></div>
+<div class="activity-form">
+  <div class="form j-flex j-flex-vtc">
+    <div class="title">
+      报名资料
+      <span class="icon-remove activity-form-closebtn" style="float:right"></span>
+    </div>
+    <div class="content flex">
+      
+      <div class="weui_cells weui_cells_form">
+        <div class="weui_cell weui_cell_select weui_select_after">
+          <div class="weui_cell_hd">
+              参与人数
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <select class="weui_select" datatype="Require" name="nums" msg="请选择参加人数" <eq name="detail.baoxian" value="1"> onChange="safeadd(this)"</eq>>
+                <option value="1">1人</option>
+                <option value="2">2人</option>
+                <option value="3">3人</option>
+                <option value="4">4人</option>
+                <option value="5">5人</option>
+                <option value="6">6人</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="weui_cell">
+          <div class="weui_cell_hd"><label class="weui_label">联系人</label></div>
+          <div class="weui_cell_bd weui_cell_primary">
+              <input class="weui_input" type="text" placeholder="请输入联系人姓名" name="contact" value="{$member.name}" datatype="Require" msg="请输入联系人姓名">
+          </div>
+        </div>
+        
+        <div class="weui_cell">
+          <div class="weui_cell_hd"><label class="weui_label">手机</label></div>
+          <div class="weui_cell_bd weui_cell_primary">
+              <input class="weui_input" type="tel" placeholder="请输入联系人手机" name="mphone" value="{$member.tel}" datatype="Mobile" msg="请输入正确手机号码">
+          </div>
+        </div>
+
+      </div>
+      
+      <div id="safeform"></div>
+      <div class="weui_cells weui_cells_form" id="diyform">
+        
+      </div>
+    </div>
+    <a id="join-submit" href="javascript:;" class="btn">提交</a>
+  </div>
+</div>
+</form>
+<!-- 报名表单 -->
+
+<!-- 评论表单 -->
+<form class="activity-comunity-data">
+<div class="activity-comunity-form-hide"></div>
+<div class="activity-comunity-form">
+  <div class="form">
+    <div class="title">发布评论</div>
+    <div class="content">
+      <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+          <div class="weui_cell_bd weui_cell_primary">
+            <textarea class="weui_textarea" maxlength="200" placeholder="请输入评论" rows="5"></textarea>
+            <div class="weui_textarea_counter">200字以内</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a id="comunity-btn" href="javascript:;" class="btn">提交</a>
+  </div>
+</div>
+</form>
+<!-- 评论表单 -->
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+/*wx.config({
+    debug: true,
+    appId: 'wxf8b4f85f3a794e77',
+    timestamp: 1467944069,
+    nonceStr: 'Md3noKeu63v7BuaO',
+    signature: '371e814a9f502ce50f5717fe7a39f6bf745ecef1',
+    jsApiList: [
+      'previewImage',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'onMenuShareQZone'
+    ]
+});
+
+wx.ready(function(){
+  var sharedata={
+    title: '互联网之子',
+    desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
+    link: 'http://movie.douban.com/subject/25785114/',
+    imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
+    trigger: function (res) {             
+      //不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+      //alert('用户点击发送给朋友');
+    },
+    success: function (res) {
+      //alert('分享成功！');
+    },
+    cancel: function (res) {
+      //alert('已取消');
+    },
+    fail: function (res) {
+      alert(JSON.stringify(res));
+    }
+  };
+  
+  //设置朋友圈分享数据
+  wx.onMenuShareTimeline(sharedata);
+  
+  //好友分享
+  wx.onMenuShareAppMessage(sharedata);
+});*/
+
+//滚动加载评论
+function loaddata(){
+  if(loaddata._init!=1){
+    loaddata._init    = 1;
+    loaddata.page     = 1;
+    loaddata.pagesize = 6;
+    loaddata.stop     = true;
+    
+    loaddata.loadall=function(){
+      loaddata.stop=false;
+      $('.loading').html('<div>加载完毕</div>');
+    }
+    
+    loaddata.timestamp=function(stamp){
+      var now=new Date();
+			if(stamp!=""){
+				now.setTime(parseInt(stamp)*1000);
+			}
+			var year=now.getFullYear();
+			var month=now.getMonth()+1;
+			var date=now.getDate();
+			var hour=now.getHours();
+			var minute=now.getMinutes();
+			var second=now.getSeconds();
+			return year+"-"+month+"-"+date+" "+hour+":"+minute;
+    }
+    
+    loaddata.html=function(data){
+      return '<div class="item"><div class="content j-flex j-flex-center"><div class="avatar"><img src="'+ data.avatar +'"></div><div class="flex username">'+ data.username +'</div><div class="time">'+ loaddata.timestamp(data.timestamp) +'</div></div><div class="txt-content">'+ data.content +'</div></div>';
+    }
+  }
+  
+  var json=[
+    {username:'用户1',avatar:'image/test.jpg',content:'评论内容1',timestamp:12134567},
+    {username:'用户2',avatar:'image/test.jpg',content:'评论内容2',timestamp:12134567},
+    {username:'用户3',avatar:'image/test.jpg',content:'评论内容3',timestamp:12134569},
+    {username:'用户4',avatar:'image/test.jpg',content:'评论内容4',timestamp:12134568},
+    {username:'用户5',avatar:'image/test.jpg',content:'评论内容5',timestamp:12134567},
+    {username:'用户6',avatar:'image/test.jpg',content:'评论内容6',timestamp:12134565},
+    {username:'用户7',avatar:'image/test.jpg',content:'评论内容7',timestamp:12134564},
+    {username:'用户8',avatar:'image/test.jpg',content:'评论内容8',timestamp:12134565}
+  ];
+  
+  if(loaddata.stop){
+    var c=json.length;
+    for(var i=0;i<=c-1;i++){
+      if(c<loaddata.pagesize){
+        loaddata.loadall();
+      }
+      $("#conment-list").append(loaddata.html(json[i]));
+    }
+  }
+  
+  /*if(loaddata.stop){
+    var requestUrl="";
+    $.post(requestUrl,{
+      p:loaddata.page
+    },function(data){
+      var c=data.length;
+      if(c<loaddata.pagesize){
+        loaddata.loadall();
+      }
+      
+      loaddata.page++;
+      for(var i=0;i<=c-1;i++){
+        $("#conment-list").append(loaddata.html(json[i]));
+      }
+    },"json");
+  }*/
+}
+
+$(document).ready(function(){
+  //显示报名
+  $('#submit-btn').on("click",function(){
+    $(".activity-form-data").show();
+    $("body").css("overflow-y","hidden");
+  });
+  
+  //隐藏报名
+  $('.activity-form-hide,.activity-form-closebtn').on("click",function(){
+    $(".activity-form-data").hide();
+    $("body").css("overflow-y","auto");
+  });
+  
+  //显示评论
+  $('#add-comunity-btn').on("click",function(){
+    $(".activity-comunity-data").show();
+  });
+  
+  //隐藏评论
+  $(".activity-comunity-form-hide").on("click",function(){
+    $(".activity-comunity-data").hide();
+  });
+  
+  //提交报名表单
+  $("#join-submit").on("click",function(){
+    var f=$(".activity-form-data")[0];
+    if(Validator.Validate(f,5)){
+      var data=$(".activity-form-data").serialize();
+      //alert(data);
+      $.post("",data,function(jsonback){
+        if(jsonback==1){
+          $(".activity-form-data").hide();
+          $("#submit-btn").addClass('red').html("报名成功").off("click");
+          alert("报名成功");
+        }else if(jsonback==-1){
+		  alert("该活动您已报名");
+		}else if(jsonback==-2){
+		  alert("您的报名人数已超过该活动线上报名人数的限额，请联系工作人员线下报名。");
+		}
+      },"html");
+    }
+  });
+  
+  //ajax提交评论
+  $("#comunity-btn").on("click",function(){
+    var content=$('').val();
+    var requestUrl="";
+    
+    $.post(requestUrl,{
+      content:content
+    },function(data){
+      $(".activity-comunity-data").hide();
+      if(data.status==1){
+        $("#conment-list .item").eq(0).prepend(loaddata.html(data));
+      }else{
+        
+      }
+    },"json");
+  });
+  
+  //点赞
+  $(".good-action").on("click",function(){
+    //点赞
+    //$(".good-action .icon-heart").addClass('color-red');
+    //var n=parseInt($(".good-action .txt span").html());
+    //$(".good-action .txt span").html(n+1);
+    
+    var requestUrl="{:U('dianz?wid='.$tget['wid'].'&id='.$tget['id'].'&token='.$tget['token'])}";
+    $.post(requestUrl,{
+      activityid:''
+    },function(data){
+      if(data==1){
+        //点赞
+        $(".good-action .icon-heart").addClass('color-red');
+        var n=parseInt($(".good-action .txt span").html());
+        $(".good-action .txt span").html(n+1);
+      }else if(data==-1){
+        //取消点赞
+		//$(".good-action .icon-heart").addClass('color-red');
+        //alert('亲，您已点过赞了');
+      }
+    },"html");
+  });
+  
+  //滚动加载
+  /*window.onscroll=function(){
+    var t = document.documentElement.scrollTop || document.body.scrollTop;
+    var a=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight;
+    
+    if(a-t<=40){
+      loaddata();
+    }
+  }
+  loaddata();*/
+});
+
+
+var interval = 1000; 
+function ShowCountDown(year,month,day,divname) { 
+  var now = new Date(); 
+  var endDate = new Date(year, month-1, day); 
+  var leftTime=endDate.getTime()-now.getTime();
+  var cc = document.getElementById(divname);
+  if(leftTime<1) {
+    cc.innerHTML = "已结束";
+	return false;
+  }
+  var leftsecond = parseInt(leftTime/1000); 
+  var day1=Math.floor(leftsecond/(60*60*24)); 
+  var hour=Math.floor((leftsecond-day1*24*60*60)/3600); 
+  var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60); 
+  var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60); 
+  
+  if(day1>0) {
+	  str = day1+"<span>天</span>";
+  }else if(hour>0){
+	  //alert(hour);
+	  str = hour+"<span>小时</span>";
+  }else if(minute>0){
+	  str = minute+"<span>分</span>";
+  }else {
+	  str = second+"<span>秒</span>";
+  }
+  //cc.innerHTML = day1+"天"+hour+"小时"+minute+"分"+second+"秒";
+  cc.innerHTML = str;
+}
+window.setInterval(function(){
+	ShowCountDown('{$detail.betime|date="Y",###}', 
+				  '{$detail.betime|date="m",###}', 
+				  '{$detail.betime|date="d",###}','jishi');
+}, interval);
+
+//保险添加
+function safeadd(a){
+  var count = parseInt($(a).val());
+  var html="";
+  
+  for(var i=1;i<=count;i++){
+    html+='<div class="weui_cells weui_cells_form"><div class="weui_cell"><div class="weui_cell_hd">姓名</div><div class="weui_cell_bd weui_cell_primary"><input name="person[]" class="weui_input" type="text" placeholder="请输入保险人姓名'+i+'" datatype="Require" msg="请输入保险人姓名'+i+'"></div></div><div class="weui_cell"><div class="weui_cell_hd"><label class="weui_label">身份证</label></div><div class="weui_cell_bd weui_cell_primary"><input name="IdCard[]" class="weui_input" type="text" placeholder="请输入保险身份证'+i+'" datatype="IdCard" msg="请正确输入保险身份证'+i+'"></div></div></div>';
+  }
+  
+  $("#safeform").html(html);
+}
+$(document).ready(function(){
+  if($(".weui_cells_form .weui_select").attr("onchange")=="safeadd(this)"){
+    safeadd($(".weui_select"));
+  }
+});
+
+//加载自定义资料
+/*var diyjson=[
+  {diy_name:"资料1",diy_msg:"请输入资料1",diy_type:0,diy_check:1},
+  {diy_name:"资料2",diy_msg:"选项1|选项2|选项3",diy_type:1,diy_check:0},
+  {diy_name:"资料3",diy_msg:"请输入资料3",diy_type:0,diy_check:1},
+];*/
+var diyjson={:json_encode($sublist, JSON_UNESCAPED_UNICODE)};
+adddiydata(diyjson);
+function adddiydata(json){
+  for(var i=0;i<json.length;i++){
+    var item=json[i];
+    var msg='';
+    if(item.diy_check==1){
+      msg=' datatype="Require" msg="'+ item.diy_name +'"';
+    }
+    
+    if(item.diy_type==1){
+      var html='<div class="weui_cell"><div class="weui_cell_hd">'+item.diy_name+'</div><div class="weui_cell_bd weui_cell_primary"><input name="diydata['+item.diy_id+']" class="weui_input" type="text" placeholder="'+ item.diy_msg +'"'+ msg +'></div>';
+    }else if(item.diy_type==2){
+      var afterclass="";
+      if(i!=0){
+        afterclass=" weui_select_after";
+      }
+      var html='<div class="weui_cell weui_cell_select'+afterclass+'"><div class="weui_cell_hd">'+ item.diy_name +'</div><div class="weui_cell_bd weui_cell_primary"><select class="weui_select" name="diydata['+item.diy_id+']">'+ getoptions(item.diy_msg) +'</select></div>';
+    }
+    
+    $("#diyform").append(html);
+  }
+}
+
+//解析选项
+function getoptions(str){
+  var options=str.split('|');
+  var html="";
+  for(var i=0;i<options.length;i++){
+    html+='<option value="'+ options[i] +'">'+ options[i] +'</option>'
+  }
+  
+  return html;
+}
+</script>
+</body>
+</html>

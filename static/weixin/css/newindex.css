@@ -1,0 +1,22 @@
+.index2-top-left{width: 100%; height: 80px}
+.index2-top-left .fa{font-size: 35px}
+
+.j-assetmenu a .fa{font-size: 30px}
+
+.j-bottom-box{height: 95px; margin: 0 1%}
+.j-bottom-box .tbl{height: 72px}
+.j-bottom-box .icon .j-fcolor-1{font-size:40px}
+.j-bottom-box .icon{width: 72px}
+.j-bottom-box .desc{max-height: 40px}
+.j-bottom-box .t{font-size: 16px}
+.j-centent .box .title{font-size: 20px; padding: 6px 15px}
+
+.j-bottom-box.sm{width: 23%; height: 78px; border:none}
+.j-bottom-box.sm .tbl{height: 54px}
+.j-bottom-box.sm .icon{width: 50px}
+.j-bottom-box.sm .icon .j-fcolor-1{font-size: 30px}
+.j-bottom-box.sm .t{font-size: 16px}
+.j-bottom-box.sm .desc{font-weight: bold; color: #666}
+.j-bottom-box .qrcode{display: none; opacity: 0; position: absolute; width: 200px; box-shadow: 0 0 4px rgba(0,0,0,.5); text-align: center; margin-top: -197px;}
+.j-bottom-box .qrcode img{max-width: 98%;}
+.j-bottom-box.sm:hover .qrcode{display: block; opacity: 1;}

@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link rel="stylesheet" href="/static2/plugin/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static2/plugin/fontawesome/css/font-awesome4.min.css">
+<link rel="stylesheet" href="/static2/css/style.css">
+<link rel="stylesheet" href="/static2/css/theme.css">
+<link rel="stylesheet" href="/static2/plugin/fastArticle/style.css">
+</head>
+
+<body>
+<!-- 头部 -->
+<div class="j-gloab-head">
+  <!--logo-->
+  <div class="j-fl logo">
+    <a href="#">
+      <img class="j-fl" src="/static2/image/logo2.png">
+      <div class="j-fl j-ml8 j-mt8">
+        <div class="sn j-fl">微社区系统</div>
+        <div class="vs j-fl j-ml8">V3.0</div>
+        <div class="j-m j-h1"></div>
+        <div class="url">www.yuandax.com</div>
+      </div>
+    </a>
+  </div>
+  <!--logo-->
+    
+  <div class="j-fr header-right">
+    <table class="j-table">
+      <tbody>
+        <tr>
+          <td rowspan="2"><img src="/static2/image/avatar.png"></td>
+          <td class="backto-old">
+            <a href="">
+              <span class="fa fa-exchange"></span> 回到旧版
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="userinfo">
+            <span>xx社区</span>
+            <span class="fa fa-envelope j-fcolor-2"></span>
+            <span class="j-fcolor-2">|</span> 
+            <a href="">退出</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 头部 -->
+
+
+<!-- 左侧菜单 -->
+<div class="j-gloab-menus">
+  <a href="" class="item">
+    <div class="j-h15 j-m"></div>
+    <span class="fa fa-home"></span><br>
+    <span>系统首页</span>
+  </a>
+  
+  <a href="" class="item active">
+    <div class="j-h15 j-m"></div>
+    <span class="fa fa-th-large"></span><br>
+    <span>功能管理</span>
+  </a>
+  
+  <a href="" class="item">
+    <div class="j-h15 j-m"></div>
+    <span class="fa fa-cog"></span><br>
+    <span>社区管理</span>
+  </a>
+</div>
+<!-- 左侧菜单 -->
+
+
+<!-- 右侧内容 -->
+<div class="j-gloab-content">
+  <!-- box -->
+  <div class="box">
+    <div class="box-title">快速发布</div>
+    <div class="j-m j-h1 j-bkcl2"></div>
+    <div class="box-content">
+      
+      <div class="fast-add-mode">
+        <div class="fast-modeselect">
+          <img src="/static2/image/fastedit/1.png">
+          <div class="c">
+            <table class="j-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <a class="btn" onclick="{:U('articletemplate/index')}">查看案例</a><br><br>
+                    <a class="btn" href="{:U('articletemplate/add?mubanid=2')}">套用格式</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="title">单图格式</div>
+      </div>
+      
+      <div class="fast-add-mode">
+        <div class="fast-modeselect">
+          <img src="/static2/image/fastedit/2.png">
+          <div class="c">
+            <table class="j-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <a class="btn" onclick="">查看案例</a><br><br>
+                    <a class="btn" href="{:U('articletemplate/add?mubanid=3')}">套用格式</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="title">多图格式</div>
+      </div>
+      
+      <div class="fast-add-mode">
+        <div class="fast-modeselect">
+          <img src="/static2/image/fastedit/3.png">
+          <div class="c">
+            <table class="j-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <a class="btn" onclick="">查看案例</a><br><br>
+                    <a class="btn" href="{:U('articletemplate/add?mubanid=4')}">套用格式</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="title">文本格式</div>
+      </div>
+      
+      <div class="fast-add-mode">
+        <div class="fast-modeselect">
+          <img src="/static2/image/fastedit/4.png">
+          <div class="c">
+            <table class="j-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <a class="btn" href="{:U('articletemplate/add?mubanid=1')}">套用格式</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="title">自定义</div>
+      </div>
+      
+      <div class="j-h15 j-m"></div>
+    </div>
+  </div>
+  <!-- boxend -->
+  
+  <!-- footer -->
+  <div class="j-m j-h20"></div>
+  <div class="j-footer">
+    <ul>
+      <li><a>关于我们</a></li>
+      <li><a>通知中心</a></li>
+      <li><a>使用指南</a></li>
+      <li>Copyright © 2012-2015 All Rights Reserved.</li>
+    </ul>
+  </div>
+  <div class="j-m j-h20"></div>
+  <!-- footer -->
+</div>
+<!-- 右侧内容 -->
+
+<!--js-->
+<script src="/static2/js/jquery.js"></script>
+<script src="/static2/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static2/js/site.js"></script>
+<!--js-->
+<script>
+
+</script>
+</body>
+</html>

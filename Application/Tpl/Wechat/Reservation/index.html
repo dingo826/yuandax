@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>办事预约</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<gt name="nums" value="0">
+<div class="weui_cells weui_cells_access">
+    <a class="weui_cell" href="{:U('my?wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}">
+        <div class="weui_cell_bd weui_cell_primary">
+            <p>我的预约</p>
+        </div>
+        <div class="weui_cell_ft"><span class="lable-circle bg-green">{$nums}</span></div>
+    </a>
+</div>
+</gt>
+
+<!-- loop -->
+<volist name="list" id="vo">
+<div class="weui_panel weui_panel_access">
+  <div class="weui_panel_bd">
+    <a href="{:U('yuding?id='.$vo['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_media_box weui_media_appmsg weui_media_text">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb" src="{$vo.picurl}" alt="">
+      </div>
+      <div class="weui_media_bd">
+        <h4 class="weui_media_title">{$vo.title}</h4>
+        <p class="weui_media_desc">{$vo.info}</p>
+      </div>
+    </a>
+  </div>
+</div>
+</volist>
+<!-- loop -->
+
+<include file="Public:footer" />
+</body>
+</html>

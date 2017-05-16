@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	居民中心
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('member/set')}"><span class="icon-cogs"></span> 居民卡设置</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                            	<ul class="nav nav-tabs nomargin">
+                                    <li class="active"><a>所有用户</a></li>
+                                    <!--<li><a href="">入住用户</a></li>
+                                    <li><a href="">已认证</a></li>
+                                    <li><a href="">未认证</a></li>-->
+                              	</ul>
+                              <div class="nav nav-tabs nomargin">
+                              	<table width="100%" cellpadding="0" cellspacing="0">
+                                	<tbody>
+                                    	<tr class="j-vtcl-mid">
+                                        	<td>
+                                            	<div class="j-m j-h8"></div>
+                                            	<label class="j-ml8"><input id="checkall" type="checkbox"> 全选</label> 
+                                                <!--<a href="javascript:;" onClick="freeze()" class="j-delete-1 j-block-2 j-ml8 j-mr8"><span class="icon-unlock"></span> 解冻</a>
+                                                <a href="javascript:;" onClick="unfreeze()" class="j-delete-1 j-block-2 j-ml8 j-mr8"><span class="icon-lock"></span> 冻结</a>-->
+                                                
+                                                <a id="uplist" class="j-button-red j-fr j-mr8">更新居民列表</a>
+                                                <div class="j-m j-h8"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table table-hover">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td width="20"></td>
+                                                <td width="50">头像</td>
+                                                <td>姓名</td>
+                                                <td>是否关注</td>
+                                                <td>性别</td>
+                                                <td>手机</td>
+                                                <td>所在地区</td>
+                                                <td>住址</td>
+                                                <td>类型</td>
+                                                <td>时间</td>
+                                                <td>操作</td>
+                                            </tr>
+                                            
+                                            <!--loop-->
+                                            <volist name="list" id="item">
+                                            <tr class="j-vtcl-mid">
+                                                <td class="j-txtct"><input type="checkbox" name="deleteids[]" value="{$item.id}"></td>
+                                                <td><a href=""><img class="j-avatar" src="{$item.headimgurl}"></a></td>
+                                                <td>
+                                                	<a href="">{$item.name}</a><br>
+                                                    {$item.wechatid}
+                                                </td>
+                                                <td>{$item.subscribe|subscribetowz}</td>
+                                                <td>
+                                                    <eq name="item.sex" value="1" ><span class="label label-info">男</span></eq>
+                                                    <eq name="item.sex" value="2"><span class="label label-warning">女</span></eq>
+                                                </td>
+                                                <td>{$item.tel}</td>
+                                                <td>{$item.region}</td>
+                                                <td><if condition="$item.buildingNo neq ''">{$item.buildingNo}幢{$item.unit}单元{$item.doorNumber}</if></td>
+                                                <td>
+                                                    <if condition="$item.householdType eq '' or $item.householdType eq '2'">
+                                                      <span class="badge">未知</span>
+                                                    <elseif condition="$item.householdType eq 1" />
+                                                      <span class="badge badge-info">房东</span>
+                                                    <else/>
+                                                      <span class="badge badge-success">租户</span>
+                                                    </if>
+                                                </td>
+                                                <td>{$item.ctime|date="Y-m-d H:i:s",###}</td>
+                                                <td>
+                                                	<!--<a href="" class="j-delete-1 j-block-2"><span class="icon-lock"></span> 冻结</a>
+                                                    <a href="" class="j-delete-1 j-block-2"><span class="icon-unlock"></span> 解冻</a>-->
+                                                	<a href="{:U('member/edit?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-pencil"></span> 编辑</a>
+                                                </td>
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$pages}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="loading" style="width:400px;height:200px;background-color:#fff;border:1px solid #000;text-align:center;line-height:200px;display:none">
+			居民列表正在更新中，请稍后……
+		  </div>
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+//搜索
+function search_key(){
+	location.href="?keyword="+$("input[name='keyword']").val();
+}
+
+$(this).ready(function(e) {
+    //全选绑定
+	$("#checkall").bind("change",function(){
+		if($(this).is(":checked")){
+			$(".tab-content input:checkbox").attr("checked","true");
+		}else{
+			$(".tab-content input:checkbox").removeAttr("checked");
+		}
+	});
+	
+	//批量移动分类
+	$("#sortlist").bind("change",function(){
+		if($("#s_form input:checkbox:checked").length>=1){
+			if(window.confirm("确定更换分类？")){
+				//改变提交地址到冻结
+				$("#s_form").attr("action","");
+				$("#s_form").submit();
+			}else{
+				//J_msgshow("不删除");
+			}
+		}else{
+			J_msgshow("请选移动选项");
+			$(this).val("0");
+		}
+	});
+	
+	//单个分类选择
+	$("select[name='sortinform']").bind("change",function(){
+		var value=$(this).attr("data");
+		var id=$(this).attr("wid");
+		
+		J_msgshow("分组更改成功");
+		
+		/*提交$.post("",{
+			id:id,
+			value:value
+		},function(data){
+			if(data.status==1){
+				J_msgshow("分组更改成功");
+			}else{
+				J_msgshow("服务器繁忙，刷新后重试");
+			}
+		});*/
+	});
+	
+	$("#uplist").click(function (){
+		$.post("{:U('upwechat')}");
+	});
+	
+	$(document).ajaxStart(function (){
+		$(".loading").css({
+			"position":"absolute","top":"25%","left":"30%"
+		});
+		$(".loading").show();
+	}).ajaxStop(function (){
+		$(".loading").hide();
+		location.reload()
+	});
+
+
+});
+
+//批量冻结
+function freeze(){
+	if($("#s_form input:checkbox:checked").length>=1){
+		if(window.confirm("确定冻结？")){
+			//改变提交地址到冻结
+			$("#s_form").attr("action","");
+			$("#s_form").submit();
+		}else{
+			//J_msgshow("不删除");
+		}
+	}else{
+		J_msgshow("请选择冻结选项");
+	}
+}
+
+//批量解冻
+function unfreeze(){
+	if($("#s_form input:checkbox:checked").length>=1){
+		if(window.confirm("确定解冻？")){
+			//改变提交地址到冻结
+			$("#s_form").attr("action","");
+			$("#s_form").submit();
+		}else{
+			//J_msgshow("不删除");
+		}
+	}else{
+		J_msgshow("请选择解冻选项");
+	}
+}
+</script>
+</body>
+</html>

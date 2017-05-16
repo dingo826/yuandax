@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">互动管理</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="spacing">
+                        <a href="{:U('message/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl6">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-comments j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">用户消息</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	来自公众平台粉丝发送的所有消息
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <a href="{:U('member/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl7">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-group j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">居民中心</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	居民卡个性模板设置，关联服务设置，居民信息分类管理中心
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <eq name="fun['messageboard']" value="1">
+                        <a href="{:U('messageboard/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl3">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-pencil j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区留言</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	居民投诉建议、居委反馈居务工作的线上平台，可对发言者权限、内容可视范围进行管理
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <eq name="fun['wereserve']" value="1">
+                        <a href="{:U('wereserve/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl4">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-calendar j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区预约</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	办证/居委服务在线预约，一键搞定
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <eq name="fun['circle']" value="1">
+                        <a href="{:U('circle/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl5">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-sitemap j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区圈子</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	居民以兴趣文化聚圈，发布圈通知、展现圈风貌
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <eq name="fun['wxqun']" value="1">
+                        <a href="{:U('wxqun/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl6">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-spinner j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">微信群</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	居民以兴趣文化聚圈，发布圈通知、展现圈风貌
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <eq name="fun['survey']" value="1">
+                        <a href="{:U('survey/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl8">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-laptop j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区调研</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	组织社区在线调研，智能统计调研结果，直观了解居民需求
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <eq name="fun['huodong']" value="1">
+                        <a href="{:U('huodong/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl8">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-hand-up j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">活动报名</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	发布社区活动，居民在线报名参与
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <a href="{:U('games/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl8">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-github-alt j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">游戏</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	提供多种游戏，丰富居民生活
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <eq name="fun['vote']" value="1">
+                        <a href="{:U('vote/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl8">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-screenshot j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">投票</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	添加投票活动，增加居民的互动和参与度。
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        <div class="j-m j-h20"></div>
+                    </div>
+                </div>
+                <!--模块结束-->
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<!--js-->
+</body>
+</html>

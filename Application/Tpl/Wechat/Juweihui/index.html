@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.abbr}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="weui_panel weui_panel_access service-list">
+  <div class="weui_panel_bd">
+    <div class="weui_media_box weui_media_text">
+      <h4 class="weui_media_title">社区介绍</h4>
+      <p class="weui_media_desc">{$detail.summary}</p>
+    </div>
+    
+    <!-- loop -->
+    <volist name="list" id="item">
+    <div class="weui_media_box weui_media_appmsg weui_media_text">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb filleted-corner" src="{$item.avater}" alt="">
+      </div>
+      <div class="weui_media_bd">
+        <h4 class="weui_media_title">{$item.name}</h4>
+        <p class="weui_media_desc">职位：{$item.dname}</p>
+        <ul class="weui_media_info">
+          <li class="weui_media_info_meta">简介：{$item.qianming}</li>
+        </ul>
+      </div>
+    </div>
+    </volist>
+    <!-- loop -->
+  </div>
+</div>
+</body>
+</html>

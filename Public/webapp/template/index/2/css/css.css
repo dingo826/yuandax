@@ -1,0 +1,13 @@
+/* 背景 */
+body{background: url(../img/bg.jpg) no-repeat left top; background-size: cover; background-attachment: fixed;}
+
+/* 菜单 */
+.menu{padding:0; margin: 25px auto 20px 40%;}
+.menu .item{width: 60%; color: #a60212; display: block; clear: both; margin-top: 15px}
+.menu .item .icon{font-size: 25px; line-height: 50px; width: 50px; text-align: center; border-radius: 50%; background-color: #f5f5f5; border:1px solid #CCC; float: left;}
+.menu .item .title{max-width: 100px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 52px; margin: 0 auto; float: left;color:#444; margin-left: 5px}
+
+.menu .item:active .icon{opacity: 0.6}
+
+.footer{line-height: 50px; clear: both; text-align: center;}
+.footer a{font-size: 12px; text-shadow:2px 2px 5px #FFF;}

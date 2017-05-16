@@ -1,0 +1,354 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>完善信息</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+</head>
+
+<body>
+<form id="form" action="" method="post">
+<div class="form">
+  <!-- 表单组 -->
+  <div class="form-head fz-sm">
+    请如实填写以下信息
+  </div>
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">店铺头像</div>
+        <div class="flex" id="avatar-upload">
+          <label class="img-input">
+            <img src="__PUBLIC__/webapp/image/dianpu.png">
+            <input type="hidden" name="logo" id="logo" value="__PUBLIC__/webapp/image/dianpu.png" />
+            <input class="hide" type="file" onchange="avatar_upload(this)">
+          </label>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <!-- 表单组 -->
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">商户图片</div>
+        <div class="flex">
+          请拍摄/选择商铺实景照片
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="flex" id="image-upload">
+          <label class="img-input img-select"><input class="hide" type="file" onchange="upload(this)"></label>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <!-- 表单组 -->
+  <div class="form-group">
+    <!-- input选择框 -->
+    <label class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">商户类型</div>
+        <div class="flex">
+          <select name="cid">
+            <volist name="categorylist" id="item">
+            <option value="{$item.id}">{$item.ctitle}</option>
+            </volist>
+          </select>
+        </div>
+      </div>
+    </label>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">座机号码</div>
+        <div class="flex">
+          <input id="mobile" name="tel" type="text" placeholder="请输入座机号码">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <!-- 表单组 -->
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">所在地区</div>
+        <div class="flex">
+          <div class="fc">
+            <select id="provincen" name="province" style="width:100%" datatype="Require" msg="请选择所在省份">
+            </select>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="fc">
+            <select id="cityn" name="city" style="width:100%" datatype="Require" msg="请选择所在城市">
+            </select>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="fc">
+            <select id="countyn" name="county" style="width:100%" datatype="Require" msg="请选择所在区域">
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">街道地址</div>
+        <div class="flex">
+          <input id="nowplace" name="address" type="text">
+          <input id="p_x" name="xpoint" type="hidden">
+          <input id="p_y" name="ypoint" type="hidden">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input no-margin nomal j-flex j-flex-center">
+        <div class="flex">
+          <div style=" height:250px" id="J-baidumap"></div>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <div class="btn-group bigroom">
+    <a id="submit" class="btn disable">提交资料</a>
+  </div>
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/upload.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=afbYCueBmLGER22vgAOs8TGwnA1wHwq6"></script>
+<script src="__PUBLIC__/webapp/plugin/Baidumap/js/map.js"></script>
+<script src="/data/posterjs/citytree.js"></script>
+<script src="__PUBLIC__/webapp/plugin/choosearea/area.js"></script>
+
+<script>
+//地区选择 地图改变
+function searchplace(){
+  if($("#provincen").val()==""){
+    return false;
+  }
+  
+  var t = $("#provincen option").not(function(){ return !this.selected }).text();
+  
+  if($("#cityn").val()!=""){
+    t += $("#cityn option").not(function(){ return !this.selected }).text();
+  }
+  
+  if($("#countyn").val()!=""){
+    t += $("#countyn option").not(function(){ return !this.selected }).text();
+  }
+  
+  if($("#nowplace").val()!=""){
+    t += $("#nowplace").val();
+  }
+  
+  //console.log(t);
+  J_Bmap.search(t);
+}
+
+function formcheck(){
+  $("#submit").addClass("disable").off("click");
+    
+  if($('#image-upload img').length<1){
+    return false;
+  }
+  
+  if(Validator.Validate(document.getElementById("form"),6)){
+    $("#submit").removeClass("disable").on("click",function(){
+		$("#submit").addClass("disable").off("click");
+		$("#submit").html("数据提交中......");
+      $.post("{:U('dosetpone?fromid='.$formid)}",$("#form").serialize(),function(data){
+        if(data.status==1){
+          location.href="{:U('finish?fromid='.$formid)}";
+		  return;
+        }
+		$("#submit").html("数据提交失败,重试");
+		formcheck();
+      },"json");
+      console.log("post");
+    });
+  }
+}
+
+var CenterPositionMark;   //中心点对象
+
+$(document).ready(function(){
+  $("input").on("keyup",function(){
+    formcheck();
+  });
+  
+  $("select").on("change",function(){
+    formcheck();
+  });
+  
+  J_Bmap.init("J-baidumap",{
+    //center:new BMap.Point(116.404, 39.915),
+    tool:['search','menu']
+  });
+  
+  CenterPositionMark = J_Bmap.markerDIY({url:"__PUBLIC__/webapp/image/locate.png",w:40,h:55,undelete:true},J_Bmap.map.getCenter());
+  
+  //解析点位置
+  J_Bmap.map.addEventListener("moveend",function(e){
+    setTimeout(function(){
+      J_Bmap.analysisPoint(J_Bmap.map.getCenter(),function(r){
+        //$("#nowplace").val(r.province + " " + r.city + " " + r.district + " " + r.street + " " + r.streetNumber + '附近');
+        var p=J_Bmap.map.getCenter();
+        $("#p_x").val(p.lng);
+        $("#p_y").val(p.lat);
+        //console.log(r);
+        CenterPositionMark.setPosition(p);
+        //alert(r.province);
+      });
+    },100);
+  });
+  
+  var chooseAreaApp1 = new $.choosearea({
+		selectDomId : {
+			province : "provincen",
+			city : "cityn",
+			county : "countyn"
+		},
+		data : data
+	});
+  
+  $("#provincen").on("change",searchplace);
+  
+  $("#cityn").on("change",searchplace);
+  
+  $("#countyn").on("change",searchplace);
+  
+  $("#nowplace").on("keyup",searchplace);
+});
+
+//头像上传
+function avatar_upload(a){
+  if(J_Uploader.isruning==true){
+    Validator_error_5("正在上传请稍等",false);
+	}else{
+    //J_Uploader.reset();
+		J_Uploader.upload_url='{:U("image/up?fromid=".$formid)}'; //上传地址
+    
+    J_Uploader.process=function(p){
+      //console.log(p);
+      $('#avatar-upload').find(".status").html(p+"%");
+    }
+    
+	J_Uploader.callback	=function(data) {
+	  $('#avatar-upload').find(".status").remove();
+	  if(data.status!=1){
+        Validator_error_5("上传失败，"+J_Uploader.error[data.status],false);
+		return false;
+      }
+      $('#avatar-upload').find('img').prop("src",data.path+'?t='+Math.random());
+	  $("#logo").val(data.path);
+	};
+    
+    J_Uploader.uploading=function(){
+      var html='<div class="status">0%</div>';
+      $(a).parent().append(html);
+    }
+    
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype="image";
+		J_Uploader.addlist();
+	}
+}
+
+//文件上传
+function upload(a){
+  if($("#image-upload input[type='hidden']").length>=3){
+    Validator_error_5("最多添加三张商铺图片",false);
+    return false;
+  }
+  
+	if(J_Uploader.isruning==true){
+    Validator_error_5("正在上传请稍等",false);
+	}else{
+    //J_Uploader.reset();
+		J_Uploader.upload_url='{:U("image/up?fromid=".$formid)}'; //上传地址
+    
+    J_Uploader.process=function(p){
+      //console.log(p);
+      $('#image-upload').find('.uploading').find(".status").html(p+"%");
+    }
+    
+		J_Uploader.callback	=function(data){
+			
+			if(data.status!=1) {
+				Validator_error_5("上传失败，"+J_Uploader.error[data.status],false);
+				$('#image-upload').find('.uploading .delete').show().html('上传失败');
+				$('#image-upload').find('.uploading input[type="hidden"]').remove();
+			}
+			$('#image-upload').find('.uploading input[type="hidden"]').val(data.path);
+			$('#image-upload').find('.uploading .delete').show();
+			//console.log(data.path);
+			$('#image-upload').find(".status").remove();
+			$('#image-upload').find('.uploading').removeClass("uploading");
+		};
+    
+    J_Uploader.uploading=function(){
+      var html='<div class="img-input uploading"><input type="hidden" name="images[]"><img src="'+ J_Uploader.list[J_Uploader.now].data +'"><div class="status">0%</div><div class="delete" onclick="deleteimage(this)">删除</div></div>';
+      $(a).parent().before(html);
+	  formcheck();
+    }
+    
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype="image";
+		J_Uploader.addlist();
+	}
+}
+function deleteimage(a){
+  $(a).parent().remove();
+}
+</script>
+
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

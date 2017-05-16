@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.classname}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+
+<link href="__PUBLIC__/webapp/template/list/27/css/css.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- loop -->
+<volist name="list" id="item">
+<div class="weui_panel weui_panel_access">
+  <div class="weui_panel_bd">
+    <a href="{:U('article/index?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_media_box weui_media_appmsg">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb" src="{$item.picurl}" alt="">
+      </div>
+      <div class="weui_media_bd">
+        <h4 class="weui_media_title">{$item.title}</h4>
+      </div>
+    </a>
+  </div>
+</div>
+</volist>
+<!-- loop -->
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<!-- 滚动加载 -->
+<script>
+function loaddata(){
+  if(loaddata._init!=1){
+    loaddata._init    = 1;
+    loaddata.page     = 1;
+    loaddata.pagesize = 15;
+    loaddata.stop     = true;
+    
+    loaddata.html=function(data){
+      return '<div class="weui_panel weui_panel_access"><div class="weui_panel_bd"><a href="'+ data.url +'" class="weui_media_box weui_media_appmsg"><div class="weui_media_hd"><img class="weui_media_appmsg_thumb" src="'+ data.cover +'" alt=""></div><div class="weui_media_bd"><h4 class="weui_media_title">'+ data.title +'</h4></div></a></div></div>';
+    }
+  }
+  
+  /*var json=[
+    {title:'套路深1',cover:'image/test.jpg',url:'#'},
+    {title:'套路深2',cover:'image/test.jpg',url:'#'},
+    {title:'套路深3',cover:'image/test.jpg',url:'#'},
+    {title:'套路深4',cover:'image/test.jpg',url:'#'},
+    {title:'套路深5',cover:'image/test.jpg',url:'#'},
+    {title:'套路深6',cover:'image/test.jpg',url:'#'},
+    {title:'套路深7',cover:'image/test.jpg',url:'#'},
+    {title:'套路深8',cover:'image/test.jpg',url:'#'},
+    {title:'套路深9',cover:'image/test.jpg',url:'#'},
+    {title:'套路深10',cover:'image/test.jpg',url:'#'},
+    {title:'套路深11',cover:'image/test.jpg',url:'#'},
+    {title:'套路深12',cover:'image/test.jpg',url:'#'},
+    {title:'套路深13',cover:'image/test.jpg',url:'#'},
+    {title:'套路深14',cover:'image/test.jpg',url:'#'},
+    {title:'套路深15',cover:'image/test.jpg',url:'#'},
+    {title:'套路深16',cover:'image/test.jpg',url:'#'},
+    {title:'套路深17',cover:'image/test.jpg',url:'#'}
+  ];
+  
+  var c=json.length;
+  for(var i=0;i<=c-1;i++){
+    $("body").append(loaddata.html(json[i]));
+  }
+  */
+  if(loaddata.stop){
+    var requestUrl="{:U('ajax?wid='.$tget['wid'].'&id='.$tget['id'].'&token='.$tget['token'])}";
+    $.post(requestUrl,{
+      p:loaddata.page
+    },function(data){
+      var c=data.length;
+      if(c<loaddata.pagesize){
+        loaddata.stop=false;
+      }
+      
+      loaddata.page++;
+      for(var i=0;i<=c-1;i++){
+        $("body").append(loaddata.html(data[i]));
+      }
+    },"json");
+  }
+}
+
+window.onscroll=function(){
+  var t = document.documentElement.scrollTop || document.body.scrollTop;
+  var a=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight;
+  
+  if(a-t<=40){
+		loaddata();
+	}
+}
+</script>
+<!-- 滚动加载 -->
+<include file="Public:footer" />
+</body>
+</html>

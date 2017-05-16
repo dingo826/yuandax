@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+  <include file="Public:left" />
+    
+  <div class="j-centent">
+    <div class="j-wrap-1">
+      <div class="j-wrap-2">
+        <div class="j-wrap-3">
+          
+          <include file="Public:v3topnavn_xinw" />
+            
+          <!--模块-->
+          <div class="box">
+            <div class="title spacing">
+              发布
+              <div class="j-fr">
+                <span class="j-fz-14" id="default-time-txt">每天默认发布时间 {$defaulttimepara.settime|default='21'}:00</span>
+                <a class="j-newbtn" href="javascript:;" onClick="J_show('default-timesetting')"><span class="icon-list"></span> 默认设置</a>
+              </div>
+            </div>
+                
+            <div class="j-hr-1"></div>
+            
+            <!-- 群发列表 -->
+            <div class="masslist">
+              <div class="timeline"></div>
+              <div class="list">
+              
+                <!--loop-->
+                <volist name="dtlist" id="item">
+                <div class="item <eq name="list[$item]['status']" value='2'> issended</eq>">
+                  <div class="c">
+                    <div class="time"><eq name="today" value="$item">今天 </eq>{$item|date="m月d日",###} 星期{$item|Weekname}</div>
+                    
+                    <notempty name="list[$item]">
+                    <div class="articles" qid="{$list[$item]['id']}">
+                      <volist name="list[$item]['list']" key="k" id="citem">
+                      <eq name="k" value="1">
+                      <div class="ilist">
+                        <div class="title">{$citem.title}</div>
+                        <div class="cover" style="background-image:url({$citem.coverimg})"></div>
+                        <div class="j-m"></div>
+                      </div>
+                      <else/>
+                      <div class="ilist">
+                        <div class="title">{$citem.title}</div>
+                        <div class="cover"><img src="{$citem.coverimg}"></div>
+                        <div class="j-m"></div>
+                      </div>
+                      </eq>
+                      </volist>    
+                      </div> 
+                      </notempty>               
+                    <div class="hotchange">
+                      <!--<div class="timesetting" onclick="J_show('timesetting')">
+                        <div class="control">已设置到 今日19:00发布</div>
+                      </div>-->
+                        
+                      <div class="commondbtns">
+                        <a class="cbtn" onclick="J_show('confirm-send')">立即发布</a>
+                        <a class="cbtn" onclick="J_show('timesetting')">定时发布</a>
+                      </div>
+                    </div>
+                    
+                    <div class="commands">
+                      <div><a class="pre" onclick="Mass.move_pre(this)">前移</a></div>
+                      <div><a class="back" onclick="Mass.move_after(this)">后移</a></div>
+                      <div><a class="del" onclick="Mass.del(this)">删除</a></div>
+                    </div>
+                    
+                    <div class="nodata">
+                    <eq name="list[$item]['status']" value='2'>已发布<else/>暂未设置</eq>
+                    </div>
+                    <div class="j-m"></div>
+                  </div>
+                </div>
+                </volist>
+                <!--loop-->
+
+              </div>
+              <div class="j-m"></div>
+            </div>
+            <!-- 群发列表end -->
+          </div>
+          <!--模块结束-->
+          <div class="j-m j-h20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 弹窗 发布确认 -->
+<div class="mass-dialog" id="confirm-send">
+  <div class="mass-dialog-c">
+    <div class="mass-dialog-head">
+      <div class="j-fl">温馨提示</div>
+      <div class="j-m"></div>
+    </div>
+    
+    <div class="mass-dialog-content">
+      <div class="mass-confirmbox">
+        <div class="confirm-title">操作确认</div>
+        <div class="confirm-msg">文章发布后无法撤销，是否确认发布？</div>
+      </div>
+    </div>
+    
+    <div class="mass-dialog-bottom">
+      <a class="confirm-btn green" onclick="Mass.sendnow(this)">确定</a>
+      <a class="confirm-btn" onclick="J_hide('confirm-send')">取消</a>
+    </div>
+  </div>
+</div>
+<!-- 弹窗 -->
+
+<!-- 弹窗 发布时间设置 -->
+<div class="mass-dialog" id="timesetting">
+  <div class="mass-dialog-c">
+    <div class="mass-dialog-head">
+      <div class="j-fl">温馨提示</div>
+      <div class="j-fr"><a class="cancel" href="javascript:;" onclick="Mass.cancelSendtime()">取消定时发布</a></div>
+      <div class="j-m"></div>
+    </div>
+    
+    <div class="mass-dialog-content">
+      <div class="mass-timetable">
+        <div class="timetable-title">您已设定今日 <span id="today-timeshow">19:00</span>发布</div>
+        <div class="timetable">
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="mass-dialog-bottom">
+      <a class="confirm-btn green" onclick="Mass.setSendtime(this)">确定</a>
+      <a class="confirm-btn" onclick="J_hide('timesetting')">取消</a>
+    </div>
+  </div>
+</div>
+<!-- 弹窗 -->
+
+<!-- 弹窗 默认发布时间设置 -->
+<div class="mass-dialog" id="default-timesetting">
+  <div class="mass-dialog-c">
+    <div class="mass-dialog-head">
+      <div class="j-fl">默认发布时间设置</div>
+      <div class="j-m"></div>
+    </div>
+    
+    <div class="mass-dialog-content">
+      <div class="mass-timetable">
+        <div class="timetable">
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="mass-dialog-bottom">
+      <a class="confirm-btn green" onclick="Mass.setDefaulttime(this)">确定</a>
+      <a class="confirm-btn" onclick="J_hide('default-timesetting')">取消</a>
+    </div>
+  </div>
+</div>
+<!-- 弹窗 -->
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/js/functions/mass.js"></script>
+
+<script>
+Mass.setTime({
+  sendingtime:{$defaulttimepara.settime|default='21'},
+  newsendtime:{$list[$dtlist[0]]["sendtime"]|default=-1}
+});
+</script>
+</body>
+</html>

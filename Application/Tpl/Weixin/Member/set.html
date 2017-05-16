@@ -1,0 +1,586 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+			
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	居民卡设置
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    	<div class="j-m j-h10"></div>
+                    
+                    	<!--预览框-->
+                    	<div id="viewport" class="j-viewport j-tsm-06">
+                        	<div class="j-view-1">
+                            	<div class="container">
+                                  <!-- 居民卡预览 -->
+                                  <div class="idcard">
+                                    <div class="card" style="background:url(__PUBLIC__/img/vipcard/cardbg/card_bg36.jpg)">
+                                      <div class="user">
+                                        <table class="j-table">
+                                          <tbody>
+                                            <tr>
+                                              <td rowspan="2"><a class="avatar" href=""><img src="/static/weixin/image/avatar.png"></a></td>
+                                              <td class="name"><span class="cardname">居民卡名称</span></td>
+                                            </tr>
+                                            <tr>
+                                              <td class="name">用户名</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                      
+                                      <div class="logo">
+                                        <a href=""><img src="/static/weixin/image/u205.png"></a>
+                                      </div>
+                                      
+                                      <div class="info">
+                                        <a href=""><span class="icon-edit"></span></a>
+                                      </div>
+                                      
+                                      <div class="number">
+                                        123456789
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- 居民卡预览 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--预览框-->
+                        
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" autocomplete="off" onSubmit="return Validator.Validate(this,4)">
+                        <div class="j-m j-h1"></div>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                        	<tbody>
+                            	<tr>
+                                	<td class="j-viewport-w"><div class="j-m" style="min-height:440px"></div></td>
+                                    <td class="j-formbk">
+                                    	<div class="j-m">
+                                        	<table border="0" width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                                            	<tbody>
+                                                	<tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">名称</td>
+                                                                            <td>
+                                                                                <input type="text" name="cname" id="name" maxlength="64" class="j-w50" value="{$config.cardname|default='88888888'}" datatype="Require" msg="请输入名称">
+																				<input type="text" name="cname_color" id="color-1" class="j-w20 jscolor" value="{$config.cname_color|default='#FFFDF7'}" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">图标</td>
+                                                                            <td>
+																				<label class="j-fl j-ml15"><input type="checkbox" name="hidelogo" <eq name="config.hidelogo" value="1">checked</eq> value="1" /> 隐藏图标</label>
+                                                                            </td>
+                                                                            <td>
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                     <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">系统背景</td>
+                                                                            <td>
+                                                                               <select name="select" id="select_bg" class="j-w-200" onChange="background_select(this)">
+                                                                                 <option value="{$config.card_bg|default='__PUBLIC__/img/vipcard/cardbg/card_bg21.png'}">请选择居民卡背景图</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg01.png">01 </option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg02.png">02</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg03.png">03</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg04.png">04</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg05.png">05</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg06.png">06</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg07.png">07</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg08.png">08</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg09.png">09</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg10.png">10</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg11.png">11</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg12.png">12</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg13.png">13</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg14.png">14</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg15.png">15</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg16.png">16</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg17.png">17</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg18.png">18</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg19.png">19</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg20.png">20</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg21.png">21</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg22.png">22</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg23.png">23</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg24.png">24</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg25.png">25</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg26.png">26</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg27.png">27</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg28.png">28</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg29.png">29</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg30.png">30</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg31.png">31</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg32.png">32</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg33.png">33</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg34.png">34</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg35.png">35</option>
+                                                                                 <option value="__PUBLIC__/img/vipcard/cardbg/card_bg36.jpg">36</option>
+                                                            
+                                                                             </select>
+
+                                                                            </td>
+                                                                            <td>
+                                                                               
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+													<tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">背景</td>
+                                                                            <td>
+                                                                                <span id="bg_imgview" class="uploadimg j-fl">
+                                                                                	<img src="{$config.card_bg|default='/Public/img/vipcard/cardbg/card_bg21.png'}">
+                                                                                </span>
+                                                                                <div class="j-fl">
+                                                                                  封面图片建议尺寸：720像素 * 400像素，文件不超过2M<br>
+                                                                                  <label class="uploadform">
+                                                                                    <input class="j-upload-file j-hide" type="file" accept="image/jpeg,image/x-png" onChange="upload_bg(this,'image')">
+                                                                                    <input type="hidden" value="{$config.card_bg|default='/Public/img/vipcard/cardbg/card_bg21.png'}" name="card_bg" id="card_bg" />
+                                                                                    <a class="j-button-upload">上传</a>
+                                                                                  </label>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                            	
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+													
+													<tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">卡号颜色</td>
+                                                                            <td>
+																				<input type="text" name="numbercolor" id="color-2" value="{$config.numbercolor|default='#FFFAF5'}" class="jscolor j-w20" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+													
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">使用说明</td>
+                                                                            <td>
+                                                                            	<textarea class="j-noresize j-h100 j-w90" name="instructions" id="text">{$config.instructions}</textarea>
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">关联服务</td>
+                                                                            <td>
+                                                                                <volist name="appList" id="v">
+                                                                                <label class="m-r-lg"><input type="checkbox" name="cardApp[]" value="{$v.category}" /> {$v.name}</label>
+                                                                                </volist>
+                                                                                
+                                                                            </td>
+                                                                            <td>
+                                                                            	
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr class="j-vtcl-top">
+                                                                            <td class="j-w-80 j-input-lalel">领卡信息</td>
+                                                                            <td>
+                                                                               <table class="table table-bordered">
+																					<thead>
+																						<tr>
+																							<td>项目名称</td>
+																							<td>提示信息</td>
+																							<td width="40">类型</td>
+																							<td width="50">是否必填</td>
+																							<td width="65">操作</td>
+																						</tr>
+																					</thead>
+																					
+																					<tbody>
+																						<!-- loop -->
+																						<tr>
+																							<td><input type="text" class="j-w90" readonly value="真实名字"></td>
+																							<td><input type="text" class="j-w90" readonly value="请输入您的名字"></td>
+																							<td>文本</td>
+																							<td><label><input type="checkbox" name="required[]"> 必填</label></td>
+																							<td><label><input type="checkbox" name="name_is_edit" value="1" /> 可修改</label></td>
+																						</tr>
+																						<!-- loop -->
+																						
+																						<!-- loop -->
+																						<tr>
+																							<td><input type="text" class="j-w90" readonly value="联系电话"></td>
+																							<td><input type="text" class="j-w90" readonly value="请输入您的电话"></td>
+																							<td>文本</td>
+																							<td><label><input type="checkbox" name="required[]"> 必填</label></td>
+																							<td><label><input type="checkbox" name="phone_is_edit" value="1" /> 可修改</label></td>
+																						</tr>
+																						<!-- loop -->
+																						
+																						<!-- loop -->
+																						<tr>
+																							<td><input type="text" class="j-w90" readonly value="楼号"></td>
+																							<td><input type="text" class="j-w90" readonly value="请输入您的楼号"></td>
+																							<td>文本</td>
+																							<td><label><input type="checkbox" name="required[]"> 必填</label></td>
+																							<td><label><input type="checkbox" name="buildingNo_is_edit" value="1" /> 可修改</label></td>
+																						</tr>
+																						<!-- loop -->
+																						
+																						<!-- loop -->
+																						<tr>
+																							<td><input type="text" class="j-w90" readonly value="单元"></td>
+																							<td><input type="text" class="j-w90" readonly value="请输入您的单元号"></td>
+																							<td>文本</td>
+																							<td><label><input type="checkbox" name="required[]"> 必填</label></td>
+																							<td><label><input type="checkbox" name="unit_is_edit" value="1" /> 可修改</label></td>
+																						</tr>
+																						<!-- loop -->
+																						
+																						<!-- loop -->
+																						<tr>
+																							<td><input type="text" class="j-w90" readonly value="门牌号"></td>
+																							<td><input type="text" class="j-w90" readonly value="请输入您的门牌号"></td>
+																							<td>文本</td>
+																							<td><label><input type="checkbox" name="required[]"> 必填</label></td>
+																							<td><label><input type="checkbox" name="doorNumber_is_edit" value="1" /> 可修改</label></td>
+																						</tr>
+																						<!-- loop -->
+																						
+																						<!-- loop -->
+																						<tr>
+																							<td><input type="text" class="j-w90" readonly value="住户类型"></td>
+																							<td><input type="text" class="j-w90" readonly value="常住|租住"></td>
+																							<td>选择框</td>
+																							<td><label><input type="checkbox" name="required[]"> 必填</label></td>
+																							<td><label><input type="checkbox" name="householdType_is_edit" value="1" /> 可修改</label></td>
+																						</tr>
+																						<!-- loop -->
+																					</tbody>
+																			   </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+					
+					<div class="j-m j-h1 j-bkcl2"></div>
+					<div class="j-m j-h20"></div>
+					
+					<div class="j-m">
+						<input type="submit" class="j-button-red j-pct" value="保存">
+					</div>
+					<div class="j-m j-h20"></div>
+					</form>
+                    <!--表单-->
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/plugin/jqplugin/jscolor.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/upload.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script>
+//背景选择
+function background_select(a){
+	$(".idcard .card").css("background-image","url("+a.value+")");
+	$("#card_bg").val(a.value);
+}
+
+//领卡信息初始化
+function card_init(data){
+	if(card_init._init!=1){
+		card_init._init=1;
+		
+		card_init.createhtml=function(){
+			
+		}
+		
+		card_init.createform=function(){
+			
+		}
+	}
+	
+	var c=data.length-1;
+	for(var i=0;i<=c;i++){
+		if(data[i].required){
+			
+		}
+		
+		if(data[i].editable){
+			$("input:checkbox[name='"+data[i].name+"']").attr("checked",1);
+		}
+	}
+}
+$(this).ready(function(e) {
+	//是否隐藏图标选项
+	$("input:checkbox[name='hidelogo'][value='{$config.hidelogo}']").attr("checked",1);
+	
+	//禁止必填修改
+	$("input:checkbox[name='required[]']").attr("checked",1);
+	$("input:checkbox[name='required[]']").attr("disabled","disabled");
+	
+	//初始化领卡自定义表单 checkbox
+	card_init([{
+			      name:'name_is_edit',
+			      editable:{$config.name_is_edit|default='0'}
+			   },
+			   {
+				   name:'phone_is_edit',
+				   editable:{$config.phone_is_edit|default='0'}
+			   },
+			   {
+				   name:'buildingNo_is_edit',
+				   editable:{$config.buildingNo_is_edit|default='0'}
+			   },
+			   {
+				   name:'unit_is_edit',
+				   editable:{$config.unit_is_edit|default='0'}
+			   },
+			   {
+				   name:'doorNumber_is_edit',
+				   editable:{$config.doorNumber_is_edit|default='0'}
+			   },
+			   {
+				   name:'householdType_is_edit',
+				   editable:{$config.householdType_is_edit|default='0'}
+				}
+			]);
+	
+	//初始化背景
+	$("#select_bg").val("{$config.card_bg}");
+	$(".idcard .card").css("background-image","url({$config.card_bg|default='__PUBLIC__/img/vipcard/cardbg/card_bg12.png'})");
+	
+
+	
+	//关联服务选择
+	<volist name="capplist" id="item">
+	$("input:checkbox[name='cardApp[]'][value='{$item.category}']").attr("checked",1);
+	</volist>
+	
+	//初始化名称颜色
+	$(".idcard .name").css("color",$("#color-1").val());
+  
+  //初始化名称
+  $(".idcard .cardname").html($("#name").val());
+
+	//绑定名称颜色变化事件
+	$("#color-1").on("change",function(){
+		$(".idcard .name").css("color",'#'+$(this).val());
+	});
+
+	//初始化卡号颜色
+	$(".idcard .number").css("color",$("#color-2").val());
+
+	//绑定卡号颜色变化事件
+	$("#color-2").on("change",function(){
+		$(".idcard .number").css("color",'#'+$(this).val());
+	});
+
+	//名称更改
+	$("#name").on("keyup",function(){
+		if($(this).val()==""){
+			$(".idcard .cardname").html("居民卡名称");
+		}else{
+			$(".idcard .cardname").html($(this).val());
+		}
+	});
+});
+
+//背景上传
+function upload_bg(a,type){
+	if(J_Uploader.isruning==true){
+		J_msgshow("正在上传请稍等");
+	}else{
+		J_Uploader.upload_url="{:U('image/up')}"; //上传地址
+		J_Uploader.callback	=function(data){
+      $(a).parent().find(".j-button-upload").html('上传');
+      if(data.statu==-2){
+        J_msgshow("文件尺寸过大");
+      }else{
+        $("#bg_imgview").html('<img src="'+data.path+'">');
+        $("#bg_imgview").css("cursor","pointer");
+        $(".idcard .card").css("background-image","url("+data.path+")");
+        $("#card_bg").val(data.path);
+        
+        $("#bg_imgview").on("click",function(){
+          var img=$(this).find("img").attr("src");
+          $("#idcard-view").css("background-image", 'url('+img+')');
+        });
+        
+        //更新居民卡背景
+        $("#idcard-view").css("background-image", 'url('+data.path+')');
+      }
+		};
+		
+		J_Uploader.uploading=function(){
+			J_msgshow("正在上传背景");
+      $(a).parent().find(".j-button-upload").html('<span class="icon-spinner icon-spin"></span>');
+		};
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype=type;
+		J_Uploader.addlist();
+	}
+}
+
+</script>
+</body>
+</html>

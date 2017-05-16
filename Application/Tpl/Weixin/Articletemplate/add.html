@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link rel="stylesheet" href="/static2/plugin/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static2/plugin/fontawesome/css/font-awesome4.min.css">
+<link rel="stylesheet" href="/static2/css/style.css">
+<link rel="stylesheet" href="/static2/css/theme.css">
+<link rel="stylesheet" href="/static2/plugin/fastArticle/style.css">
+</head>
+
+<body>
+<!-- 头部 -->
+<include file="header" />
+<!-- 头部 -->
+
+
+<!-- 左侧菜单 -->
+<div class="j-gloab-menus">
+  <a href="" class="item">
+    <div class="j-h15 j-m"></div>
+    <span class="fa fa-home"></span><br>
+    <span>系统首页</span>
+  </a>
+  
+  <a href="" class="item active">
+    <div class="j-h15 j-m"></div>
+    <span class="fa fa-th-large"></span><br>
+    <span>功能管理</span>
+  </a>
+  
+  <a href="" class="item">
+    <div class="j-h15 j-m"></div>
+    <span class="fa fa-cog"></span><br>
+    <span>社区管理</span>
+  </a>
+</div>
+<!-- 左侧菜单 -->
+
+
+<!-- 右侧内容 -->
+<div class="j-gloab-content">
+  <!-- box -->
+  <form method="post" id="form1" action="" enctype="multipart/form-data">
+  <div class="box">
+    <div class="box-title">快速发布</div>
+    <div class="j-m j-h1 j-bkcl2"></div>
+    <div class="box-content">
+      <div class="j-article-fastadd">
+        <table class="j-table no-padding">
+          <tbody>
+            <tr>
+              <td><input class="fastadd-input" name="title" id="title" type="text" placeholder="请输入文章标题"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="j-h15 j-m"></div>
+      <div class="j-article-fastadd">
+        <table class="j-table no-padding">
+          <tbody>
+            <tr>
+              <td width="200">
+                <div class="j-upload" id="cover">
+                  <div class="status">0%</div>
+                  <img src="/Public/images/default02/sqzx.jpg">
+                  <input type="hidden" id="show_bg_img" name="show_bg_img" value="{$detail.picurl|default='/Public/images/default02/sqzx.jpg'}">
+                </div>
+              </td>
+              <td class="vb">
+                <label class="j-upload-input j-ml8">
+                  <a class="btn">上传封面</a>
+                  <input type="file" onchange="upload(this)" process="cover" accept="image/jpeg,image/x-png">
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="j-h15 j-m"></div>
+      
+      <!-- editor -->
+      <div class="j-article-fastadd" id="fast-editor">
+        <div class="fast-editor">
+          <!-- 左侧 -->
+          <div fast-type="left" style="text-align:left">称谓</div>
+          <!-- 左侧 -->
+          
+          <div fast-type="right" style="text-align:right">落款</div>
+          
+          <div fast-type="date" style="text-align:right">日期</div>
+          
+          <div fast-type="p" style="text-indent: 2em">文章内容</div>
+          
+          <div fast-type="img">
+            <img class="aim-img" src="/static2/image/head_pic.jpg">
+            <div style="text-align:center; width:80%; margin:0 auto">
+              测试内容
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- editor -->
+      <div class="j-article-fastadd">
+        <div class="form-group">
+          <table>
+            <tr>
+              <td class="msg-label">文章分类</td>
+              <td>
+                <select name="cid" id="cattype" class="j-w-100">
+                    <option value="">未分类</option>
+                    <volist name="catlist" id="catitem">
+                    <option value="{$catitem.id}" pid="{$catitem.category_id}">{$catitem.sty}{$catitem.classname}</option>
+                    </volist>
+                </select>
+              </td>
+            </tr>
+            
+            <tr>
+              <td class="msg-label">链接应用</td>
+              <td>
+                <select class="sm" name="">
+                  <option value="">无</option>
+                  <option value="link">链接</option>
+                  <option value="business">业务模块</option>
+                </select>
+              </td>
+            </tr>
+            
+            <tr id="type-link">
+              <td class="msg-label">链接</td>
+              <td><input type="text"></td>
+            </tr>
+            
+            <tr id="type-link">
+              <td colspan="2" class="j-txtct">
+                <a class="j-button-red" onclick="submit(this)">提交</a>
+              </td>
+            </tr>
+          </table>
+          <textarea id="editor" name="content" style="display: none;"></textarea>
+        </div>
+      </div>
+      <div class="j-m"></div>
+    </div>
+  </div>
+  </form>
+  <!-- boxend -->
+  
+  <!-- footer -->
+  <div class="j-m j-h20"></div>
+  <div class="j-footer">
+    <ul>
+      <li><a>关于我们</a></li>
+      <li><a>通知中心</a></li>
+      <li><a>使用指南</a></li>
+      <li>Copyright © 2012-2015 All Rights Reserved.</li>
+    </ul>
+  </div>
+  <div class="j-m j-h20"></div>
+  <!-- footer -->
+</div>
+<!-- 右侧内容 -->
+
+<!-- 弹窗 -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <div class="list-controls">
+      
+    </div>
+    <div class="list-container">
+      
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary" disabled data-loading-text="提交中...">确定</button>
+  </div>
+</div>
+<!-- 弹窗 -->
+
+<!--js-->
+<script src="/static2/js/jquery.js"></script>
+<script src="/static2/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static2/js/site.js"></script>
+<script src="/static2/js/upload.js"></script>
+<script src="/static2/plugin/fastArticle/fastedit.js"></script>
+<!--js-->
+<script>
+function submit(a){
+  $(a).prop("disabled").html('提交中...');
+  $('#editor').html(J_FastEdit.getcode('#fast-editor'));
+  $('#form1').submit();
+}
+//J_FastEdit.init('#fast-editor',{manage:false,edit:false});
+J_FastEdit.init('#fast-editor',{manage:false,edit:false});
+function test(){
+  console.log(J_FastEdit.getcode('#fast-editor'));
+}
+
+function upload(a){
+  if(J_Uploader.isruning==true){
+    J_msgshow("正在上传请稍等");
+    return false;
+	}
+  
+  upload.process='#'+$(a).attr("process");
+  J_Uploader.reset();
+  J_Uploader.upload_url="{:U('image/up')}"; //上传地址
+  
+  J_Uploader.process=function(p){
+    //console.log(p);
+    $(upload.process).find(".status").css("width",p+'%').html(p+"%");
+  }
+  
+  J_Uploader.callback	=function(data){
+    //console.log(data);
+    if(data.statu!=1){
+      $(upload.process).find(".status").html(J_Uploader.error[data.statu]);
+      return false;
+    }
+    
+    $(upload.process).find(".status").html('上传成功');
+    $(upload.process).find('img').prop("src",data.path+'?t='+Math.random());
+	$("#show_bg_img").val(data.path);
+  };
+  
+  J_Uploader.uploading=function(){
+    
+  }
+  
+  
+  J_Uploader.file=a.files;
+  J_Uploader.nowtype="image";
+  J_Uploader.addlist();
+}
+</script>
+</body>
+</html>

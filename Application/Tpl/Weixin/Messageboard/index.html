@@ -1,0 +1,316 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/switch-master/css/bootstrap2/bootstrap-switch.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	社区留言
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('messageboard/setting')}"><span class="icon-cogs"></span> 留言设置</a>
+                        	<!--<a class="j-fz-14" href=""><span class="icon-user"></span> 黑名单</a>-->
+                          <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                              <ul class="nav nav-tabs nomargin">
+                                <li <eq name="status" value="all">class="active"</eq>><a href="{:U('messageboard/index')}">全部留言</a></li>
+                                <li <eq name="status" value="1">class="active"</eq>><a href="{:U('messageboard/index?status=1')}">待处理</a></li>
+                                <li <eq name="status" value="2">class="active"</eq>><a href="{:U('messageboard/index?status=2')}">处理中</a></li>
+                                <li <eq name="status" value="3">class="active"</eq>><a href="{:U('messageboard/index?status=3')}">已处理</a></li>
+                              </ul>
+                              <div class="nav nav-tabs nomargin" style="display: none">
+                              	<table width="100%" cellpadding="0" cellspacing="0">
+                                	<tbody>
+                                    	<tr class="j-vtcl-mid">
+                                        	<td>
+                                            	<div class="j-m j-h8"></div>
+                                            	<label class="j-ml8"><input id="checkall" type="checkbox"> 全选</label> 
+                                                <a href="javascript:;" onClick="deleteall()" class="j-delete-1 j-block-2 j-ml8 j-mr8"><span class="icon-remove"></span> 删除</a>
+                                                <!--<a href="javascript:;" onClick="abandon()" class="j-delete-1 j-block-2 j-ml8 j-mr8"><span class="icon-ban-circle"></span> 拉黑</a>-->
+                                                |
+                                                <a href="javascript:;" onClick="publicOrnot(true)" class="j-block-2 j-ml8">公开</a>
+                                                <a href="javascript:;" onClick="publicOrnot(false)" class="j-block-2 j-ml8 j-mr8">不公开</a>
+                                                |
+                                                标记为：
+                                                <select id="sortlist" class="j-typeselect" name="">
+                                                	<option value="0">新消息</option>
+                                                  <option value="1">待处理</option>
+                                                  <option value="2">处理中</option>
+                                                  <option value="3">已处理</option>
+                                                </select>
+                                                <div class="j-m j-h8"></div>
+                                            </td>
+                                            <td>
+                                            	<div class="j-fr j-mt8 j-mr8">
+                                                    
+                                                </div>
+                                                <div class="j-m j-h8"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table table-hover">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td width="20"></td>
+                                                <td width="50">头像</td>
+                                                <td width="100">姓名</td>
+                                                <td>留言内容</td>
+                                                <td width="120">是否公开</td>
+                                                <td width="120">状态</td>
+                                                <td class="j-w-70">留言时间</td>
+                                                <!--<td class="j-w-100">操作</td>-->
+                                            </tr>
+                                            
+                                            <notempty name="list">
+                                            <!--loop-->
+                                            <volist name="list" id="item">
+                                            <tr class="j-vtcl-mid">
+                                                <td class="j-txtct"><input type="checkbox" name="tids[]" value="{$item.id}"></td>
+                                                <td><a><img src="{$item.headimgurl}"></a></td>
+                                                <td><a>{$member[$item['openid']]['name']}</a></td>
+                                                <td>
+                                                  <a href="{:U('messageboard/dialogueList?tid='.$item['id'])}">
+                                                  	<eq name="item['last']['contents']" value="">{$item.contents}<else />{$item['last']['contents']}</eq>
+                                                  </a>
+                                                </td>
+                                                <td>
+                                                <input name="public[]" tid="{$item.id}" type="checkbox" <eq name="item.public" value="1">checked</eq> data-size="small" value="1">
+                                                </td>
+                                                <td>
+                                                	<select tid="{$item.id}" name="status[]">
+                                                    	<option value="0" <eq name="item.status" value="0">selected</eq>>新消息</option>
+                                                      <option value="1" <eq name="item.status" value="1">selected</eq>>待处理</option>
+                                                      <option value="2" <eq name="item.status" value="2">selected</eq>>处理中</option>
+                                                      <option value="3" <eq name="item.status" value="3">selected</eq>>已处理</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                	{$item.createtime|date="Y-m-d",###} {$item.createtime|date="H:i:s",###}
+                                                </td>
+                                                <!--<td>
+                                                	<a href="" class="j-delete-1 j-block-2"><span class="icon-ban-circle"></span> 拉黑</a>
+                                        				<a href="javascript:;" onClick="delete_one(this)" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                                </td>-->
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                            <else/>
+                                            
+                                            <!--norecords-->
+                                              <tr>
+                                                  <td colspan="7">
+                                                      <div class="j-fcolor-2 j-m j-txtct">
+                                                          暂无留言
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <!--norecords-->
+                                              </notempty>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                                <ul>
+                                	{$pages}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/plugin/switch-master/js/bootstrap-switch.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+$(this).ready(function(e) {
+    //全选绑定
+	$("#checkall").bind("change",function(){
+		if($(this).is(":checked")){
+			$(".tab-content input:checkbox").attr("checked","true");
+		}else{
+			$(".tab-content input:checkbox").removeAttr("checked");
+		}
+	});
+	
+	//批量更改留言状态
+	$("#sortlist").bind("change",function(){
+		if($("#s_form input:checkbox:checked").length>=1){
+			var cid=$(this).val();
+			//更改表单提交地址
+			$("#s_form").attr("action","");
+			$("#s_form").submit();
+		}else{
+			$(this).find("option").eq(0).attr("selected",true);
+			J_msgshow("请选择更改的选项");
+		}
+	});
+  
+  $("input[name='public[]']").bootstrapSwitch({onText:"公开",offText:"隐藏"});
+  
+  //绑定公开隐藏更改
+  $("input[name='public[]']").on("switchChange.bootstrapSwitch",function(event, state){
+    var ispublic= state ? 1 : 0;
+		var url="{:U('messageboard/updatePublic')}";
+		var tids=$(this).attr("tid");
+
+		$.post(url,{
+			tids:tids,
+			isPublic:ispublic
+		},function(data){
+			if(data.errno!=200){
+				$(this).bootstrapSwitch("toggleState");
+			}
+		},"json");
+  });
+  
+  //单个更改状态
+	$("select[name='status[]'").on("change",function(){
+		var status=$(this).val();
+		var tids=$(this).attr("tid");
+		var url="{:U('messageboard/updateStatus')}";
+		
+		$.post(url,{
+			tids:tids,
+			status:status
+		},function(data){
+			if(data.errno!=200){
+				J_msgshow("网络繁忙，请重试");
+			}
+		},"json");
+	});
+});
+
+//是否公开
+function publicOrnot(f){
+	if($("#s_form input:checkbox:checked").length<1){
+		J_msgshow("请选择更改的选项");
+		return false;
+	}
+
+	if(f){
+		//公开
+		if(window.confirm("是否更改为公开?")){
+			$("#s_form").attr("action","");
+			$("#s_form")[0].submit();
+		}
+	}else{
+		//不公开
+		if(window.confirm("是否更改为不公开?")){
+			//更改提交地址
+			$("#s_form").attr("action","");
+			$("#s_form").submit();
+		}
+	}
+}
+
+//拉黑
+function abandon(){
+	if($("#s_form input:checkbox:checked").length<1){
+		J_msgshow("请选择拉黑的选项");
+		return false;
+	}
+	
+	if(window.confirm("是否拉黑?")){
+		$("#s_form").attr("action","");
+		$("#s_form").submit();
+	}
+}
+
+//全选删除
+function deleteall(){
+	if($("#s_form input:checkbox:checked").length>=1){
+		if(window.confirm("确定删除？")){
+			$("#s_form").attr("action","{:U('Messageboard/delTopic')}");
+			$("#s_form").submit();
+		}else{
+			//J_msgshow("不删除");
+		}
+	}else{
+		J_msgshow("请选择删除选项");
+	}
+}
+
+function delete_one(a){
+  if(window.confirm("确定删除？")){
+    $(a).parent().parent().find("input").attr("checked",true);
+    $("#s_form").attr("action","{:U('Messageboard/delTopic')}");
+    $("#s_form").submit();
+  }else{
+    //J_msgshow("不删除");
+  }
+}
+</script>
+</body>
+</html>

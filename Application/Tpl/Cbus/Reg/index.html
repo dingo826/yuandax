@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>注册-社区商户</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="headback">
+  <img src="__PUBLIC__/webapp/image/u3945.jpg">
+</div>
+
+<div class="seller-regbtn j-flex">
+  <div class="flex">
+    <a class="btn btn-blue" href="{:U('login/index?fromid='.$formid)}">商户登录</a>
+  </div>
+  <div class="flex">
+    <a class="btn active">商户注册</a>
+  </div>
+</div>
+
+<form id="form" action="" method="post">
+<div class="form">
+  <!-- 表单组 -->
+  <div class="form-head fz-sm">
+    如果您是社区周边的商户，您可以在通过提交注册信息在社区微信平台上注册商户身份。注册成功后您可以向周边的社区及居民发布优惠信息。
+  </div>
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">商户名称</div>
+        <div class="flex">
+          <input type="text" name="nickname" placeholder="请输入商户名称" datatype="Require" msg="请输入商户名称">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">密码</div>
+        <div class="flex">
+          <input type="password" name="passwd" id="passwd" placeholder="请输入密码6-18位" datatype="LimitB" min="6" max="16" msg="密码6-16位">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">确认密码</div>
+        <div class="flex">
+          <input type="password" name="repasswd" placeholder="请再次输入密码" datatype="Repeat" to="passwd" msg="两次密码不一致">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">手机号码</div>
+        <div class="flex">
+          <input id="mobile" type="text" name="mphone" placeholder="请输入手机号码" datatype="Mobile" msg="请正确输入手机号码">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">验证码</div>
+        <div class="flex">
+          <input type="text" placeholder="请输入手机验证码" name="mphonecode" datatype="Require" msg="请输入验证码">
+        </div>
+        <div class="addon">
+          <a id="checkcodebtn" class="checkcodebtn disable">获取验证码</a>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <div class="btn-group bigroom">
+    <a id="submit" class="btn disable">下一步</a>
+  </div>
+</div>
+</form>
+
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+
+<script>
+//全局按钮计时
+function G_resend_btn_action(a,opt){
+  opt.time--;
+  
+  if(opt.time<=0){
+    if(opt.callback){
+      opt.callback(a,opt);
+      $(a).html(opt.endstr);
+    }
+  }else{
+    $(a).html(opt.str+opt.time+"s");
+    setTimeout(function(){G_resend_btn_action(a,opt)},1000);
+  }
+}
+
+//绑定发送手机验证码
+function send_mobilecode(){
+  $("#checkcodebtn").removeClass("disable").on("click",function(){
+	  $("#checkcodebtn").addClass("disable").off("click");
+	 var data=$("#form").serialize();
+    
+    $.post("{:U('sms/send?fromid='.$formid)}", data, function(jsondata){
+		
+      if(jsondata.status==1){
+        G_resend_btn_action(document.getElementById("checkcodebtn"),{
+          time:60,
+          callback:send_mobilecode,
+          str:'重新发送',
+          endstr:'重新发送'
+        });
+		return;
+      }
+	  
+	  if(jsondata.status==-1) {
+			alert(jsondata.message);
+			mobile_check();
+			return;
+		}
+	  alert("请稍后注册");
+	  mobile_check();
+	  return;
+    }, "json");
+    //$("#checkcodebtn").addClass("disable").off("click");
+    //console.log("postm");
+  });
+}
+
+function mobile_check(){
+  $("#checkcodebtn").addClass("disable").off("click");
+  
+  $("#mobile").on("keyup",function(){
+    var reg = /^1[34578]\d{9}$/;
+    if(reg.test($(this).val())){
+      send_mobilecode();
+    }else{
+      $("#checkcodebtn").addClass("disable").off("click");
+    }
+  });
+}
+
+$(document).ready(function(){
+  //表单检测
+  $("input").on("keyup",function(){
+    $("#submit").addClass("disable").off("click");
+    if(Validator.Validate(document.getElementById("form"),6)){
+      $("#submit").removeClass("disable").on("click",function(){
+        $.post("",$("#form").serialize(),function(jsondata){
+			if(jsondata.status==1) {
+				location.href="{:U('perfect/setpone?fromid='.$formid)}";
+				return;
+			}
+			alert(jsondata.message);
+			return;
+        }, 'json');
+      });
+    }
+  });
+  
+  //开启手机验证码验证对手机号码的验证
+  mobile_check();
+});
+</script>
+
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

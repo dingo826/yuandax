@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body class="servey-body">
+<div class="servey-start">
+  <div class="title">{$detail.title}</div>
+  <div class="content">
+    {$detail.note}
+  </div>
+</div>
+
+<div class="weui_btn_area">
+  <a href="{:U('register?id='.$detail['id'].'&wid='.$detail['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_btn weui-btn-servey">马上开始</a>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

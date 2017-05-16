@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">源达网络</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="spacing">
+                        <div class="j-top-left j-fl">
+                          <a class="j-fr" href="{:U('wereserve/index')}">
+                          	<div class="j-m j-h20"></div>
+                          	<span class="icon-bell-alt icon-3x"></span>
+                            <span class="j-fz-30">{$data.wereserve|default='0'}</span>
+                            <div class="j-m j-h8"></div>
+                            <span class="j-fz-16">新预约</span>
+                          </a>
+                          <a class="j-fr" href="{:U('messageboard/index')}">
+                          	<div class="j-m j-h20"></div>
+                          	<span class="icon-comments-alt icon-3x"></span>
+                            <span class="j-fz-30">{$data.board|default='0'}</span>
+                            <div class="j-m j-h8"></div>
+                            <span class="j-fz-16">新留言</span>
+                          </a>
+                          <a class="" href="{:U('message/index')}">
+                          	<div class="j-m j-h20"></div>
+                          	<span class="icon-volume-down icon-3x"></span>
+                            <span class="j-fz-30">{$data.message|default='0'}</span>
+                            <div class="j-m j-h8"></div>
+                            <span class="j-fz-16">新消息</span>
+                          </a>
+                        </div>
+                        <div class="j-top-right j-fr">
+                            <a href="{:U('member/index')}" class="j-fl">
+                            	<div class="j-m j-h20"></div>
+                            	<span class="icon-group icon-3x"></span>
+                                <span class="j-fz-30">{$data.subscribe|default='0'}</span>
+                                <div class="j-m j-h8"></div>
+                                <span class="j-fz-16">粉丝人数</span>
+                            </a>
+                            <a href="{:U('member/index')}" class="j-fr">
+                            	<div class="j-m j-h20"></div>
+                            	<span class="icon-check icon-3x"></span>
+                                <span class="j-fz-30">{$data.checkin|default='0'}</span>
+                                <div class="j-m j-h8"></div>
+                                <span class="j-fz-16">居民人数</span>
+                            </a>
+                        </div>
+                        <div class="j-m j-h10"></div>
+                    </div>
+                </div>
+                
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">管理社区</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="spacing">
+                        <a href="{:U('index/basicinfo')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl3">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-building j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">基本信息</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	社区基本信息设置，含名称、电话、logo、邮箱、地址等
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <a href="{:U('index/introduce')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl4">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-tags j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区简介</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	社区特色、社区概况介绍
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <a href="{:U('position/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl5">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-flag j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">岗位设置</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	社区岗位设置
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <a href="{:U('employee/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl6">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-group j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区团队</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	社区团队展示，关注用户可快速了解社区工作分工和人员信息
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        <div class="j-m j-h10"></div>
+                    </div>
+                </div>
+                <!--模块结束-->
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<!--js-->
+</body>
+</html>

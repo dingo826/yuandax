@@ -1,0 +1,15 @@
+<php>
+$webslide=site_channelwebslide();
+</php>
+<notempty name="webslide">
+<div id="swiper" class="swiper-container">
+	<div class="swiper-wrapper">
+		<!-- loop -->
+        <volist name="webslide" id="item">
+		<div class="swiper-slide"><a href="{$item.url}"><img src="{$item.picurl}"></a></div>
+        </volist>
+		<!-- loop -->
+	</div>
+	<div class="swiper-pagination"></div>
+</div>
+</notempty>

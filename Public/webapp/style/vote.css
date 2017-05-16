@@ -1,0 +1,60 @@
+body{background: #fbf9fe; font-size: 14px}
+
+/* 字体颜色 */
+.bold{font-weight: bold}
+.color-red{color: #ff3737 !important}
+.color-blue{color: #0ae !important}
+.color-green{color: #1daa19 !important}
+.color-yellow{color: #fffc00 !important}
+.status{position: absolute; right: 0; top: 0; color: #FFF; font-size: 12px; border-bottom-left-radius: 40px; padding: 8px 10px 8px 16px}
+.status-start{background: #0ae}
+.status-end{background: #999}
+.status-ing{background: #3ad8b1}
+.time{color: #999}
+.loading{text-align: center; margin: 10px 0; color: #bebebe}
+.fz16{font-size:16px}
+
+/* 弹性布局 */
+.j-flex{display: flex; display: -webkit-flex; display: -webkit-box;}
+.j-flex .flex .c{position: absolute}
+.j-flex .flex{flex: 1; -webkit-flex:1; position: relative; -webkit-box-flex:1}
+.j-flex .flex-2{flex: 2; -webkit-flex:2;}
+.j-flex .flex-3{flex: 3; -webkit-flex:3;}
+.j-flex .fix{width: 1px}
+.j-flex-center{-webkit-box-align: center; -webkit-align-items: center; align-items: center}
+
+/* 投票列表 */
+.vote-list .item{margin: 10px 0; padding: 8px 15px; background: #FFF; position: relative; display: block; overflow: hidden; box-shadow: 0 2px 2px #DDD}
+.vote-list .item .avatar{margin-right: 10px; width: 50px; height: 50px}
+.vote-list .item .avatar img{width: 50px; height: 50px; border-radius: 50%}
+.vote-list .item .time{font-size: 12px; line-height: 25px}
+.vote-list .item .uername{line-height: 25px}
+.vote-list .item .title{line-height: 1.4em; font-size: 16px; margin-top: 8px}
+.vote-list .item .cover{padding: 8px 0}
+.vote-list .item .cover img{max-width: 100%; display: block; margin: 0 auto}
+.vote-list .item .counter{font-size: 12px; text-align: center}
+
+/* 投票内容页 */
+.vote-head{position: relative}
+.vote-head img{width: 100%; display: block}
+.vote-head .title{margin: 10px 15px 0 15px; font-size: 16px; line-height: 1.4em}
+.vote-head .time{margin: 0 15px; font-size: 12px}
+.msgtag{margin: 10px 0; padding: 8px 15px; background: #FFF; text-align: center}
+.msgtag .s-tag{font-size: 12px; color: #999}
+.vote-selectlist{margin: 10px 0}
+.vote-selectlist .countbar{margin-top: 6px}
+.vote-selectlist .countbar .bar{border-radius: 12px; background: #DDD; color: #FFF; font-size: 12px; text-align: center; overflow: hidden; position: relative; line-height: 20px; height: 20px;}
+.vote-selectlist .countbar .bar-bk{height: 100%; background: #0ae; width: 0%; position: absolute; -webkit-transition: all 1s; transition: all .6s}
+.vote-selectlist .countbar .number{position: absolute; width: 100%}
+.vote-selectlist .countbar .count{width: 60px; text-align: right; color: #0ae}
+.vote-selectlist .item{position: relative; background: #FFF; margin: 10px 0; padding: 8px 15px; display: block; box-shadow: 0 2px 2px #DDD}
+.vote-selectlist .item .cover img{max-width: 100%; display: block; margin: 0 auto}
+.vote-selectlist .item input[type="checkbox"]{display: none}
+.vote-selectlist .item .circle{border: 3px solid #DDD; padding: 8px; border-radius: 50%; margin-right: 6px}
+.vote-selectlist .item input[type="checkbox"]:checked + .circle{border-color: #0ae}
+.vote-selectlist .item .select{margin-top: 8px}
+
+.submit-btn{margin: 30px 15px}
+.submit-btn input[type="submit"]{border: none; outline: none; background: #0ae; display: block; width: 100%; padding: 10px 0; color: #FFF; font-family: inherit; font-size: 16px; border-radius: 6px; -webkit-appearance: none}
+.submit-btn input[type="submit"][disabled]{background: #999}
+.submit-btn input[type="submit"]:active{opacity: .8}

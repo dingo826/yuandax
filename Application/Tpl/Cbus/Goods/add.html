@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>添加商品</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+</head>
+
+<body>
+<form id="form">
+<div class="form">
+  <!-- 表单组 -->
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">商品名称</div>
+        <div class="flex">
+          <input type="text" name="name" value="{$detail.name}" placeholder="请输入商品名称" datatype="Require" msg="请输入商品名称">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex">
+        <div class="label-msg">商品描述</div>
+        <div class="flex">
+          <textarea rows="8" name="desc" placeholder="请输入商品描述">{$detail.desc}</textarea>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <!-- 表单组 -->
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">商品图片</div>
+        <div class="flex">
+          最多选择三张
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="flex" id="image-upload">
+          <label class="img-input img-select"><input id="file-upload" class="hide" type="file" onChange="upload(this)"></label>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <!-- 表单组 -->
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">原价</div>
+        <div class="flex">
+          <input type="number" name="oprice" placeholder="请输入商品原价" value="{$detail.oprice}" datatype="Require" msg="请输入商品原价">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">现价</div>
+        <div class="flex">
+          <input type="number" name="price" placeholder="请输入商品现价" value="{$detail.price}" datatype="Require" msg="请输入商品现价">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <!-- 表单组 -->
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">分类</div>
+        <div class="flex">
+          <select name="cid">
+            <volist name="goodscategorylist" id="item">
+            <option value="{$item.id}" <eq name="item.id" value="$catearr[$bminfo['cid']]['gcid']"> selected</eq>>{$item.gctitle}</option>
+            </volist>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <!-- 表单组 -->
+  <div class="form-head fz-sm">
+    注意：设置下架时间后，信息将会在到期时自动隐藏不再显示
+  </div>
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg important">下架时间</div>
+        <div class="flex">
+          <input type="date" name="deadline" datatype="Require" min="{:date('Y-m-d')}" value="{$xiajiatime|date='Y-m-d',###}" msg="请输入下架时间">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <div class="btn-group bigroom">
+    <a id="submit" class="btn">确定</a>
+  </div>
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script src="__PUBLIC__/webapp/script/upload.js"></script>
+
+<script>
+function bind(){
+  $("#submit").on("click",function(){
+    if(Validator.Validate(document.getElementById("form"),5)==false){
+      return false;
+    }
+    
+    if($("#image-upload input[type='hidden']").length<1){
+      Validator_error_5("至少上传一张商品图片",document.getElementById("file-upload"));
+      return false;
+    }
+    
+    $("#submit").off("click");
+    $.post('{:U("add?fromid=".$formid)}',$("#form").serialize(),function(data){
+      if(data.status==1){
+        location.href='{:U("manage/index?fromid=".$formid)}';
+      }else{
+        Validator_error_5("网络错误，请重试",false);
+        bind();
+      }
+    }, 'json');
+  });
+}
+
+$(document).ready(function(){
+  bind();
+});
+
+//文件上传
+function upload(a){
+  if($("#image-upload input[type='hidden']").length>=3){
+    Validator_error_5("最多添加三张商品图片",false);
+    return false;
+  }
+  
+	if(J_Uploader.isruning==true){
+    Validator_error_5("正在上传请稍等",false);
+	}else{
+		J_Uploader.upload_url='{:U("image/up?fromid=".$formid)}'; //上传地址
+    
+    J_Uploader.process=function(p){
+      //console.log(p);
+      $('#image-upload').find('.uploading').find(".status").html(p+"%");
+    }
+    
+		J_Uploader.callback	=function(data){
+			
+			if(data.status!=1) {
+				Validator_error_5("上传失败，"+J_Uploader.error[data.status],false);
+				$('#image-upload').find('.uploading .delete').show().html('上传失败');
+				$('#image-upload').find('.uploading input[type="hidden"]').remove();
+			}
+			$('#image-upload').find('.uploading input[type="hidden"]').val(data.path);
+			$('#image-upload').find('.uploading .delete').show();
+			//console.log(data.path);
+			$('#image-upload').find(".status").remove();
+			$('#image-upload').find('.uploading').removeClass("uploading");
+		};
+    
+    J_Uploader.uploading=function(){
+      var html='<div class="img-input uploading"><input type="hidden" name="images[]"><img src="'+ J_Uploader.list[J_Uploader.now].data +'"><div class="status">0%</div><div class="delete" onclick="deleteimage(this)">删除</div></div>';
+      $(a).parent().before(html);
+      
+      if($("#image-upload input[type='hidden']").length>=3){
+        $("#image-upload .img-select").hide();
+      }
+    }
+    
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype="image";
+		J_Uploader.addlist();
+	}
+}
+
+function deleteimage(a){
+  $(a).parent().remove();
+  $("#image-upload .img-select").show();
+}
+</script>
+
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

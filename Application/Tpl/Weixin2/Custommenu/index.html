@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+<style>
+label.error{opacity:0; background:#000; color:#FFF; padding:2px 3px}
+</style>
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	自定义菜单
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    	<div class="j-m">
+                        	<p>注意：1级菜单最多只能开启3个，2级子菜单最多开启5个!</p>
+							<p>1级菜单汉字长度不大于4，2级子菜单汉字长度不大于7</p>
+							<p>只有保存主菜单后才可以添加子菜单</p>
+							<p>生成自定义菜单,必须在已经保存的基础上进行,临时勾选启用点击生成是无效的! 第一步必须先修改保存状态！第二步点击生成!</p>
+							<p>当您为自定义菜单填写链接地址时请填写以"http://"开头，这样可以保证用户手机浏览的兼容性更好</p>
+                        </div>
+                        <div class="j-m j-h20"></div>
+                        
+
+                    	<!--表单-->
+                    	<form action="{:U('custommenu/post')}" method="post" id="s_form" novalidate>
+                        <a class="btn" href="javascript:;" onClick="rowadd()">
+                        	<span class="icon-plus"></span> 
+                            添加主菜单
+                        </a>
+                        <div class="j-m j-h1"></div>
+                        <table width="100%" cellpadding="0" cellspacing="0" class="table table-bordered table-hover table-striped">
+                        	<tbody>
+                            	<tr class="success">
+                                	<td class="j-w-50">显示顺序</td>
+                                    <td class="j-w-150">主菜单名称</td>
+                                    <td>触发关键词或链接地址</td>
+                                    <td class="j-w-25">启用</td>
+                                    <td class="j-w-40">操作</td>
+                                </tr>
+                                
+                                <volist name="list" id="item">                                
+                                <tr class="j-vtcl-mid">
+                                	<td><input name="ps[{$item.id}][sort]" value="{$item.sort|default='50'}" class="j-w-35" type="text" required></td>
+                                    <td>
+                                    	<input type="hidden" name="ps[{$item.id}][parent_id]" value="{$item.parent_id}">
+                                    	<input name="ps[{$item.id}][name]" value="{$item.name}" class="j-w70" type="text" required>
+                                        <a class="icon-plus" href="javascript:;" onClick="childrow_add(this, {$item.id})"></a>
+                                    </td>
+                                    <td>
+                                    	<input name="ps[{$item.id}][key]" class="j-w90" value="{$item.key}" type="text" required>
+                                    	<input type="hidden" name="ps[{$item.id}][type]" value="{$item.type}">
+                                    </td>
+                                    <td><input name="ps[{$item.id}][is_show]" type="checkbox" value="1" <eq name="item.is_show" value="1">checked</eq> /></td>
+                                    <td>
+                                        <a href="javascript::" onclick="J_delete(this)" data-url="{:U('custommenu/del?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                    </td>
+                                </tr>
+                                
+                                
+                                     <volist name="item.child" id="child">
+                                       <tr class="j-vtcl-mid">
+                                            <td><input  name="ps[{$child.id}][sort]" value="{$child.sort|default='50'}" class="j-w-35" type="text" required></td>
+                                            <td>
+                                                <span>﹂</span>
+                                                <input name="ps[{$child.id}][name]" value="{$child.name}" class="j-w70" type="text" required />
+                                                <input type="hidden" name="ps[{$child.id}][parent_id]" value="{$child.parent_id}" />
+                                            </td>
+                                            <td>
+                                                <input class="j-w90" name="ps[{$child.id}][key]" value="{$child.key}" type="text" required>
+                                                <input type="hidden" name="ps[{$child.id}][type]" value="{$child.type}" />
+                                            </td>
+                                            <td><input name="ps[{$child.id}][is_show]" type="checkbox" value="1" <eq name="child.is_show" value="1">checked</eq> /></td>
+                                            <td>
+                                                <a href="javascript:;" data-url="{:U('custommenu/del?id='.$child['id'])}" onclick="J_delete(this)" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                            </td>
+                                        </tr>
+                                     </volist>
+                                </volist>
+                                
+                            </tbody>
+                        </table>
+                        <input type="submit" class="j-button-red j-fl j-mr10" value="保存">
+                        <input type="button" onClick="createmenu()" class="j-button-white j-fl" value="生成自定义菜单">
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+//删除
+function rowdelete(a,id){
+	if(id==false){
+		$(a).parent().parent().fadeOut();
+		setTimeout(function(){
+			$(a).parent().parent().remove();
+		},1000);
+	}else{
+		$.post("",{
+			id:id,
+		},function(data){
+			if(data.status==1){
+				$(a).parent().parent().fadeOut();
+				setTimeout(function(){
+					$(a).parent().parent().remove();
+				},1000);
+			}else{
+				J_msgshow("系统繁忙，稍后再试");
+			}
+		});	
+	}
+}
+
+var newid=1; //新增id
+
+//添加主菜单
+//<a class="icon-plus" href="javascript:;" onClick="childrow_add(this)"></a>
+function rowadd(){
+	var html='<tr class="j-vtcl-mid"><td><input name="new[sort]['+newid+']" value="50" class="j-w-35" type="text"></td><td><input type="hidden" name="new[parent_id]['+newid+']" value="0"><input required name="new[name]['+newid+']" value="" class="j-w70" type="text"></td><td><input required name="new[key]['+newid+']" class="j-w90" type="text"><input type="hidden" name="new[type]['+newid+']" value="1"></td><td><input name="new[is_show]['+newid+']" type="checkbox" value="1" checked></td><td><a href="javascript:;" onClick="rowdelete(this,false)" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a></td></tr>';
+	$("#s_form tbody").append(html);
+	newid++;
+}
+
+//添加副菜单
+function childrow_add(a,parentid){
+	var html='<tr class="j-vtcl-mid"><td><input name="new[sort]['+newid+']" value="50" class="j-w-35" type="text"></td><td><span>﹂</span><input type="hidden" name="new[parent_id]['+newid+']" value="'+parentid+'"><input required name="new[name]['+newid+']" value="" class="j-w70" type="text"></td><td><input required name="new[key]['+newid+']" class="j-w90" type="text"><input type="hidden" name="new[type]['+newid+']" value="1"></td><td><input name="new[is_show]['+newid+']" type="checkbox" value="1" checked></td><td><a href="javascript:;" onClick="rowdelete(this,false)" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a></td></tr>';
+	$(a).parent().parent().after(html);
+	newid++;
+}
+
+function createmenu(){
+	$.post("{:U('custommenu/createmenu')}",{},function(data){
+		if(data.status==0){
+			J_msgshow("自定义菜单生成成功");
+		}else{
+			J_msgshow("系统繁忙，稍后再试");
+		}
+	},"json");
+}
+</script>
+</body>
+</html>

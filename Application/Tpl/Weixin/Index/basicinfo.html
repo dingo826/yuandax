@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">基本信息</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                        	<thead>
+                                
+                            </thead>
+                        	<tbody>
+                            	<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">全称</td>
+                                                        <td>
+                                                        	<input type="text" name="cnname" id="cnname" value="{$item.cnname}" class="form-control" datatype="Require" msg="请输入名称">
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                        	<label for="name_cn"></label>
+                                                            <span class="j-fcolor-red">*</span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                        
+                                        <!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">简称</td>
+                                                        <td>
+                                                        	<input type="text" name="abbr" id="abbr" value="{$item.abbr}" class="form-control" datatype="Require" msg="请输入简称" />
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                        	<label for="abbr"></label>
+                                                            <span class="j-fcolor-red">*</span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">电话</td>
+                                                        <td>
+                                                        	<input type="text" name="phone" id="phone" value="{$item.phone}" class="form-control" datatype="Phone" msg="请输入电话" />
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red">*</span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                        
+                                        <!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">邮箱</td>
+                                                        <td>
+                                                        	<input type="text" name="email" id="email" value="{$item.email}" class="form-control" datatype="Email" msg="请输入邮箱" />
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                        	<label for="abbr"></label>
+                                                            <span class="j-fcolor-red">*</span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">logo</td>
+                                                        <td>
+                                                        	<span class="uploadimg j-fl"><img class="thumb_img m-r-sm" src="{$item.img}" style="width: 60px; height: 60px;"></span>
+                                                          <div class="j-fl">
+                                                            图片文件不超过2M<br>
+                                                            <label class="uploadform">
+                                                              <input class="j-upload-file" type="file" accept="image/jpeg,image/x-png" onChange="upload('image',this)">
+                                                              <input type="hidden" value="{$item.logo|default='/Public/img/mingp/avatar.jpg'}" name="avater" id="avater" />
+                                                              <a class="j-button-upload">上传</a>
+                                                            </label>
+                                                          </div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red">*</span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">地区</td>
+                                                        <td>
+                                                        	<select class="j-w28-5" name="provincen" id="provincen">
+                                                            </select>
+                                                            
+                                                            <select class="j-w28-5" name="cityn" id="cityn">
+                                                            </select>
+                                                            
+                                                            <select class="j-w28-5" name="countyn" id="countyn">
+                                                            </select>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red">*</span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">街道</td>
+                                                        <td>
+                                                        	<input type="text" name="address" id="address" value="{$item.address}" class="form-control" datatype="Require" msg="请输入街道地址">
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red">*</span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="j-m">
+                        	<input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/upload.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script charset="utf-8" src="/static/js/jquery.choosearea.js"></script>
+<script type="text/javascript" src="/data/posterjs/citytree.js"></script>
+<script type="text/javascript">
+$(function(){    
+	var chooseAreaApp1 = new $.choosearea({
+		selectDomId : {
+			province : "provincen",
+			city : "cityn",
+			county : "countyn"
+		},
+		initAreaIds : {
+			province : "{$item.provincen|default='0'}",
+			city : "{$item.cityn|default='0'}",
+			county : "{$item.countyn|default='0'}"  
+		},
+		data : data
+	});
+});
+</script>
+
+<script>
+function upload(type,a){
+	if(J_Uploader.isruning==true){
+		J_msgshow("正在上传请稍等");
+	}else{
+		J_Uploader.callback=function(data){
+			$(".uploadimg").html('<img src="'+data.path+'" >');
+			$("#avater").val(data.path);
+      $(a).parent().find(".j-button-upload").html('上传');
+		}
+		J_Uploader.uploading=function(){
+			J_msgshow('上传中');
+      $(a).parent().find(".j-button-upload").html('<span class="icon-spinner icon-spin"></span>');
+		}
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype=type;
+		J_Uploader.upload_url="{:U('image/up')}";
+		J_Uploader.addlist();
+	}
+}
+</script>
+</body>
+</html>

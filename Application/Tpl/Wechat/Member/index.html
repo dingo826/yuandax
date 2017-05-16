@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>居民卡</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome4.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="idcard">
+  <div class="card" style="background:url({$config.card_bg|default='/Public/img/vipcard/cardbg/card_bg21.png'})">
+    <div class="user">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td rowspan="2"><a class="avatar" href=""><img src="{$member.headimgurl|default='/Public/images/pic.jpg'}"></a></td>
+            <td>{$config.cardname}</td>
+          </tr>
+          <tr>
+            <td>{$member.name}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="logo">
+      <a href=""><img src="{$basic.logo}"></a>
+    </div>
+    
+    <div class="info">
+      <a href="{:U('userinfo?wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}"><span class="icon-edit"></span></a>
+    </div>
+    
+    <div class="number">
+      {$member.cardnum}
+    </div>
+  </div>
+</div>
+
+<div class="idcard-list">
+  <div class="container">
+    <div class="list">
+      <!-- loop -->
+      <volist name="category" id="item">
+      <div class="item">
+        <a href="{$item.url}">
+          <div class="icon <eq name='item.business_type' value='message'><gt name='message.nhf' value='0'> tag</gt></eq><eq name='item.business_type' value='resevsection'><gt name='reservation.id' value='0'> tag</gt></eq> ">
+            <span class="{$item.icon}"></span>
+          </div>
+          <div class="title">
+            {$item.classname}
+          </div>
+        </a>
+      </div>
+      </volist>
+      <!-- loop -->
+      
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+<notempty name="communityservice">
+<div class="idcard-list">
+  <div class="headtitle">服务</div>
+  <div class="container">
+    <div class="list">
+      <!-- loop -->
+      <volist name="communityservice" id="item">
+      <div class="item">
+        <a href="{:U('Communityservice/dolist?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}">
+          <div class="icon">
+            <span class="icon-tags"></span>
+          </div>
+          <div class="title">
+            {$item.name}
+          </div>
+        </a>
+      </div>
+      </volist>
+      <!-- loop -->
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+</notempty>
+
+<notempty name="list.join">
+<div class="idcard-list">
+  <div class="headtitle">圈子</div>
+  <div class="container">
+    <div class="list">
+      <!-- loop -->
+      <volist name="list['join']" id="item">
+      <div class="item">
+        <a href="{:U('circle/show?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" target="_blank">
+          <div class="cover">
+            <img src="{$item.logo}">
+          </div>
+          <div class="title">
+            {$item.name}
+          </div>
+        </a>
+      </div>
+      </volist>
+      <!-- loop -->
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+</notempty>
+
+<include file="Public:footer" />
+</body>
+</html>

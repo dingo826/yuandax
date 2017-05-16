@@ -1,0 +1,9 @@
+body{background-color: #eeeeee}
+
+.headcover,.headcover img{width: 100%; display: block;}
+.article .title{clear: both; border-bottom: 1px dotted #000; background-color: #FFF; padding: 0 0 10px 0;}
+.article .title .t{float: left; font-size: 18px}
+.article .title .time{float: right;}
+
+.article{background-color: #FFF; margin-top: 10px}
+.article .content{margin-top: 15px}

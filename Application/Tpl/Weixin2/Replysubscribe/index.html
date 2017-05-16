@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+            
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	智能回复
+                    </div>
+                    
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    	<div class="j-m j-h10"></div>
+                    
+                    	<!--预览框-->
+                    	<div id="viewport" class="j-viewport j-tsm-06">
+                        	<div class="j-view-1">
+                            	<div class="container">
+                                	<!--自定义文本-->
+                                	<div id="txt_view" class="j-m-spacing">
+                                    	<div class="j-m j-h10"></div>
+                                    	<div class="j-m j-talk-line">
+                                        	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            	<tbody>
+                                                	<tr class="j-vtcl-top">
+                                                    	<td class="avatar"><img src="/avatar.php?size=s&id={$weixin.id}&rand={:mt_rand()}"></td>
+                                                        <td class="j-w-11"><span class="icon-caret-left"></span></td>
+                                                        <td>
+                                                            <div id="talkingtxt" class="content content-txt">
+                                                            	欢迎进入平台！
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="j-m j-h10"></div>
+                                    </div>
+                                    <!--自定义文本-->
+                                    
+                                	<!--图文-->
+                                	<div id="news_view" class="j-m-spacing j-hide">
+                                    	<div class="j-m j-h10"></div>
+                                    	<div id="box-zixun-1" class="box-zixun j-m">
+                                        	<div class="j-m j-h10"></div>
+                                        	<div class="j-m-spacing">
+                                    			<p class="news_title">标题</p>
+                                                <p class="j-fcolor-2 news_date">时间</p>
+                                                <p>
+                                                	<a style="background-image:url(/static/weixin/image/moren.jpg)" class="img"></a>
+                                                </p>
+                                                <p class="j-fcolor-2 news_content">描述</p>
+                                                <p class="news_link"><a>查看全文</a></p>
+                                            </div>
+                                            <div class="j-m j-h10"></div>
+                                    	</div>
+                                        
+                                        <div id="box-zixun-2" class="box-zixun-list box-zixun j-m j-hide">
+                                        	<div class="j-m j-h10"></div>
+                                        	<div class="j-m-spacing first">
+                                                <a style="background-image:url(/static/weixin/image/moren.jpg)" class="img">
+                                                    <span class="news_title">
+                                                        <div class="j-w95 j-pct">标题</div>
+                                                    </span>
+                                                </a>
+                                                
+                                                <div class="j-m j-h5"></div>
+                                            </div>
+                                            
+                                            <div class="j-divide-1"></div>
+                                            
+                                            <div class="j-m-spacing listas">
+                                                <a class="lista">
+                                                	<table class="j-vtcl-top" width="100%" cellpadding="0" cellspacing="0">
+                                                    	<tbody>
+                                                        	<tr>
+                                                            	<td>标题</td>
+                                                                <td class="j-w-50"><img src="/static/weixin/image/moren.jpg"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </a>
+                                            </div>
+                                            <div class="j-m j-h10"></div>
+                                    	</div>
+                                        <div class="j-m j-h10"></div>
+                                    </div>
+                                    <!--图文-->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--预览框-->
+                        
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" autocomplete="off">
+                        <div class="j-m j-h1"></div>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                        	<tbody>
+                            	<tr>
+                                	<td class="j-viewport-w"><div class="j-m" style="min-height:440px"></div></td>
+                                    <td class="j-formbk">
+                                    	<div class="j-m">
+                                        	<div class="tabbable">
+                                              <ul class="nav nav-tabs">
+                                                <li <eq name="Think.MODULE_NAME" value="Replysubscribe"> class="active"</eq>><a href="{:U('replysubscribe/index')}">关注回复</a></li>
+                                                <li <eq name="Think.MODULE_NAME" value="Nomatch"> class="active"</eq>><a href="{:U('nomatch/index')}">无匹配回复</a></li>
+                                              </ul>
+                                              <div class="tab-content">
+                                                <div class="tab-pane active" id="tab1">
+                                                  <p>粉丝关注公众平台时收到的第一条信息，您只能选择一种模式</p>
+                                                  <div class="j-m">
+                                                  	<label><input onClick="modechange(1)" checked type="radio" name="type" value="1"> 文本模式</label> 
+                                                    <label onClick="modechange(2)" class="j-ml10"><input type="radio" name="type" value="2"> 图文模式</label>
+                                                    <label class="j-ml10"><input type="checkbox" name="followrtype" value="1"> 开启</label>
+                                                  </div>
+                                                  
+                                                  <div class="j-m j-h5"></div>
+                                                  
+                                                  <!--模式选择-->
+                                                  <include file="Public:diveditor" />
+                                                  
+                                                  <div class="j-m newslist j-hide">
+                                                  	<table class="table table-bordered table-hover table-striped">
+                                                    	<tbody>
+                                                        	<tr class="success">
+                                                            	<td class="j-w-30"></td>
+                                                                <td class="j-w-70">封面</td>
+                                                                <td>标题</td>
+                                                            </tr>
+                                                            
+                                                            <volist name="newsInfo" id="val">
+                                                            <tr class="j-vtcl-mid">
+                                                            	<td class="txtmid">
+                                                                	<input type="checkbox" name="news_id[]" value="{$val.id}" onClick="newlist_select(this)" title="{$val.title}" content="{$val.desc}" src="{$val.picurl}">
+                                                                </td>
+                                                                <td class="img"><img src="{$val.picurl}"></td>
+                                                                <td>{$val.title}</td>
+                                                            </tr>
+                                                            </volist>
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                  </div>
+                                                  <!--模式选择-->
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input id="ids" name="ids" type="hidden" value="{$res.news_id}" />
+                        </form>
+                        <!--表单-->
+                    </div>
+					
+					<div class="j-m j-h1 j-bkcl2"></div>
+					<div class="j-m j-h20"></div>                   
+					<div class="j-m">
+						<input type="submit" class="j-button-red j-pct" onClick="$('#s_form').submit();" value="保存">
+					</div>
+                    <div class="j-m j-h20"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/emotionedit.js"></script>
+
+<script>
+
+$(this).ready(function(e) {
+	<notempty name="res.content">
+	dd = $("#editor_show").html();
+	dd = Emotion.replaceEmoji(dd);
+	$("#editor_show").html(dd);
+	$("#talkingtxt").html(dd);
+	</notempty>
+	$("input[name='type'][value='{$res.type|default='1'}'").attr("checked",true);
+																 
+	<eq name="Think.MODULE_NAME" value="Replysubscribe">
+	followrtype = "{$weixin.followrtype}";
+	</eq>
+	<eq name="Think.MODULE_NAME" value="Nomatch">
+	followrtype = "{$weixin.nomatchrtype}";
+	</eq>
+	if(followrtype==2) followrtype = 1;
+	$("input[name='followrtype'][value='"+followrtype+"'").attr("checked",true);
+	//图文选择初始化
+	newlist_select({
+				   data:true,
+				   ids:"{$res.news_id},",
+				   cover:false
+				   });
+});
+</script>{$res.news_id}
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Weixin:Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Weixin:Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+						系统账户设置
+						<div class="j-fr">
+                        	<a class="j-fz-14"><span class="icon-info-sign"></span>  以下请按照公众平台相关信息如实填写</a>
+                        </div>
+					</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    
+                    
+                    	<!--表单-->
+                    	<form action="{:U('weixin/edit')}" method="post" enctype="multipart/form-data" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                        	<thead>
+                                
+                            </thead>
+                        	<tbody>
+                            	<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">名称</td>
+                                                        <td>
+                                                        	<input datatype="Require" msg="请输入名称" type="text" name="plc_name" id="plc_name" value="{$info.gzname}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+								<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">头像上传</td>
+                                                        <td>
+                                                        	<span class="uploadimg j-fl"><img src="/avatar.php?size=s&id={:I('session.wid')}&rand={:mt_rand(1,5)}" /></span>
+                                                        	<div class="uploadform j-fl">
+															<input type="hidden" name="avatar" id="avatar">
+                                                            <input type="file" accept="image/jpeg" name="plc_avatar" id="plc_avatar" style="display:inline-block; vertical-align:bottom" /> 
+                                                            </div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">原始ID</td>
+                                                        <td>
+                                                        	<input datatype="Require" msg="请输入原始ID" type="text" name="plc_sourceid" id="plc_sourceid" value="{$info.gzid}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">微信号</td>
+                                                        <td>
+                                                        	<input type="text" name="wechat_id" id="wechat_id" value="{$info.weixinid}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">邮箱</td>
+                                                        <td>
+                                                        	<input datatype="Email" msg="请正确输入邮箱" type="text" name="email" id="email" value="{$info.gzemail}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">所属地区</td>
+                                                        <td>
+                                                        	<select class="j-w28-5" name="location_p" id="location_p">
+                                                            </select>
+                                                            
+                                                            <select class="j-w28-5" name="location_c" id="location_c"
+                                                            </select>
+                                                            <script src="/Public/js/region_select.js"></script>
+                                                            <script type="text/javascript">
+																new PCAS('location_p', 'location_c', '{$info.province}', '{$info.city}');
+															</script>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="j-m">
+                            <input type="hidden" name="id" value="{$info.id|default='0'}" />
+                        	<input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Weixin:Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/js/validator.js"></script>
+
+</body>
+</html>

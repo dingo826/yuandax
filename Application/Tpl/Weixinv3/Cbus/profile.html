@@ -1,0 +1,395 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+<link href="/static/plugin/Baidumap/css/map.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+      <tbody>
+          <tr>
+              <td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+  <include file="Public:left" />
+
+    <div class="j-centent">
+      <div class="j-wrap-1">
+        <div class="j-wrap-2">
+          <div class="j-wrap-3">
+              <div class="j-m j-h10"></div>
+
+              <!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                      商户资料
+                      <div class="j-fr">
+                        <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                      </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+
+
+                      <!--表单-->
+                      <form action="" method="post" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                          <thead>
+
+                            </thead>
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">商户名称</td>
+                                                        <td>
+                                                          <input type="text" disabled value="{$detail.nickname}">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">状态</td>
+                                                        <td>
+                                                          <label class="j-mr8"><input type="radio" name="freeze" value="2"> 正常</label>
+                                                          <label><input type="radio" name="freeze" value="-1"> 冻结</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">负责人</td>
+                                                        <td>
+                                                        <input type="text" name="contactus" value="{$detail.contactus}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">分类</td>
+                                                        <td>
+                                                          <select name="cid" id="cid">
+                                                              <volist name="category" id="item">
+                                                              <option value="{$item.id}">{$item.ctitle}</option>
+                                                              </volist>
+                                                          </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">创建日期</td>
+                                                        <td>
+                                                          {$detail.ctime|date="Y年m月d日 H:i:s",###}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="j-m j-h5"></div>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">更新日期</td>
+                                                        <td>
+                                                          {$detail.etime|date="Y年m月d日 H:i:s",###}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="j-m j-h5"></div>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                
+
+                                
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">手机</td>
+                                                        <td>
+                                                          <input type="text" name="mphone" value="{$detail.mphone}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">座机</td>
+                                                        <td>
+                                                          <input type="text" name="tel" value="{$detail.tel}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+								<tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="textarea-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">所在地区</td>
+                                                        <td>
+                                                          <select id="provincen" name="province" datatype="Require" msg="请选择所在省份">
+                                                          </select>
+                                                          <select id="cityn" name="city" datatype="Require" msg="请选择所在城市">
+                                                          </select>
+                                                          <select id="countyn" name="county" datatype="Require" msg="请选择所在区域">
+                                                          </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group j-fz-14">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">街道</td>
+                                                      <td>
+                                                        <input type="text" name="address" value="{$detail.address}" id="nowplace">
+                                                        <input id="p_x" name="p_x" type="hidden" value="{$detail.xpoint}">
+                                                        <input id="p_y" name="p_y" type="hidden" value="{$detail.xpoint}">
+                                                      </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="textarea-group j-fz-14">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td>
+                                                        <div id="J-baidumap" style="height:350px"></div>
+                                                      </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="textarea-group j-fz-14">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                    <td class="j-w-80 j-input-lalel">
+                                                      商铺简介
+                                                    </td>
+                                                    <td>
+                                                      <textarea name="introd" rows="8" class="j-noresize j-w80">{$introduction.content}</textarea>
+                                                    </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="j-m">
+                          <input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/js/validator.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=afbYCueBmLGER22vgAOs8TGwnA1wHwq6"></script>
+<script src="/static/plugin/Baidumap/js/map.js"></script>
+
+<script charset="utf-8" src="/static/js/jquery.choosearea.js"></script>
+<script src="/data/posterjs/citytree.js"></script>
+
+<script>
+$(this).ready(function(){
+  /*数据初始化
+  var chooseAreaApp1 = new $.choosearea({
+		selectDomId : {
+			province : "provincen",
+			city : "cityn",
+			county : "countyn"
+		},
+		data : data
+	});*/
+
+  var chooseAreaApp1 = new $.choosearea({
+		selectDomId : {
+			province : "provincen",
+			city : "cityn",
+			county : "countyn"
+		},
+		initAreaIds : {
+			province : "{$detail.province|default='0'}",
+			city : "{$detail.city|default='0'}",
+			county : "{$detail.county|default='0'}"  
+		},
+		data : data
+	});
+
+  //状态
+  $('input:radio[name="freeze"][value="{$relat.status|default='1'}"]').attr("checked",true);
+
+  //分类
+  $("#cid").val('{$detail.cid}');
+  
+  
+  //百度地图
+  J_Bmap.init("J-baidumap",{
+    center:new BMap.Point("{$detail.xpoint}", "{$detail.ypoint}"),
+    tool:[]
+  });
+  
+  CenterPositionMark = J_Bmap.markerDIY({url:"__PUBLIC__/webapp/image/locate.png",w:40,h:55,undelete:true},J_Bmap.map.getCenter());
+  
+  //解析点位置
+  J_Bmap.map.addEventListener("moveend",function(e){
+    setTimeout(function(){
+      J_Bmap.analysisPoint(J_Bmap.map.getCenter(),function(r){
+        $("#nowplace").val(r.province + " " + r.city + " " + r.district + " " + r.street + " " + r.streetNumber + '附近');
+        var p=J_Bmap.map.getCenter();
+        $("#p_x").val(p.lng);
+        $("#p_y").val(p.lat);
+        //console.log(r);
+        CenterPositionMark.setPosition(p);
+        //alert(r.province);
+      });
+    },100);
+  });
+  
+  shopmarker = new BMap.Marker(J_Bmap.map.getCenter(),{icon:J_Bmap.Myposition_icon});
+  J_Bmap.map.addOverlay(shopmarker);
+});
+</script>
+</body>
+</html>

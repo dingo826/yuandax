@@ -1,0 +1,12 @@
+/* 背景 */
+body{background:url(../img/bk.jpg) no-repeat center bottom; background-attachment: fixed; background-size: cover;}
+
+/* 菜单 */
+.menu{padding:0; margin: 100px 15px 50px 15px;}
+.menu .item{display: block; border: none; margin-bottom: 10px; float: right; background: rgba(255,255,255,0.7); clear: both; padding: 8px 0;}
+
+.menu .item .title{font-size: 16px; width: 150px; text-align: center;}
+.menu .item:active{opacity: 0.8}
+
+.footer{line-height: 50px; clear: both; text-align: center;}
+.footer a{font-size: 12px; text-shadow:2px 2px 5px #FFF;}

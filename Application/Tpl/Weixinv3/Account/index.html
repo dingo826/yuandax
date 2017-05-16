@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+                <include file="Public:v3topnavn_zhsz" />
+
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+						系统账户设置
+						<div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('modifypwd')}"><span class="icon-edit"></span> 修改密码</a>
+                        </div>
+					</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                        	<thead>
+                                
+                            </thead>
+                        	<tbody>
+                            	<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">登录帐号</td>
+                                                        <td>
+                                                        	<input type="text" value="{$detail.username}" readonly>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">联系电话(手机)</td>
+                                                        <td>
+                                                        	<input type="text" name="mobile" value="{$detail.mphone}" datatype="Mobile" msg="请正确输入联系电话(手机)">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">QQ</td>
+                                                        <td>
+                                                        	<input type="text" name="qq" value="{$detail.qq}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">邮箱</td>
+                                                        <td>
+                                                        	<input datatype="Email" msg="请正确输入邮箱" type="text" name="email" value="{$detail.email}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-80 j-input-lalel">注册时间</td>
+                                                        <td>
+                                                        	{$detail.ctime|date="Y年m月d日 H:i:s",###} {$detail.province} {$detail.city}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="j-m">
+                        	<input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Weixin:Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/js/validator.js"></script>
+</body>
+</html>

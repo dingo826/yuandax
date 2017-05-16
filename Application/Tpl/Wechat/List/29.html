@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.classname}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/template/list/29/css/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="list">
+  <volist name="list" id="item">
+  <!-- loop -->
+  <a href="{:U('article/index?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="item">
+    <div class="thumb"><span><img src="{$item.picurl}"></span></div>
+    <div class="item-tile">
+      <div class="title">
+        <div class="headtitle">{$item.title}</div>
+        <div class="subtitle">{$item.desc}</div>
+      </div>
+    </div>
+    <div class="icon"></div>
+  </a>
+  <!-- loop -->
+  </volist>
+  
+  
+  <div class="clear"></div>
+</div>
+<include file="Public:page" />
+<include file="Public:footer" />
+</body>
+</html>

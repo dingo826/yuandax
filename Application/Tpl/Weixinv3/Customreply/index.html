@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+              <include file="Public:v3topnavn_hfsz" />
+              
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                    	自定义回复
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('add')}"><span class="icon-plus"></span> 添加新回复</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="get" id="s_form">
+                        <div class="j-m">
+                        	<div class="j-fr form-search">
+                            	<div class="input-append">
+                                    <input placeholder="输入回复关键字" name="keyword" value="{$Think.get.keyword|default=''}" id="keyword" type="text" class="span2 search-query">
+                                    <a onClick="search_key()" type="submit" class="btn"><i class="icon-search"></i></a>
+                                  </div>
+                            </div>
+                        	<div class="j-m j-h10"></div>
+                        </div>
+                        
+                        <table width="100%" cellpadding="0" cellspacing="0" class="table table-bordered table-hover table-striped">
+                        	<tbody>
+                            	<tr class="success">
+                                    <td>名称</td>
+                                    <td>关键词</td>
+                                    <td>类型</td>
+                                    <td class="j-w-80">添加时间</td>
+                                    <td class="j-w-40">操作</td>
+                                </tr>
+                                
+                                <!--loop-->
+                                <volist name="list" id="item">
+                                <tr class="j-vtcl-mid">
+                                    <td>{$item.name}</td>
+                                    <td>{$item.keyword}</td>
+                                    <td>{$type[$item[type]]}
+                                    <eq name="item.type" value="business">({$businesstype[$item[business_type]]})</eq>
+                                    </td>
+                                    <td>{$item.ctime|date="Y-m-d",###}<br />{$item.ctime|date="H:i:s",###}</td>
+                                    <td>
+                                        <a href="{:U('edit?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-pencil"></span> 编辑</a>
+                                        <a href="javascript:;" onclick="J_delete(this)" data-url="{:U('del?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                    </td>
+                                </tr>
+                                </volist>
+                                <!--loop-->
+                            </tbody>
+                        </table>
+                        </form>
+                        <!--表单-->
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$page}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+function search_key(){
+	str = "{:U('index')}";
+	url = str.replace(".html", "");
+	$keyword = $("#keyword").val();
+	location.href = url+"/keyword/"+$keyword;
+}
+</script>
+</body>
+</html>

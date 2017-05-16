@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>源达</title>
+<link rel="stylesheet" href="/static/plugin/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/index/css/css.css">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="header">
+	<div class="wap">
+		<div class="fl">
+		<a class="logo" href="/login.html"></a>
+		</div>
+		<div class="fr">
+		<ul>
+			<li><a href="/">首页</a></li>
+			<li><a href="/product.html">产品</a></li>
+			<li><a href="/news.html">动态</a></li>
+			<li><a href="/about.html">关于</a></li>
+			<!--<li <eq name="Think.MODULE_NAME" value="Index">class="active"</eq>><a href="/">首页</a></li>
+			<li <eq name="controller" value="product">class="active"</eq>><a href="/product.html">产品</a></li>
+			<li <eq name="controller" value="news">class="active"</eq>><a href="/news.html">动态</a></li>
+			<li <eq name="controller" value="about">class="active"</eq>><a href="/about.html">关于</a></li>-->
+		</ul>
+		
+		
+		</div>
+		<div class="login">|<a href="/">登录</a></div>
+		<div class="clear"></div>
+	
+	
+	</div>
+
+</div>
+
+<!--此处以上为头部可独立文件-->
+
+
+<div class="banner banner_register"></div>
+
+<div class=" backgr banner_title">
+	<div class="wap">
+		帐号注册
+	</div>
+</div>
+
+<form action="" method="post" onSubmit="return Validator.Validate(this,4);">
+<div class="index_b index_register">
+	<div class="wap">
+		<div class="index_b_text">
+    
+    	<!-- form -->
+    	<div class="input-prepend">
+        <span class="add-on">登录帐号</span>
+        <input class="span2" type="text" name="username" id="username" placeholder="请输入登录帐号" datatype="Require" msg="请输入登录帐号">
+      </div>
+      
+      <div class="input-prepend">
+        <span class="add-on">登录密码</span>
+        <input class="span2" name="password" id="password" type="password" placeholder="6-16个字符由大小写字母数字下划线组成" datatype="SafeString" msg="请正确输入密码">
+      </div>
+      
+      <div class="input-prepend">
+        <span class="add-on">确认密码</span>
+        <input class="span2" name="repassword" id="repassword" type="password" placeholder="请再次输入登录密码" datatype="Repeat" to="password" msg="两次输入密码不一致">
+      </div>
+      
+      <div class="d"></div>
+      
+      <div class="input-prepend">
+        <span class="add-on">单位名称</span>
+        <input class="span2" type="text" name="company" placeholder="请输入单位名称" datatype="Require" msg="请输入单位名称">
+      </div>
+      
+      <div class="input-prepend">
+        <span class="add-on">所在地区</span>
+        <div class="span2">
+          <select name="location_p" id="location_p"></select>
+          
+          <select name="location_c" id="location_c"></select>
+          
+          <select name="location_a" id="location_a"></select>
+          <script src="/Public/js/region_select.js"></script>
+          <script type="text/javascript">
+              new PCAS('location_p', 'location_c', 'location_a', '', '', '');
+          </script>
+        </div>
+      </div>
+      
+      <div class="input-prepend">
+        <span class="add-on">街道地址</span>
+        <input class="span2" type="text" placeholder="请输入街道地址" name="address" id="address" datatype="Require" msg="请输入街道地址">
+      </div>
+      
+      <div class="d"></div>
+      
+      <div class="input-prepend">
+        <span class="add-on">手机号码</span>
+        <input class="span2" type="text" placeholder="请输入手机号码" name="phone" id="phone" datatype="Mobile" msg="请正确输入手机号码">
+      </div>
+      
+      <div class="input-prepend">
+        <span class="add-on">QQ号码</span>
+        <input class="span2" type="text" placeholder="请输入QQ号码" name="qq" id="qq" datatype="QQ" msg="请正确输入QQ号码">
+      </div>
+      
+      <div class="input-prepend">
+        <span class="add-on">电子邮箱</span>
+        <input class="span2" type="text" name="email" id="email" placeholder="请输入电子邮箱" datatype="Email" msg="请正确输入电子邮箱">
+      </div>
+      
+      <div class="d"></div>
+      <div class="d"></div>
+      
+      <div class="input-prepend">
+        <input type="submit" value="提交">
+      </div>
+      <!-- form -->
+      
+		</div>
+	</div>
+</div>
+</form>
+
+<!--footer-->
+<include file="Public:footer" />
+<!--footer-->
+
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script type="text/javascript" src="/static/js/validator.js"></script>
+</body>
+</html>

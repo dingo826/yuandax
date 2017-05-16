@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.title}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<form action="" method="post">
+<div class="questionlist">
+  <!-- loop题目 -->
+  <volist name="list" id="item">
+  <div class="question" option-count="{$item.num}">
+    <div class="weui_cells_title">{$i}.{$item.title} <span class="lable-circle bg-blue">最多选{$item.num}项</span></div>
+    <div class="weui_cells weui_cells_checkbox">
+    
+      <!-- loop选项 -->
+      <label class="weui_cell weui_check_label">
+        <div class="weui_cell_hd">
+          <input type="checkbox" class="weui_check" name="value[{$item.tid}][1]" value="1">
+          <i class="weui_icon_checked"></i>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <p>{$item.option1}</p>
+        </div>
+      </label>
+      <!-- loop选项 -->
+      
+      <!-- loop选项 -->
+      <label class="weui_cell weui_check_label">
+        <div class="weui_cell_hd">
+          <input type="checkbox" class="weui_check" name="value[{$item.tid}][2]" value="1">
+          <i class="weui_icon_checked"></i>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <p>{$item.option2}</p>
+        </div>
+      </label>
+      <!-- loop选项 -->
+      
+      <notempty name="item.option3">
+      <!-- loop选项 -->
+      <label class="weui_cell weui_check_label">
+        <div class="weui_cell_hd">
+          <input type="checkbox" class="weui_check" name="value[{$item.tid}][3]" value="1">
+          <i class="weui_icon_checked"></i>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <p>{$item.option3}</p>
+        </div>
+      </label>
+      <!-- loop选项 -->
+      </notempty>
+      
+      <notempty name="item.option4">      
+      <!-- loop选项 -->
+      <label class="weui_cell weui_check_label">
+        <div class="weui_cell_hd">
+          <input type="checkbox" class="weui_check" name="value[{$item.tid}][4]" value="1">
+          <i class="weui_icon_checked"></i>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <p>{$item.option4}</p>
+        </div>
+      </label>
+      <!-- loop选项 -->
+      </notempty>
+      
+      <notempty name="item.option5">      
+      <!-- loop选项 -->
+      <label class="weui_cell weui_check_label">
+        <div class="weui_cell_hd">
+          <input type="checkbox" class="weui_check" name="value[{$item.tid}][5]" value="1">
+          <i class="weui_icon_checked"></i>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <p>{$item.option5}</p>
+        </div>
+      </label>
+      <!-- loop选项 -->
+      </notempty>
+      
+    </div>
+
+    <div class="weui_btn_area">
+      <div class="btn"><a class="weui_btn weui_btn_primary" href="javascript:">继续</a></div>
+      <gt name="i" value="1"><div class="btn"><a class="weui_btn weui_btn_default btn-back" href="javascript:">返回</a></div></gt>
+    </div>
+    <div class="footer"></div>
+  </div>
+  </volist>
+  <!-- loop题目 -->
+  
+  <!-- 结束 -->
+  <div class="question">
+    <div class="msg">
+      <div class="weui_msg">
+        <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+        <div class="weui_text_area">
+          <h2 class="weui_msg_title">调研填写完成</h2>
+          <p class="weui_msg_desc">感谢您为社区做的贡献，我们将做的更好！</p>
+        </div>
+         <div class="weui_btn_area">
+          <input type="submit" class="weui_btn weui_btn_warn" value="提交">
+        </div>
+        
+        <div class="weui_btn_area weui_btn_area_inline">
+          <a href="javascript:;" onclick="refresh()" class="weui_btn weui_btn_default" >重新填写</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer"></div>
+  </div>
+  <!-- 结束 -->
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/app.js?mr=12"></script>
+<script>
+$(document).ready(function(){
+  $(".weui_btn_primary").each(function(index){
+    $(this).on("click",function(){
+      if($(this).parent().parent().parent().find("input[type='checkbox']:checked").length>0){
+          //跳转到下一题目
+          $(this).parent().parent().parent().next(".question").css({left:"0",height:"auto"});
+          $(this).parent().parent().parent().css({left:"-100%",height:"0"});
+      }else{
+        msgshow("请至少选择一项");
+      }
+    });
+  });
+  
+  $(".question input[type='checkbox']").on("change",function(){
+    var count=parseInt($(this).parent().parent().parent().parent().attr("option-count"));
+    var checked=$(this).parent().parent().parent().find("input[type='checkbox']:checked").length;
+    
+    if($(this).is(":checked")){
+      if(count==1){
+        $(this).parent().parent().parent().find("input[type='checkbox']").prop("checked","");
+        $(this).prop("checked",true);
+      }else if(checked>=count){
+        //多出了选择数量的限制
+        //$(this).prop("checked",false);
+        //msgshow("最多可选择" + count + "项");
+        $(this).parent().parent().parent().find("input[type='checkbox']").not(":checked").prop("disabled","disabled");
+      }
+    }else{
+      $(this).parent().parent().parent().find("input[type='checkbox']").not(":checked").prop("disabled","");
+    }
+  });
+  
+  $(".btn-back").on("click",function(){
+    $(this).parent().parent().parent().prev(".question").css({left:"0",height:"auto"});
+    $(this).parent().parent().parent().css({left:"100%",height:"0"});
+  });
+});
+</script>
+<include file="Public:footer" />
+</body>
+</html>

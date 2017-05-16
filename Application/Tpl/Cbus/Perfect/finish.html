@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>社区商户</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="shop-msg">
+  <span class="icon-ok"></span>注册成功！
+</div>
+<div class="form">
+  <!-- 表单组 -->
+  <div class="form-head fz-sm">
+    以下为商户信息
+  </div>
+  <div class="form-group">
+    <!-- input选择框 -->
+    <label class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">商户编号</div>
+        <div class="flex">
+          {$bminfo.snum|}
+        </div>
+      </div>
+    </label>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">商户名称</div>
+        <div class="flex">
+          {$bminfo.nickname}
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">手机号码</div>
+        <div class="flex">
+          {$bminfo.mphone}
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <div class="btn-group bigroom">
+    <a id="submit" class="btn" href="location.href='{:U("manage/index?fromid=".$formid);}';">确定</a>
+  </div>
+</div>
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

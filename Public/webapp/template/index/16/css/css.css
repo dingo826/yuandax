@@ -1,0 +1,12 @@
+/* 背景 */
+body{background:url(../img/bk.jpg) no-repeat center bottom; background-attachment: fixed; background-size: cover;}
+
+/* 菜单 */
+.menu{padding:0; margin: 100px 15px 50px 15px;}
+.menu .item{display: block; border: none; margin: 10px 1%; float: left; background: rgba(255,255,255,0.7); padding: 8px 0.5%; width: 47%;}
+
+.menu .item .title{font-size: 16px; width: 100%; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.menu .item:active{opacity: 0.8}
+
+.footer{line-height: 50px; clear: both; text-align: center;}
+.footer a{font-size: 12px; text-shadow:2px 2px 5px #FFF;}

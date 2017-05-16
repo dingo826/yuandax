@@ -1,0 +1,41 @@
+<include file="Public:header" />
+
+
+<div class="banner banner_pr banner_news">
+
+
+</div>
+
+<div class=" backgr banner_title">
+<div class="wap">
+
+
+最新动态
+</div>
+
+
+
+</div>
+
+
+<div class="wap ">
+	<div class="news_list">
+		<ul>
+            <volist name="list" id="v">
+			<li><div class="fl">[{$cateList[$v['type']]}]</div> <a href="/news/detail/id/{$v.id}?tid={$Think.get.tid}">{$v.title}</a>
+			<div class="clear"></div><span>{$v.etime|date="Y-m-d",###}</span>
+			</li>
+			</volist>
+		</ul>
+	</div>
+<div class="news_page">{$pages}</div>
+
+
+
+
+</div>
+
+
+<include file="Public:footer" />
+</body>
+</html>

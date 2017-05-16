@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$bminfo.nickname}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="buyer-good-detail">
+  <div class="shop-tag j-flex">
+    <div class="logo"><img src="{$bminfo.logo}"></div>
+    <div class="flex">
+      <div class="ctitle">{$bminfo.nickname}</div>
+      <div class="fz-sm">电话：{$bminfo.tel}</div>
+      <div class="fz-sm">地址： {$bminfo.address}</div>
+    </div>
+    <div class="type">{$catearr[$bminfo['cid']]['ctitle']}</div>
+  </div>
+  
+  <!-- 商家信息 -->
+  <div class="color-title green j-flex j-flex-center">
+    <div class="flex"></div>
+    <div class="c">商户位置</div>
+    <div class="flex"></div>
+  </div>
+  
+  <div class="map">
+    <div id="J-baidumap" style="height:250px"></div>
+  </div>
+  
+  <div class="color-title j-flex j-flex-center">
+    <div class="flex"></div>
+    <div class="c">商户简介</div>
+    <div class="flex"></div>
+  </div>
+  
+  <div class="describe">
+    {$intro.content}
+  </div>
+  
+  <div class="thumbs">
+    <volist name="piclist" id="item">
+    <img src="{$item.image}">
+    </volist>
+  </div>
+
+  <div class="color-title red j-flex j-flex-center">
+    <div class="flex"></div>
+    <div class="c">其他优惠</div>
+    <div class="flex"></div>
+  </div>
+
+  <div class="list">
+    <volist name="olist" id="item">
+    <!-- loop -->
+    <a class="buyer-good-item red" x="{$item.xpoint}" y="{$item.ypoint}" href="{:U('coupon/detail?fromid='.$formid.'&id='.$item['id'])}">
+      <div class="c">
+        <div class="j-flex j-flex-center">
+          <div class="thumb">
+            <table>
+              <tbody>
+                <tr>
+                  <td><img src="{$item.logo}"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex">
+            <div class="title">
+              {$item.name}
+            </div>
+            <div class="fz-sm fl">{$item.nickname}</div>
+            <div class="fz-sm distance fr">300米</div>
+          </div>
+          <div class="discount">
+            <div>省{$item.pdiff}元</div>
+            <div class="price">￥{$item.price}元</div>
+            <div>{$item['price']/$item['oprice']*100|ceil}折</div>
+          </div>
+        </div>
+      </div>
+      <img class="bk-shen" src="__PUBLIC__/webapp/image/shen.png">
+      <div class="d-line"></div>
+    </a>
+    <!-- loop -->
+    </volist>
+  </div>
+
+  <div class="buyer-action j-flex">
+    <div class="flex">
+      <div class="fc goodbad" t="1">
+        <div class="icon"><img src="__PUBLIC__/webapp/image/u3681.png" style=" width: 28px;"></div>
+        <div class="count">{$bminfo.zan|default='0'}</div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="fc goodbad" t="-1">
+        <div class="icon icon-2"><img src="__PUBLIC__/webapp/image/u3690.png" style=" width: 28px;"></div>
+        <div class="count">{$bminfo.cai|default='0'}</div>
+      </div>
+    </div>
+    <div class="flex" onClick="loadcp('jubao')">
+      <div class="fc">
+        <div class="icon icon-3"><img src="__PUBLIC__/webapp/image/u3698.png" style=" width: 28px;"></div>
+        <div class="count">举报</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loadcp" id="jubao">
+<form id="form">
+  <!-- 表单组 -->
+  <div class="form-head fz-sm">
+    请如实填选择以下举报理由
+  </div>
+  <div class="form-group">
+    <!-- input选择框 -->
+    <label class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="flex">
+          店面信息虚假
+        </div>
+        <div class="checkbox">
+          <input name="complain[]" value="1" type="checkbox">
+          <div class="icon"></div>
+        </div>
+      </div>
+    </label>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <label class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="flex">
+          优惠信息虚假
+        </div>
+        <div class="checkbox">
+          <input name="complain[]" value="2" type="checkbox">
+          <div class="icon"></div>
+        </div>
+      </div>
+    </label>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <label class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="flex">
+          伪劣产品/假冒产品
+        </div>
+        <div class="checkbox">
+          <input name="complain[]" value="3" type="checkbox">
+          <div class="icon"></div>
+        </div>
+      </div>
+    </label>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <div class="btn-group bigroom">
+    <a class="btn" onClick="submitform()">确定</a>
+  </div>
+  
+  <div class="btn-group bigroom">
+    <a onClick="loadcp('jubao')" class="btn btn-red">返回</a>
+  </div>
+</form>
+</div>
+
+<div style="height:40px; width:100%"></div>
+<div class="buyer-menu j-flex fixed">
+  <div class="flex">
+    <div class="fc">
+      <a href="{:U('index/index?fromid='.$formid)}"><span class="icon-home"></span> 首页</a>
+    </div>
+  </div>
+  
+  <div class="flex <gt name="Think.get.orderby" value="0"> active</gt>">
+    <div class="fc">
+      <a href="{:U('category/index?fromid='.$formid.'&orderby=1&cid='.$cid)}"><span class="icon-money"></span> 最省</a>
+    </div>
+  </div>
+</div>
+
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=afbYCueBmLGER22vgAOs8TGwnA1wHwq6"></script>
+<script src="__PUBLIC__/webapp/plugin/Baidumap/js/map.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+wx.config({
+    debug: false,
+    appId: '{$signPackage.appId}',
+    timestamp: '{$signPackage.timestamp}',
+    nonceStr: '{$signPackage.nonceStr}',
+    signature: '{$signPackage.signature}',
+    jsApiList: [
+      'previewImage',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'onMenuShareQZone'
+    ]
+});
+
+var sharedata={
+    "title": "【{$catearr[$bminfo['cid']]['ctitle']}】{$bminfo.nickname}",
+    "desc": "{$intro.content|trimall}",
+    "link": "",
+    "imgUrl": "http://{$Think.config.ODOMIN}{$bminfo.logo}",
+	trigger: function (res) {             
+      
+    },
+    success: function (res) {
+      //J_msgshow("分享内容设置成功，点击右上角菜单分享至朋友圈或发送好友！",{});
+      //alert('分享成功！');
+    },
+    cancel: function (res) {
+      //alert('已取消');
+    },
+    fail: function (res) {
+      //alert(JSON.stringify(res));
+    }
+  };
+
+wx.ready(function(){
+  //设置朋友圈分享数据
+  wx.onMenuShareTimeline(sharedata);
+  //好友分享
+  wx.onMenuShareAppMessage(sharedata);
+});
+
+function loadcp(id){
+  id="#"+id;
+  if($(id).is(".show")){
+    $(id).removeClass("show");
+  }else{
+    $(id).addClass("show");
+  }
+}
+
+function submitform(){
+  if($("#form").find("input:checked").length<=0){
+    Validator_error_5("请先选择举报理由",false);
+    return false;
+  }
+  
+  /*Validator_error_5("举报提交成功，感谢您的支持！",false);
+  setTimeout(function(){
+    location.reload(true);
+  },2000);*/
+  $.post("{:U('complain?shopid='.$bminfo['id'].'&fromid='.$formid)}",$("#form").serialize(),function(json){
+    if(json.status==1){
+      Validator_error_5("举报提交成功，感谢您的支持！",false);
+      setTimeout(function(){
+        location.reload(true);
+      },2000);
+	  return;
+    }
+	Validator_error_5("举报提交失败，请联系客服！",false);
+      setTimeout(function(){
+        location.reload(true);
+      },2000);
+	  return;
+  }, "json");
+}
+
+function bindgoodbad(){
+  $(".goodbad").on("click",function(){
+    var a=$(this);
+    
+    $(".goodbad").off("click");
+    $.post("{:U('rated?fromid='.$formid)}",{
+      type:a.attr("t"),
+      shopid:'{$bminfo.id}'
+    },function(json){
+      if(json.status==-1){
+        Validator_error_5("您已经评价过该商户",false);
+      }
+	  if(json.status==-2){
+        Validator_error_5("评价系统出错",false);
+      }
+      
+      if(json.status==1){
+        a.find(".count").html(parseInt(a.find(".count").html())+1);
+      }
+    }, "json");
+  });
+}
+
+J_Bmap.init("J-baidumap",{
+  center:new BMap.Point("{$bminfo.xpoint}","{$bminfo.ypoint}"),
+  tool:['search','menu'],
+});
+
+CenterPositionMark = J_Bmap.markerDIY({url:"__PUBLIC__/webapp/image/locate.png",w:40,h:55,undelete:true},J_Bmap.map.getCenter());
+
+$(document).ready(function(){
+  bindgoodbad();
+});
+</script>
+
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

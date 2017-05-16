@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>联系方式</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<form action="" method="post" onSubmit="return Validator.Validate(this,4)">
+<div class="weui_cells_title">*请务必正确填写，以方便后台统计或者跟您联系</div>
+
+<div class="weui_cells weui_cells_form">
+  <div class="weui_cell">
+      <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+      <div class="weui_cell_bd weui_cell_primary">
+          <input class="weui_input" type="text" placeholder="请输入姓名" name="username" value="{$member.name}" datatype="Require" msg="请输入姓名">
+      </div>
+  </div>
+</div>
+
+<div class="weui_cells weui_cells_form">
+  <div class="weui_cell">
+      <div class="weui_cell_hd"><label class="weui_label">手机</label></div>
+      <div class="weui_cell_bd weui_cell_primary">
+          <input class="weui_input" type="tel" placeholder="请输入手机号码" name="phone" value="{$member.tel}" datatype="Mobile" msg="请正确输入手机号码">
+      </div>
+  </div>
+</div>
+
+<div class="weui_btn_area">
+  <input type="submit" class="weui_btn weui_btn_primary" value="提交">
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<include file="Public:footer" />
+</body>
+</html>

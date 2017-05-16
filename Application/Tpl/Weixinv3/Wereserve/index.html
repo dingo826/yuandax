@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+                <include file="v3topnavn_wereserve" />
+             
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                    	社区预约
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('add')}"><span class="icon-plus"></span> 添加预约</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                                
+                              <ul class="nav nav-tabs nomargin">
+                                <li class="active"><a>可预约事项</a></li>
+                                <li><a href="{:U('order')}">预约订单</a></li>
+                                <li><a href="{:U('recycle')}">回收站</a></li>
+                              </ul>
+                              
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table j-table-vertival-mid">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td>预约名称</td>
+                                                <td>介绍</td>
+                                                <td>今日预约</td>
+                                                <td>未来五天预约</td>
+                                                <td>全部预约</td>
+                                                <td>预约时间</td>
+                                                <td>操作</td>
+                                            </tr>
+                                            
+                                            <empty name="list">
+                                            <tr>
+                                                <td colspan="7">
+                                                    <div class="j-fcolor-2 j-m j-txtct">
+                                                        您还没添加<notempty name="Think.get.keyword">&nbsp;&nbsp;<a style=" color: red;">{$Think.get.keyword}相关</a>&nbsp;&nbsp;</notempty>预约 <a href="{:U('add')}">点击添加</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <else/>
+                                            
+                                            <!--loop-->                                            
+                                            <volist name="list" id="data">
+                                            <tr>
+                                                <td>{$data.title}</td>
+                                                <td>{$data.info}</td>
+                                                <td>{$data.count_nowday|default='0'}</td>
+                                                <td>{$data.count_state}</td>
+                                                <td>{$data.count}</td>
+                                                <td>{$data.etime|date="Y-m-d",###}<br /> {$data.etime|date="H:i:s",###}</td>
+                                                <td>
+                                                	<a href="{:U('ReserveManage?rid='.$data['id'])}" class="j-delete-1 j-block-2"><span class="icon-credit-card"></span> 订单</a>
+                                                	<a href="{:U('edit?rid='.$data['id'])}" class="j-delete-1 j-block-2"><span class="icon-ban-circle"></span> 编辑</a>
+                                        			<a href="javascript:;" onclick="J_delete(this)" data-url="{:U('DeleteReserve?rid='.$data['id'])}" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                                </td>
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                            </empty>
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$pages}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+function search_key(){
+	location.href="/weixin/wereserve/index/keyword/"+$("input[name='keyword']").val();
+}
+
+$(this).ready(function(e) {
+    //全选绑定
+	$("#checkall").bind("change",function(){
+		if($(this).is(":checked")){
+			$(".tab-content input:checkbox").attr("checked","true");
+		}else{
+			$(".tab-content input:checkbox").removeAttr("checked");
+		}
+	});
+});
+</script>
+</body>
+</html>

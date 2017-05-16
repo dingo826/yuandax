@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/vote.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="vote-head">
+  <eq name="detail.covershow" value="1">
+  <notempty name="detail.picurl"><img src="{$detail['picurl']}"></notempty>
+  </eq>
+  <div class="title">{$detail['title']}</div>
+  <div class="time">{$detail['ctime']|date="Y/m/d",###}</div>
+</div>
+
+<div class="msgtag">
+  <div>活动时间</div>
+  <div class="color-blue fz16">{$detail['start']|date="Y/m/d h:i:s",###}-{$detail['end']|date="Y/m/d h:i:s",###}</div>
+  <div>{$detail['describes']}</div>
+</div>
+
+<div class="msgtag">
+  <div>本次投票最多可选择 <span class="color-blue bold">{$detail['optselect']}</span> 项</div>
+  <div class="s-tag">已有 <span class="color-blue">{$detail['total']} </span>人投票 <eq name="submited" value="1"><span class="color-blue">我已参与</span></eq></div>
+</div>
+
+<form action="" method="post" onSubmit="return submit_check()">
+<div class="vote-selectlist">
+  <!-- loop -->
+  <volist name="list" id="item">
+  <label class="item">
+    <notempty name="item.picurl"><div class="cover"><img src="{$item.picurl}"></div></notempty>
+    <div class="j-flex j-flex-center select">
+      <div>
+        <input type="checkbox" name="optids[]" value="{$item.id}">
+        <div class="circle"></div>
+      </div>
+      <div class="flex">{$item.title}</div>
+      <div class="fix"></div>
+    </div>
+    <div class="j-flex j-flex-center countbar">
+      <div class="bar flex">
+        <div class="bar-bk"></div>
+        <div class="number">
+          {$item.ticket}票
+        </div>
+      </div>
+      <div class="count">0%</div>
+    </div>
+  </label>
+  </volist>
+  <!-- loop -->
+</div>
+
+<div class="submit-btn">
+  <input type="submit" value="提交">
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script>
+var selectitem = {$detail["optselect"]};  //可选择项
+var total      = 0;                       //投票总数
+var over       = {$over};                 //是否已经结束 0=正在进行 1=未开始 2=已结束
+var submited   = {$submited};             //0未投 1已投过
+var resultshow = {$detail['resultshow']};
+
+$("input[type=checkbox]").on("change",function(){
+  //选项为1时
+  if(selectitem==1){
+    $("input[type=checkbox]").prop("checked","");
+    $(this).prop("checked",true);
+    return false;
+  }else if($("input[type=checkbox]:checked").length>selectitem){
+    //选择数超出时
+    $(this).prop("checked","");
+  }
+});
+
+function submit_check(){
+  if($("input[type=checkbox]:checked").length<=0){
+    Validator_error_4('请至少选择一项');
+  }else{
+    var data=$("form").serialize();
+    $.post("{:U('submit?wid='.$basic['wid'].'&vid='.$detail['id'])}",data,function(r){
+      if(r==1){
+        Validator_error_4('投票成功！');
+        setTimeout(function(){location.reload(true);},1000);
+      }else{
+        Validator_error_4(r);
+      }
+    },"html");
+  }
+  return false;
+}
+
+function Validator_error_4(msg){
+  if(Validator_error_4._init!=1){
+		Validator_error_4._init=1;
+		var html='<div id="Validator_error_4" style="position:fixed; bottom:50%; width:100%; display:none; z-index:99999; opacity: 0; transition: all .6s; -webkit-transition: all .6s;"><div class="dialog" style="background:rgba(0,0,0,0.5); font-size:16px; color:#FFF; width:70%; max-width:300px; margin:0 auto; padding:10px; border-radius:4px; text-align:center"></div></div>';
+		$("body").append(html);
+	}
+
+	$("#Validator_error_4>.dialog").html(msg);
+	$("#Validator_error_4").show().css("opacity","1");
+	setTimeout(function(){
+		$("#Validator_error_4").css("opacity","0");
+    setTimeout(function(){$("#Validator_error_4").hide();},600);
+	},2000);
+}
+
+function result_animation(){
+  $(".vote-selectlist .item .number").each(function(i,e){
+    var num = parseInt($(this).html());
+    total+=num;
+  });
+    
+  //初始化百分比数据
+  if(total!=0){
+    setTimeout(function(){
+      $(".vote-selectlist .item").each(function(i,e){
+        var num = parseInt($(this).find('.number').html());
+        var percent = (num/total*100).toFixed(2);
+        percent = percent ? percent : 0;
+        $(this).find(".count").html(percent+'%');
+        $(this).find(".bar-bk").css("width",percent+'%');
+      });
+    },500);
+  }
+}
+
+$(document).ready(function(){
+  //结果投票前显示
+  if(resultshow==0){
+    result_animation();
+  }else if(resultshow==1){
+    //投票后显示
+    if(submited==1){
+      result_animation();
+    }else{
+      $(".vote-selectlist .item .number").html('投票后可见');
+    }
+  }else if(resultshow==2){
+    //结束后显示
+    if(over==3){
+      result_animation();
+    }else{
+      $(".vote-selectlist .item .number").html('投票结束后可见');
+    }
+  }
+  
+  //结束
+  if(over>0){
+    $("input").prop("disabled",true);
+    
+    var msg = over==1 ? '未开始' : '已经结束';
+    $("input[type=submit]").val(msg);
+  }
+  
+  //已经投票
+  if(submited==1){
+    $("input").prop("disabled",true);
+  }
+});
+</script>
+</body>
+</html>

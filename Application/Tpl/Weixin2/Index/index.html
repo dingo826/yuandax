@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                  <div class="j-top-left j-fl index2-top-left">
+                    <a class="j-fr" href="{:U('weixin/member/index')}">
+                      <div class="j-m j-h10"></div>
+                      <span class="fa fa-users"></span>
+                      <span class="j-fz-30">{$data.subscribe|default='0'}</span>
+                      <div class="j-m j-h8"></div>
+                      <span class="j-fz-16">总用户数</span>
+                    </a>
+                    <a class="j-fr" href="{:U('messageboard/index')}">
+                      <div class="j-m j-h10"></div>
+                      <span class="fa fa-comments-o"></span>
+                      <span class="j-fz-30">{$data.board|default='0'}</span>
+                      <div class="j-m j-h8"></div>
+                      <span class="j-fz-16">新留言</span>
+                    </a>
+                    <a href="{:U('weixin/message/index')}">
+                      <div class="j-m j-h10"></div>
+                      <span class="fa fa-volume-down"></span>
+                      <span class="j-fz-30">{$data.message|default='0'}</span>
+                      <div class="j-m j-h8"></div>
+                      <span class="j-fz-16">新消息</span>
+                    </a>
+                  </div>
+                  <div class="j-m j-h1"></div>
+                </div>
+                
+                <div class="j-m j-h10"></div>
+                
+                <!-- box -->
+                <div class="box">
+                  <div class="title spacing">新闻</div>
+                  <div class="j-m j-h1 j-bkcl2"></div>
+                  <div class="spacing">
+                    <a href="{:U('weixin/article/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl6">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-file-text-o j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">采编</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">添加或管理社区通知、活动反馈、新闻等各类文章。
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/mass/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl6">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-wifi j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">发布</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">添加或管理社区通知、活动反馈、新闻等各类文章。
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/mass/record')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl6">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-list j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">日志</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">查看已经发布的文章状态及记录</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    <div class="j-m j-h1"></div>
+                  </div>
+                </div>
+                <div class="j-m j-h10"></div>
+                <!-- boxend -->
+                
+                <!-- box -->
+                <div class="box">
+                  <div class="title spacing">活动</div>
+                  <div class="j-m j-h1 j-bkcl2"></div>
+                  <div class="spacing">
+                    <a href="{:U('weixin/huodong/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl5">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-flag j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">报名</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">创建活动报名，改变传统纸笔记录，一键收集报名信息</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/vote/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl5">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-check-square-o j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">投票</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">实现手机投票，方便快捷，增强居民参与度</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/survey/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl5">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-file-text-o j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">调研</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">组织社区在线调研，智能统计调研结果，直观了解居民需求</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    <div class="j-m j-h1"></div>
+                  </div>
+                </div>
+                <div class="j-m j-h10"></div>
+                <!-- boxend -->
+                
+                <!-- box -->
+                <div class="box">
+                  <div class="title spacing">服务</div>
+                  <div class="j-m j-h1 j-bkcl2"></div>
+                  <div class="spacing">
+                    <a href="{:U('weixin/communityservice/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl4">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-fax j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">常用号码</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">添加与管理公共服务号码或网站信息，方便居民查询</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/wereserve/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl4">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-calendar j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">办事预约</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">居民手机预约某项服务，并根据提示准备好相应材料，办事效率最大化</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/cbus/goods')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl4">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-tags j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">周边优惠</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">汇集周边商户优惠信息，惠及居民，整合资源</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    <div class="j-m j-h1"></div>
+                  </div>
+                </div>
+                <div class="j-m j-h10"></div>
+                <!-- boxend -->
+                
+                <!-- box -->
+                <div class="box">
+                  <div class="title spacing">社群</div>
+                  <div class="j-m j-h1 j-bkcl2"></div>
+                  <div class="spacing">
+                    <a href="{:U('weixin/circle/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl3">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-bullseye j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">文化圈</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">居民以兴趣文化聚圈，发布圈通知、展现圈风貌</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/wxqun/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl3">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-weixin j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">微信群</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">分类展示居民自己创建的微信群，方便其他居民加入</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    <div class="j-m j-h1"></div>
+                  </div>
+                </div>
+                <div class="j-m j-h10"></div>
+                <!-- boxend -->
+                
+                <!-- box -->
+                <div class="box">
+                  <div class="title spacing">其他</div>
+                  <div class="j-m j-h1 j-bkcl2"></div>
+                  <div class="spacing">
+                    <a href="{:U('weixin/weialbums/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl7">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-picture-o j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">相册</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">展示社区环境、人文风采与精彩活动集锦</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    
+                    <a href="{:U('weixin/games/index')}" class="j-bottom-box">
+                      <div class="j-m j-h10"></div>
+                      <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="icon j-bkcl7">
+                              <div class="j-m j-h15"></div>
+                              <span class="fa fa-gamepad j-fcolor-1"></span>
+                            </td>
+                            <td>
+                              <div class="t j-ml-2">游戏</div>
+                              <div class="j-m j-h8"></div>
+                              <div class="desc j-ml-2">趣味小游戏，吸引居民对公众号的关注度</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </a>
+                    <div class="j-m j-h1"></div>
+                  </div>
+                </div>
+                <!-- boxend -->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<!--js-->
+</body>
+</html>

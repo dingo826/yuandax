@@ -1,0 +1,19 @@
+/* 背景 */
+body{background:#0f0e0c}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 20px 5px}
+.menu .item{width: 48.5%; display: block; float: left; margin-left: 1%; margin-bottom: 5px; height: 100px; color: #FFF; background:#2f2f2f;}
+.menu .item:active{opacity: 0.6}
+.menu .item .icon{text-align: center; font-size: 35px; line-height: 50px; margin-top: 10px}
+.menu .item .title{width: 90%; margin: 0 auto; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; line-height: 30px; text-align: center; font-size: 16px}
+
+.footer{line-height: 50px; clear: both; text-align: center; height: 10px}
+
+/* 小于等于250 */
+@media (max-width: 250px) {
+  .menu .item{width: 100%; margin: 5px auto}
+}

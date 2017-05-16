@@ -1,0 +1,10 @@
+body{background: url(../img/bg.png) no-repeat center top; background-size: cover; background-attachment: fixed;}
+
+.headcover,.headcover img{width: 100%; display: block;}
+.title{margin: 0; padding: 8px 15px; color: #FFF}
+.title .t{font-size: 24px}
+.title .time{}
+.title .author{margin-left: 8px}
+
+.article{}
+.article .content,.article .content *{color: #FFF !important}

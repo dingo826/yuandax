@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.activityname}</title>
+
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/plugin/swiper/swiper.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="global-photoalbum">
+	
+</div>
+
+<div class="footer"></div>
+
+<div id="imgviewport" class="global-photoalbum-scale">
+	<div class="swiper-container" id="index_flash">
+		<div class="swiper-wrapper">
+			
+		</div>
+	</div>
+</div>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/plugin/swiper/swiper.min.js"></script>
+<script>
+var listswiper;       //图片滚动对象
+
+function createhtml(data){
+	var c=data.length-1;
+	var listhtml='';
+	var scrollhtml='';
+	
+	for(var i=0;i<=c;i++){
+		var title= data[i].title ? '<div class="title"><div>'+data[i].title+'</div></div>' : '';
+		$(".global-photoalbum").append('<div class="item"><a class="pic" data-pid="'+i+'" style="background-image:url('+data[i].src+')"></a></div>');
+		$("#index_flash>.swiper-wrapper").append('<div class="swiper-slide"><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="viewcontainer"><img data-src="'+data[i].src+'" class="swiper-lazy"><div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>'+title+'</td></tr></tbody></table></div>');
+	}
+}
+
+$(document).ready(function(){
+	//图片数据
+	var data=eval('{$picjson}');
+	createhtml(data);
+	
+	
+	//绑定图片放大
+	$(".item>.pic").on("click",function(e){
+		var pid=parseInt($(e.target).attr("data-pid"));
+		listswiper.slideTo(pid,1,false);
+		$("#imgviewport").show();
+    
+    if($("#index_flash>.swiper-wrapper").eq(pid).find(".swiper-lazy-loaded").length<=0){
+      var a = $("#index_flash>.swiper-wrapper .swiper-slide").eq(pid).find(".swiper-lazy");
+      a.addClass("swiper-lazy-loaded").parent().find(".swiper-lazy-preloader").remove();
+      a.prop("src",a.attr("data-src"));
+    }
+	});
+	
+	listswiper=new Swiper('#index_flash',{
+    preloadImages: false,
+    lazyLoading: true,
+    lazyLoadingOnTransitionStart:true
+  });
+	$("#imgviewport").hide();
+	
+	$("#imgviewport").on("click",function(){
+		$(this).hide();
+	});
+});
+</script>
+<include file="Public:footer" />
+</body>
+</html>

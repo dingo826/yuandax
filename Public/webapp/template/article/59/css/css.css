@@ -1,0 +1,9 @@
+body{background: #efefef}
+
+.article .title{clear: both; padding: 0 0 10px 0;}
+.article .title .t{font-size: 18px}
+.article .title .time{color: #999}
+.article .title .author{margin-left: 8px; color: #37a}
+
+.article{}
+.article .content{margin-top: 15px}

@@ -1,0 +1,52 @@
+/* 背景 */
+body{background-color: #2D3E50}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 5px}
+.menu .item{width: 50%; display: block; float: left; height: 85px;}
+.menu .item a{display: block; height: 80px; width: 96%; margin: 0 auto; color: #FFF; position: relative;}
+.menu .item:active{opacity: 0.6}
+.menu .item .icon{font-size: 35px; text-align: center;}
+.menu .item .title{width: 80%; text-indent: 1em; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; line-height: 30px}
+
+/* 特殊排列 */
+.menu .item:first-child{height: 170px}
+.menu .item:nth-child(4){height: 170px; float: right;}
+.menu .item:first-child a,.menu .item:nth-child(4) a{height: 165px;}
+.menu .item:first-child .icon,.menu .item:nth-child(4) .icon{font-size: 80px; text-align: center; line-height: 120px;}
+
+/* 颜色 */
+.menu .item:nth-child(n) a{background-color: #00C}
+.menu .item:nth-child(n) a:before{content: ""; position: absolute; right: 0; top:0; border-color: #2D3E50 #2D3E50 #01488E #01488E; border-width: 0 26px 26px 0; border-style: solid}
+
+.menu .item:nth-child(2n) a{background-color: #9b58b5}
+.menu .item:nth-child(2n) a:before{border-color: #2D3E50 #2D3E50 #641184 #641184}
+
+.menu .item:nth-child(3n) a{background-color: #2AADFF}
+.menu .item:nth-child(3n) a:before{border-color: #2D3E50 #2D3E50 #0069AB #0069AB}
+
+.menu .item:nth-child(4n) a{background-color: #CD3333}
+.menu .item:nth-child(4n) a:before{border-color: #2D3E50 #2D3E50 #9c2727 #9c2727}
+
+.menu .item:nth-child(5n) a{background-color: #D855C9}
+.menu .item:nth-child(5n) a:before{border-color: #2D3E50 #2D3E50 #A91398 #A91398}
+
+.menu .item:nth-child(6n) a{background-color: #1bbc9b}
+.menu .item:nth-child(6n) a:before{border-color: #2D3E50 #2D3E50 #18947b #18947b}
+
+.menu .item:nth-child(7n) a{background-color: #f1c40f}
+.menu .item:nth-child(7n) a:before{border-color: #2D3E50 #2D3E50 #b69615 #b69615}
+
+.menu .item:nth-child(8n) a{background-color: #ff901a}
+.menu .item:nth-child(8n) a:before{border-color: #2D3E50 #2D3E50 #ce7618 #ce7618}
+
+
+.footer{line-height: 50px; clear: both; text-align: center; height: 10px}
+
+/* 小于等于250 */
+@media (max-width: 250px) {
+  .menu .item{width: 100%; margin: 0 auto}
+}

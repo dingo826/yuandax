@@ -1,0 +1,36 @@
+<div class="j-footer">
+  <ul>
+    <li><a>关于我们</a></li>
+    <li><a>通知中心</a></li>
+    <li><a>常见问题</a></li>
+    <li><a>使用指南</a></li>
+    <li><a>在线反馈</a></li>
+    <li><a>在线咨询</a></li>
+    <li><a>腾讯客服</a></li>
+    <li><a>法律声明</a></li>
+    <li><a>联系方式</a></li>
+    <li>Copyright © 2012-2015 All Rights Reserved.</li>
+  </ul>
+</div>
+
+<script>
+//检测是否为第一次进入新版 提示
+function Check_firstenter(){
+  var cookie=document.cookie;
+  var reg=/FirstTime=1/;
+  if(reg.test(cookie)){
+    //console.log(cookie);
+  }else{
+    console.log(cookie);
+    var Days = 99999;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie="FirstTime=1;expires=" +exp.toGMTString()+';path=/';
+    
+    var div=document.createElement("div");
+    div.innerHTML='<div id="firstvisit-msg" onclick="J_hide('+"'firstvisit-msg'"+')" style="position:absolute; min-width:1000px; left:0; right:0; top:0; bottom:0; background:rgba(0,0,0,.5); text-align:right; z-index:999"><img src="/static2/image/msg.png"></div>';
+    document.body.appendChild(div);
+  }
+}
+Check_firstenter();
+</script>

@@ -1,0 +1,665 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        <tr>
+          <td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+            <include file="v3topnavn_xintongz" />
+             
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                    	添加新文章
+                      <div class="j-fr">
+                        <a class="j-newbtn" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                      </div>
+                    </div>
+                    
+                    <div class="j-hr-1"></div>
+                    <div class="j-m-spacing">
+                    	<div class="j-m j-h10"></div>
+                    
+                    	<!--预览框-->
+                    	<div id="viewport" class="j-viewport j-tsm-06">
+                        	<div class="j-view-1">
+                            	<div class="container">
+                                	<!--图文-->
+                                	<div id="news_view" class="j-m-spacing">
+                                    	<div class="j-m j-h10"></div>
+                                    	<div id="box-zixun-1" class="box-zixun j-m">
+                                        	<div class="j-m j-h10"></div>
+                                        	<div class="j-m-spacing">
+                                    			<p class="news_title">标题</p>
+                                                <p class="j-fcolor-2 news_date">1月13日</p>
+                                                <p>
+                                                	<a style="background-image:url(/static/weixin/image/moren.jpg)" class="img"></a>
+                                                </p>
+                                                <p class="j-fcolor-2 news_content">描述</p>
+                                                <p class="news_link"><a>查看全文</a></p>
+                                            </div>
+                                            <div class="j-m j-h10"></div>
+                                    	</div>
+                                    </div>
+                                    <div class="j-m j-h10"></div>
+                                    <!--图文-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--预览框-->
+                        
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" autocomplete="off" onSubmit="datasubmit();return Validator.Validate(document.getElementById('s_form'),4)">
+                        <div class="j-m j-h1"></div>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                        	<tbody>
+                            	<tr>
+                                	<td class="j-viewport-w"><div class="j-m" style="min-height:440px"></div></td>
+                                    <td class="j-formbk">
+                                    	<div class="j-m">
+                                        	<table border="0" width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                                            	<tbody>
+                                                	<tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">标题</td>
+                                                                            <td>
+                                                                                <input type="text" name="title" id="title" value="{$detail.title}" datatype="Require" msg="请输入标题">
+                                                                                 <label class="j-mr10 j-ml10"><input name="zhiding" id="zhiding" type="checkbox" value="1"> 置顶</label>
+                                                                            	<label><input name="tuij" id="tuij" type="checkbox" value="1"> 推荐</label>
+                                                                                
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                            	
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">封面</td>
+                                                                            <td>
+                                                                              <span id="bg_imgview" class="uploadimg j-fl">
+                                                                                <img src="{$detail.picurl|default='/Public/images/default02/sqzx.jpg'}">
+                                                                              </span>
+                                                                              <div class="j-fl">
+                                                                                封面图片建议尺寸：720像素 * 400像素，文件不超过2M<br>
+                                                                                <label class="uploadform">
+                                                                                  <input class="j-upload-file j-hide" type="file" accept="image/jpeg,image/x-png" onChange="upload_bg(this,'image')">
+                                                                                  <input type="hidden" name="show_bg_img" value="{$detail.picurl|default='/Public/images/default02/sqzx.jpg'}" id="show_bg_img">
+                                                                                  <a class="j-button-upload">上传</a>
+                                                                                </label>
+                                                                                <label><input name="show_cover_pic" id="show_cover_pic" type="checkbox" value="1"> 封面图片显示在正文中</label>
+                                                                              </div>
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">摘要(选填)</td>
+                                                                            <td>
+                                                                            	<textarea class="j-noresize j-h100 j-w90" name="desc">{$detail.desc}</textarea>
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">正文</td>
+                                                                            <td>
+                                                                              <a class="btn btn-primary" onClick="WeixinEdit()">进入编辑器高级模式</a>
+                                                                              <a class="btn btn-primary" href="http://xiuxiu.web.meitu.com/" target="_blank">在线图片编辑器</a>
+                                                                            	<textarea id="editor" class="j-noresize j-h100 j-w90" name="content">{$detail.content}</textarea>
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="input-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">分类</td>
+                                                                            <td>
+                                                                                <select name="cid" id="cattype" class="j-w-100">
+                                                                                    <option value="">未分类</option>
+                                                                                    <volist name="catlist" id="catitem">
+                                                                                	<option value="{$catitem.id}" pid="{$catitem.category_id}">{$catitem.sty}{$catitem.classname}</option>
+                                                                                    </volist>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                            	
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">链接应用</td>
+                                                                            <td>
+                                                                                <select id="type" name="type" class="j-w-150">                                                              	
+                                                                                  <option value="">无</option>
+                                                                                  <option value="link">链接</option>
+                                                                                  <option value="business">业务模块</option>
+                                                                                </select>
+                                                                                （群发信息后通过阅读原文链接到某个活动应用）
+                                                                            </td>
+                                                                            <td>
+                                                                            	
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+													
+													<tr >
+														<td id="typeslist">
+															<!--start-input:text-->
+															<div id="type-link" class="textarea-group j-hide">
+																<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+																	<tbody>
+																		<tr>
+																			<td class="j-w-80 j-input-lalel">链接</td>
+																			<td>
+																				<input placeholder="链接地址不带http://" class="j-w90" type="text" name="url" value="{$detail.link}" />
+																			</td>
+																			<td class="j-w-15">
+																				
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<!--end-input:text-->
+                                                            
+                                                            <!--start-input:text-->
+                                                            <div id="type-business" class="textarea-group  j-hide">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">业务模块</td>
+                                                                            <td>
+                                                                            	 <select id="business_type" name="business_type" class="j-w-150">
+                                                                                   <option value="huodong">报名活动</option>
+                                                                                   <option value="huodonglist"  data-list="true">报名活动列表</option>
+                                                                                 </select>
+                                                                                 <a href="#myModa2" onClick="xianm_select.loaddata();" role="button" data-toggle="modal" class="btn btn-info j-hide" id="btype-show-btn"><span class="icon-plus"></span> 选择项目</a>
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                            
+                                                            <div id="xianmupro" class="textarea-group xianmu-list-select newslist j-hide">
+                                                              <!--loop-->
+                                                              <volist name="businesslist" id="item">
+                                                              <div class="input-prepend" id="xianmuid-{$item.id}">
+                                                                <input name="xiamuids[]" type="hidden" value="{$item.id}">
+                                                                <span class="add-on">{$item.title}</span>
+                                                                <a class="btn" onClick="xianm_delete(this)"><span class="icon-remove"></span></a>
+                                                              </div>
+                                                              </volist>
+                                                              <!--loop-->
+                                                             </div>
+														</td>
+													</tr>
+													
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+					
+					<div class="j-m j-h1 j-bkcl2"></div>
+					<div class="j-m j-h20"></div>
+					<div class="j-m">
+            <input id="isdatalist" name="isdatalist" type="hidden" value="-1" />
+						<input type="submit" class="j-button-red j-pct" value="保存">
+					</div>
+                    <div class="j-m j-h20"></div>
+					</form>
+                    <!--表单-->
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModa2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>项目选择</h4>
+  </div>
+
+  <div class="modal-body">
+    <div class="article-list-page">
+      <table class="j-table">
+        <tbody>
+          <tr>
+            <td width="80">项目:</td>
+            <td colspan="3">
+              <input type="text" class="j-w80" id="xmtitkey" />
+              <a class="btn btn-default j-ml8" onClick="xianm_select.loaddata();">搜索</a>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>共有 <span id="xianmtotal">0</span> 条符合条件</td>
+            <td colspan="2">
+              <a href="javascript:;" class="page-btn" onClick="xianm_page_pre()">上一页</a> 
+              第<span id="xianmnowpage">1</span>页/共<span id="xiamtotalpage">1</span>页 
+              <a href="javascript:;" class="page-btn" onClick="xianm_page_next()">下一页</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="article-list" id="xiamgu-list">
+      <!-- loop -->
+      <div class="item" onclck="xianm_choose(this)">
+        <label>
+          <table class="j-table">
+            <tbody>
+            </tbody>
+          </table>
+        </label>
+      </div>
+      <!-- loop -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">确定</button>
+  </div>
+</div>
+<!-- Modal -->
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/upload.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script src="/static/plugin/kindeditor/kindeditor-all-min.js"></script>
+<script src="/static/plugin/kindeditor/editor.js"></script>
+<script src="/static/plugin/jqplugin/jscolor.min.js"></script>
+
+<script>
+//背景上传
+function upload_bg(a,type){
+	if(J_Uploader.isruning==true){
+		J_msgshow("正在上传请稍等");
+	}else{
+		J_Uploader.upload_url="{:U('image/up')}"; //上传地址
+		J_Uploader.callback	=function(data){
+      $(a).parent().find(".j-button-upload").html('上传');
+      if(data.statu==-2){
+        J_msgshow("文件尺寸过大");
+      }else{
+        $("#bg_imgview").html('<img src="'+data.path+'">');
+        $("#show_bg_img").val(data.path);
+      }
+		};
+		
+		J_Uploader.uploading=function(){
+			J_msgshow("正在上传图片");
+			$(a).parent().find(".j-button-upload").html('<span class="icon-spinner icon-spin"></span>');
+		};
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype=type;
+		J_Uploader.addlist();
+	}
+}
+
+//回复类型选择
+function select_busness(){
+	var type=$("#business_type").val();
+	var a=$("#business_type").find("option:selected");
+	isdatalist = $("#business_type option:selected").attr("data-list");
+	
+	if(isdatalist) {
+		$("#btype-show-btn").show();
+		$("#isdatalist").val("1");
+		$("#xianmupro").show();
+	}else {
+		$("#btype-show-btn").hide();
+		$("#isdatalist").val("-1");
+		$("#xianmupro").hide();
+	}
+}
+
+function typeselect(){
+	var type=$("#type").val();
+	$("#typeslist>div").hide();
+	$("#type-"+type).show();
+	
+	$("#isdatalist").val("-1");
+	
+	$("#btype-show-btn").hide();
+	
+	if(type=="business"){
+		$("#article-show-btn").hide();
+		select_busness();
+	}else{
+		$("#article-show-btn").hide();
+	}
+}
+
+$(this).ready(function(e) {
+	//alert($("#cattype").options.length);
+	//alert($("#cattype option").length);
+	
+	$("select#cattype option").each(function(){
+		if($(this).text()!="未分类") {
+			$("select#cattype option[value='"+$(this).attr("pid")+"']").attr("disabled", "disabled");
+			
+		}
+	});
+	
+	$("#type").val("{$detail.type}");
+	$("#business_type").val("{$detail.business_type}");
+	
+	typeselect();
+	
+	$("select#cattype option[value='{$detail.cid}']").attr("selected", "selected");
+	
+	$("input#zhiding[value='{$detail.top}']").attr("checked", "true");
+	$("input#tuij[value='{$detail.news_reco}']").attr("checked", "true");
+	
+	$("input#show_cover_pic[value='{$detail.show_cover_pic|default='1'}']").attr("checked", "true");
+	
+	$("#type").bind("change",typeselect);
+	$("#business_type").bind("change",select_busness);
+	
+	//标题输入绑定
+	$("#title").bind("keyup",function(){
+		var code=$(this).val();
+		
+		if(code==""){
+			$("#box-zixun-1 .news_title").html("加入会员会更精彩！");
+		}else{
+			$("#box-zixun-1 .news_title").html(code);
+		}
+	});
+});
+</script>
+
+
+<!-- 项目选择 -->
+<script>
+function xianm_delete(a){
+  var id=$(a).parent().find("input").val();
+  $("#xiamgu-list input[articleid='"+id+"']").prop("checked",'').parent().parent().parent().parent().parent().parent().removeClass("on");
+  $(a).parent().remove();
+}
+
+//勾选图文
+function xianm_choose(a){
+  $("#xiamgu-list .item").removeClass("on");
+  var id=$(a).attr("articleid");
+  if($(a).is(":checked")){
+    if($("#xianmuid-"+id).length>0){
+      return false;
+    }
+	$(".xianmu-list-select").html("");
+    
+    if($(".xianmu-list-select .input-prepend").length>=9){
+      $(a).prop("checked",'');
+      return false;
+    }
+    $(a).parent().parent().parent().parent().parent().parent().addClass("on");
+    var picurl=$(a).attr("picurl");
+    var title=$(a).attr("title");
+    
+    var html='<div class="input-prepend" id="xianmuid-'+ id +'"><input name="xiamuids[]" type="hidden" value="'+ id +'"><span class="add-on">'+ title +'</span><a class="btn" onClick="xianm_delete(this)"><span class="icon-remove"></span></a></div>';
+    
+    $(".xianmu-list-select").append(html);
+  }else{
+    $(a).parent().parent().parent().parent().parent().parent().removeClass("on");
+    $("#xianmuid-"+id).remove();
+  }
+}
+
+//分类分页加载
+function xianm_select(){
+  if(xianm_select._init != 1){
+    xianm_select._init      = 1;
+    xianm_select.page       = 1;
+    xianm_select.pagesize   = 15;
+    xianm_select.pagetotal  = 0;
+    xianm_select.requestUrl = "{:U('xianmu/ajax')}";
+    
+    xianm_select.html=function(jsondata){
+      var code='<div class="item"><label><table class="j-table"><tbody><tr><td class="input"><input onchange="xianm_choose(this)" type="radio" name="articleid[]" value="'+ jsondata.id +'" articleid="'+ jsondata.id +'" title="'+ jsondata.title +'" picurl="'+ jsondata.picurl +'"></td><td class="cover"><img src="'+ jsondata.picurl +'"></td><td class="title">'+ jsondata.title +'</td></tr></tbody></table></label></div>';
+      return code;
+    }
+
+    xianm_select.loaddata=function(){
+      $("#xiamgu-list").html("");
+      $.post(xianm_select.requestUrl,{
+        p:xianm_select.page,
+		btype:$('#business_type').val(),
+        keyword:$('#xmtitkey').val(),
+      },function(data){
+		$("#xianmtotal").html(data.total);
+		if(data.total==0) {
+			return;
+		}
+        var c=data.list.length;
+		
+        for(var i=0;i<c;i++){
+          $("#xiamgu-list").append(xianm_select.html(data.list[i]));
+        }
+        //if(xianm_select.page==1){
+          xianm_select.pagetotal = Math.ceil(data.total/xianm_select.pagesize);
+          $("#xiamtotalpage").html(xianm_select.pagetotal);
+        //}
+      },'json');
+    }
+  }
+}
+
+//全选
+function xianm_selectall(a){
+  if($(a).is(":checked")){
+    if($(".xianmu-list-select .list-group-item").length>=9){
+      J_msgshow("最多选择9条");
+      return false;   
+    }
+    $("#xiamgu-list input:checkbox").not(":checked").prop("checked",true).each(function(){
+      if($(".xianmu-list-select .input-prepend").length>=9){
+        return false;
+      }
+      
+      $(this).parent().parent().parent().parent().parent().parent().addClass("on");
+      var id=$(this).attr("articleid");
+      var picurl=$(this).attr("picurl");
+      var title=$(this).attr("title");
+    
+      var html='<div class="input-prepend" id="xianmuid-'+ id +'"><input name="xiamuids[]" type="hidden" value="'+ id +'"><span class="add-on">'+ title +'</span><a class="btn" onClick="xianm_delete(this)"><span class="icon-remove"></span></a></div>';
+    
+    $(".xianmu-list-select").append(html);
+    });
+  }else{
+    $("#xiamgu-list input:checkbox:checked").prop("checked",'');
+    $("#xiamgu-list .item").removeClass("on").each(function(){
+      var id = $(this).find("input:checkbox").val();
+      $("#xianmuid-"+id).remove();
+    });
+  }
+}
+
+//下一页
+function xianm_page_next(){
+  if(xianm_select.pagetotal<=xianm_select.page){
+    return false;
+  }
+  
+  xianm_select.page++;
+  $("#xianmnowpage").html(xianm_select.page);
+  xianm_select.loaddata();
+}
+
+//上一页
+function xianm_page_pre(){
+  if(xianm_select.page<=1){
+    return false;
+  }
+  
+  xianm_select.page--;
+  $("#xianmnowpage").html(xianm_select.page);
+  xianm_select.loaddata();
+}
+
+function xianm_searchkeyword(){
+  xianm_select.page=1;
+  xianm_select.loaddata();
+}
+
+$(this).ready(function(){
+	xianm_select();
+  
+  $("body").append('<div id="copy-htmldeal" style="display:none"></div>');
+});
+
+function datasubmit(){
+  $("#copy-htmldeal").html(Editor.html());
+  
+  $("#copy-htmldeal").find("*").css("max-width","100%");
+  $("#copy-htmldeal").find("p").each(function(i,e){
+    if($(e).find("img").length>0){
+      $(e).css("text-indent","0");
+    }
+  });
+  Editor.html($("#copy-htmldeal").html());
+}
+
+
+function unlinked(){
+  $.post("{:U('extendtime')}","");
+  setTimeout(function(){unlinked();},300000);
+}
+setTimeout(function(){unlinked();},300000);
+</script>
+<!-- 项目选择 -->
+</body>
+</html>

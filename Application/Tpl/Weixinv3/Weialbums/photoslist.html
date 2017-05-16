@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+                <include file="Public:v3topnavn_qita" />
+             
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                    	{$detail.activityname}社区相册
+                        <div class="j-fr">
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+							  <div class="j-fr j-lh30 j-mr15 j-mt8 j-fcolor-3 j-fz-14"><span class="icon-lightbulb"></span> 图片上传后记得保存</div>
+                              <ul class="nav nav-tabs nomargin">
+                                <li><a href="{:U('index')}">相册列表</a></li>
+                                <li class="active"><a>照片列表</a></li>
+                              </ul>
+                              <div class="nav nav-tabs nomargin">
+                              	<table width="100%" cellpadding="0" cellspacing="0">
+                                	<tbody>
+                                    	<tr class="j-vtcl-mid">
+                                        	<td>
+                                            	<div class="j-m j-h8"></div>
+                                            	<label class="j-ml8"><input id="checkall" type="checkbox"> 全选</label> 
+                                                <a href="javascript:;" onClick="deleteall()" class="j-delete-1 j-block-2 j-ml8 j-mr8"><span class="icon-remove"></span> 删除</a>
+                                                
+                                                <a href="javascript:;" onClick="deleteall()" class="j-delete-1 j-block-2 j-ml8 j-mr8"><span class="icon-picture"></span> 全部图片</a>
+                                                <div class="j-m j-h8"></div>
+                                            </td>
+                                            <td>
+                                            	<a href="javascript:;" onClick="savepicdata()" class="j-button-upload-red j-fr j-mr8">保存</a>
+                                            	<div class="j-fr j-mr8">
+                                                    <div class="uploadform j-fl">
+                                                    <input multiple title="选择相册封面" class="j-upload-file" type="file" accept="image/jpeg,image/x-png" onChange="upload_bg(this,'image')">
+                                                    <a class="j-button-upload">上传</a>
+                                                    </div>
+                                                </div>
+                                                <div class="j-m j-h8"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                    <!--图片列表-->
+                                    <div class="j-piclist">
+										<!--loop-->
+                                        <volist name="list" id="lv">
+                                        <div class="d-4">
+											<div class="edit">
+												<input name="checked_id[]" value="{$lv.photoid}" type="checkbox">
+											</div>
+                                            <div class="pic">
+                                                <table class="piccontainer j-table-vertival-mid" width="100%" cellpadding="0" cellspacing="0" border="0">
+													<tbody>
+														<tr>
+															<td>
+																<img src="{$lv.url}">
+															</td>
+														</tr>
+													</tbody>
+												</table>
+                                                <div class="j-m j-h10"></div>
+                                                <div class="editabletitle">
+                                                	<input name="title[{$lv.photoid}][]" value="{$lv.title}" type="text" class="j-w90 j-pct" placeholder="编辑图片标题">
+                                                </div>
+                                                <div class="j-m j-h10"></div>
+                                            </div>
+                                        </div>
+                                        </volist>
+                                        <!--loop-->
+                                    </div>
+                                    <!--图片列表-->
+                                    <div class="j-m j-h10"></div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$pages}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/js/validator.js"></script>
+<script src="/static/weixin/js/upload.js"></script>
+
+<script>
+$(this).ready(function(e) {
+    //全选绑定
+	$("#checkall").bind("change",function(){
+		if($(this).is(":checked")){
+			$(".tab-content input:checkbox").attr("checked","true");
+		}else{
+			$(".tab-content input:checkbox").removeAttr("checked");
+		}
+	});
+});
+
+//封面上传
+function upload_bg(a,type){
+	if(upload_bg._init!=1){
+		upload_bg._init	=1;
+		upload_bg.newid	=1;		//新上传图片id
+	}
+
+	/*测试效果
+	var Count=a.files.length-1;
+	for(var i=0;i<=Count;i++){
+		var reader = new FileReader();
+		
+		reader.onload=function(evt){
+			if(evt.target.result!=""){
+				//alert("xx");
+				//alert(list[lastone]);
+				var html='<div class="d-4" id="#uploadedpic_'+upload_bg.newid+'"><div class="pic"><input type="hidden" name="new['+upload_bg.newid+'][src]"><table class="piccontainer j-table-vertival-mid" width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td><img src="'+evt.target.result+'"></td></tr></tbody></table><div class="j-m j-h10"></div><div class="editabletitle"><input name="new['+upload_bg.newid+'][title]" type="text" class="j-w90 j-pct" placeholder="编辑图片标题"></div><div class="j-m j-h10"></div></div></div>';
+				$(".j-piclist").append(html);
+				$("#uploadedpic_"+upload_bg.newid).fadeIn();
+				upload_bg.newid++;
+				alert(upload_bg.newid);
+				/*J_Uploader.list[J_Uploader.count]={
+					data:evt.target.result,
+					type:J_Uploader.nowtype,
+					filename:J_Uploader.file[J_Uploader.reader].name,
+					filezise:J_Uploader.file[J_Uploader.reader].size,
+					filetype:list[lastone]
+				};
+			}
+		}
+		reader.readAsDataURL(a.files[i]);
+	}*/
+	
+	//以下为上传的代码
+	if(J_Uploader.isruning==true){
+		J_msgshow("正在上传请稍等");
+	}else{
+		J_Uploader.upload_url = "{:U('image/up')}"; //上传地址
+		J_Uploader.callback	=function(data){
+			//data={src:""};
+			var html='<div class="d-4" id="#uploadedpic_'+upload_bg.newid+'"><div class="pic"><input type="hidden" value="'+data.path+'" name="new['+upload_bg.newid+'][src]"><table class="piccontainer j-table-vertival-mid" width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td><img src="'+data.path+'"></td></tr></tbody></table><div class="j-m j-h10"></div><div class="editabletitle"><input name="new['+upload_bg.newid+'][title]" type="text" class="j-w90 j-pct" placeholder="编辑图片标题"></div><div class="j-m j-h10"></div></div></div>';
+			$(".j-piclist").append(html);
+			$("#uploadedpic_"+upload_bg.newid).fadeIn();
+			upload_bg.newid++;
+		};
+		
+		J_Uploader.uploading=function(){
+			J_msgshow("正在上传图片");
+		};
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype=type;
+		J_Uploader.addlist();
+	}
+}
+
+function savepicdata(){
+	//更改保存图片信息的提交地址
+	$("#s_form").attr("action","");
+	
+	$("#s_form").submit();
+}
+
+//全选删除
+function deleteall(){
+	if($("#s_form input:checkbox:checked").length>=1){
+		if(window.confirm("确定删除？")){
+			//更改为删除的提交地址
+			$("#s_form").attr("action","{:U('weialbums/delphoto?id='.$abid)}");
+			
+			$("#s_form").submit();
+		}else{
+			//J_msgshow("不删除");
+		}
+	}else{
+		J_msgshow("请选择删除的图片");
+	}
+}
+</script>
+</body>
+</html>

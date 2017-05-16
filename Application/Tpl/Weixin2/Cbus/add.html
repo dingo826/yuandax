@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	新建活动
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <div class="j-m j-h10"></div>
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid j-formbk">
+                        	<thead>
+                                
+                            </thead>
+                        	<tbody>
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">标题</td>
+                                                        <td>
+                                                        	<input type="text" name="title" value="{$detail.title}" datatype="Require" msg="请输入活动标题">
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">费用</td>
+                                                        <td>
+                                                        	<input type="text" class="j-w-100" name="cost" value="{$detail.cost|default=0}">&nbsp;元/人
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                        
+                                        <!--start-input:text-->
+                                    	<div class="input-group" style=" margin-left: 0px; padding-top: 15px;">
+                                        	<input type="checkbox" value="1" name="baoxian" id="baoxian" />免费保险
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">最少参与</td>
+                                                        <td>
+                                                        	<input type="text" class="j-w-100" value="5" name="minnum" value="{$detail.minnum}" datatype="Require" msg="请输入活动最少参与人数">&nbsp;人
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">最多参与</td>
+                                                        <td>
+                                                        	<input type="text" class="j-w-100" value="100" name="maxnum" value="{$detail.maxnum}" datatype="Require" msg="请输入活动最多参与人数">&nbsp;人
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">报名时间</td>
+                                                        <td>
+                                                        	<input type="text" name="bbtime" value="{$detail.bbtime|date='Y/m/d H:i',###}" id="time1" class="j-w-150">-
+                                                            <input type="text" name="betime" value="{$detail.betime|date='Y/m/d H:i',###}" id="time2" class="j-w-150">
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">活动时间</td>
+                                                        <td>
+                                                        	<input type="text" name="hdbtime" value="{$detail.hdbtime|date='Y/m/d H:i',###}" id="time3" class="j-w-150">-
+                                                            <input type="text" name="hdetime" value="{$detail.hdetime|date='Y/m/d H:i',###}" id="time4" class="j-w-150">
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">封面</td>
+                                                        <td>
+                                                            <span id="bg_imgview" class="uploadimg j-fl">
+                                                                <img src="{$detail.picurl|default='__PUBLIC__/images/default02/sqhd.jpg'}">
+                                                            </span>
+                                                            <div class="j-fl">
+                                                              封面图片建议尺寸：720像素 * 300像素，文件不超过2M<br>
+                                                              <label class="uploadform">
+                                                                <input class="j-upload-file j-hide" type="file" accept="image/jpeg,image/x-png" onChange="upload_bg(this,'image')">
+                                                                <input type="hidden" name="show_bg_img" value="{$detail.picurl|default='__PUBLIC__/images/default02/sqhd.jpg'}" id="show_bg_img" />
+                                                                <a class="j-button-upload">上传</a>
+                                                              </label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">简单介绍</td>
+                                                        <td>
+                                                        	<div class="j-m j-h10"></div>
+                                                        	<textarea datatype="Require" msg="请输入关于本活动的一些简单介绍" name="desc" id="desc" data-rule-maxlength="2000" class="j-w90 j-h100 j-noresize">{$detail.desc}</textarea>
+                                                            <div class="j-m j-h10"></div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red"></span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="textarea-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">活动详情</td>
+                                                      <td>
+                                                          <a class="btn btn-primary" onClick="WeixinEdit()">进入编辑器高级模式</a>
+                                                          <textarea id="editor" class="j-noresize j-h100 j-w90" name="content">{$detail.content}</textarea>
+                                                      </td>
+                                                      <td class="j-w-15">
+                                                          
+                                                      </td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                      <!--end-input:text-->
+                                  </td>
+                              </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="j-m j-h10"></div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                
+                    <div class="j-m">
+                        <input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                    </div>
+                    </form>
+                    <!--表单-->
+                    <div class="j-m j-h20"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/plugin/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/plugin/datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/upload.js"></script>
+<script src="/static/js/validator.js"></script>
+
+
+<script src="/static/plugin/kindeditor/kindeditor-all-min.js"></script>
+<script src="/static/plugin/kindeditor/editor.js"></script>
+<script src="/static/plugin/jqplugin/jscolor.min.js"></script>
+
+<script>
+//背景上传
+function upload_bg(a,type){
+	if(J_Uploader.isruning==true){
+		J_msgshow("正在上传请稍等");
+	}else{
+		J_Uploader.upload_url="{:U('image/up')}"; //上传地址
+		J_Uploader.callback	=function(data){
+      $(a).parent().find(".j-button-upload").html('上传');
+      if(data.statu==-2){
+        J_msgshow("文件尺寸过大");
+      }else{
+        $("#bg_imgview").html('<img src="'+data.path+'">');
+        $("#show_bg_img").val(data.path);
+      }
+		};
+		
+		J_Uploader.uploading=function(){
+			J_msgshow("正在上传图片");
+      $(a).parent().find(".j-button-upload").html('<span class="icon-spinner icon-spin"></span>');
+		};
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype=type;
+		J_Uploader.addlist();
+	}
+}
+
+$(this).ready(function(e) {
+    //时间选择器
+	$("#time1").datetimepicker({
+    	format: 'yyyy/mm/dd hh:ii',
+		language:  'zh-CN',
+	});
+	
+	$("#time2").datetimepicker({
+    	format: 'yyyy/mm/dd hh:ii',
+		language:  'zh-CN',
+	});
+	
+	//时间选择器2
+	$("#time3").datetimepicker({
+    	format: 'yyyy/mm/dd hh:ii',
+		language:  'zh-CN',
+	});
+	
+	$("#time4").datetimepicker({
+    	format: 'yyyy/mm/dd hh:ii',
+		language:  'zh-CN',
+	});
+	
+	$("input#baoxian[value='{$detail.baoxian}']").attr("checked", "true");
+});
+</script>
+</body>
+</html>

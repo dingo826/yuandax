@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	活动管理 <span class="icon-chevron-right"></span> {$detail.title}
+                        <div class="j-fr">
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                            	<div class="nav nav-tabs nomargin">
+                              	<table width="100%" cellpadding="0" cellspacing="0">
+                                	<tbody>
+                                    	<tr class="j-vtcl-mid">
+                                        	<td>
+                                            	<div class="j-m j-h8"></div>
+                                            	<label class="j-ml8"><input id="checkall" type="checkbox"> 全选</label> 
+                                                <a href="{:U("export?id=".$detail['id'])}" class="j-delete-1 j-block-2 j-ml8 j-mr8"><span class="icon-remove"></span> 全部导出</a>
+                                                <div class="j-m j-h8"></div>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                              
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table j-table-vertival-mid">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td width="30"></td>
+                                                <td>联系人</td>
+                                                <td width="80">手机</td>
+                                                <eq name="detail.baoxian" value="1"><td width="200">保险</td></eq>
+                                                
+                                                <eq name="isothercustom" value="2">
+                                                <td width="120">其他自定义项</td>
+                                                </eq>
+                                                <td width="60">报名参与数</td>
+                                                <td width="120">报名时间</td>
+                                            </tr>
+                                            
+                                            <notempty name="list">                                            
+                                            <!--loop-->
+                                            <volist name="list" id="item">
+                                            <tr>
+                                                <td><input type="checkbox" name="deleteid[]"></td>
+                                                <td><gt name="item.uid" value="0"><img class="j-avatar" src="{$item.member.headimgurl}">&nbsp;</gt>{$item.contact}<gt name="item.uid" value="0">&nbsp;({$item.member.name})</gt></td>
+                                                <td>{$item.mphone}</td>
+                                                <eq name="detail.baoxian" value="1"><td>
+                                                <volist name="item.baoxian" id="bxitem">
+                                                {$bxitem.name}: {$bxitem.idcard}<br/>
+                                                </volist>
+                                                </td></eq>
+                                                
+                                                <eq name="isothercustom" value="2">
+                                                <td>
+                                                <volist name="item.subinfo" id="rsubitem">
+                                                {$rsubitem.key}: {$rsubitem.value}<br/>
+                                                </volist>
+                                                </td>
+                                                </eq>
+                                                <td>{$item.nums}人</td>
+                                                <td>{$item.ctime|date="Y/m/d H:i",###}
+                                                </td>
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                            <else/>
+                                            
+                                            <!--norecords-->
+                                              <tr>
+                                                  <td colspan="7">
+                                                      <div class="j-fcolor-2 j-m j-txtct">
+                                                          暂时还未有人报名参与活动
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <!--norecords-->
+                                              </notempty>
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$pages}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+
+//全选删除
+function deleteall(){
+	if($("#s_form input:checkbox:checked").length>=1){
+		if(window.confirm("确定删除？")){
+			//更改为删除的提交地址
+			$("#s_form").attr("action","");
+			$("#s_form").submit();
+		}else{
+			//J_msgshow("不删除");
+		}
+	}else{
+		J_msgshow("请选择删除的选项");
+	}
+}
+
+$(this).ready(function(e) {
+	//全选绑定
+	$("#checkall").bind("change",function(){
+		if($(this).is(":checked")){
+			$(".tab-content input:checkbox").attr("checked","true");
+		}else{
+			$(".tab-content input:checkbox").removeAttr("checked");
+		}
+	});
+});
+</script>
+</body>
+</html>

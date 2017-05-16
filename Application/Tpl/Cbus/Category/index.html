@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$goodcategory.gctitle}</title>
+
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/swiper/swiper.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="buyer-content" onscroll="sLoad(this,deal)" data-url="{:U('ajax?cid='.$Tget['cid'].'&orderby='.$Tget['orderby'].'&fromid='.$formid)}" pagesize="10" page="1" h="10">
+  
+  <div class="list">
+    <volist name="list" id="item">
+    <!-- loop -->
+    <a class="buyer-good-item" x="{$item.xpoint}" y="{$item.ypoint}" href="{:U('coupon/detail?fromid='.$formid.'&id='.$item['id'])}">
+      <div class="c">
+        <div class="j-flex j-flex-center">
+          <div class="thumb">
+            <table>
+              <tbody>
+                <tr>
+                  <td><img src="{$item.thumb}"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex">
+            <div class="title">
+              {$item.name}
+            </div>
+            <div class="fz-sm fr">{$item.nickname}</div>
+            <div class="fz-sm distance fl">计算中</div>
+          </div>
+          <div class="discount">
+            <div>省{$item.pdiff}元</div>
+            <div class="price">￥{$item.price}</div>
+            <div>{$item['price']/$item['oprice']*100|ceil}折</div>
+          </div>
+        </div>
+      </div>
+      <img class="bk-shen" src="__PUBLIC__/webapp/image/shen.png">
+      <div class="d-line"></div>
+    </a>
+    <!-- loop -->
+    </volist>
+    
+    
+  </div>
+</div>
+
+<div class="buyer-menu j-flex">
+  <div class="flex">
+    <div class="fc">
+      <a href="{:U('index/index?fromid='.$formid)}"><span class="icon-home"></span> 首页</a>
+    </div>
+  </div>
+  
+  <div class="flex <gt name="Think.get.orderby" value="0"> active</gt>">
+    <div class="fc">
+      <a href="{:U('category/index?fromid='.$formid.'&orderby=1&cid='.$cid)}"><span class="icon-money"></span> 最省</a>
+    </div>
+  </div>
+  
+  <div class="flex" onclick="loadcp('sortlist')">
+    <div class="fc">
+      <a><span class="icon-reorder"></span> 分类</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="loadcp" id="sortlist">
+  <!-- 表单组 -->
+  <div class="form-group">
+  
+    <volist name="goodscategorylist" id="item">
+    <!-- input选择框 -->
+    <a class="c" href="{:U('category/index?fromid='.$formid.'&cid='.$item['id'])}">
+      <div class="input addon nomal j-flex">
+        <div class="label-msg">{$item.gctitle}</div>
+        <div class="flex">
+          {$item.desc}
+        </div>
+        <div class="addon"><span class="j-label red">{$item.count|default='0'}</span></div>
+      </div>
+    </a>
+    <!-- input选择框 -->
+    </volist>
+    
+    
+  </div>
+  <!-- 表单组 -->
+  
+  <div class="btn-group bigroom">
+    <a class="btn btn-red" onclick="loadcp('sortlist')">返回</a>
+  </div>
+</div>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script src="__PUBLIC__/webapp/script/app.js"></script>
+<script src="__PUBLIC__/webapp/plugin/swiper/swiper.min.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=afbYCueBmLGER22vgAOs8TGwnA1wHwq6"></script>
+<script>
+var swiper = new Swiper('#swiper', {
+	pagination: '.swiper-pagination',
+	loop:true,
+	autoplay: 5000,
+  autoplayDisableOnInteraction : false
+});
+
+//划出登录
+function loadcp(id){
+  id="#"+id;
+  if($(id).is(".show")){
+    $(id).removeClass("show");
+  }else{
+    $(id).addClass("show");
+  }
+}
+
+//滚动加载 返回数据处理
+function deal(data){
+  for(var i=0;i<data.length;i++){
+    var item=data[i];
+    var html='<a class="buyer-good-item" href="/?g=cbus&m=coupon&a=detail&fromid={$formid}&id='+ item.id +'" x="'+ item.xpoint +'" y="'+ item.ypoint +'"><div class="c"><div class="j-flex j-flex-center"><div class="thumb"><table><tbody><tr><td><img src="'+item.thumb+'"></td></tr></tbody></table></div><div class="flex"><div class="title">'+ item.name +'</div><div class="fz-sm">'+ item.nickname +'</div><div class="fz-sm distance fr">计算中</div></div><div class="discount"><div>省'+ item.pdiff +'元</div><div class="price">￥'+ item.price +'</div><div>'+item.discount+'折</div></div></div></div><img class="bk-shen" src="__PUBLIC__/webapp/image/shen.png"><div class="d-line"></div></a>';
+    
+    $(".buyer-content").append(html);
+	Jmap.caculatedistance();
+  }
+}
+
+//地图计算距离
+var Jmap      = {};
+Jmap.map      = new BMap.Map("allmap");
+
+//计算距离
+Jmap.getdistance=function(p1,p2){
+  var pointA = new BMap.Point(p1.x,p1.y);
+	var pointB = new BMap.Point(p2.x,p2.y);
+  var distance = parseInt(Jmap.map.getDistance(pointA,pointB));
+  return distance;
+}
+
+Jmap.caculatedistance=function(){
+  $(".buyer-good-item").not(".caculated").each(function(i,e){
+    var x=$(e).attr("x") ? $(e).attr("x") :0;
+    var y=$(e).attr("y") ? $(e).attr("y") :0;
+    var p={x:x,y:y};
+    var distance=Jmap.getdistance(Jmap.mylocation,p);
+    var ciel="米";
+    if(distance>1000){
+      distance=(distance/1000).toFixed(2);
+      ciel="公里";
+    }
+    $(e).find(".distance").html(distance+ciel);
+    $(e).addClass("caculated");
+  });
+}
+
+Jmap.location = new BMap.Geolocation();
+Jmap.location.getCurrentPosition(function(r){
+  if(this.getStatus() == BMAP_STATUS_SUCCESS){
+    //console.log(r);
+    Jmap.mylocation={x:r.point.lng,y:r.point.lat};
+    Jmap.caculatedistance();
+    //alert('您的位置：'+r.point.lng+','+r.point.lat);
+  }
+  else {
+    console.log('定位失败');
+  }
+},{enableHighAccuracy: true});
+</script>
+</body>
+</html>

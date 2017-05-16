@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+                <include file="Public:v3topnavn_huodong" />
+
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                    	调研信息
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <div class="j-m j-h10"></div>
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid j-formbk">
+                        	<thead>
+                                
+                            </thead>
+                        	<tbody>                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">名称</td>
+                                                        <td>
+                                                        	<input type="text" name="title" value="{$detail.title}" datatype="Require" msg="请输入名称" readonly>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">时间</td>
+                                                        <td>
+                                                        	<input type="text" name="time_start" id="time1" value="{$detail.btime|date='Y/m/d H:i',###}" class="j-w-150" readonly>-
+                                                            <input type="text" name="time_end" id="time2" value="{$detail.etime|date='Y/m/d H:i',###}" class="j-w-150" readonly>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">封面</td>
+                                                        <td>
+                                                            <span id="bg_imgview" class="uploadimg j-fl">
+                                                                <img src="{$detail.picurl|default='__PUBLIC__/static/images/pic_1.jpg'}">
+                                                            </span>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">开始说明</td>
+                                                        <td>
+                                                        	<div class="j-m j-h10"></div>
+                                                        	<textarea datatype="Require" msg="请输入开始说明" name="note" class="j-w90 j-h100 j-noresize" readonly>{$detail.note|default='感谢您参与此次调查，本调查目的在于了解产品对消费者购物选择的影响。您对本问卷的所有回答都是以匿名形式进行并且答案得到严格保密，研究结果将是结论性质的报告，不会泄漏您的任何相关信息。'}</textarea>
+                                                            <div class="j-m j-h10"></div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red"></span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">结束说明</td>
+                                                        <td>
+                                                        	<div class="j-m j-h10"></div>
+                                                        	<textarea datatype="Require" msg="请输入结束说明" name="note_end" class="j-w90 j-h100 j-noresize" readonly>{$detail.note_end|default='尊敬的客户：
+感谢您的耐心参与，您的选择，将对我们起到重要的指导作用，我们在此向您表示诚挚的谢意。
+同时，为了回馈您的贡献，我们将从所有参与调研的客户中，随机抽取几位幸运奖得主。您将有机会获得我们为您精心准备的礼品一份，中奖名单将在近期公布，敬请关注。
+祝您生活愉快。'}</textarea>
+                                                            <div class="j-m j-h10"></div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red"></span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                 <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-70 j-input-lalel">调研题目</td>
+                                                        <td>
+                                                        	<div class="j-m j-h10"></div>
+                                                        	<table class="table j-w90 table-bordered">
+                                                            	<tr>
+                                                                	<td>题目名称</td>
+                                                                    <td>题目选项</td>
+                                                                    <td>最多选中项</td>
+                                                                </tr>
+                                                                
+                                                                <!--loop-->
+                                                                 <volist name="list" id="vo">
+                                                                <tr>
+                                                                	<td>{$vo.title}</td>
+                                                                    <td>
+                                                                        <for start="1" end="6">
+                                                                         <php>if(!empty($vo['option'.$i])) {</php>
+                                                                        {:Chr(64+$i)}: <php>echo $vo['option'.$i]</php><br>
+                                                                        <php>}</php>
+                                                                        </for>
+                                                                    </td>
+                                                                    <td>{$vo.num}</td>
+                                                                </tr>
+                                                                </volist>
+                                                                <!--loop-->
+                                                            </table>
+                                                            <div class="j-m j-h10"></div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            <span class="j-fcolor-red"></span>
+                                            			</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="j-m j-h10"></div>
+                    </form>
+                    <!--表单-->
+                    <div class="j-m j-h20"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+</body>
+</html>

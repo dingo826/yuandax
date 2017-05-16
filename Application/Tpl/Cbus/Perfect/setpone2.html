@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+</head>
+
+<body>
+<a href="{:U('login/index?fromid='.$formid)}">登录</a>
+<form action="" method="post" enctype="multipart/form-data">
+图片1：<input type="file" name="pic[]" value="" /><br/>
+图片2：<input type="file" name="pic[]" value="" /><br/>
+图片3：<input type="file" name="pic[]" value="" /><br/>
+
+分类：
+<select name="category">
+<volist name="categorylist" id="item">
+<option value="{$item.id}">{$item.ctitle}</option>
+</volist>
+</select>
+<br/>
+商铺座机号：<input type="input" name="tel" value="" /><br/>
+所在地区：<select name="location_p" id="location_p"></select>
+          
+          <select name="location_c" id="location_c"></select>
+          
+          <select name="location_a" id="location_a"></select>
+          <script src="/Public/js/region_select.js"></script>
+          <script type="text/javascript">
+              new PCAS('location_p', 'location_c', 'location_a', '', '', '');
+          </script><br/>
+街道地址：<input type="input" name="address" value="" /><br/>
+<input type="submit" />
+</form>
+</body>
+</html>

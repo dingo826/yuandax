@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	微信群
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('add')}"><span class="icon-plus"></span> 创建群</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                                <div class="j-fr form-search j-mt8 j-mr8">
+                                <div class="input-append">
+                                    <input placeholder="输入搜索关键字" value="{$Think.get.keyword}" name="keyword" type="text" class="span2 search-query">
+                                    <a onClick="search_key()" type="submit" class="btn"><i class="icon-search"></i></a>
+                                  </div>
+                                </div>
+                              <ul class="nav nav-tabs nomargin">
+                                <li <empty name="Think.get.isopen"> class="active"</empty>><a <notempty name="Think.get.isopen">href="{:U('index')}"</notempty>>全部</a></li>
+                                <li <eq name="Think.get.isopen" value="1"> class="active"</eq>><a <neq name="Think.get.isopen" value="1">href="{:U('index?isopen=1')}"</neq>>开放</a></li>
+                                <li <eq name="Think.get.isopen" value="-1"> class="active"</eq>><a <neq name="Think.get.isopen" value="-1">href="{:U('index?isopen=-1')}"</neq>>关闭</a></li>
+                              </ul>
+                              
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table j-table-vertival-mid">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td width="80">二维码</td>
+                                                <td>群</td>
+                                                <td width="70">群分类</td>                                                
+                                                <td width="70">状态</td>
+                                                <td width="70">时间</td>
+                                                <td width="150">操作</td>
+                                            </tr>
+                                            
+                                            <notempty name="list">
+                                            <!--loop-->
+                                            <volist name="list" id="item">
+                                            <tr>
+                                                <td><img src="{$item.thm_qrcode}"></td>
+                                                <td>{$item.qunname}</td>
+                                                <td>{$item.sname}</td>                                                
+                                                <td><eq name="item.isopen" value="1"><span class="badge badge-info">公开</span><else /><span class="badge badge-success">封闭</span></eq></td>
+                                                <td>{$item.utime|date='Y-m-d H:i:s',###}</td>
+                                                <td>
+                                                    <a href="{:U('ltjl?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-user"></span> 查看聊天记录</a>
+                                                	<a href="{:U('edit?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-pencil"></span> 编辑</a>
+                                                </td>
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                            <else/>
+                                            
+                                            <!--norecords-->
+                                              <tr>
+                                                  <td colspan="7">
+                                                      <div class="j-fcolor-2 j-m j-txtct">
+                                                          您还未创建任何群 <a href="{:U('add')}">点击添加</a>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <!--norecords-->
+                                              </notempty>
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$page}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+function search_key(){
+	location.href="/weixin/wxqun/index/keyword/"+$("input[name='keyword']").val();
+}
+
+$(this).ready(function(e) {
+	
+});
+</script>
+</body>
+</html>

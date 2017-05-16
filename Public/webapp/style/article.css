@@ -1,0 +1,11 @@
+/* 文章 */
+body{overflow-x: hidden;}
+.article{padding: 20px 15px 15px 15px}
+.article .content{color: #3e3e3e; font-size: 16px;}
+.article .content p{clear: both; white-space: pre-wrap;}
+.article .content section p{white-space: normal;}
+.article .content img{width: auto!important; max-width: 100%!important; height: auto!important}
+.article .content table{border:none; border-spacing: 2px; width: 100% !important}
+.article .content table td{border:1px solid #DDD; padding: 5px 10px}
+.article .bootomlink{padding: 8px 0}
+.article .bootomlink a{color: #7590b4; margin-right: 8px}

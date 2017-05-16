@@ -1,0 +1,35 @@
+.j-article-fastadd{width: 750px; margin: 0 auto; font-size: 16px}
+.j-article-fastadd .fast-editor{border:1px solid #DDD; margin: 0; padding: 10px 0; clear: both;}
+.j-article-fastadd .fast-editor:after{content: " "; display: block; width: 100%; clear: both}
+.j-article-fastadd .fast-item{position: relative; clear: both}
+.j-article-fastadd .fast-manager{position: absolute; right: -70px; width: 85px; top:0}
+.j-article-fastadd .fast-manager a{display: none; text-align: center; border:1px solid #DDD; border-top:none; padding: 4px 0; background: #FFF; z-index: 1}
+.j-article-fastadd .fast-manager a:first-child{display: block; border-top: 1px solid #DDD}
+.j-article-fastadd .fast-manager:hover{z-index: 1}
+.j-article-fastadd .fast-manager:hover a{display: block}
+.j-article-fastadd .fast-del{position: absolute; top: 0; left: -20px; color: #F00; cursor: pointer}
+.j-article-fastadd .fast-del:hover{color: #0ae}
+.j-article-fastadd .fast-content{border:1px dotted #999; margin: 0 15px 10px 15px; clear: both;}
+.j-article-fastadd .fast-content.left{float: left;}
+.j-article-fastadd .fast-content.right{float: right;}
+.j-article-fastadd .fast-content.img{text-align: center}
+.j-article-fastadd .fast-content.img label{position: relative; margin: 8px 0}
+.j-article-fastadd .fast-content.img input{display: none}
+.j-article-fastadd .fast-content.img .addicon{position: absolute; width: 100%; height: 100%;  top: 0; left: 0;}
+.j-article-fastadd .fast-content.img .addicon table{height: 100%; width: 100%; text-align: center;}
+.j-article-fastadd .fast-content.img .addicon table td{vertical-align: middle; text-shadow:2px 2px 5px #333333; color: #FFF; font-size: 30px}
+.j-article-fastadd .fast-content.img img{max-width: 100%; max-height: 100%}
+.j-article-fastadd .fast-content.img div[contenteditable]{border:1px dotted #999;}
+.j-article-fastadd .fast-content [contenteditable]{padding: 6px}
+.j-article-fastadd .fast-btns{text-align: center; margin: 14px 0;}
+.j-article-fastadd .fast-addbtn{color: #FFF; background: #0ae; border-radius: 4px; padding: 6px 10px; margin: 0 8px; cursor: pointer; clear: both}
+.j-article-fastadd .fastadd-input{border:1px solid #DDD; padding: 14px 2%; width: 96%; font-family: inherit; border-radius: 0; font-size: 20px}
+
+.fast-add-mode{float: left; width: 230px; margin-right: 20px}
+.fast-add-mode img{width: 100%}
+.fast-add-mode .fast-modeselect{position: relative; height: 380px; overflow: hidden; border:1px solid #DDD}
+.fast-add-mode .fast-modeselect .c{position: absolute; display: none; background: rgba(0,0,0,.5); width: 100%; height: 100%; left: 0; top: 0}
+.fast-add-mode .fast-modeselect .c table{width: 100%; height: 100%}
+.fast-add-mode .fast-modeselect:hover .c{display: block}
+.fast-add-mode .title{text-align: center; font-size: 16px; line-height: 30px}
+.fast-add-mode td{text-align: center}

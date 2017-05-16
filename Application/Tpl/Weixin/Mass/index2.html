@@ -1,0 +1,408 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	信息群发
+                        <div class="j-fr">
+                            <a class="j-fz-14" href="{:U('record')}"><span class="icon-list"></span> 群发记录</a>
+                        </div>
+                    </div>
+                    
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    	<div class="j-m j-h10"></div>
+                    
+                    	<!--预览框-->
+                    	<div id="viewport" class="j-viewport j-tsm-06">
+                        	<div class="j-view-1">
+                            	<div class="container">
+                                	<!--图文-->
+                                	<div id="news_view" class="j-m-spacing">
+                                    	<div class="j-m j-h10"></div>
+                                    	<div id="box-zixun-1" class="box-zixun j-m">
+                                        	<div class="j-m j-h10"></div>
+                                        	<div class="j-m-spacing">
+                                    			<p class="news_title">点击右侧选择文章！</p>
+                                                <p class="j-fcolor-2 news_date">1月13日</p>
+                                                <p>
+                                                	<a style="background-image:url(/static/weixin/image/moren.jpg)" class="img"></a>
+                                                </p>
+                                                <p class="j-fcolor-2 news_content">点击右侧选择文章！</p>
+                                                <p class="news_link"><a>查看全文</a></p>
+                                            </div>
+                                            <div class="j-m j-h10"></div>
+                                    	</div>
+                                        
+                                        <div id="box-zixun-2" class="box-zixun-list box-zixun j-m j-hide">
+                                        	<div class="j-m j-h10"></div>
+                                        	<div class="j-m-spacing first">
+                                                <a style="background-image:url(/static/weixin/image/moren.jpg)" class="img">
+                                                    <span class="news_title">
+                                                        <div class="j-w95 j-pct">标题</div>
+                                                    </span>
+                                                </a>
+                                                
+                                                <div class="j-m j-h5"></div>
+                                            </div>
+                                            
+                                            <div class="j-divide-1"></div>
+                                            
+                                            <div class="j-m-spacing listas">
+                                                <a class="lista">
+                                                	<table class="j-vtcl-top" width="100%" cellpadding="0" cellspacing="0">
+                                                    	<tbody>
+                                                        	<tr>
+                                                            	<td>标题</td>
+                                                                <td class="j-w-50"><img src="/static/weixin/image/moren.jpg"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </a>
+                                            </div>
+                                            <div class="j-m j-h10"></div>
+                                    	</div>
+                                        <div class="j-m j-h10"></div>
+                                    </div>
+                                    <!--图文-->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--预览框-->
+                        
+                    	<!--表单-->
+                    	<form action="{:U('send')}" method="post" id="s_form" autocomplete="off" onSubmit="return Validator.Validate(this,4)">
+                        <div class="j-m j-h1"></div>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                        	<tbody>
+                            	<tr>
+                                	<td class="j-viewport-w"><div class="j-m" style="min-height:440px"></div></td>
+                                    <td class="j-formbk">
+                                    	<div class="j-m">
+                                        	<div class="tabbable">
+                                              <ul class="nav nav-tabs">
+                                                <li><a href="{:U('text')}">文本</a></li>
+                                                <li class="active"><a href="javascript:;" onclick="changearticletype(this)" t="0">社区资讯(<span id="article-count">0</span>)</a></li>
+                                                <eq name="fun['newspapers']" value="1">
+                                                <li><a href="javascript:;" onclick="changearticletype(this)" loaded="0" t="1">报刊文章(<span id="article-news-count">0</span>)</a></li>
+                                                </eq>
+                                              </ul>
+                                              <div class="tab-content">
+                                                <div class="tab-pane active" id="tab1">
+                                                 
+                                                  <div class="j-m">
+                                                  	<table id="sendtimesetting" border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                    	<tr>
+                                                        <td class="j-fz-14 j-w-75">发送时间：</td>
+                                                        <td class="j-w-75"><label class="j-lh30" onclick="select_send_mod(1)"><input checked type="radio" name="immediately" value="1"> 立即发送</label></td>
+                                                        <td class="j-w-90"><label onClick="select_send_mod(2)" class="j-ml10 j-lh30"><input type="radio" name="immediately" value="0"> 定时发送</label></td>
+                                                        <td>
+                                                          <span class="j_timepicker j-fl j-hide"><input class="j-w70 j-max-w-150" name="sendtime" placeholder="选择发送时间" type="text" id="timepickers-1"></span>
+                                                          <a class="j-button-red j-button-red-2 j-fl" onclick="freshCaculate()" href="javascript:;">更新发送统计</a>
+                                                          &nbsp;
+                                                        </td>
+                                                      </tr>
+                                                    </table>
+                                                    
+                                                    <table class="j-hide" id="newstypelist" border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                    	<tr>
+                                                        <td class="j-fz-14" width="80">文章主题：</td>
+                                                        <td class="newsarticle-typelist">
+                                                          <volist name="newspapers_category" id="item">
+                                                          <a href="javascript:;" onclick="loaddata(this)" loaded="0" targetid="{$item.id}">{$item.name}</a>
+                                                          </volist>
+                                                        </td>
+                                                      </tr>
+                                                    </table>
+                                                  </div>
+                                                  
+                                                  <div class="j-m j-h10"></div>
+                                                  
+                                                  <!--模式选择-->
+                                                  <div class="j-m newslist">
+                                                  	<table class="table table-striped table-bordered" id="head-article">
+                                                    	<tbody>
+                                                        <tr class="success">
+                                                          <td class="j-w-30"></td>
+                                                          <td class="j-w-70">封面</td>
+                                                          <td>标题</td>
+                                                          <td class="j-w-70">发送次数</td>
+                                                          <td class="j-w-50">设为封面</td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                    
+                                                    <table class="table table-striped table-bordered j-hide" id="head-news">
+                                                      <tbody>
+                                                        <tr class="success">
+                                                          <td class="j-w-30"></td>
+                                                          <td class="j-w-70">封面</td>
+                                                          <td>标题</td>
+                                                          <td class="j-w-70">来源</td>
+                                                          <td class="j-w-70">日期</td>
+                                                          <td class="j-w-50">设为封面</td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                    
+                                                    <div class="j-m j-newsscrolllist">
+                                                      <div class="j-news-zixun">
+                                                        <table id="articlelist-select" class="type type-0 table table-bordered table-hover table-striped j-table-vertival-mid">
+                                                          <tbody>
+                                                            <!--loop-->
+                                                            <volist name="list" id="item">
+                                                            <tr>
+                                                              <td class="j-w-30 txtmid">
+                                                                <input type="checkbox" value="{$item.id}" name="news_id[]" onClick="Newsarticle.select(this)" title="{$item.title}" content="{$item.desc}" src="{$item.picurl}">
+                                                              </td>
+                                                              <td class="img j-w-70"><img src="{$item.picurl}"></td>
+                                                              <td>{$item.title}</td>
+                                                              <td class="j-w-50 txtmid">{$item.send_count}</td>
+                                                              <td class="j-w-50 txtmid">
+                                                                <input name="cover_id" value="{$item.id}" type="radio" onchange="Newsarticle.setcover(this)">
+                                                              </td>
+                                                            </tr>
+                                                            </volist>
+                                                            <!--loop-->
+                                                          </tbody>
+                                                        </table>
+                                                      </div>
+                                                      
+                                                      <div id="newsarticle-list" class="papernewsarticle-list">
+                                                        
+                                                      </div>
+                                                      
+                                                      <div class="pages pagination j-fr">
+                                                        <ul>
+                                                          <li class="active" onclick="Newsarticle.pagebtn(1,this)"><a>1</a></li>
+                                                          <li onclick="Newsarticle.pagebtn(2,this)"><a>2</a></li>
+                                                          <li onclick="Newsarticle.pagebtn(3,this)"><a>3</a></li>
+                                                          <li onclick="Newsarticle.pagebtn(4,this)"><a>4</a></li>
+                                                          <li onclick="Newsarticle.pagebtn(5,this)"><a>5</a></li>
+                                                          <li onclick="Newsarticle.pagebtn(6,this)"><a>6</a></li>
+                                                        </ul>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <!--模式选择-->
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+											
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+
+					<div class="j-m j-h1 j-bkcl2"></div>
+					<div class="j-m j-h20"></div>  
+					<div class="j-m">
+						<div class="j-w-300 j-pct">
+                        	<input type="hidden" id="ids" name="ids">
+                            <input type="hidden" id="type" name="type" value="mpnews">
+                            <input type="hidden" id="ispreview" name="ispreview" value="0">
+                            <input type="hidden" id="previewwechatid" name="previewwechatid" value="">
+							<input type="submit" class="j-button-red j-fl" value="确定">
+							<input onClick="J_dialog_viewnew()" type="button" class="j-button-white j-fr" value="预览">
+						</div>
+            </div>
+            </form>
+            <!--表单-->
+            <div class="j-m j-h20"></div>
+            </div>
+            <!--模块结束-->
+                
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- 弹窗 -->
+<div class="j-dialog-window" id="articles-view">
+  <div class="j-dialog-content">
+    <div class="close"><span onclick="J_hide('articles-view')" class="icon-remove"></span></div>
+    
+    <div class="j-dialog-content-subwindow">
+      <table class="j-table">
+        <tbody>
+          <tr>
+            <td onclick="J_hide('articles-view')"></td>
+            <td width="600">
+              <iframe id="article-contentview" src="" style="margin:0 auto; height:100%; border:none; outline:none; display:block; width:600px">
+              </iframe>
+            </td>
+            <td onclick="J_hide('articles-view')"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- 弹窗 -->
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/news.js"></script>
+<script src="/static/plugin/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/plugin/datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script>
+$(this).ready(function(e) {
+    //时间选择器
+	$("#timepickers-1").datetimepicker({
+    	format: 'yyyy/mm/dd hh:ii',
+		language:  'zh-CN',
+	});
+
+	$("#j-dialog-viewnew tr").bind("click",function(e){
+		$(this).find("input:radio").attr("checked","true");
+	});
+	
+	//图文选择初始化
+  Newsarticle.init("{$material_ids}");
+	/*newlist_select({
+		data:true,
+    ids:"{$material_ids}",
+    cover:true
+  });*/
+	//newlist_select({data:false,ids:"2,3,4,",cover:true});
+});
+
+//选择发送方式 立即或者定时
+function select_send_mod(id){
+	if(id==1){
+		$(".j_timepicker").hide();
+		$("#timepickers-1").removeAttr("datatype").removeAttr("msg");
+		
+	}else{
+		$(".j_timepicker").css("display","inline-block");
+		$("#timepickers-1").attr("datatype","Require").attr("msg","请选择时间");
+	}
+}
+
+function freshCaculate(){
+	$.post("",{},function(data){
+		if(data.status==1){
+			J_refresh();
+		}else{
+			J_msgshow("服务器繁忙，请请重试");
+		}
+	},"json");
+}
+
+//文章类型选择
+function changearticletype(a){
+  var id=$(a).attr("t");
+  
+  $("#head-article").hide();
+  $("#head-news").hide();
+  $("#newsarticle-list").hide();
+  $("#sendtimesetting").hide();
+  $("#newstypelist").hide();
+  
+  $(".nav-tabs li").removeClass("active");
+  $(".j-news-zixun").hide();
+  $(".j-newsscrolllist .pages").hide();
+  
+  if(id==0){
+    $(".nav-tabs li").eq(1).addClass("active");
+    $("#head-article").show();
+    $("#sendtimesetting").show();
+    $(".type-0").show();
+    $(".j-news-zixun").show();
+    return;
+  }
+  
+  if(id==1){
+    $(".nav-tabs li").eq(2).addClass("active");
+    $("#head-news").show();
+    $("#newstypelist").show();
+    $("#newsarticle-list").show();
+    $(".type-0").hide();
+    $(".j-newsscrolllist .pages").show();
+    
+    if($(a).attr("loaded")=="0"){
+      $(a).attr("loaded","1");
+      $(".newsarticle-typelist a").eq(0).attr("loaded","1").addClass("active");
+      Newsarticle.loadnews2($(".newsarticle-typelist a")[0]);
+    }
+    return;
+  }
+}
+
+function loaddata(a){
+  $(".newsarticle-typelist a").removeClass("active");
+  $(a).addClass("active");
+  var id=$(a).attr("targetid");
+  
+  $(".newslist .type").hide();
+  
+  if($(a).attr("loaded")==0){
+    Newsarticle.loadnews2(a);
+  }else{
+    $(".newslist .newstype-"+id).show();
+    Newsarticle.page(id);
+  }
+}
+
+function article_contentview(id){
+  J_show("articles-view");
+  $("#article-contentview").prop("src",'http://{:C("ODOMIN")}/wechat/article/previewnewspaper/id/'+id+'/wid/{$weixin.id}/token/oAIitwYjuZhVFlLNn2QJl8acNbzE/wxref/mp.weixin.qq.com.html');
+}
+</script>
+</body>
+</html>

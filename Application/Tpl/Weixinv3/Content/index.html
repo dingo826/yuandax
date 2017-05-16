@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">内容管理</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="spacing">
+                        <a href="{:U('replysubscribe/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl7">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-comment-alt j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">智能回复</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	居民关注微信公众账号时，账号会自动发送设置的文字/语言/图片给关注用户
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <a href="{:U('customreply/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl3">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-comments-alt j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">自定义回复</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	居民文本输入相应关键词后，公众账号自动回复关键词对应内容
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <eq name="fun['mass']" value="1">
+                        <a href="{:U('mass/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl4">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-rss j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">信息群发</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	根据需要设置文字/图片/推送时间等，发送给所有关注用户
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <a href="{:U('article/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl5">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-headphones j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区资讯</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	方便居民了解社区动态；发布常见事项办理流程，支持社区办事办证服务
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <a href="{:U('communityservice/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl6">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-cogs j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区服务</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	发布生活服务信息、社区公共服务信息，便捷于民
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        
+                        <eq name="fun['weialbums']" value="1">
+                        <a href="{:U('weialbums/index')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl8">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-picture j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区相册</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	展示社区风景、人文风采与精彩活动集锦
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+                        
+                        <eq name="fun['cbus']" value="1">
+                        <a href="{:U('cbus/goods')}" class="j-bottom-box">
+                        	<div class="j-m j-h10"></div>
+                            <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                      <td class="icon j-bkcl8">
+                                      	<div class="j-m j-h15"></div>
+                                      	<span class="icon-picture j-fcolor-1"></span>
+                                      </td>
+                                      <td>
+                                      	<div class="t j-ml-2">社区优惠</div>
+                                        <div class="j-m j-h8"></div>
+                                        <div class="desc j-ml-2">
+                                        	社区周边各种优惠信息
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </a>
+                        </eq>
+
+                        <div class="j-m j-h20"></div>
+                    </div>
+                </div>
+                <!--模块结束-->
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<!--js-->
+</body>
+</html>

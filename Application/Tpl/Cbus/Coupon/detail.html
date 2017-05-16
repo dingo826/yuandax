@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$shop.nickname}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome4.min.css">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="buyer-good-detail">
+  <div class="title">
+    {$detail.name}
+  </div>
+
+  <div class="prices">
+    <div class="j-flex j-flex-center">
+      <div class="origin">原价{$detail.oprice}元</div>
+      <div class="flex">现价<span>{$detail.price}</span>元</div>
+      <div class="discount">省{$detail.pdiff}元</div>
+    </div>
+    <div class="t-s">
+      <span class="time">结束时间：{$detail.deadline|date='Y年m月d日 23:59:59',###}</span>
+    </div>
+  </div>
+  
+  <!--<div class="t-s">
+    <span class="time">{$detail.deadline}2016年9月24日 16:44</span>
+    <span class="seller">全家便利店</span>
+  </div>-->
+  
+  <div class="describe">
+    {$detail.desc}
+  </div>
+  
+  <div class="thumbs">
+    <volist name="piclist" id="item">
+    <img src="{$item.image}">
+    </volist>
+  </div>
+  
+  <!-- 商家信息 -->
+  <div class="color-title j-flex j-flex-center">
+    <div class="flex"></div>
+    <div class="c">商家信息</div>
+    <div class="flex"></div>
+  </div>
+  
+  <a class="shop-tag j-flex" href="{:U('shop/detail?fromid='.$formid.'&id='.$shop['id'])}">
+    <div class="logo"><img src="{$shop.logo}"></div>
+    <div class="flex">
+      <div class="ctitle">{$shop.nickname}</div>
+      <div class="fz-sm">电话：{$shop.tel}</div>
+      <div class="fz-sm">地址：{$shop.address}</div>
+    </div>
+    <div class="type">{$catearr[$shop['cid']]['ctitle']}</div>
+  </a>
+  <!-- 商家信息 -->
+  
+  <div class="color-title red j-flex j-flex-center">
+    <div class="flex"></div>
+    <div class="c">同类优惠</div>
+    <div class="flex"></div>
+  </div>
+  
+  <div class="list">
+    <volist name="olist" id="item">
+    <!-- loop -->
+    <a class="buyer-good-item red" x="{$item.xpoint}" y="{$item.ypoint}" href="{:U('coupon/detail?fromid='.$formid.'&id='.$item['id'])}">
+      <div class="c">
+        <div class="j-flex j-flex-center">
+          <div class="thumb">
+            <table>
+              <tbody>
+                <tr>
+                  <td><img src="{$item.logo}"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex">
+            <div class="title">
+              {$item.name}
+            </div>
+            <div class="fz-sm fl">{$item.nickname}</div>
+            <div class="fz-sm distance fr">300米</div>
+          </div>
+          <div class="discount">
+            <div>省{$item.pdiff}元</div>
+            <div class="price">￥{$item.price}元</div>
+            <div>{$item['price']/$item['oprice']*100|ceil}折</div>
+          </div>
+        </div>
+      </div>
+      <img class="bk-shen" src="__PUBLIC__/webapp/image/shen.png">
+      <div class="d-line"></div>
+    </a>
+    <!-- loop -->
+    </volist>
+  </div>
+  
+  <!--<a class="btn btn-red"><span class="fa fa-share-alt"></span> 分享到朋友圈</a>-->
+</div>
+
+<div style="height:40px; width:100%"></div>
+<div class="buyer-menu j-flex fixed">
+  <div class="flex">
+    <div class="fc">
+      <a href="{:U('index/index?fromid='.$formid)}"><span class="icon-home"></span> 首页</a>
+    </div>
+  </div>
+  
+  <div class="flex <gt name="Think.get.orderby" value="0"> active</gt>">
+    <div class="fc">
+      <a href="{:U('category/index?fromid='.$formid.'&orderby=1&cid='.$cid)}"><span class="icon-money"></span> 最省</a>
+    </div>
+  </div>
+</div>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=afbYCueBmLGER22vgAOs8TGwnA1wHwq6"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+wx.config({
+    debug: false,
+    appId: '{$signPackage.appId}',
+    timestamp: '{$signPackage.timestamp}',
+    nonceStr: '{$signPackage.nonceStr}',
+    signature: '{$signPackage.signature}',
+    jsApiList: [
+      'previewImage',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'onMenuShareQZone'
+    ]
+});
+
+var sharedata={
+    "title": "【{$shop.nickname}】{$detail.name}",
+    "desc": "{$detail.desc|trimall}",
+    "link": "",
+    "imgUrl": "http://{$Think.config.ODOMIN}{$detail.logo}",
+	trigger: function (res) {             
+      
+    },
+    success: function (res) {
+      //J_msgshow("分享内容设置成功，点击右上角菜单分享至朋友圈或发送好友！",{});
+      //alert('分享成功！');
+    },
+    cancel: function (res) {
+      //alert('已取消');
+    },
+    fail: function (res) {
+      //alert(JSON.stringify(res));
+    }
+  };
+
+wx.ready(function(){
+  //设置朋友圈分享数据
+  wx.onMenuShareTimeline(sharedata);
+  //好友分享
+  wx.onMenuShareAppMessage(sharedata);
+});
+
+//地图计算距离
+var Jmap      = {};
+Jmap.map      = new BMap.Map("allmap");
+
+//计算距离
+Jmap.getdistance=function(p1,p2){
+  var pointA = new BMap.Point(p1.x,p1.y);
+	var pointB = new BMap.Point(p2.x,p2.y);
+  var distance = parseInt(Jmap.map.getDistance(pointA,pointB));
+  return distance;
+}
+
+Jmap.caculatedistance=function(){
+  $(".buyer-good-item").not(".caculated").each(function(i,e){
+    var x=$(e).attr("x") ? $(e).attr("x") :0;
+    var y=$(e).attr("y") ? $(e).attr("y") :0;
+    var p={x:x,y:y};
+    var distance=Jmap.getdistance(Jmap.mylocation,p);
+    var ciel="米";
+    if(distance>1000){
+      distance=(distance/1000).toFixed(2);
+      ciel="公里";
+    }
+    $(e).find(".distance").html(distance+ciel);
+    $(e).addClass("caculated");
+  });
+}
+
+Jmap.location = new BMap.Geolocation();
+Jmap.location.getCurrentPosition(function(r){
+  if(this.getStatus() == BMAP_STATUS_SUCCESS){
+    //console.log(r);
+    Jmap.mylocation={x:r.point.lng,y:r.point.lat};
+    Jmap.caculatedistance();
+    //alert('您的位置：'+r.point.lng+','+r.point.lat);
+  }
+  else {
+    console.log('定位失败');
+  }
+},{enableHighAccuracy: true});
+
+
+</script>
+
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

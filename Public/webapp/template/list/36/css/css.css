@@ -1,0 +1,36 @@
+body{font-size: 14px;}
+.table{padding: 0; margin: 0; width: 100%; border-spacing: 0; border: 0}
+.table td{padding: 0; border:0; vertical-align: middle;}
+.table.padding td{padding: 1px}
+
+.list{margin: 0px}
+.list .item{position: relative; display: flex; display: -webkit-flex; padding: 5px 0; height: 60px}
+.list .item:active{opacity: .8}
+.list .item .item-tile{display: inline-flex; display: -webkit-inline-flex; flex: 1; -webkit-flex:1; position: relative}
+.list .item .thumb{display: inline-flex; display: -webkit-inline-flex; width: 60px; height: 60px}
+.list .item .thumb img{max-width: 50px; max-height: 50px; margin: 5px}
+.list .item .title{position: absolute;  width: 100%; margin-left: 10px; line-height:30px}
+.list .item .headtitle{font-size: 16px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%}
+.list .item .subtitle{width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+.list .item .icon{display: inline-flex; display: -webkit-inline-flex; width: 25px;}
+
+
+/* 第一条特殊样式 */
+.list .item:nth-child(2n+1){background-color: #f1f1f1}
+.list .item:first-child{padding: 0; display: block; border-bottom: none; height: auto}
+.list .item:first-child .item-tile{width: 100%; bottom: 0; left: 0; margin: 0; background: rgba(0,0,0,0.5); position: absolute;}
+.list .item:first-child .item-tile .title{margin:0; position: relative}
+.list .item:first-child .item-tile .title .headtitle{color: #FFF; text-indent: .5em}
+.list .item:first-child .thumb{width: 100%; height: auto; display: block}
+.list .item:first-child .thumb img{width: 100%; max-width: 100%; max-height: 100%; padding: 0; margin: 0; display: block;}
+.list .item:first-child .subtitle{display: none}
+.list .item:first-child .icon{display: none}
+
+.page{display: flex; display: -webkit-flex; margin: 15px}
+.page .item{-webkit-flex:1; flex:1;}
+.page .pagenum{text-align: center; line-height: 36px}
+.page .btn{display: block; text-align: center; background: #f1f2f4; padding: 8px 0; border-radius: 6px}
+.page .btn:active{opacity: .5}
+
+.footer{text-align: center; min-height: 30px; clear: both;}
+.footer a{line-height: 50px}

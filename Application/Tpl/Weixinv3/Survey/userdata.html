@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+                <include file="Public:v3topnavn_huodong" />
+             
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                    	{$detail.title} 调研统计
+                      <div class="j-fr">
+                        <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                      </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                              <ul class="nav nav-tabs nomargin">
+                                <li><a href="{:U('chart?id='.$tget['id'])}">统计数据</a></li>
+                                <li class="active"><a>用户数据</a></li>
+                              </ul>
+                              
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table j-table-vertival-mid">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td>用户名</td>
+                                                <td>手机</td>
+                                                <td>建议</td>
+                                                <td>添加时间</td>
+                                                <td>操作</td>
+                                            </tr>
+                                            
+                                            <!--loop-->
+                                            <volist name="ulist" id="item">
+                                            <tr>
+                                                <td>{$item.username}</td>
+                                                <td>{$item.phone}</td>
+                                                <td>{$item.suggest}</td>
+                                                <td>{$item.ctime|date="Y-m-d H:i:s",###}</td>
+                                                <td>
+                                                  <a href="#myModal" onClick="getDetail({$item.id})" role="button" class="j-delete-1 j-block-2" data-toggle="modal"><span class="icon-eye-open"></span> 查看</a>
+                                                </td>
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$pages}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade j-chart-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 id="myModalLabel">用户选择数据</h4>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+  </div>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script>
+function getDetail(id){
+  var requestUrl = "/weixin/survey/showperdata/id/{$tget.id}/uid/"+id;
+  
+  $.get(requestUrl,{},function(data){
+    $("#myModal tbody").html(data);
+  },"html");
+}
+
+$(this).ready(function(e) {
+	
+});
+</script>
+</body>
+</html>

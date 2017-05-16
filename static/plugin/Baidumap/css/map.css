@@ -1,0 +1,16 @@
+.j-map{position: fixed!important; margin: 0; padding: 0; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%}
+.j-map .map{width: 100%; height: 100%}
+.j-map-searchbox{position: fixed; z-index: 1; width: 90%; left: 5%; top: 20px; height: 40px; opacity: .8}
+.j-map-searchbox:hover{opacity: 1}
+.j-map-searchbox table{border:none; border-spacing: 0; width: 100%;}
+.j-map-searchbox table td{border: none; padding: 0}
+.j-map-searchbox input[type="search"]{border: none; outline: none; width: 100%; padding: 12px 2%; margin: 0;}
+.j-map-searchbox a{text-decoration: none; display: block; text-align: center; height: 40px; background: #0ae; line-height: 40px; color: #FFF}
+
+.j-map-menu{position: fixed; z-index: 1; width: 30px; right: 15px; bottom: 100px; background: rgba(255,255,255,.8); box-shadow: 0 1px 2px #333}
+.j-map-menu .j-map-menu-item{padding: 8px; cursor: pointer}
+.j-map-icon{background: url(icon.png) no-repeat; display: block; margin: 0 auto; width: 14px; height: 14px}
+.j-map-icon-1{background-position: -28px 0px}
+.j-map-menu .j-map-menu-item:hover .j-map-icon-1{background-position: -14px 0px}
+.j-map-icon-plu,.j-map-icon-min{font-size: 14px; color: #5a5e65; display: block; text-align: center;font-weight: 700; cursor: pointer}
+.j-map-menu .j-map-menu-item:hover .j-map-icon-plu,.j-map-menu .j-map-menu-item:hover .j-map-icon-min{color: #0ae}

@@ -1,0 +1,778 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+			
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	添加新回复
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        	<a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    	<div class="j-m j-h10"></div>
+                        
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" autocomplete="off" onSubmit="return Validator.Validate(this,4)">
+                        <div class="j-m j-h1"></div>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                        	<tbody>
+                            	<tr>
+                                    <td class="j-formbk">
+                                    	<div class="j-m">
+                                        	<table border="0" width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                                            	<tbody>
+                                                	<tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="input-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">名称</td>
+                                                                            <td>
+                                                                                <input type="text" name="name" value="{$detail.name}" id="name" datatype="Require" msg="请输入名称" />
+                                                                            </td>
+                                                                            <td>
+                                                                            	
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="input-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">关键词</td>
+                                                                            <td>
+                                                                               <input type="text" name="keyword" value="{$detail.keyword}" id="keyword" datatype="Require" msg="请输入关键词" />
+                                                                            </td>
+                                                                            <td>
+                                                                               
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <!--start-input:text-->
+                                                            <div class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">回复类型</td>
+                                                                            <td>
+                                                                                <select id="type" name="type" class="j-w-150">                                                              	
+                                                                                  <option value="text">文本</option>
+                                                                                  <option value="article">图文</option>
+                                                                                  <!--<option value="column">栏目</option>-->
+                                                                                  <option value="business">业务模块</option>
+                                                                                </select>
+                                                                                <a href="#myModal" role="button" data-toggle="modal" class="btn btn-info j-hide" id="article-show-btn"><span class="icon-plus"></span> 选择图文</a>
+                                                                            </td>
+                                                                            <td>
+                                                                            	
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td id="typeslist">
+                                                            <!--start-input:text-->
+                                                            <div id="type-text" class="textarea-group">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">文本内容</td>
+                                                                            <td>
+                                                                                <!--编辑器-->
+                                                                                <include file="Public:diveditor" />
+                                                                                <!--编辑器-->
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                            
+                                                            <div id="type-article" class="textarea-group article-list-select newslist j-hide">
+                                                              <!--loop-->
+                                                              <volist name="newslist" id="item">
+                                                              <div class="input-prepend">
+                                                                <input name="articleids[]" type="hidden" value="{$item.id}">
+                                                                <span class="add-on">{$item.title}</span>
+                                                                <a class="btn" onClick="article_delete(this)"><span class="icon-remove"></span></a>
+                                                              </div>
+                                                              </volist>
+                                                              <!--loop-->
+                                                             </div>
+                                                              
+                                                            <!--start-input:text-->
+                                                            <div id="type-business" class="textarea-group  j-hide">
+                                                                <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="j-w-80 j-input-lalel">业务模块</td>
+                                                                            <td>
+                                                                            	 <select id="business_type" name="business_type" class="j-w-150">
+                                                                            	  <option value="official">微官网</option>
+                                                                                  <option value="vipcard">居员卡</option>
+                                                                                  <option value="juweihui">居委会</option>
+                                                                                  <option value="communityservice">社区服务</option>
+                                                                                  <option value="circle">圈子</option>
+                                                                                  <option value="resevsection" >微预约栏目</option>
+                                                                                  <!--<option value="reservation">微预约</option>-->
+                                                                                  <option value="message">微留言</option>
+                                                                                  <option value="albums">微相册</option>
+                                                                                  <option value="survey">微调研</option>
+                                                                                  <option value="wxqun" >微信群</option>
+                                                                                  <option value="huodong">报名活动</option>
+                                                                                  <option value="huodonglist"  data-list="true">报名活动列表</option>
+                                                                                  <option value="vote">投票</option>
+                                                                                </select>
+                                                                                <a href="#myModa2" onClick="xianm_select.loaddata();" role="button" data-toggle="modal" class="btn btn-info j-hide" id="btype-show-btn"><span class="icon-plus"></span> 选择项目</a>
+                                                                                
+                                                                            </td>
+                                                                            <td class="j-w-15">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end-input:text-->
+                                                            
+                                                            <div id="xianmupro" class="textarea-group xianmu-list-select newslist j-hide">
+                                                              <!--loop-->
+                                                              <volist name="businesslist" id="item">
+                                                              <div class="input-prepend" id="xianmuid-{$item.id}">
+                                                                <input name="xiamuids[]" type="hidden" value="{$item.id}">
+                                                                <span class="add-on">{$item.title}</span>
+                                                                <a class="btn" onClick="xianm_delete(this)"><span class="icon-remove"></span></a>
+                                                              </div>
+                                                              </volist>
+                                                              <!--loop-->
+                                                             </div>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                    	<td id="reservation_list" class="j-hide">
+                                                            <div class="textarea-group">
+                                                                <table class="table table-bordered table-hover table-striped">
+                                                                    <tbody>
+                                                                        <tr class="success">
+                                                                            <td class="j-w-50"></td>
+                                                                            <td>业务标题</td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr class="j-vtcl-mid">
+                                                                            <td class="txtmid">
+                                                                                <input type="checkbox" name="business_value[]" value="1" onClick="reservation_view(this)" title="业务标题1" content="1" src="http://wsq2.cekasp.cn/Public/js/kindeditor/php/../attached/137/image/20160324/20160324181904_90659.jpg">
+                                                                            </td>
+                                                                            <td class="img">业务标题1</td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr class="j-vtcl-mid">
+                                                                            <td class="txtmid">
+                                                                                <input type="checkbox" name="business_value[]" value="2" onClick="reservation_view(this)" title="测试" content="2" src="http://wsq2.cekasp.cn/Public/js/kindeditor/attached/137/image/20150623/20150623134459_95964.jpg">
+                                                                            </td>
+                                                                            <td>业务标题</td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr class="j-vtcl-mid">
+                                                                            <td class="txtmid">
+                                                                                <input type="checkbox" name="business_value[]" value="3" onClick="reservation_view(this)" title="业务标题2" content="3" src="http://wsq2.cekasp.cn/Public/js/kindeditor/php/../attached/137/image/20160324/20160324181904_90659.jpg">
+                                                                            </td>
+                                                                            <td>业务标题2</td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr class="j-vtcl-mid">
+                                                                            <td class="txtmid">
+                                                                                <input type="checkbox" name="business_value[]" value="4" onClick="reservation_view(this)" title="测试" content="4" src="http://wsq2.cekasp.cn/Public/js/kindeditor/php/../attached/137/image/20160324/20160324181904_90659.jpg">
+
+                                                                            </td>
+                                                                            <td>业务标题</td>
+                                                                        </tr>
+                                                                        
+                                                                        <tr class="j-vtcl-mid">
+                                                                            <td class="txtmid">
+                                                                                <input type="checkbox" name="business_value[]" value="5" onClick="reservation_view(this)" title="测试" content="5" src="http://wsq2.cekasp.cn/Public/js/kindeditor/php/../attached/137/image/20160324/20160324181904_90659.jpg">
+                                                                            </td>
+                                                                            <td>业务标题</td>
+                                                                        </tr>
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+					
+					<div class="j-m j-h1 j-bkcl2"></div>
+					<div class="j-m j-h20"></div>
+					
+					<div class="j-m">
+						<input id="ids" name="ids" type="hidden">
+						<input id="reservation_ids" name="reservation_ids" type="hidden">
+                        <input id="isdatalist" name="isdatalist" type="hidden" value="-1" />
+						<input type="submit" class="j-button-red j-pct" value="保存">
+					</div>
+					<div class="j-m j-h20"></div>
+					</form>
+                    <!--表单-->
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>图文选择</h4>
+  </div>
+
+  <div class="modal-body">
+    <div class="article-list-page">
+      <table class="j-table">
+        <tbody>
+          <tr>
+            <td width="80">图文标题:</td>
+            <td width="200"><input type="text" id="titkey" /></td>
+            <td>
+              <select class="j-w90" id="requesttype">
+                <option value="">全部</option>
+                <volist name="catlist" id="cv">
+                <option value="{$cv.id}">{$cv.sty}{$cv.classname}</option>
+                </volist>
+              </select>
+            </td>
+            <td class="searchbtn"><a class="btn btn-default" onClick="aritcle_select.loaddata();">搜索</a></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" onChange="selectall(this)"> 全选</td>
+            <td>共有 <span id="total">0</span> 条符合条件</td>
+            <td colspan="3">
+              <a href="javascript:;" class="page-btn" onClick="page_pre()">上一页</a> 
+              第<span id="nowpage">1</span>页/共<span id="totalpage">1</span>页 
+              <a href="javascript:;" class="page-btn" onClick="page_next()">下一页</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="article-list" id="article-list">
+      <!-- loop -->
+      <div class="item" onclck="article_choose(this)">
+        <label>
+          <table class="j-table">
+            <tbody>
+            </tbody>
+          </table>
+        </label>
+      </div>
+      <!-- loop -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">确定</button>
+  </div>
+</div>
+<!-- Modal -->
+
+
+<!-- Modal -->
+<div id="myModa2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>项目选择</h4>
+  </div>
+
+  <div class="modal-body">
+    <div class="article-list-page">
+      <table class="j-table">
+        <tbody>
+          <tr>
+            <td width="80">项目:</td>
+            <td colspan="3">
+              <input type="text" class="j-w80" id="xmtitkey" />
+              <a class="btn btn-default j-ml8" onClick="xianm_select.loaddata();">搜索</a>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" onChange="xianm_selectall(this)"> 全选</td>
+            <td>共有 <span id="xianmtotal">0</span> 条符合条件</td>
+            <td colspan="2">
+              <a href="javascript:;" class="page-btn" onClick="xianm_page_pre()">上一页</a> 
+              第<span id="xianmnowpage">1</span>页/共<span id="xiamtotalpage">1</span>页 
+              <a href="javascript:;" class="page-btn" onClick="xianm_page_next()">下一页</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="article-list" id="xiamgu-list">
+      <!-- loop -->
+      <div class="item" onclck="xianm_choose(this)">
+        <label>
+          <table class="j-table">
+            <tbody>
+            </tbody>
+          </table>
+        </label>
+      </div>
+      <!-- loop -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">确定</button>
+  </div>
+</div>
+<!-- Modal -->
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+
+<script src="/static/weixin/js/emotionedit.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script>
+//回复类型选择
+function select_busness(){
+	var type=$("#business_type").val();
+	isdatalist = $("#business_type option:selected").attr("data-list");
+	var a=$("#business_type").find("option:selected");
+	
+	if(type=="reservation"){
+		$("#reservation_list").show();
+	}else{		
+		$("#reservation_list").hide();
+	}
+	
+	if(isdatalist) {
+		$("#btype-show-btn").show();
+		$("#isdatalist").val("1");
+		$("#xianmupro").show();
+	}else {
+		$("#btype-show-btn").hide();
+		$("#isdatalist").val("-1");
+		$("#xianmupro").hide();
+	}
+}
+
+function typeselect(){
+	var type=$("#type").val();
+	$("#typeslist>div").hide();
+	$("#type-"+type).show();
+	$("#isdatalist").val("-1");
+	
+	$("#btype-show-btn").hide();
+	
+	if(type=="article"){
+		$("#reservation_list").hide();
+		$("#article-show-btn").show();
+	}else if(type=="business"){
+		if($("#business_type").val()=="reservation"){
+			$("#reservation_list").show();			
+		}
+		$("#article-show-btn").hide();
+		select_busness();
+	}else{
+		$("#reservation_list").hide();
+		$("#article-show-btn").hide();
+	}
+	
+	
+	switch(type){
+		case "article":
+			
+		break;
+	}
+}
+
+
+$(this).ready(function(e) {
+    //编辑框初始化
+	dd = $("#editor_show").html();
+	dd = Emotion.replaceEmoji(dd);
+	$("#editor_show").html(dd);
+	
+	//回复类型选择
+	$("#type").bind("change",typeselect);//.find("option[value='business']").attr("selected",true);
+	
+	//业务模块选择
+	$("#business_type").bind("change",select_busness);//.find("option[value='reservation']").attr("selected",true);
+	
+	//$("#article-show-btn").bind("click",article_load);
+	
+	$("#type").val("{$detail.type|default='text'}");
+	$("#business_type").val("{$detail.business_type|default='official'}");
+	
+	typeselect();
+	select_busness();	
+});
+</script>
+
+<!-- 图文选择 -->
+<script>
+function article_delete(a){
+  var id=$(a).parent().find("input").val();
+  $("#article-list input[articleid='"+id+"']").prop("checked",'').parent().parent().parent().parent().parent().parent().removeClass("on");
+  $(a).parent().remove();
+}
+
+//勾选图文
+function article_choose(a){
+  var id=$(a).attr("articleid");
+  if($(a).is(":checked")){
+    if($("#articleid-"+id).length>0){
+      return false;
+    }
+    
+    if($(".article-list-select .input-prepend").length>=9){
+      $(a).prop("checked",'');
+      return false;
+    }
+    $(a).parent().parent().parent().parent().parent().parent().addClass("on");
+    var picurl=$(a).attr("picurl");
+    var title=$(a).attr("title");
+    
+    var html='<div class="input-prepend" id="articleid-'+ id +'"><input name="articleids[]" type="hidden" value="'+ id +'"><span class="add-on">'+ title +'</span><a class="btn" onClick="article_delete(this)"><span class="icon-remove"></span></a></div>';
+    
+    $(".article-list-select").append(html);
+  }else{
+    $(a).parent().parent().parent().parent().parent().parent().removeClass("on");
+    $("#articleid-"+id).remove();
+  }
+}
+
+//分类分页加载
+function aritcle_select(){
+  if(aritcle_select._init != 1){
+    aritcle_select._init      = 1;
+    aritcle_select.page       = 1;
+    aritcle_select.pagesize   = 15;
+    aritcle_select.pagetotal  = 0;
+    aritcle_select.requestUrl = "{:U('article/ajax')}";
+    
+    aritcle_select.html=function(jsondata){
+      var code='<div class="item"><label><table class="j-table"><tbody><tr><td class="input"><input onchange="article_choose(this)" type="checkbox" name="articleid[]" value="'+ jsondata.id +'" articleid="'+ jsondata.id +'" title="'+ jsondata.title +'" picurl="'+ jsondata.picurl +'"></td><td class="cover"><img src="'+ jsondata.picurl +'"></td><td class="title">'+ jsondata.title +'</td></tr></tbody></table></label></div>';
+      return code;
+    }
+
+    aritcle_select.loaddata=function(){
+      $("#article-list").html("");
+      $.post(aritcle_select.requestUrl,{
+        p:aritcle_select.page,
+        cid:$('#requesttype').val(),
+        keyword:$('#titkey').val(),
+      },function(data){
+		$("#total").html(data.total);
+		if(data.total==0) {
+			return;
+		}
+        var c=data.list.length;
+		
+        for(var i=0;i<c;i++){
+          $("#article-list").append(aritcle_select.html(data.list[i]));
+        }
+        //if(aritcle_select.page==1){
+          aritcle_select.pagetotal = Math.ceil(data.total/aritcle_select.pagesize);
+          $("#totalpage").html(aritcle_select.pagetotal);
+        //}
+      },'json');
+    }
+
+    aritcle_select.loaddata();
+  }
+}
+
+//全选
+function selectall(a){
+  if($(a).is(":checked")){
+    if($(".article-list-select .list-group-item").length>=9){
+      J_msgshow("最多选择9条");
+      return false;
+    }
+    $("#article-list input:checkbox").not(":checked").prop("checked",true).each(function(){
+      if($(".article-list-select .input-prepend").length>=9){
+        return false;
+      }
+      
+      $(this).parent().parent().parent().parent().parent().parent().addClass("on");
+      var id=$(this).attr("articleid");
+      var picurl=$(this).attr("picurl");
+      var title=$(this).attr("title");
+    
+      var html='<div class="input-prepend" id="articleid-'+ id +'"><input name="articleids[]" type="hidden" value="'+ id +'"><span class="add-on">'+ title +'</span><a class="btn" onClick="article_delete(this)"><span class="icon-remove"></span></a></div>';
+    
+    $(".article-list-select").append(html);
+    });
+  }else{
+    $("#article-list input:checkbox:checked").prop("checked",'');
+    $("#article-list .item").removeClass("on").each(function(){
+      var id = $(this).find("input:checkbox").val();
+      $("#articleid-"+id).remove();
+    });
+  }
+}
+
+//下一页
+function page_next(){
+  if(aritcle_select.pagetotal<=aritcle_select.page){
+    return false;
+  }
+  
+  aritcle_select.page++;
+  $("#nowpage").html(aritcle_select.page);
+  aritcle_select.loaddata();
+}
+
+//上一页
+function page_pre(){
+  if(aritcle_select.page<=1){
+    return false;
+  }
+  
+  aritcle_select.page--;
+  $("#nowpage").html(aritcle_select.page);
+  aritcle_select.loaddata();
+}
+
+function searchkeyword(){
+  aritcle_select.page=1;
+  aritcle_select.loaddata();
+}
+
+$(this).ready(function(){
+  $('#requesttype').on("change",function(){
+    aritcle_select.page=0;
+    aritcle_select.loaddata();
+  });
+
+  aritcle_select();
+});
+</script>
+<!-- 图文选择 -->
+
+
+
+<!-- 项目选择 -->
+<script>
+function xianm_delete(a){
+  var id=$(a).parent().find("input").val();
+  $("#xiamgu-list input[articleid='"+id+"']").prop("checked",'').parent().parent().parent().parent().parent().parent().removeClass("on");
+  $(a).parent().remove();
+}
+
+//勾选图文
+function xianm_choose(a){
+  var id=$(a).attr("articleid");
+  if($(a).is(":checked")){
+    if($("#xianmuid-"+id).length>0){
+      return false;
+    }
+    
+    if($(".xianmu-list-select .input-prepend").length>=9){
+      $(a).prop("checked",'');
+      return false;
+    }
+    $(a).parent().parent().parent().parent().parent().parent().addClass("on");
+    var picurl=$(a).attr("picurl");
+    var title=$(a).attr("title");
+    
+    var html='<div class="input-prepend" id="xianmuid-'+ id +'"><input name="xiamuids[]" type="hidden" value="'+ id +'"><span class="add-on">'+ title +'</span><a class="btn" onClick="xianm_delete(this)"><span class="icon-remove"></span></a></div>';
+    
+    $(".xianmu-list-select").append(html);
+  }else{
+    $(a).parent().parent().parent().parent().parent().parent().removeClass("on");
+    $("#xianmuid-"+id).remove();
+  }
+}
+
+//分类分页加载
+function xianm_select(){
+  if(xianm_select._init != 1){
+    xianm_select._init      = 1;
+    xianm_select.page       = 1;
+    xianm_select.pagesize   = 15;
+    xianm_select.pagetotal  = 0;
+    xianm_select.requestUrl = "{:U('xianmu/ajax')}";
+    
+    xianm_select.html=function(jsondata){
+      var code='<div class="item"><label><table class="j-table"><tbody><tr><td class="input"><input onchange="xianm_choose(this)" type="checkbox" name="articleid[]" value="'+ jsondata.id +'" articleid="'+ jsondata.id +'" title="'+ jsondata.title +'" picurl="'+ jsondata.picurl +'"></td><td class="cover"><img src="'+ jsondata.picurl +'"></td><td class="title">'+ jsondata.title +'</td></tr></tbody></table></label></div>';
+      return code;
+    }
+
+    xianm_select.loaddata=function(){
+      $("#xiamgu-list").html("");
+      $.post(xianm_select.requestUrl,{
+        p:xianm_select.page,
+		btype:$('#business_type').val(),
+        keyword:$('#xmtitkey').val(),
+      },function(data){
+		$("#xianmtotal").html(data.total);
+		if(data.total==0) {
+			return;
+		}
+        var c=data.list.length;
+		
+        for(var i=0;i<c;i++){
+          $("#xiamgu-list").append(xianm_select.html(data.list[i]));
+        }
+        //if(xianm_select.page==1){
+          xianm_select.pagetotal = Math.ceil(data.total/xianm_select.pagesize);
+          $("#xiamtotalpage").html(xianm_select.pagetotal);
+        //}
+      },'json');
+    }
+  }
+}
+
+//全选
+function xianm_selectall(a){
+  if($(a).is(":checked")){
+    if($(".xianmu-list-select .list-group-item").length>=9){
+      J_msgshow("最多选择9条");
+      return false;   
+    }
+    $("#xiamgu-list input:checkbox").not(":checked").prop("checked",true).each(function(){
+      if($(".xianmu-list-select .input-prepend").length>=9){
+        return false;
+      }
+      
+      $(this).parent().parent().parent().parent().parent().parent().addClass("on");
+      var id=$(this).attr("articleid");
+      var picurl=$(this).attr("picurl");
+      var title=$(this).attr("title");
+    
+      var html='<div class="input-prepend" id="xianmuid-'+ id +'"><input name="xiamuids[]" type="hidden" value="'+ id +'"><span class="add-on">'+ title +'</span><a class="btn" onClick="xianm_delete(this)"><span class="icon-remove"></span></a></div>';
+    
+    $(".xianmu-list-select").append(html);
+    });
+  }else{
+    $("#xiamgu-list input:checkbox:checked").prop("checked",'');
+    $("#xiamgu-list .item").removeClass("on").each(function(){
+      var id = $(this).find("input:checkbox").val();
+      $("#xianmuid-"+id).remove();
+    });
+  }
+}
+
+//下一页
+function xianm_page_next(){
+  if(xianm_select.pagetotal<=xianm_select.page){
+    return false;
+  }
+  
+  xianm_select.page++;
+  $("#xianmnowpage").html(xianm_select.page);
+  xianm_select.loaddata();
+}
+
+//上一页
+function xianm_page_pre(){
+  if(xianm_select.page<=1){
+    return false;
+  }
+  
+  xianm_select.page--;
+  $("#xianmnowpage").html(xianm_select.page);
+  xianm_select.loaddata();
+}
+
+function xianm_searchkeyword(){
+  xianm_select.page=1;
+  xianm_select.loaddata();
+}
+
+$(this).ready(function(){
+	xianm_select();
+});
+</script>
+<!-- 项目选择 -->
+</body>
+</html>

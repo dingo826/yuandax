@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>社区圈子</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<notempty name="list['join']">
+<div class="weui_panel weui_panel_access circle-index">
+  <div class="weui_panel_hd">我的圈子</div>
+  <div class="weui_panel_bd">
+    <!-- loop -->
+    <volist name="list['join']" id="item">
+    <a href="{:U('show?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_media_box weui_media_appmsg">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb filleted-corner" src="{$item.logo}">
+      </div>
+      <div class="weui_media_bd">
+        <h4 class="weui_media_title">{$item.name}</h4>
+        <p class="weui_media_desc">{$item.description}</p>
+      </div>
+    </a>
+    </volist>
+    <!-- loop -->
+  </div>
+</div>
+</notempty>
+
+<div class="weui_panel weui_panel_access circle-index">
+  <div class="weui_panel_hd">全部圈子</div>
+  <div class="weui_panel_bd">
+    <!-- loop -->
+    <volist name="list['notJoin']" id="item">
+    <div class="weui_media_box weui_media_appmsg">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb filleted-corner" src="{$item.logo}">
+      </div>
+      <div class="weui_media_bd">
+        <h4 class="weui_media_title">{$item.name}</h4>
+        <p class="weui_media_desc">
+          {$item.description}
+        </p>
+      </div>
+      <eq name="item.isverf" value="1">
+      <a class="status" href="{:U('join?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}">
+        <span class="add"></span>
+      </a>
+      </eq>
+      <eq name="item.isverf" value="2">
+      <div class="status">
+        <span class="weui_icon_waiting_circle"></span>
+      </div>
+      </eq>
+    </div>
+    </volist>
+    <!-- loop -->
+  </div>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

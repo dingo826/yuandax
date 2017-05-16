@@ -1,0 +1,33 @@
+/* 背景 */
+body{}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 5px}
+.menu .item{width: 48.5%; display: block; float: left; margin-left: 1%; margin-bottom: 3px; height: 150px; color: #FFF}
+.menu .item:active{opacity: 0.6}
+.menu .item .icon{text-align: center;}
+.menu .item .title{width: 80%; text-indent: 1em; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; line-height: 30px}
+
+/* 颜色 */
+.menu .item:nth-child(n){background-color: #d87570; font-size: 16px}
+.menu .item:nth-child(2n){background-color: #b2cebf; height: 75px;}
+.menu .item:nth-child(3n){background-color: #bc4040}
+.menu .item:nth-child(4n){background-color: #6f9e98; height: 75px; margin-top: -78px}
+
+.menu .item:nth-child(4n+1){background-color: #d87570}
+.menu .item:nth-child(4n+2){background-color: #b2cebf}
+.menu .item:nth-child(4n+3){background-color: #bc4040}
+.menu .item:nth-child(4n+4){background-color: #6f9e98}
+
+.menu .item:nth-child(n) .icon,.menu .item:nth-child(4n+1) .icon{font-size: 50px; line-height: 90px}
+.menu .item:nth-child(2n) .icon,.menu .item:nth-child(4n+2) .icon{font-size: 28px; line-height: 28px}
+
+.footer{line-height: 50px; clear: both; text-align: center; height: 10px}
+
+/* 小于等于250 */
+@media (max-width: 250px) {
+  .menu .item{width: 100%; margin: 0 auto}
+}

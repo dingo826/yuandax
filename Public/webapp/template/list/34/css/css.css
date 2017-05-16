@@ -1,0 +1,24 @@
+body{font-size: 14px; background: #fef3de}
+.table{padding: 0; margin: 0; width: 100%; border-spacing: 0; border: 0}
+.table td{padding: 0; border:0; vertical-align: middle;}
+.table.padding td{padding: 1px}
+
+.list{margin: 20px 15px}
+.list .item{position: relative; display: flex; display: -webkit-flex; border: 1px solid rgba(217,228,163,0.8); background-color: #fffcd9; margin: 10px 0}
+.list .item:active{opacity: .8}
+.list .item .item-tile{display: inline-flex; display: -webkit-inline-flex; flex: 1; -webkit-flex:1; position: relative}
+.list .item .thumb{width: 80px; height: 80px; overflow: hidden;}
+.list .item .thumb img{width: 80px; height: 80px}
+.list .item .title{position: absolute;  width: 100%; margin-left: 10px}
+.list .item .headtitle{font-size: 16px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%; line-height:30px; color: #a8d158}
+.list .item .subtitle{color: #acafb6; width: 100%; text-overflow: ellipsis; overflow: hidden; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical;}
+.list .item .icon{display: inline-flex; display: -webkit-inline-flex; width: 12px}
+
+.page{display: flex; display: -webkit-flex; margin: 15px}
+.page .item{-webkit-flex:1; flex:1;}
+.page .pagenum{text-align: center; line-height: 36px}
+.page .btn{display: block; text-align: center; background: #FFF; padding: 8px 0; border-radius: 6px}
+.page .btn:active{opacity: .5}
+
+.footer{text-align: center; min-height: 30px; clear: both;}
+.footer a{line-height: 50px}

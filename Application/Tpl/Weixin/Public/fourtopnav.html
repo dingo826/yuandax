@@ -1,0 +1,48 @@
+<div class="j-nav j-nav-top">
+    <ul>
+       <li>
+            <a <eq name="Think.MODULE_NAME" value="Message">class="active"</eq> href="{:U('message/index')}">用户消息</a>
+        </li>
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Member">class="active"</eq> href="{:U('member/index')}">居民中心</a>
+        </li>
+        <eq name="fun['messageboard']" value="1">
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Messageboard">class="active"</eq> href="{:U('messageboard/index')}">社区留言</a>
+        </li>
+        </eq>
+        <eq name="fun['wereserve']" value="1">
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Wereserve">class="active"</eq> href="{:U('wereserve/index')}">社区预约</a>
+        </li>
+        </eq>
+        <eq name="fun['circle']" value="1">
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Circle">class="active"</eq> href="{:U('circle/index')}">社区圈子</a>
+        </li>
+        </eq>
+        <eq name="fun['wxqun']" value="1">
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Wxqun">class="active"</eq> href="{:U('wxqun/index')}">社区微信群</a>
+        </li>
+        </eq>
+        <eq name="fun['survey']" value="1">
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Survey">class="active"</eq> href="{:U('survey/index')}">社区调研</a>
+        </li>
+        </eq>
+        <eq name="fun['huodong']" value="1">
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Huodong">class="active"</eq> href="{:U('huodong/index')}">活动报名</a>
+        </li>
+        </eq>
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Games">class="active"</eq> href="{:U('games/index')}">游戏管理</a>
+        </li>
+        <eq name="fun['vote']" value="1">
+        <li>
+            <a <eq name="Think.MODULE_NAME" value="Vote">class="active"</eq> href="{:U('vote/index')}">投票</a>
+        </li>
+        </eq>
+    </ul>
+</div>

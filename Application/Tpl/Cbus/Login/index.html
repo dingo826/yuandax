@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>登陆-社区商户</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="headback">
+  <img src="__PUBLIC__/webapp/image/u3945.jpg">
+</div>
+
+<div class="seller-regbtn j-flex blue-line">
+  <div class="flex">
+    <a class="btn btn-blue active" href="{:U('login/index?fromid='.$formid)}">商户登录</a>
+  </div>
+  <div class="flex">
+    <a class="btn" href="{:U('reg/index?fromid='.$formid)}">商户注册</a>
+  </div>
+</div>
+
+<form id="form" action="" method="post">
+<div class="form">
+  <!-- 表单组 -->
+  <div class="form-head fz-sm">
+    如果您是社区周边的商户，您可以在通过提交注册信息在社区微信平台上注册商户身份。注册成功后您可以向周边的社区及居民发布优惠信息。
+  </div>
+  <div class="form-group">
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">手机号码</div>
+        <div class="flex">
+          <input type="text" placeholder="请输入手机号码" name="mphone" datatype="Mobile" msg="请正确输入手机号码">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+    
+    <!-- input选择框 -->
+    <div class="c">
+      <div class="input nomal j-flex j-flex-center">
+        <div class="label-msg">密码</div>
+        <div class="flex">
+          <input type="password" placeholder="请输入密码" name="passwd" datatype="Require" msg="请输入密码">
+        </div>
+      </div>
+    </div>
+    <!-- input选择框 -->
+  </div>
+  <!-- 表单组 -->
+  
+  <div class="btn-group bigroom">
+    <a id="submit" class="btn btn-blue">登录</a>
+  </div>
+  
+  <div class="btn-group bigroom">
+      <a class="btn btn-red" href="{:U('index/index?fromid='.$formid)}">返回</a>
+    </div>
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+
+<script>
+$("input").on("keyup",function(){
+	$("#submit").off("click");
+  if(Validator.Validate(document.getElementById("form"),6)){
+    $("#submit").on("click",function(){
+      //Validator_error_5('帐号密码错误',{});
+      $.post("", $("#form").serialize(), function(data) {
+        if(data.status==-1) {
+          Validator_error_5(data.message,{});
+		  return false;
+        }
+		location.href = "{:U('manage/index?fromid='.$formid)}";
+      },"json");
+    });
+  }
+});
+</script>
+
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

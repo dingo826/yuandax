@@ -1,0 +1,28 @@
+body{font-size: 14px;}
+
+.list{margin: 10px 15px}
+.list .item{position: relative; background: #f9f9f9; border-radius: 6px; display: flex; display: -webkit-flex; margin: 20px 0}
+.list .item .time{width: 70px;}
+.list .item .time span{color: #FFF; text-align: center; display: block;}
+.list .item .time span.c{padding: 10px 5px; border-radius: 10px; background-image: linear-gradient( #999 , #000); background-image: -webkit-linear-gradient( #999 , #000); background-image: -webkit-gradient(linear, left top, left bottom, from( #999), to( #000 )); margin-right: 10px}
+.list .item .time span.date{font-size: 16px}
+.list .item .time span.year{font-size: 20px}
+
+.list .item .content{box-shadow: 1px 2px 3px #666; -webkit-box-shadow: 1px 2px 3px #666; flex: 1; -webkit-flex:1; border-radius: 15px}
+.list .item .content:active{opacity: .8}
+.list .item .content .c{margin:0 auto; padding: 15px; position: relative;}
+
+.list .item .thumb{margin: 8px 0}
+.list .item .thumb img{max-width: 100%}
+.list .item .title{position: absolute;  width: 100%; line-height:30px; text-indent: 1em}
+.list .item .headtitle{font-size: 16px;}
+.list .item .subtitle{}
+
+.page{display: flex; display: -webkit-flex; margin: 15px}
+.page .item{-webkit-flex:1; flex:1;}
+.page .pagenum{text-align: center; line-height: 36px}
+.page .btn{display: block; text-align: center; background: #f1f2f4; padding: 8px 0; border-radius: 6px}
+.page .btn:active{opacity: .5}
+
+.footer{text-align: center; min-height: 30px; clear: both;}
+.footer a{line-height: 50px}

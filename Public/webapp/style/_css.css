@@ -1,0 +1,166 @@
+body{background: #fbf9fe; font-size: 14px}
+.fix{position: fixed}
+.full{width: 100%; height: 100%;}
+.table{padding: 0; margin: 0; width: 100%; border-spacing: 0; border: 0}
+.table td{padding: 0; border:0; vertical-align: middle;}
+.table.padding td{padding: 1px}
+
+/* 加载页面 */
+.loadcp{transition: all .3s; -webkit-transform:translateX(100%); transform:translateX(100%); position: fixed; width: 100%; height: 100%; overflow-x:hidden; overflow-y: auto; background: #fbf9fe; z-index: 1; top: 0}
+.loadcp.loadcp-show{transform: translateX(0); -webkit-transform:translateX(0)}
+
+/* 头像 */
+.avatar-circle{border-radius: 50%}
+
+/*  一些通用样式 */
+.lable-circle{border-radius: 12px; padding: 2px 8px; color: #FFF; font-size: 12px; display: inline-block; margin: 5px 0; background: #FFF}
+.lable-circle.bg-gray{background: #999}
+.lable-circle.bg-green{background: #3cc51f}
+.lable-circle.bg-mred{background: #F76260}
+.lable-circle.bg-blue{background: #10AEFF}
+.lable-circle.bg-yellow{background: #FFBE00}
+.filleted-corner{border-radius: 4px}
+
+/* 幻灯 */
+.swiper-wrapper img{width: 100%;}
+
+/* 通用头部平铺图片 */
+.headcover{width: 100%; clear: both;}
+.headcover img{width: 100%}
+
+/* 文章 */
+.article{padding: 20px 15px 15px 15px; background-color: #fff;}
+.article .title{font-size: 24px; line-height: 1.4; margin-bottom: 10px; font-weight: 400;}
+.article .time{margin-bottom: 18px;}
+.article .time .i{color: #8c8c8c; font-size: 16px;  display: inline-block;}
+.article .time a.i{color: #607fa6}
+.article .cover img{width: 100%; display: block; margin: 0 auto;}
+.article .content{color: #3e3e3e; font-size: 16px;}
+.article .content p{clear: both; white-space: pre-wrap;}
+.article .content section p{white-space: normal;}
+.article .content img{width: auto!important; max-width: 100%!important; height: auto!important}
+
+/* 居民卡 */
+.idcard{width: 100%; padding: 10px 0}
+.idcard .card{border-radius: 8px; height: 180px; overflow: hidden; background-repeat: no-repeat;background-size: cover; margin: 10px auto; color: #FFF; background: #ccc; width: 90%; max-width: 350px; -webkit-box-shadow:0px 2px 10px #333333; box-shadow:0px 2px 10px #333333; position: relative;}
+.idcard .card a{color: #FFF}
+.idcard .card .user{position: absolute; left: 15px; top:15px}
+.idcard .card .user .table td{padding: 1px 3px}
+.idcard .card .user .avatar img{width: 50px; height: 50px;border-radius: 50%}
+.idcard .card .number{font-size: 20px; position: absolute; left: 15px; bottom: 15px}
+.idcard .card .logo{position: absolute; right: 15px; top: 15px}
+.idcard .card .logo img{width: 50px; height: 50px; border-radius: 5px}
+.idcard .card .info{position: absolute; right: 15px; bottom: 15px; font-size: 20px}
+
+.idcard-list{width: 100%; margin: 8px 0}
+.idcard-list:first-child{}
+.idcard-list .headtitle{line-height: 25px; text-align: center; color: #b1b1b1; font-size: 14px}
+.idcard-list .container{width: 100%; background-color: #FFF;}
+.idcard-list .list{margin: 0 15px; padding: 8px 0}
+.idcard-list .list .item{float: left; width: 25%; text-align: center; margin: 5px 0}
+.idcard-list .item .icon{display: block; width: 50px; height: 50px; border-radius: 50%; margin: 0 auto; color: #FFF; line-height: 50px; font-size: 25px; text-align: center; position: relative;}
+.idcard-list .item .tag:before{content:""; position: absolute; right: 4px; top:4px; display: block; width: 8px; height: 8px; background-color: #ff0000; border-radius: 50%;}
+.idcard-list .item .title{text-overflow: ellipsis; overflow: hidden; margin-top: 8px; white-space: nowrap;}
+.idcard-list .item .cover img{border-radius: 5px; width: 50px; height: 50px; padding: 1px; border:1px solid #cdcdcd;}
+
+.idcard-list .item:nth-child(n) .icon{background-color: #a2cd4b}
+.idcard-list .item:nth-child(2n) .icon{background-color: #b086d4}
+.idcard-list .item:nth-child(3n) .icon{background-color: #50c3a1}
+.idcard-list .item:nth-child(4n) .icon{background-color: #58a1f3}
+.idcard-list .item:nth-child(5n) .icon{background-color: #ef656c}
+.idcard-list .item:nth-child(6n) .icon{background-color: #f5a22b}
+.idcard-list .item:nth-child(7n) .icon{background-color: #ffea45}
+.idcard-list .item:nth-child(8n) .icon{background-color: #ff2626}
+
+/* 留言板 */
+.message-addbtn{position: fixed; bottom: 0; padding: 8px 0; border-top: 1px solid #DDD; width: 100%; background-color: #fbf9fe}
+.message-addbtn a{margin: 0 15px}
+.message-unopen{font-size: 14px}
+
+/* 仿微信聊天 */
+.j-talk-container{position: fixed; width: 100%; overflow-x: hidden; overflow-y: auto; top: 0; bottom: 50px}
+.j-talk-container .talktime{text-align:center; color:#777; width:100%; clear:both; padding:5px 0; margin-bottom:25px; font-size: 12px}
+.j-talk-container-main{margin:0 15px; padding: 15px 0}
+.j-talk-container-main .loadmore{display:block; text-align:center; padding:10px 0; background:#efefef}
+.j-talk-container-main .newmsg-mention{color:#F33; text-align:center; padding:10px 0; display:block}
+.j-talk-line{}
+.j-talk-line .avatar{width:60px; height: 60px}
+.j-talk-line .avatar img{width:60px; height:60px; border-radius: 50%}
+.j-talk-line .icon-caret-left{color:#FFF; font-size:30px; margin-top:5px; float:left; margin-left:2px}
+.j-talk-line .icon-caret-right{color:#b2e866; font-size:30px; margin-top:5px; float:left; margin-left:-2px}
+.j-talk-line .content{padding:13px 15px; border-radius:4px; background:#FFF; margin-left:-2px; font-size:14px; min-height:15px; word-break:break-all; float:left}
+.j-talk-line .content-friend{padding:13px 15px; border-radius:4px; background:#b2e866; font-size:13px; min-height:15px; word-break:break-all; float:right}
+.j-talk-line .content-friend img,.j-talk-line .content img,.j-talk-line .content video,.j-talk-line .content-friend video,.j-talk-line .content audio,.j-talk-line .content-friend audio{max-width:325px; margin:0 auto; display:block}
+.j-talk-line .content-txt img{display:inline-block}
+.j-talk-message-input{background: #FFF; border-top: 1px solid #DDD; padding: 10px 0; width: 100%; position: fixed; bottom: 0; left: 0}
+.j-talk-message-input table{width: 100%; border-spacing: 0}
+.j-talk-message-input td.btn{width: 60px; text-align: center; vertical-align: middle;}
+.j-talk-message-input td.btn a{overflow:visible; color: #FFF}
+.j-talk-message-input td{padding: 0}
+.j-talk-message-input input{width: 94%; padding: 6px 2%; outline: none; border:none; border-bottom: 1px solid #CCC; display: block; margin: 0 auto; font-size: 14px}
+
+/* 通用相册 */
+.global-photoalbum{margin: 0 15px;}
+.global-photoalbum .title{position: absolute;bottom: 0;background: rgba(0,0,0,0.5);color: #FFF;width: 100%;text-align: center;}
+.global-photoalbum .item{float: left;width: 48%;box-sizing: border-box;height: 150px;background: #FFF;margin-top: 5px;margin-bottom: 5px;position: relative;}
+.global-photoalbum .item:active{opacity: 0.8}
+.global-photoalbum .pic{background: #FFF;display: block;margin: 0 5px;height: 140px;margin-top: 5px;background-repeat: no-repeat;background-position: center;background-size: cover;}
+.global-photoalbum .item:nth-child(2n){margin-left: 4%}
+.global-photoalbum-scale{position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0,0,0,0.5);}
+.global-photoalbum-scale .viewcontainer{vertical-align: middle;text-align: center;}
+.global-photoalbum-scale .viewcontainer img{max-width: 100%;max-height: 500px;display: block;margin: 0 auto;}
+.global-photoalbum-scale .swiper-container{width: 100%;height: 100%;}
+.global-photoalbum-scale  .title{width: 100%;position: absolute;bottom: 0;background: #444;}
+.global-photoalbum-scale  .title div{margin: 8px 15px;color: #FFF;text-align: left;word-break:break-all;}
+
+/* 我的二维码 */
+.qrcode .code{margin: 0 15px; text-align: center; background: #FFF; border-radius: 5px;}
+.qrcode img{max-width: 100%; max-height: 100%}
+.qrcode .name{line-height: 50px; text-align: center;}
+
+/* 圈子 */
+.circle-index .status{margin-left: 15px}
+.circle-index .status .add{border:1px solid #09bb07; border-radius: 50%; color: #09bb07; display: block; position: relative; width: 20px; height: 20px; margin-right: 1px}
+.circle-index .status .add:before{content: "+";  text-align: center; position: absolute; width: 100%; line-height: 19px; font-size: 18px}
+.circle-menu{position: fixed; bottom: 0}
+.circle-menu-h{height: 55px; width: 100%; clear: both;}
+.circle-menu .weui_tabbar_icon{color: #888}
+.circle-menu .weui_tabbar_icon{text-align: center; font-size: 20px}
+.weui_bar_item_on .icon{color: #09bb07}
+.circle-newlist .weui_cell_hd img{width: 30px; height: 30px; display: block; margin-right: 5px}
+.circle-newlist .weui_cell_primary{flex: 16}
+.circle-newlist .weui_cell_primary p{white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.circle-member li{position: relative;}
+.circle-member li .username{position: absolute; width: 100%; opacity: 0.5; background-color: #000; color: #FFF; bottom: 0; padding: 3px 0; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-size: 14px}
+
+/* 社区调研 */
+.servey-body{background-color: #0c9553}
+.servey-start{background: #FFF; margin: 50px 15px; border-radius: 6px}
+.servey-start .title{font-size: 26px; text-align: center; line-height: 50px}
+.servey-start .content{padding: 15px; margin: 0 auto}
+.weui-btn-servey{border:none; color: #0c9553; background-color: #FFF}
+.weui-btn-servey:active{opacity: .8}
+.questionlist{overflow-x: hidden; overflow-y: auto; position: fixed; width: 100%; height: 100%}
+.questionlist .question{width: 100%; position: absolute; left: 100%; transition: all .6s; -webkit-transition: all .6s; height: 0; overflow-y: hidden;}
+.questionlist .question:first-child{left: 0; height:auto}
+.questionlist .weui_btn_area{display: -webkit-flex; display: flex;}
+.questionlist .weui_btn_area .btn{-webkit-flex:1; flex: 1; margin: 0 9px; padding: 0 1px}
+.questionlist .weui_btn_area .btn a{overflow: visible;}
+
+/* 社区预约 */
+.date-list{font-size: 14px}
+.date-list .item{margin: 10px 15px; border-radius: 5px 5px 0 0; background-color: #FFF}
+.date-list .head{text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding: 8px 15px; background-color: #E1E1E1; border-radius: 5px 5px 0 0; font-size: 16px; position: relative;}
+.date-list .head .lable-circle{position: absolute; right: 15px; top: 5px}
+.date-list .content{border:1px solid #E1E1E1; padding: 8px 15px}
+.date-list .content .weui_btn{margin: 8px 0px}
+.date-form select{color: #a9a9a9}
+.date-form .weui_panel_hd{font-size: 16px}
+.date-form .weui_cell_bd p{font-size: 14px}
+
+/* 微信群 */
+.group-qrcode{margin: 10px 15px; text-align: center;}
+.group-qrcode img{max-width: 100%; -webkit-box-shadow:0px 2px 10px #333333; box-shadow:0px 2px 10px #333333;}
+
+.footer{text-align: center; min-height: 30px; clear: both;}
+.footer a{line-height: 50px}

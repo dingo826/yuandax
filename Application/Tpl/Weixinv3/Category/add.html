@@ -1,0 +1,536 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            <include file="Public:v3topnavn_neirong" />
+          
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+                    	添加栏目
+                      <div class="j-fr">
+                        <a class="j-newbtn" href="{:U('index')}">返回网站栏目</a>
+                      </div>
+                    </div>
+                    <div class="j-hr-1"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" autocomplete="off" onSubmit="return Validator.Validate(this,4)">
+                        <div class="j-m j-h1"></div>
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                            <thead>
+                                
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">名称</td>
+                                                        <td>
+                                                            <input type="text" name="classname" id="classname" class="j-w90" value="{$detail.classname}" datatype="Require" msg="请输入名称" />
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">描述</td>
+                                                        <td>
+                                                            <input type="text" name="description" id="description" class="j-w90" value="{$detail.description}" />
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                         <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">封面</td>
+                                                        <td>
+                                                            <span id="bg_imgview" class="uploadimg j-fl">
+                                                                <img src="{$detail.picurl_s|default='__PUBLIC__/static/images/pic_1.jpg'}" />
+                                                            </span>
+                                                            <div class="j-fl">
+                                                              封面文件不超过2M<br>
+                                                              <label class="uploadform j-fl">
+                                                                <input class="j-upload-file j-hide" type="file" accept="image/jpeg,image/x-png" onChange="upload('image', this)">
+                                                                <input type="hidden" name="picurl" value="{$detail.picurl|default='__PUBLIC__/static/images/pic_1.jpg'}" id="show_bg_img">
+                                                                <a class="j-button-upload">上传</a>
+                                                              </label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">图标</td>
+                                                        <td>
+                                                            <a href="javascript:;" onClick="show_iconlist()"><span id="show_icon" class="j-fz-30 {$detail.icon|default='icon-edit'}"></span> 换一个</a>
+                                                            <input name="icon" id="icon" type="hidden" value="{$detail.icon|default='icon-edit'}" />
+                                                            
+                                                            <div class="j-m j-fcolor-2">
+                                                            	该图标用于二级页面右上角的缩略菜单和部分模板的首页主菜单
+                                                            </div>
+                                                            <div id="iconlist_1" class="j-iconlist j-hide">
+                                                            	<div class="j-m j-h10"></div>
+                                                            	<ul>
+                                                                	<li><a class="icon-edit"></a></li>
+                                                                    <li><a class="icon-adjust"></a></li>
+                                                                    <li><a class="icon-magic"></a></li>
+                                                                    <li><a class="icon-asterisk"></a></li>
+                                                                    <li><a class="icon-envelope"></a></li>
+                                                                    <li><a class="icon-magnet"></a></li>
+                                                                    <li><a class="icon-envelope-alt"></a></li>
+                                                                    <li><a class="icon-map-marker"></a></li>
+                                                                    <li><a class="icon-shopping-cart"></a></li>
+                                                                    <li><a class="icon-bar-chart"></a></li>
+                                                                    
+                                                                    <li><a class="icon-exchange"></a></li>
+                                                                    <li><a class="icon-signal"></a></li>
+                                                                    <li><a class="icon-barcode"></a></li>
+                                                                    <li><a class="icon-mobile-phone"></a></li>
+                                                                    <li><a class="icon-beer"></a></li>
+                                                                    <li><a class="icon-money"></a></li>
+                                                                    <li><a class="icon-sitemap"></a></li>
+                                                                    <li><a class="icon-bell"></a></li>
+                                                                    <li><a class="icon-eye-open"></a></li>
+                                                                    <li><a class="icon-move"></a></li>
+                                                                    
+                                                                    <li><a class="icon-facetime-video"></a></li>
+                                                                    <li><a class="icon-music"></a></li>
+                                                                    <li><a class="icon-bolt"></a></li>
+                                                                    <li><a class="icon-fighter-jet"></a></li>
+                                                                    <li><a class="icon-book"></a></li>
+                                                                    <li><a class="icon-film"></a></li>
+                                                                    <li><a class="icon-bookmark"></a></li>
+                                                                    <li><a class="icon-bookmark-empty"></a></li>
+                                                                    <li><a class="icon-star"></a></li>
+                                                                    <li><a class="icon-star-empty"></a></li>
+                                                                    
+                                                                    <li><a class="icon-briefcase"></a></li>
+                                                                    <li><a class="icon-flag"></a></li>
+                                                                    <li><a class="icon-fire"></a></li>
+                                                                    <li><a class="icon-pencil"></a></li>
+                                                                    <li><a class="icon-bullhorn"></a></li>
+                                                                    <li><a class="icon-folder-close"></a></li>
+                                                                    <li><a class="icon-picture"></a></li>
+                                                                    <li><a class="icon-tablet"></a></li>
+                                                                    <li><a class="icon-calendar"></a></li>
+                                                                    <li><a class="icon-folder-open"></a></li>
+                                                                    
+                                                                    <li><a class="icon-plane"></a></li>
+                                                                    <li><a class="icon-tag"></a></li>
+                                                                    <li><a class="icon-camera"></a></li>
+                                                                    <li><a class="icon-tags"></a></li>
+                                                                    <li><a class="icon-camera-retro"></a></li>
+                                                                    <li><a class="icon-tasks"></a></li>
+                                                                    <li><a class="icon-certificate"></a></li>
+                                                                    <li><a class="icon-food"></a></li>
+                                                                    <li><a class="icon-print"></a></li>
+                                                                    <li><a class="icon-check"></a></li>
+                                                                    
+                                                                    <li><a class="icon-gift"></a></li>
+                                                                    <li><a class="icon-pushpin"></a></li>
+                                                                    <li><a class="icon-glass"></a></li>
+                                                                    <li><a class="icon-qrcode"></a></li>
+                                                                    <li><a class="icon-time"></a></li>
+                                                                    <li><a class="icon-globe"></a></li>
+                                                                    <li><a class="icon-tint"></a></li>
+                                                                    <li><a class="icon-group"></a></li>
+                                                                    <li><a class="icon-trash"></a></li>
+                                                                    <li><a class="icon-trophy"></a></li>
+                                                                    
+                                                                    <li><a class="icon-hdd"></a></li>
+                                                                    <li><a class="icon-cloud"></a></li>
+                                                                    <li><a class="icon-headphones"></a></li>
+                                                                    <li><a class="icon-truck"></a></li>
+                                                                    <li><a class="icon-heart"></a></li>
+                                                                    <li><a class="icon-heart-empty"></a></li>
+                                                                    <li><a class="icon-umbrella"></a></li>
+                                                                    <li><a class="icon-coffee"></a></li>
+                                                                    <li><a class="icon-cog"></a></li>
+                                                                    <li><a class="icon-home"></a></li>
+                                                                    
+                                                                    <li><a class="icon-cogs"></a></li>
+                                                                    <li><a class="icon-inbox"></a></li>
+                                                                    <li><a class="icon-user"></a></li>
+                                                                    <li><a class="icon-comment"></a></li>
+                                                                    <li><a class="icon-info-sign"></a></li>
+                                                                    <li><a class="icon-reorder"></a></li>
+                                                                    <li><a class="icon-user-md"></a></li>
+                                                                    <li><a class="icon-key"></a></li>
+                                                                    <li><a class="icon-leaf"></a></li>
+                                                                    <li><a class="icon-comments"></a></li>
+                                                                    
+                                                                    <li><a class="icon-comments-alt"></a></li>
+                                                                    <li><a class="icon-laptop"></a></li>
+                                                                    <li><a class="icon-volume-up"></a></li>
+                                                                    <li><a class="icon-legal"></a></li>
+                                                                    <li><a class="icon-credit-card"></a></li>
+                                                                    <li><a class="icon-dashboard"></a></li>
+                                                                    <li><a class="icon-lemon"></a></li>
+                                                                    <li><a class="icon-road"></a></li>
+                                                                    <li><a class="icon-wrench"></a></li>
+                                                                    <li><a class="icon-zoom-in"></a></li>
+                                                                    
+                                                                    <li><a class="icon-screenshot"></a></li>
+                                                                    <li><a class="icon-rss"></a></li>
+                                                                    <li><a class="icon-lock"></a></li>
+                                                                    <li><a class="icon-file-alt"></a></li>
+                                                                    <li><a class="icon-paste"></a></li>
+                                                                    <li><a class="icon-th-list"></a></li>
+                                                                    <li><a class="icon-th-large"></a></li>
+                                                                    <li><a class="icon-phone-sign"></a></li>
+                                                                    <li><a class="icon-h-sign"></a></li>
+                                                                    <li><a class="icon-stethoscope"></a></li>
+                                                                </ul>
+                                                                <div class="j-m j-h10"></div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">所属分类</td>
+                                                        <td>
+                                                            <select class="j-w-150" name="category_id">
+                                                            	<option value="0">根分类</option>
+                                                                <volist name="calist" id="cv">
+                                                                <neq name="detail.id" value="$cv.id">
+                                                                    <option value="{$cv.id}" <eq name="cv.id" value="$detail.category_id"> selected="selected" </eq>>{$cv.sty}{$cv.classname}</option>
+                                                                </neq>
+                                                                </volist>
+                                                            </select>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">官网显示</td>
+                                                        <td>
+                                                            <label><input type="checkbox" name="is_home" id="is_home" <eq name="detail.is_home" value="1">checked</eq> value="1"> 显示</label> 
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <!--start-input:text-->
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">类型</td>
+                                                        <td>
+                                                            <select class="j-w-150" id="type" name="type">
+                                                            	<option value="article">图文</option>
+                                                                <option value="link">链接</option>
+                                                                <option value="tel">电话</option>
+                                                                <option value="business">业务模块</option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                
+                                <tr id="type-link" style="display: none" class="type">
+                                    <td>
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">链接</td>
+                                                        <td>
+                                                            <input type="text" name="link" id="link" class="j-w50" value="{$detail.link}" />
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="type-tel" style="display: none" class="type">
+                                    <td>
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">电话</td>
+                                                        <td>
+                                                            <input type="text" name="tel" id="tel" class="j-w50" value="{$detail.tel}" />
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="type-business" style="display: none" class="type">
+                                    <td>
+                                        <div class="textarea-group">
+                                            <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="j-w-80 j-input-lalel">业务模块</td>
+                                                        <td>
+                                                            <select id="business_type" name="business_type" class="j-w-150">
+                                                            <option value="official">微官网</option>
+                                                            <option value="vipcard">居员卡</option>
+                                                            <option value="juweihui">居委会</option>
+                                                            <option value="communityservice">社区服务</option>
+                                                            <option value="circle">圈子</option>
+                                                            <option value="resevsection" >微预约栏目</option>
+                                                            <!--<option value="reservation">微预约</option>-->
+                                                            <option value="message">微留言</option>
+                                                            <option value="albums">微相册</option>
+                                                            <option value="survey">调研</option>
+                                                            <option value="wxqun">微信群</option>
+                                                            <option value="huodong">活动报名</option>
+                                                            <option value="vote">投票</option>
+                                                          </select>
+                                                        </td>
+                                                        <td class="j-w-15">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                
+                                
+                            </tbody>
+                            
+                        </table>
+                        
+                        <div class="j-m j-h20"></div>
+                        <div class="j-m">
+                        	<div class="j-txtct">
+                            <input class="j-newbtn green large" type="submit" value="确 认">
+                          </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/upload.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script>
+$(this).ready(function(e) {
+	$("#type").bind("change",typeselect);
+    //绑定图标选择事件
+	$("#iconlist_1 li>a").bind("click",function(e){
+		var icon=$(e.target).attr("class");
+		
+		$("#show_icon").removeClass();
+		$("#show_icon").addClass(icon);
+		$("#show_icon").addClass("j-fz-30");
+		$("#icon").val(icon);
+		
+		$("#iconlist_1").slideUp();
+		iconlist=false;
+	});
+	$("#type").val("{$detail.type|default='article'}");
+	$("#business_type").val("{$detail.business_type|default='official'}");
+	typeselect();
+});
+
+function typeselect(){
+	var type=$("#type").val();
+	$("#typeslist>div").hide();
+	$(".type").hide();
+	$("#type-"+type).show();
+}
+
+var iconlist=false;
+function show_iconlist(){
+	if(iconlist){
+		$("#iconlist_1").slideUp();
+		iconlist=false;
+	}else{
+		$("#iconlist_1").slideDown();
+		iconlist=true;
+	}
+}
+
+function upload(type, a){
+	if(J_Uploader.isruning==true){
+		J_msgshow("正在上传请稍等");
+	}else{
+		J_Uploader.callback	=function(data){
+      $(a).parent().find(".j-button-upload").html('上传');
+      if(data.statu==-2){
+        J_msgshow("文件尺寸过大");
+      }else{
+        $("#bg_imgview").html('<img src="'+data.path+'">');
+        $("#show_bg_img").val(data.path);
+      }
+		};
+		
+		J_Uploader.uploading=function(){
+			J_msgshow("正在上传封面");
+      $(a).parent().find(".j-button-upload").html('<span class="icon-spinner icon-spin"></span>');
+		};
+		
+		J_Uploader.file=a.files;
+		J_Uploader.nowtype=type;
+		J_Uploader.upload_url="{:U('image/up')}"; //上传地址
+		J_Uploader.addlist();
+	}
+}
+</script>
+</body>
+</html>

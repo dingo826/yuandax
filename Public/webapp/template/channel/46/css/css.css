@@ -1,0 +1,33 @@
+/* 背景 */
+body{}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 联系电话 */
+.telephone{margin: 8px 5px; padding: 8px 0; background-color: #ea5946; border-radius: 5px; text-align: center; color: #FFF; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 5px}
+.menu .item{width: 48.5%; display: block; float: left; margin-left: 1%; margin-bottom: 3px; height: 90px; color: #FFF}
+.menu .item:active{opacity: 0.6}
+.menu .item .icon{text-align: center; font-size: 30px; line-height: 40px; margin-top: 10px}
+.menu .item .title{width: 90%; margin: 0 auto; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; line-height: 30px; text-align: center;}
+
+/* 颜色 */
+.menu .item:nth-child(n){background-color: #d87570}
+.menu .item:nth-child(2n){background-color: #bc4040}
+.menu .item:nth-child(3n){background-color: #6f9e98}
+.menu .item:nth-child(4n){background-color: #b2cebf}
+
+.menu .item:nth-child(4n+1){background-color: #d87570}
+.menu .item:nth-child(4n+2){background-color: #bc4040}
+.menu .item:nth-child(4n+3){background-color: #6f9e98}
+.menu .item:nth-child(4n+4){background-color: #b2cebf}
+
+.footer{line-height: 50px; clear: both; text-align: center; height: 10px}
+
+/* 小于等于250 */
+@media (max-width: 250px) {
+  .menu .item{width: 100%; margin: 5px auto}
+}

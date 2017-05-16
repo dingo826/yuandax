@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+                <include file="Public:v3topnavn_zhsz" />
+
+            	<!--模块-->
+                <div class="box">
+                    <div class="title spacing">
+						平台授权设置
+						<div class="j-fr">
+                        	<a class="j-fz-14"><span class="icon-info-sign"></span>  以下请按照公众平台相关信息如实填写</a>
+                        </div>
+					</div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                        	<thead>
+                                
+                            </thead>
+                        	<tbody>
+                            	<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">服务器配置</td>
+                                                        <td>
+                                                        	<div class="j-fz-14 j-lh24">
+																登录微信公众平台，在左侧菜单中点击“开发者中心”，启用“服务器配置”并将“接口URL”及“TOKEN”添加到“服务器配置”中。
+																(新增的消息加解密密钥选择随机，消息加解密方式选择明文模式)
+															</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">URL(服务器地址)</td>
+                                                        <td>
+                                                        	<input readonly id="copy-url"  type="text" value="{$Think.config.HTTP_DOMIN}api?u={$info.tcode}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+										
+										<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                        <td>
+                                                        	<a id="copybutton-url" data-clipboard-target="copy-url" class="j-button-green j-fl">复制</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">Token(令牌)</td>
+                                                        <td>
+                                                        	<input readonly id="copy-token" type="text" value="{$info.token}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+										
+										<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                        <td>
+                                                        	<a id="copybutton-token" data-clipboard-target="copy-token" class="j-button-green j-fl">复制</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="textarea-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">开发者凭据</td>
+                                                        <td>
+															<div class="j-fz-14 j-lh24">
+                                                        	登录微信公众平台，在左侧菜单中点击“开发者中心”，即可看到您的“开发者ID”(未认证的订阅号没有该项)。
+															</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">AppID(应用ID)</td>
+                                                        <td>
+                                                        	<input datatype="Require" msg="请输入应用ID" value="{$info.appid}" name="appid" type="text" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+								<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">AppSecret(应用密钥)</td>
+                                                        <td>
+                                                        	<input datatype="Require" msg="请输入应用密钥" value="{$info.appsecret}" name="appsecret" type="text" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+								<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">是否代发</td>
+                                                        <td>
+															<label class="j-lh30 j-fl"><input type="checkbox" id="checksend" <eq name="info.istuog" value="1"> checked="checked"</eq> name="istuog" /> 允许</label>
+															<span class="j-hide" id="timeselect">
+                                                        	<select class="j-w28-5 j-ml10 j-fl" name="hour" id="hour">
+																<option value="1">上午1</option>
+															   <option value="2">上午2</option>
+															   <option value="3">上午3</option>
+															   <option value="4">上午4</option>
+															   <option value="5">上午5</option>
+															   <option value="6">上午6</option>
+															   <option value="7">上午7</option>
+															   <option value="8">上午8</option>
+															   <option value="9">上午9</option>
+															   <option value="10">上午10</option>
+															   <option value="11">上午11</option>
+															   <option value="12">中午12</option>
+															   <option value="13">下午13</option>
+															   <option value="14">下午14</option>
+															   <option value="15">下午15</option>
+															   <option value="16">下午16</option>
+															   <option value="17">下午17</option>
+															   <option value="18">下午18</option>
+															   <option value="19">下午19</option>
+															   <option value="20">下午20</option>
+															   <option value="21">下午21</option>
+															   <option value="22">下午22</option>
+															   <option value="23">下午23</option>
+                                                            </select>
+                                                            
+                                                            <select class="j-w28-5 j-fl j-ml10" name="min" id="min">
+                                                            	<option value="0">0分</option>
+															   <option value="10">10分</option>
+															   <option value="20">20分</option>
+															   <option value="30">30分</option>
+															   <option value="40">40分</option>
+															   <option value="50">50分</option>
+															   <option value="59">59分</option>
+                                                            </select>
+															</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+								<tr>
+                                	<td>
+                                    	<!--start-input:text-->
+                                    	<div class="input-group">
+                                        	<table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                            	<tbody>
+                                                	<tr>
+                                                    	<td class="j-w-100 j-input-lalel">发送频率</td>
+                                                        <td>
+                                                        	<select class="j-w28-5" name="pinlv" id="pinlv">
+																<option value="7">7次</option>
+																<option value="6">6次</option>
+																<option value="5">5次</option>
+																<option value="4">4次</option>
+																<option value="3">3次</option>
+																<option value="2">2次</option>
+																<option value="1">1次</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="j-m">
+                            <input type="hidden" value="{$info.id}" name="id" />
+                        	<input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Weixin2:Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script src="/static/plugin/ZeroClipboard/ZeroClipboard.min.js"></script>
+
+<script>
+$(this).ready(function(){
+	//复制按钮绑定
+	var clip_url=new ZeroClipboard($("#copybutton-url"), {
+	  moviePath: 'static/plugin/ZeroClipboard/ZeroClipboard.swf'
+	});
+	
+	clip_url.on("ready",function(){
+		this.on('aftercopy', function(event){
+			J_msgshow("复制成功");
+		});
+	});
+	
+	var clip_token=new ZeroClipboard($("#copybutton-token"), {
+	  moviePath: 'static/plugin/ZeroClipboard/ZeroClipboard.swf'
+	});
+	
+	clip_token.on("ready",function(){
+		this.on('aftercopy', function(event){
+			J_msgshow("复制成功");
+		});
+	});
+	
+	//是否代发选择
+	$("#checksend").on("change",function(){
+		if($(this).is(":checked")){
+			$("#timeselect").show();
+		}else{
+			$("#timeselect").hide();
+		}
+	});
+	
+	//初始化
+	$("#pinlv").val('1');	//发送频率
+	$("#hour").val("{$info.dhour|default='18'}");	//时间小时
+	$("#min").val("{$info.dmin|default='18'}");	//时间分
+	
+	if($("#checksend").is(":checked")){
+		$("#timeselect").show();
+	}else{
+		$("#timeselect").hide();
+	}
+});
+</script>
+</body>
+</html>

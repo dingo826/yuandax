@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+    <include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	社区留言
+                        <div class="j-fr">
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <div class="j-formbk j-m">
+                        	<div class="tabbable">
+                              <div class="nav nav-tabs nomargin">
+                              	<table width="100%" cellpadding="0" cellspacing="0">
+                                	<tbody>
+                                    	<tr class="j-vtcl-mid">
+                                        	<td>
+                                            	<div class="j-m j-h15"></div>
+                                            	<div class="j-ml15 j-bold j-fz-14">
+                                                	您与用户 <a class="j-fcolor-red" href="">{$member[$originator]['name']}</a> 的对话（共{$total}条）
+                                                </div> 
+                                                <div class="j-m j-h15"></div>
+                                            </td>
+                                            <td>
+                                            	<div class="j-fr j-mt15 j-mr8">
+                                                    <!--右侧如需添加-->
+                                                </div>
+                                                <div class="j-m j-h15"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="j-table-vertival-top">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                               <td class="j-talk-container">
+                                               		<!--聊天-->
+                                               		<div class="j-talk-container-main">
+                                                    	<div class="j-m j-h8"></div>
+                                                      	<div class="j-m-spacing-big" id="addnode">
+                                                          <volist name="list" id="item">
+                                                          	<eq name="item.identity" value="1">
+                                                            
+                                                            <div class="j-talk-line">
+                                                            	<table width="100%" cellpadding="0" cellspacing="0" class="j-table-vertival-mid">
+                                                                	<tbody>
+                                                                    	<tr>
+                                                                            <td>
+                                                                            	<span class="content-friend content-txt">{$item.contents}</span>
+                                                                            </td>
+                                                                            <td width="11"><span class="icon-caret-right"></span></td>
+                                                                            <td class="avatar"><a><img src="{$adminLogo}"></a></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="talktime">{$item.createtime|date="Y-m-d H:i:s",###}</div>
+                                                            
+                                                            <else />
+                                                            
+                                                            <div class="j-talk-line">
+                                                            	<table width="100%" cellpadding="0" cellspacing="0" class="j-table-vertival-mid">
+                                                                	<tbody>
+                                                                    	<tr>
+                                                                        	<td class="avatar"><a><img src="{$member[$item['openid']]['headimgurl']|default='/Public/images/pic.jpg'}"></a></td>
+                                                                            <td width="11"><span class="icon-caret-left"></span></td>
+                                                                            <td>
+                                                                            	<span class="content content-txt">
+{$item.contents}</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="talktime">{$item.createtime|date="Y-m-d H:i:s",###}</div>
+                                                            </eq>
+                                                        </volist>
+                                                        </div>
+                                                        </div>
+                                                        <div class="j-m j-h8"></div>
+                                                    </div>
+                                                  <!--聊天-->
+                                               </td>
+                                               <td width="400">
+                                               		<!--输入-->
+                                               		<div class="j-m-spacing-big">
+                                                    	<div class="j-m j-h8"></div>
+                                                    	<div>
+                                                        	<!--编辑框-->
+                                                        	<include file="Public:diveditor" />
+                                                  				<!--编辑框-->
+                                                        </div>
+                                                        <div class="j-m j-h8"></div>
+                                                        <a href="javascript:;" onClick="" class="j-button-red j-fr" id="sendbtn">回复</a>
+                                                        <div class="j-m j-h8"></div>
+                                                    </div>
+                                                    <!--输入-->
+                                               </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/weixin/js/emotionedit.js"></script>
+
+<script>
+var me_avatar="{$adminLogo}";	//用户头像
+
+//创建聊天条 参数 jsondata：信息 node:添加的位置 底部或者顶部
+function createHTML(jsondata,node){
+	if(createHTML._init!=1){
+		createHTML._init=1;
+		createHTML.id=0;
+		createHTML.prefix="newaddmsg_";
+		createHTML.addnode=0;	//内容添加方式 0：顶部新消息  1：底部老消息
+		//alert("load");
+		
+		//解析时间戳为时间
+		createHTML.time=function(stamp){
+			var now=new Date();
+			if(stamp!=""){
+				now.setTime(parseInt(stamp)*1000);
+			}
+			var year=now.getFullYear();
+			var month=now.getMonth()+1;
+			var date=now.getDate();
+			var hour=now.getHours();
+			var minute=now.getMinutes();
+			var second=now.getSeconds();
+			return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second;
+		}
+		
+		//创建语音内容信息
+		createHTML.msgcontent=function(d){
+			var html='';
+			switch(d.MsgType){
+				case "1":	//文本信息
+					html=Emotion.replaceEmoji(decodeURIComponent(d.Content));
+					break;
+			}
+			return html;
+		}
+		createHTML.me=function(a){
+			var html,_id;
+			_id=createHTML.prefix+createHTML.id;
+			var content_type=a.MsgType == "1" ? " content-txt" : "";
+			
+			html='<div id="'+_id+'" class="j-talk-line j-hide"><table width="100%" cellpadding="0" cellspacing="0" class="j-table-vertival-mid"><tbody><tr><td class="avatar"><a href=""><img src="'+me_avatar+'"></a></td><td width="11"><span class="icon-caret-left"></span></td><td><span class="content'+content_type+'">'+createHTML.msgcontent(a)+'</span></td></tr></tbody></table></div><div class="talktime">'+createHTML.time(a.CreateTime)+'</div>';
+			createHTML.id++;
+			//alert(html);
+			if(createHTML.addnode==0){
+				$("#addnode").prepend(html);
+			}else if(createHTML.addnode==1){
+				$("#addnode").append(html);
+			}
+			$("#"+_id).fadeIn();
+		}
+		
+		createHTML.friend=function(a){
+			var html,_id;
+			_id=createHTML.prefix+createHTML.id;
+			var content_type=a.MsgType == "1" ? " content-txt" : "";
+			
+			html='<div id="'+_id+'" class="j-talk-line j-hide"><table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="content-friend'+content_type+'">'+createHTML.msgcontent(a)+'</span></td><td width="11"><span class="icon-caret-right"></span></td><td class="avatar"><a href=""><img src="'+me_avatar+'"></a></td></tr></tbody></table></div><div class="talktime">'+createHTML.time(a.CreateTime)+'</div>';
+			createHTML.id++;
+			//alert(html);
+			if(createHTML.addnode==0){
+				$("#addnode").prepend(html);
+			}else if(createHTML.addnode==1){
+				$("#addnode").append(html);
+			}
+			$("#"+_id).fadeIn();
+		}
+
+	}
+	
+	createHTML.addnode = node;
+	var c=jsondata.length-1;
+	for(var i=0;i<=c;i++){
+		if(jsondata[i].istype==1){
+			//接收新消息
+			createHTML.friend(jsondata[i]);
+		}else if(jsondata[i].istype==2){
+			//自己发送消息
+			createHTML.me(jsondata[i]);
+		}
+	}
+}
+
+//滚回顶部
+function scrolltotop(){
+	$(".j-talk-container-main").animate({ scrollTop: 0 }, 1500);
+}
+
+$(this).ready(function(e) {
+	//绑定消息发送
+	$("#sendbtn").bind("click",function(){
+		var text=$("#editor_hidden").val();
+		
+		if(text==""){
+			J_msgshow("请输入消息内容");
+			$("#editor_show").focus();
+		}else{
+			//测试效果
+			var jsondata=[{MsgType:"1",Content:text,CreateTime:"",istype:2}];
+			
+			$.post("{:U('messageboard/reply')}",{
+				content:text, //消息内容
+				tid:{$tid}
+			},function(data){
+				if(data.status==1){
+					J_msgshow("发送成功");
+					$("#editor_hidden").val("");
+					$("#editor_show").html("");
+					var jsondata=[{MsgType:"1",Content:text,CreateTime:"",istype:1}];
+					createHTML(jsondata,0);
+				}else if(status==2){
+					J_msgshow("系统繁忙，请重试");
+				}
+			});
+		}
+	});
+	
+	//初始化解析QQ表情
+	$(".j-talk-container-main .content-txt").each(function(index, element) {
+			var html=Emotion.replaceEmoji($(element).html());
+			$(element).html(html);
+    });
+});
+</script>
+</body>
+</html>

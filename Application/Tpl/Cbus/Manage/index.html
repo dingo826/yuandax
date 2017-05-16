@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>社区商户</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link href="__PUBLIC__/webapp/style/shop.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="seller-admin-head">
+  <div class="j-flex j-flex-center">
+    <div class="logo"><img src="{$bminfo.logo}"></div>
+    <div class="flex">
+      <div class="name">{$bminfo.nickname} <span class="type">{$bminfo.category|}</span></div>
+      <div class="addons">电话:{$bminfo.mphone}</div>
+      <div class="addons">地址：{$bminfo.address}</div>
+    </div>
+    <a class="edit" href="{:U('profile/edit?fromid='.$formid)}">编辑资料</a>
+  </div>
+</div>
+
+<div class="seller-admin-menu j-flex j-flex-center">
+  <div class="flex">
+    <div class="fc">
+      <a <eq name="nowstatus" value="-1"> href="{:U('index?fromid='.$formid)}"<else/> class="active"</eq> id="shangjia">已上架({$shangj})</a>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="fc">
+      <a id="xiajia" <eq name="nowstatus" value="1"> href="{:U('index?status=-1&fromid='.$formid)}"<else/> class="active"</eq>>已下架({$xiajia})</a>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="fc">
+      <a href="{:U('goods/add?fromid='.$formid)}">+添加商品</a>
+    </div>
+  </div>
+</div>
+
+<div class="seller-admin-list" onscroll="sLoad(this,<eq name="Tget.status" value="-1">htmldealxiajz<else/>htmldealshangjz</eq>)" h="10" page="1" pagesize="10" off="0" data-url="{:U('ajax?status='.$Tget['status'].'&fromid='.$formid)}">
+  <!-- loop -->
+  <volist name="list" id="item">
+  <div class="item" status="{$item.status}" gid="{$item.id}" share-title="{$item.name}" share-image="图片" share-link="链接" share-desc="{$item.desc}">
+    <div class="c j-flex">
+      <div class="thumb"><img src="{$item.thumb}"></div>
+      <div class="flex">
+        <div class="title">
+          {$item.name}
+        </div>
+        <div class="addon-s">原价￥{$item.oprice}</div>
+        <div class="addon-s">{$item.ctitle}</div>
+      </div>
+      <div class="price">
+        <div>省{$item.pdiff}元</div>
+        <div class="price-c">￥{$item.price}</div>
+        <div>{$item['price']/$item['oprice']*100|ceil|ceilremovezero=###}折</div>
+      </div>
+    </div>
+    <gt name="item.deadline" value="nowtime">
+    <div class="c fz-sm expeir">
+      将于{$item.deadline|xiajiadate}下架
+    </div></gt>
+    
+    <div class="c j-flex j-flex-center">
+      <div class="flex"></div>
+      <div class="btn-c">
+        <a class="btn btn-default small aim-xiajia" onClick="xiajia(this)"><eq name="item.status" value="1">下架<else/>上架</eq></a>
+      </div>
+      <!--<div class="btn-c">
+        <a class="btn btn-default small aim-share" onclick="share(this)">分享</a>
+      </div>-->
+      <div class="btn-c">
+        <a class="btn btn-default small" href="{:U('goods/edit?fromid='.$formid.'&id='.$item['id'])}">编辑</a>
+      </div>
+      <div class="btn-c">
+        <a class="btn btn-default small aim-del" onClick="del(this)">删除</a>
+      </div>
+    </div>
+  </div>
+  </volist>
+  <!-- loop -->
+  
+</div>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script src="__PUBLIC__/webapp/script/app.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+shangjianum = parseInt("{$shangj|default='0'}");
+xiajianum   = parseInt("{$xiajia|default='0'}");
+
+wx.config({
+    debug: false,
+    appId: '{$signPackage.appId}',
+    timestamp: '{$signPackage.timestamp}',
+    nonceStr: '{$signPackage.nonceStr}',
+    signature: '{$signPackage.signature}',
+    jsApiList: [
+      'previewImage',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'onMenuShareQZone'
+    ]
+});
+
+var sharedata={
+    "title": "社区商户",
+    "desc": "社区周边各种优惠折扣信息",
+    "link": "http://{$Think.config.ODOMIN}/?g=cbus&a=index&fromid={$formid}",
+    "imgUrl": "http://{$Think.config.ODOMIN}/Public/webapp/image/dianpu.png",
+	trigger: function (res) {             
+      
+    },
+    success: function (res) {
+      //J_msgshow("分享内容设置成功，点击右上角菜单分享至朋友圈或发送好友！",{});
+      //alert('分享成功！');
+    },
+    cancel: function (res) {
+      //alert('已取消');
+    },
+    fail: function (res) {
+      //alert(JSON.stringify(res));
+    }
+  };
+
+wx.ready(function(){
+  //设置朋友圈分享数据
+  wx.onMenuShareTimeline(sharedata);
+  //好友分享
+  wx.onMenuShareAppMessage(sharedata);
+});
+
+
+function xiajiabind(a){
+  $(a).on("click",function(){
+    xiajia(a);
+  });
+}
+
+function xiajia(a){
+  $(a).off("click");
+  
+  $.post('{:U("goods/editstatus?fromid=".$formid)}',{
+    status:$(a).parent().parent().parent().attr("status"),
+    gid:$(a).parent().parent().parent().attr("gid")
+  },function(data){
+	  
+    if($(a).parent().parent().parent().attr("status")==1){
+      $(a).html("上架").parent().parent().parent().attr("status","-1");
+	  shangjianum = shangjianum - 1;
+	  xiajianum = xiajianum + 1;
+    }else{
+      $(a).html("下架").parent().parent().parent().attr("status","1");
+	  shangjianum = parseInt(shangjianum) + 1;
+	  xiajianum = parseInt(xiajianum) - 1;
+    }
+	if(shangjia<1) shangjia = 0;
+	if(xiajia<1) xiajia = 0;
+	$("#shangjia").html('上架('+String(shangjianum)+')');
+	$("#xiajia").html('下架('+String(xiajianum)+')');
+    xiajiabind(a);
+  }, "json");
+}
+
+function delbind(){
+  $(a).on("click",function(){
+    del(a);
+  });
+}
+
+function del(a){
+  del.aim=a;
+  jconfirm('确定删除该商品吗？',function(){
+    $.post('{:U("goods/del?fromid=".$formid)}',{
+      gid:$(del.aim).parent().parent().parent().attr("gid")
+    },function(data){
+      if(data.status==1){
+        $(del.aim).parent().parent().parent().remove();
+        if($(del.aim).parent().parent().parent().attr("status")==1){
+          shangjianum = parseInt(shangjianum) - 1;
+        }else {
+          xiajianum = parseInt(xiajianum) - 1;
+        }
+      }
+      if(shangjia<1) shangjia = 0;
+      if(xiajia<1) xiajia = 0;
+      $("#shangjia").html('上架('+String(shangjianum)+')');
+      $("#xiajia").html('下架('+String(xiajianum)+')');
+    },"json");
+  });
+}
+
+function share(a){
+  a=$(a).parent().parent().parent();
+  var sharedata={
+    title: a.attr("share-title"),
+    desc: a.attr("share-desc"),
+    link: a.attr("share-link"),
+    imgUrl: a.attr("share-image"),
+    trigger: function (res) {             
+      
+    },
+    success: function (res) {
+      J_msgshow("分享内容设置成功，点击右上角菜单分享至朋友圈或发送好友！",{});
+      //alert('分享成功！');
+    },
+    cancel: function (res) {
+      //alert('已取消');
+    },
+    fail: function (res) {
+      //alert(JSON.stringify(res));
+    }
+  };
+  
+  //设置朋友圈分享数据
+  wx.onMenuShareTimeline(sharedata);
+  
+  //好友分享
+  wx.onMenuShareAppMessage(sharedata);
+}
+
+function timestamp(stamp){
+  var now=new Date();
+  if(stamp!=""){
+    now.setTime(parseInt(stamp)*1000);
+  }
+  var year=now.getFullYear();
+  var month=now.getMonth()+1;
+  var date=now.getDate();
+  var hour=now.getHours();
+  var minute=now.getMinutes();
+  var second=now.getSeconds();
+  //m月d日 H：i:s
+  return month+"月"+date+"日 "+hour+":"+minute+":"+second;
+}
+
+function htmldealshangjz(data){
+  for(var i=0;i<data.length;i++){
+    var item     = data[i];
+    //var discount = item.original-item.price;
+    
+    var html='<div class="item" status="0" gid="'+ item.id +'" share-title="'+ item.name +'" share-image="图片" share-link="链接" share-desc="'+ item.desc +'"><div class="c j-flex"><div class="thumb"><img src="'+ item.thumb +'"></div><div class="flex"><div class="title">'+ item.name +'</div><div class="addon-s">原价￥'+ item.oprice +'</div><div class="addon-s">'+item.ctitle+'</div></div><div class="price"><div>省'+ item.pdiff +'元</div><div class="price-c">￥'+ item.price +'</div><div>'+ item.discount +'折</div></div></div><div class="c fz-sm expeir">将于'+timestamp(item.deadline)+'下架</div><div class="c j-flex j-flex-center"><div class="flex"></div><div class="btn-c"><a class="btn btn-default small aim-xiajia" onclick="xiajia(this)">上架</a></div><div class="btn-c"><a class="btn btn-default small" href="/?g=cbus&m=goods&a=edit&fromid={$formid}&id='+item.id+'">编辑</a></div><div class="btn-c"><a class="btn btn-default small aim-del" onclick="del(this)">删除</a></div></div></div>';
+    $('.seller-admin-list').append(html);
+  }
+}
+
+function htmldealxiajz(data){
+  for(var i=0;i<data.length;i++){
+    var item     = data[i];
+    //var discount = item.original-item.price;
+    
+    var html='<div class="item" status="0" gid="'+ item.id +'" share-title="'+ item.name +'" share-image="图片" share-link="链接" share-desc="'+ item.desc +'"><div class="c j-flex"><div class="thumb"><img src="'+ item.thumb +'"></div><div class="flex"><div class="title">'+ item.name +'</div><div class="addon-s">原价￥'+ item.oprice +'</div><div class="addon-s">'+item.ctitle+'</div></div><div class="price"><div>省'+ item.pdiff +'元</div><div class="price-c">￥'+ item.price +'</div><div>'+ item.discount +'折</div></div></div><div class="c j-flex j-flex-center"><div class="flex"></div><div class="btn-c"><a class="btn btn-default small aim-xiajia" onclick="xiajia(this)">上架</a></div><div class="btn-c"><a class="btn btn-default small" href="/?g=cbus&m=goods&a=edit&fromid={$formid}&id='+item.id+'">编辑</a></div><div class="btn-c"><a class="btn btn-default small aim-del" onclick="del(this)">删除</a></div></div></div>';
+    $('.seller-admin-list').append(html);
+  }
+}
+</script>
+
+<script>
+document.body.addEventListener('touchstart', function () {
+  //空函数即可
+});  
+</script>
+
+</body>
+</html>

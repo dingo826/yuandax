@@ -1,0 +1,57 @@
+<div class="loadcp" id="replaceid">
+  
+  <div class="group-qrcode">
+    <img src="{$detail.qrcode}">
+  </div>
+  
+  <div class="weui_cells">
+    <div class="weui_cell">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>群名称</p>
+      </div>
+      <div class="weui_cell_ft">{$detail.qunname}</div>
+    </div>
+    
+    <div class="weui_cell">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>管理员</p>
+      </div>
+      <div class="weui_cell_ft">{$detail.gly}</div>
+    </div>
+    
+    <div class="weui_cell">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>管理员微信</p>
+      </div>
+      <div class="weui_cell_ft">{$detail.wechatid}</div>
+    </div>
+  </div>
+  
+  <div class="weui_cells weui_cells_access">
+    <div class="weui_cell">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>初始人数</p>
+      </div>
+      <div class="weui_cell_ft">{$detail.pnum}</div>
+    </div>
+    
+    <div class="weui_cell">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>邮箱</p>
+      </div>
+      <div class="weui_cell_ft">{$detail.email}</div>
+    </div>
+    
+    <a href="tel:123456789" class="weui_cell">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>手机</p>
+      </div>
+      <div class="weui_cell_ft">{$detail.mphone}</div>
+    </a>
+  </div>
+  
+  <div class="weui_btn_area">
+    <a class="weui_btn weui_btn_primary" href="javascript:" onclick="close_slide(this)">返回</a>
+  </div>
+  <div class="footer"></div>
+</div>

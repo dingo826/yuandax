@@ -1,0 +1,39 @@
+<!-- menu -->
+<div class="circle-menu-h"></div>
+<div class="weui_tabbar circle-menu">
+  <a href="{:U('show?id='.$tget['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_tabbar_item <eq name='Think.ACTION_NAME' value='show'>weui_bar_item_on</eq>" >
+      <div class="weui_tabbar_icon">
+          <span class="icon-home icon"></span>
+      </div>
+      <p class="weui_tabbar_label">首页</p>
+  </a>
+  
+  <a href="{:U('news?id='.$tget['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_tabbar_item <eq name="Think.ACTION_NAME" value="news"> weui_bar_item_on</eq>">
+      <div class="weui_tabbar_icon">
+          <span class="icon-paste icon"></span>
+      </div>
+      <p class="weui_tabbar_label">信息</p>
+  </a>
+  
+  <a href="{:U('topic?id='.$tget['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_tabbar_item <eq name="Think.ACTION_NAME" value="topic"> weui_bar_item_on</eq>">
+      <div class="weui_tabbar_icon">
+          <span class="icon-comment icon"></span>
+      </div>
+      <p class="weui_tabbar_label">话题</p>
+  </a>
+  
+  <a href="{:U('photo?id='.$tget['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_tabbar_item <eq name="Think.ACTION_NAME" value="photo"> weui_bar_item_on</eq>">
+      <div class="weui_tabbar_icon">
+          <span class="icon-picture icon"></span>
+      </div>
+      <p class="weui_tabbar_label">相册</p>
+  </a>
+  
+  <a href="{:U('info?id='.$tget['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_tabbar_item <eq name="Think.ACTION_NAME" value="info"> weui_bar_item_on</eq>">
+      <div class="weui_tabbar_icon">
+          <span class="icon-star icon"></span>
+      </div>
+      <p class="weui_tabbar_label">介绍</p>
+  </a>
+</div>
+<!-- menu -->

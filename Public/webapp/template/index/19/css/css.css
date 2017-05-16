@@ -1,0 +1,24 @@
+/* 背景 */
+body{background-color: #e9e9e9}
+
+/* 滚动 */
+.head{margin:15px}
+.swiper-container img{width: 100%; display: block; border-radius: 10px 10px 0 0}
+
+/* 联系电话 */
+.telephone{margin: 0 auto; padding: 8px 0; background-color: #df3840; text-align: center; color: #FFF; display: block; border-radius:0 0 10px 10px}
+
+/* 菜单 */
+.menu{padding:0; margin: 0 auto;}
+.menu .item{width: 50%; display: block; float: left; height: 100px; box-sizing: border-box; border-bottom: 1px solid #dadada; background: -webkit-gradient(linear, 0 0, 0 100%, from(#fffbfc), to(#f0f0ee));}
+.menu .item:nth-child(2n){border-left: 1px solid #dadada}
+.menu .item:active{opacity: 0.6}
+.menu .item .icon{text-align: center; font-size: 45px; line-height: 50px; margin-top: 10px; color: #3e3e3e;}
+.menu .item .title{width: 90%; margin: 0 auto; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; line-height: 30px; text-align: center; font-size: 16px; color: #909090}
+
+.footer{line-height: 50px; clear: both; text-align: center; height: 10px}
+
+/* 小于等于250 */
+@media (max-width: 250px) {
+  .menu .item{width: 100%; margin: 5px auto}
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>社区调研</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="weui_panel weui_panel_access">
+  <div class="weui_panel_bd">
+    <!-- 正在调研 -->
+    <volist name="list" id="item">
+    <a <lt name="item.btime" value="$nowtime"><gt name="item.etime" value="$nowtime">href="{:U('begin?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}"</gt></lt> class="weui_media_box weui_media_appmsg">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb" src="{$item.picurl}" alt="{$item.title}">
+      </div>
+      <div class="weui_media_bd">
+        <h4 class="weui_media_title">
+        <gt name="item.btime" value="$nowtime"><span class="lable-circle bg-yellow">即将开始</span><else/>
+        <gt name="item.etime" value="$nowtime"><span class="lable-circle bg-blue">正在调研</span></gt></gt>
+        <lt name="item.etime" value="$nowtime"><span class="lable-circle bg-mred">已结束</span></lt> {$item.title}
+         </h4>
+         <gt name="item.btime" value=":time()">
+        <p class="weui_media_desc">
+          <span class="lable-circle bg-blue">{$item.btime|date="Y-m-d", ###}</span>
+        </p>
+        </gt>
+        <gt name="item.etime" value=":time()">
+        <p class="weui_media_desc">
+          <span class="lable-circle bg-green">{$item.etime|date="Y-m-d", ###}</span>
+        </p>
+        </gt>
+        <p class="weui_media_desc">{$item.note}</p>
+      </div>
+    </a>
+    </volist>
+    <!-- 正在调研 -->
+  </div>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

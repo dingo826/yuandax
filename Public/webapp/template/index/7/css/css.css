@@ -1,0 +1,42 @@
+/* 背景 */
+body{}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 25px 0;}
+.menu .item{width: 30%; display: block; float: left; margin-left: 2.5%; margin-bottom: 15px; background: #f5f5f5; -webkit-box-shadow:0px 0px 10px #333333; box-shadow:3px 3px 10px #333; height: 100px; border-radius: 8px}
+.menu .item .icon{font-size: 35px; line-height: 65px; text-align: center; color: #33B300}
+.menu .item .title{text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 30px; margin: 0 auto; text-align: center}
+
+.menu .item:active{opacity: 0.6}
+
+.footer{line-height: 50px; clear: both; text-align: center;}
+.footer a{font-size: 12px; text-shadow:2px 2px 5px #FFF;}
+
+/* 屏幕适配 */
+/* 大于等于480 */
+@media (min-width: 480px) {
+  .menu .item .icon{font-size: 35px; top: 15%;}
+  .menu .item .title{font-size: 16px; top: 50%;}
+}
+
+/* 大于等于600 */
+@media (min-width: 600px) {
+  .menu .item .icon{font-size: 40px; top: 18%;}
+  .menu .item .title{font-size: 16px; top: 53%;}
+}
+
+/* 大于等于700 */
+@media (min-width: 700px) {
+  .menu .item .icon{font-size: 50px; top: 18%;}
+  .menu .item .title{font-size: 20px; top: 53%;}
+}
+
+/* 小于等于300 */
+@media (max-width: 300px) {
+  .menu .item{width: 45.5%; margin-left: 3%}
+  .menu .item .icon{font-size: 25px; top: 10%;}
+  .menu .item .title{font-size: 12px; top: 40%;}
+}

@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	岗位设置
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="javascript:;" onClick="rowadd()"><span class="icon-plus"></span> 添加新岗位</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="post" id="s_form">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="table table-bordered table-hover table-striped">
+                        	<tbody>
+                            	 <tr class="success">
+                                    <td class="j-w-60">显示顺序</td>
+                                    <td>职位名称</td>
+                                    <td class="j-w-30">启用</td>
+                                    <td>操作</td>
+                                </tr>                                
+                                <volist name="list" id="item">
+                            	<tr>
+                                    <td><input class="j-w-40" type="text" name="department[{$item.id}][weight]" value="{$item.weight}"></td>
+                                    <td><input class="j-w90" placeholder="请输入职位名称" type="text" name="department[{$item.id}][name]" value="{$item.name}"></td>
+                                    <td><input type="checkbox" name="department[{$item.id}][show]" value="1" <eq name="item.isshow" value="1">checked</eq>></td>
+                                    <td><a href="javascript:;" onClick="rowdelete(this, {$item.id})" class="j-delete-1"><span class="icon-remove"></span> 删除</a></td>
+                                </tr>
+                                </volist>
+                                <empty name="list">
+                                <tr>
+                                    <td><input class="j-w-40" type="text" name="department[0][weight]" value="50"></td>
+                                    <td><input class="j-w90" placeholder="请输入职位名称" type="text" name="department[0][name]"></td>
+                                    <td><input type="checkbox" name="department[0][show]" value="1" checked></td>
+                                    <td><a href="javascript:;" onClick="rowdelete(this, 0)" class="j-delete-1"><span class="icon-remove"></span> 删除</a></td>
+                                </tr>                                
+                                </empty>
+                            </tbody>
+                        </table>
+                        
+                        <div class="j-m">
+                        	<input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/jqplugin/jquery.validate.min.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+//删除
+function rowdelete(a,id){
+	if(id<=0){
+		$(a).parent().parent().fadeOut();
+			setTimeout(function(){
+				$(a).parent().parent().remove();
+		},1000);
+		return false;
+	}
+	
+  if(window.confirm("确定删除吗?")){
+    $.post("{:U('position/del')}",{
+      id:id
+    },function(data){
+      if(data.status==1){
+        //添加删除
+        $(a).parent().parent().fadeOut();
+        setTimeout(function(){
+          $(a).parent().parent().remove();
+        },1000);
+      }else{
+        J_msgshow('岗位不存在或已经删除');
+      }
+    },"json");
+  }
+
+}
+
+rowadd.id=0;
+//添加
+function rowadd(){
+	rowadd.id--;
+	var html='<tr><td><input name="department['+rowadd.id+'][weight]" class="j-w-40" value="50" type="text"></td><td><input name="department['+rowadd.id+'][name]" class="j-w90" type="text" placeholder="请输入职位名称"></td><td><input type="checkbox" value="1" checked name="department['+rowadd.id+'][show]"></td><td><a href="javascript:;" onClick="rowdelete(this,'+rowadd.id+')" class="j-delete-1"><span class="icon-remove"></span> 删除</a></td></tr>';
+	$("#s_form tbody").append(html);
+}
+
+</script>
+</body>
+</html>

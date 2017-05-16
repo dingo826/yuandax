@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+  <div class="j-centent">
+    <div class="j-wrap-1">
+      <div class="j-wrap-2">
+        <div class="j-wrap-3">
+    
+          <!--模块-->
+          <div class="j-m j-h10"></div>
+          <div class="box">
+            <div class="title spacing">
+              投票结果
+              <div class="j-fr">
+                <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+              </div>
+            </div>
+            
+            <div class="j-m j-h1 j-bkcl2"></div>
+            <div id="results" class="j-m-spacing">
+              <div class="j-m j-h10"></div>
+              <!--内容-->
+              <div class="j-txtct j-fz-20">
+                <div class="j-m j-h20"></div>
+                {$detail['title']}
+                <div class="j-m j-h20"></div>
+              </div>
+              <!-- loop -->
+              <volist name="list" id="item" key="k">
+              <div class="j-m j-h10"></div>
+              <table class="j-table j-table-vertival-top j-fz-14">
+                <tbody>
+                  <tr>
+                    <td rowspan="3" width="70"><img class="j-w-50" src="{$item.picurl|default='/Public/images/moren.jpg'}"></td>
+                    <td colspan="2">{$k}.{$item.title}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="progress progress-info progress-striped j-mb0">
+                        <div class="bar" style="width: 0"></div>
+                      </div>
+                    </td>
+                    <td class="j-w-150 j-txt-right"><span class="ticket">{$item.ticket}</span>票(<span class="percent">0</span>%)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="j-m j-h10"></div>
+              <div class="j-divide-1"></div>
+              </volist>
+              <!-- loop -->
+              <!--内容-->
+            </div>
+            <div class="j-m j-h20"></div>
+          </div>
+          <!--模块结束-->
+          
+          <div class="j-m j-h20"></div>
+          <div class="j-footer">
+            <ul>
+                <li><a>关于我们</a></li>
+                  <li><a>通知中心</a></li>
+                  <li><a>常见问题</a></li>
+                  <li><a>使用指南</a></li>
+                  <li><a>在线反馈</a></li>
+                  <li><a>在线咨询</a></li>
+                  <li><a>腾讯客服</a></li>
+                  <li><a>法律声明</a></li>
+                  <li><a>联系方式</a></li>
+                  <li>Copyright © 2012-2015 All Rights Reserved.</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+var total=0;
+function result_animation(){
+  $("#results .ticket").each(function(i,e){
+    var num = parseInt($(this).html());
+    total+=num;
+  });
+    
+  //初始化百分比数据
+  if(total!=0){
+    setTimeout(function(){
+      $("#results table").each(function(i,e){
+        var num = parseInt($(this).find('.ticket').html());
+        var percent = (num/total*100).toFixed(2);
+        percent = percent ? percent : 0;
+        $(this).find(".percent").html(percent);
+        $(this).find(".bar").css("width",percent+'%');
+      });
+    },500);
+  }
+}
+
+$(document).ready(function(){
+  result_animation();
+});
+</script>
+</body>
+</html>

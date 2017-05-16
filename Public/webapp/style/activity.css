@@ -1,0 +1,89 @@
+body{background: #fbf9fe; font-size: 14px}
+.full{width: 100%; height: 100%;}
+.table{padding: 0; margin: 0; width: 100%; border-spacing: 0; border: 0}
+.table td{padding: 0; border:0; vertical-align: middle;}
+.table.padding td{padding: 1px}
+.wrap{position: absolute; width: 100%; height: 100%; overflow: hidden; left: 0; top: 0}
+.wrap .content{overflow-y: auto}
+
+/* 圆角标签 */
+.label{border-radius: 10px; background: #DDD; padding: 2px 4px; display: inline-block; font-size: 12px; color: #FFF}
+.label.red{background: #ff4246}
+.label.green{background: #23b53b}
+
+/* 统一色彩 */
+.time{color: #c1c1c1}
+.username{}
+.loading{text-align: center; margin: 10px 0; color: #bebebe}
+.color-green{color: #23b53b}
+.color-red{color: #ff4246}
+.color-orange{color: #ffc11a}
+.color-yellow{color: #fffd2c}
+.color-gray{color: #999}
+.color-lred{color:#ffd5cd}
+
+/* 弹出框 */
+.form{margin: 0; background: #FFF; position: relative; height: 100%}
+.form .btn{background: #459ac4; outline: none; border: none; padding: 6px 0; color: #FFF; font-weight: 700; font-size: 16px; text-align: center; display: block;}
+.form .btn:active{opacity: .8}
+.form .content{margin: 0; overflow-x: hidden; overflow-y: auto;}
+.form .content .weui_cells{font-size: 14px}
+.form .content .weui_cells:after{bottom:.5px}
+.form .content table{margin-top: 15px}
+.form .content table td{padding: 10px 2px}
+.form .title{margin: 0; padding: 8px 15px; font-size: 16px; border-bottom: 1px solid #DDD}
+.avatar{margin-right: 8px}
+.avatar img{width: 30px; height: 30px; border-radius: 50%}
+
+/* 活动报名 */
+.activity-headbk{background: #459ac4; color: #FFF}
+.activity-time{text-align: center; margin: 8px 0; padding: 15px; background: rgba(255,255,255,.2)}
+.article{background: #FFF}
+.activity-theme-color{color: #459ac4}
+.activity-list{margin: 15px 0}
+.activity-list .item{border-bottom: 1px solid #DDD; background: #FFF; padding: 8px 0 0 0; margin-top: 10px}
+.activity-list .item .content{margin: 0 15px}
+.activity-list .title{font-size: 16px}
+.activity-list .desc{color: #CCC; font-size: 12px}
+.activity-list .desc img{display: block; max-width: 100%; margin: 8px 0}
+.activity-list .info{border-top: 1px solid #DDD; height: 24px; margin-top: 8px; text-align: center; padding: 3px 0}
+.activity-list .info .flex{border-right: 1px solid #DDD; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.activity-list .info .flex:last-child{border: none}
+.activity-head{margin: 0 15px; padding: 10px 0}
+.activity-head .username{text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+.activity-head .avatar img{border:2px solid #FFF}
+.activity-title{font-size: 20px; margin: 15px; text-align: center}
+.activity-menu{position: fixed; bottom: 0; height: 50px; width: 100%; background: #fbf9fe; border-top: 1px solid #DDD; text-align: center;}
+.activity-menu .c{position: absolute; width: 100%}
+.activity-menu .flex{height: 100%}
+.activity-menu .icon{font-size: 24px; line-height: 30px; color: #b3b3b3}
+.activity-menu .txt{text-overflow: ellipsis; overflow: hidden; white-space: nowrap; color: #b3b3b3; font-size: 12px}
+.activity-menu .txt span{color: #ff5a5a}
+.activity-menu-h{width: 100%; clear: both; height: 50px}
+.activity-menu .btn{display: block; background: #459ac4; padding: 8px 0; border-radius: 6px; color: #FFF;}
+.activity-menu .btn.red{background: #ff5050}
+.activity-menu .btn:active{opacity: .8}
+.activity-aim{padding: 8px 0; border-bottom: 1px solid #DDD; border-top: 1px solid #DDD; color: #c1c1c1; margin: 0 0 10px 0; background: #FFF; height: 40px; font-size: 12px}
+.activity-aim a{color: #c1c1c1}
+.activity-aim .flex{text-align: center; border-right: 1px solid #DDD; position: relative; height: 100%}
+.activity-aim .flex .c{position: absolute; width: 100%}
+.activity-aim .flex:last-child{border:none;}
+.activity-aim .flex .count{color: #ff5a5a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 14px}
+.activity-aim .flex .count span{font-size: 12px}
+.activity-form-hide{position: fixed; width: 100%; height: 100%; z-index: 1; background: rgba(0,0,0,0.5); top: 0; left: 0}
+.activity-form{position: fixed; z-index: 88; left: 0; right: 0; top: 12%; bottom: 0}
+.activity-form .weui_select{padding-left: 0}
+.activity-form .weui_cell_hd{width: 80px}
+.activity-form-data{display: none}
+.activity-comunity{margin: 10px 0 0 0;}
+.activity-comunity .header{border-bottom: 1px solid #DDD; padding: 8px 0; background: #FFF}
+.activity-comunity .content{margin: 0 15px;}
+.activity-comunity .item{background: #FFF; margin-top: 10px; border-bottom: 1px solid #DDD; padding: 8px 0}
+.activity-comunity .item:first-child{margin-top: 0; width: 100%}
+.activity-comunity .item .avatar img{border-radius: 50%; width: 30px; height: 30px}
+.activity-comunity .item .avatar{margin-right: 8px}
+.activity-comunity .item .username{white-space: nowrap; overflow:hidden; text-overflow: ellipsis;}
+.activity-comunity .txt-content{margin: 0 15px 0 52px}
+.activity-comunity-form-hide{position: fixed; width: 100%; height: 100%; z-index: 1; background: rgba(0,0,0,0.5); top: 0; left: 0}
+.activity-comunity-form{position: fixed; z-index: 88; left: 10%; right: 10%; top: 18%}
+.activity-comunity-data{display: none}

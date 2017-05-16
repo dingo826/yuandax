@@ -1,0 +1,22 @@
+/* 背景 */
+body{background:url(../img/bk2.jpg) no-repeat center bottom; background-attachment: fixed; background-size: cover;}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 100px auto 25px auto;}
+.menu .item{border: none; margin-bottom: 10px; color: #FFF; padding: 10px 15px; float: left; margin-left: 10px; clear: both; opacity: 0.9}
+.menu .item .title{text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size: 18px}
+.menu .item:active{opacity: 0.5}
+
+/* 颜色 */
+.menu .item:nth-child(n){background: #af8c85}
+.menu .item:nth-child(2n){background: #865247}
+.menu .item:nth-child(3n){background: #c7624e}
+.menu .item:nth-child(4n){background: #d34225}
+.menu .item:nth-child(5n){background: #93220b}
+.menu .item:nth-child(6n){background: #480f03}
+
+.footer{line-height: 50px; clear: both; text-align: center;}
+.footer a{font-size: 12px; text-shadow:2px 2px 5px #FFF;}

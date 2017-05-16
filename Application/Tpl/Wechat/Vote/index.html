@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>投票</title>
+
+<link rel="stylesheet" href="__PUBLIC__/webapp/style/app.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/style/vote.css">
+</head>
+
+<body>
+<div class="vote-list">
+  <!-- loop -->
+  <volist name="list" id="item">
+  <a class="item" href="{:U('detail?wid='.$basic['wid'].'&vid='.$item['id'])}">
+    <egt name="nowtime" value="$item['end']">
+      <div class="status status-end">已经结束</div>
+    </egt>
+    <if condition="$nowtime gt $item['start'] AND $nowtime lt $item['end']">
+      <div class="status status-ing">正在进行</div>
+    </if>
+    <elt name="nowtime" value="$item['start']">
+      <div class="status status-start">即将开始</div>
+    </elt>
+    
+    <div class="j-flex j-flex-center">
+      <div class="avatar"><img src="{$basic.logo}"></div>
+      <div class="flex">
+        <div class="uername">{$basic.abbr}</div>
+        <div class="time">{$item.ctime|date="Y-m-d",###}</div>
+      </div>
+      <div class="fix"></div>
+    </div>
+    <div class="title">{$item.title}</div>
+    <notempty  name="item.picurl">
+    <div class="cover">
+      <img src="{$item.picurl}">
+    </div>
+    </notempty >
+    <div class="counter">已有<span class="color-blue">{$item.total}</span>人参与投票</div>
+  </a>
+  </volist>
+  <!-- loop -->
+</div>
+
+<div class="loading">
+  <span class="icon-spinner icon-spin icon-2x"></span>
+</div>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script>
+function loaddata(){
+  if(loaddata._init!=1){
+    loaddata._init    = 1;
+    loaddata.page     = 2;
+    loaddata.pagesize = 25;
+    loaddata.stop     = true;
+    
+    loaddata.loadall=function(){
+      loaddata.stop=false;
+      $('.loading').html('<div>加载完毕</div>');
+    }
+    
+    loaddata.timestamp=function(stamp){
+      var now=new Date();
+			if(stamp!=""){
+				now.setTime(parseInt(stamp)*1000);
+			}
+			var year=now.getFullYear();
+			var month=now.getMonth()+1;
+			var date=now.getDate();
+			var hour=now.getHours();
+			var minute=now.getMinutes();
+			var second=now.getSeconds();
+			return year+"-"+month+"-"+date;
+    }
+    
+    loaddata.html=function(data){
+      var status;
+      switch(data.status){
+        case 1:
+          status = '<div class="status status-start">即将开始</div>';
+        break;
+        
+        case 2:
+          status = '<div class="status status-ing">正在进行</div>';
+        break;
+        
+        case 3:
+          status = '<div class="status status-end">已经结束</div>';
+        break;
+      }
+      
+      var cover="";
+      if(data.covershow){
+        cover = data.picurl!="" ? '<div class="cover"><img src="'+ data.picurl +'"></div>' : '';
+      }
+      
+      return '<a class="item" href="/wechat/vote/detail/wid/'+ data.wid +'/vid/'+ data.id +'.html">'+ status +'<div class="j-flex j-flex-center"><div class="avatar"><img src="'+ data.avatar +'"></div><div class="flex"><div class="uername">'+ data.username +'</div><div class="time">'+ loaddata.timestamp(data.ctime) +'</div></div><div class="fix"></div></div><div class="title">'+ data.title +'</div>'+ cover +'<div class="counter">已有<span class="color-blue">'+ data.total +'</span>人参与投票</div></a>';
+    }
+    
+    if($(".item").length<loaddata.pagesize){
+      loaddata.loadall();
+    }
+  }
+  
+  /*var json=[
+    {username:'用户2',avatar:'image/test.jpg',title:'标题1',ctime:121345678,total:66666,status:1},
+    {username:'用户3',avatar:'image/test.jpg',title:'标题2',ctime:121345678,total:66666,status:2},
+    {username:'用户4',avatar:'image/test.jpg',title:'标题3',ctime:121345678,total:66666,status:3},
+    {username:'用户5',avatar:'image/test.jpg',title:'标题4',ctime:121345678,total:66666,status:1},
+  ];
+  
+  if(loaddata.stop){
+    var c=json.length;
+    for(var i=0;i<=c-1;i++){
+      if(c<loaddata.pagesize){
+        loaddata.loadall();
+      }
+      $(".vote-list").append(loaddata.html(json[i]));
+    }
+  }*/
+  
+  if(loaddata.stop){
+    loaddata.stop=false;
+    var requestUrl="";
+    $.post(requestUrl,{
+      p:loaddata.page
+    },function(json){
+      loaddata.stop=true;
+      var c=json.length;
+      if(c<loaddata.pagesize){
+        loaddata.loadall();
+      }
+      
+      loaddata.page++;
+      for(var i=0;i<c;i++){
+        $(".vote-list").append(loaddata.html(json[i]));
+      }
+    },"json");
+  }
+}
+  
+window.onscroll=function(){
+  var t = document.documentElement.scrollTop || document.body.scrollTop;
+  var a=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)-window.innerHeight;
+  
+  if(a-t<=40){
+    loaddata();
+  }
+}
+</script>
+</body>
+</html>

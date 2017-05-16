@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.name}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<include file="toppic" />
+<div class="weui_panel weui_panel_access service-list">
+  <div class="weui_panel_bd">
+    <!-- loop -->
+    <volist name="list" id="item">
+    <div class="weui_media_box weui_media_appmsg weui_media_text">
+      <div class="weui_media_hd" <notempty name="item.tel">onClick="location.href='tel:{$item.tel}';"<else/><notempty name="item.link">onClick="window.open('http://{$item.link}');"</notempty></notempty>>
+        <img class="weui_media_appmsg_thumb filleted-corner" src="{$item.icon}" alt="">
+      </div>
+      <div class="weui_media_bd" <notempty name="item.tel">onClick="location.href='tel:{$item.tel}';"<else/><notempty name="item.link">onClick="window.open('http://{$item.link}');"</notempty></notempty>>
+        <h4 class="weui_media_title">{$item.name}</h4>
+        <notempty name="item.tel"><p class="weui_media_desc">电话：{$item.tel}</p></notempty>
+        
+        <ul class="weui_media_info">
+        
+        <notempty name="item.details">
+          <li class="weui_media_info_meta">介绍：{$item.details}</li>
+          </notempty>
+        </ul>
+        
+      </div>
+      
+      <div class="btn">
+        <notempty name="item.tel"><a class="c icon-phone" href="tel:{$item.tel}"></a></notempty>
+        <notempty name="item.link"><a class="c icon-home" href="http://{$item.link}" target="_blank"></a></notempty>
+      </div>
+    </div>
+    </volist>
+    <!-- loop -->
+    
+  </div>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.classname}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome4.min.css">
+
+<link href="__PUBLIC__/webapp/template/channel/44/css/css.css" rel="stylesheet">
+</head>
+
+<body>
+<table class="table picture">
+  <tbody>
+    <tr>
+      <td><img src="__PUBLIC__/webapp/template/channel/44/img/car.jpg"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="menu">
+	<!-- loop -->
+    <volist name="clist" id="item">
+	<a href="{$item.url}" class="item">
+    <div class="icon"><span class="{$item.icon}"></span></div>
+    <div class="title">{$item.classname}</div>
+    <div class="clear"></div>
+	</a>
+    </volist>
+	<!-- loop -->
+</div>
+
+<script src="__PUBLIC__/webapp/plugin/swiper/swiper.min.js"></script>
+<script>
+var swiper = new Swiper('#swiper', {
+	pagination: '.swiper-pagination',
+	loop:true,
+	autoplay: 5000,
+  autoplayDisableOnInteraction : false
+});
+</script>
+<include file="Public:footer" />
+</body>
+</html>

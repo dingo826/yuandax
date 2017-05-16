@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+        </td>
+      </tr>
+      <tr>
+        <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+  <div class="j-centent">
+    <div class="j-wrap-1">
+      <div class="j-wrap-2">
+        <div class="j-wrap-3">
+          
+          <include file="Public:v3topnavn_xinw" />
+            
+          <!--模块-->
+          <div class="box">
+            <div class="title spacing">
+              历史记录
+            </div>
+                
+            <div class="j-hr-1"></div>
+            
+            <!-- 列表 -->
+            <div class="j-common-tablelist centertxt">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="">
+                    <th width="90">封面</th>
+                    <th width="250">标题</th>
+                    <th width="100">来源</th>
+                    <th>状态</th>
+                    <th>发布时间</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <!-- loop 3处需输出 数组的长度count -->
+                  <volist name="list" id="item">
+                  <volist name="item.sendlist" key="k" id="citem">
+                  <eq name="k" value="1">
+                  <tr>
+                    <td><img src="{$citem.coverimg}"></td>
+                    <td>{$citem.title}</td>
+                    <td>{$citem.sourcetype|retarticlesource}</td>
+                    <td rowspan="{$item.sendlist|count}">
+                      <span>{$item.status|retmassstatus}</span>
+                      <notempty name="item.sendresult"><br/>({$item["sendresult"]["status"]|retwxmassstatus})</notempty>
+                    </td>
+                    <td rowspan="{$item.sendlist|count}">
+                      {$item.senddate|date="Y年m月d日",###}
+                    </td>
+                    <td rowspan="{$item.sendlist|count}">
+                      <in name="item.status" value="2,3"><a href="javascript:;" class="important" onclick="J_delete(this)" data-url="{:U('del?id='.$item['id'])}">删除</a></in>
+                    </td>
+                  </tr>
+                  <else/>
+                  <tr>
+                    <td><img src="{$citem.coverimg}"></td>
+                    <td>{$citem.title}</td>
+                    <td>{$citem.sourcetype|retarticlesource}</td>
+                  </tr>
+                  </eq>
+                  </volist>
+                  </volist>
+                  <!-- loop -->
+                  
+                </tbody>
+              </table>
+            </div>
+            <!-- 列表end -->
+            
+            <div class="j-page-c">
+              <div class="pages pagination j-fr">
+                <ul>
+                  {$page}                                   
+                </ul>
+              </div>
+            </div>
+            <div class="j-m j-h20"></div>
+          </div>
+          <!--模块结束-->
+          <div class="j-m j-h20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--内容-->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+function search_key(){
+	$("#s_form").submit();
+}
+</script>
+</body>
+</html>

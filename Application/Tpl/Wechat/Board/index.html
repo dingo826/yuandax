@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title><eq name="tget.type" value="1">我的留言<else/>{$board.name|default='社区留言板'}</eq></title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+
+<style>
+.weui_navbar{
+  position:inherit
+}
+</style>
+</head>
+
+<body>
+<div class="weui_tab">
+  <div class="weui_navbar">
+    <a href="{:U('index?wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_navbar_item weui_bar_item_on">
+        全部留言
+    </a>
+    <a href="{:U('index?wid='.$tget['wid'].'&type=1&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_navbar_item">
+        我的留言
+    </a>
+  </div>
+</div>
+
+<div class="weui_panel weui_panel_access">
+  <div class="weui_panel_bd">
+  	<!-- loop -->
+    <volist name="list" id="item">
+    <a href="{:U('topicDetails?tid='.$item['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_media_box weui_media_appmsg weui_media_text">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb avatar-circle" src="{$item.headimgurl|default='/Public/images/pic.jpg'}" alt="">
+      </div>
+      <div class="weui_media_bd">
+        <p class="weui_media_desc"><eq name="item.status" value="1"><span class="lable-circle bg-yellow">待回复</span></eq><eq name="item.status" value="2"><gt name="item.admin_new" value="0"><span class="lable-circle bg-green">{$item.admin_new}条回复</span><else/><eq name="item.status" value="1"><span class="lable-circle bg-yellow">待回复</span></eq><eq name="item.status" value="2"><span class="lable-circle bg-green">已回复</span></eq><eq name="item.status" value="3"><span class="lable-circle bg-yellow">已回复</span></eq></gt></eq> <eq name="item.status" value="3"><span class="lable-circle bg-green">完结</span></eq>{$item.contents}</p>
+        <ul class="weui_media_info">
+          <li class="weui_media_info_meta">{$item.name|default='未知'}</li>
+          <li class="weui_media_info_meta">{$item.modifytime}</li>
+        </ul>
+      </div>
+    </a>
+     </volist>
+    <!-- loop -->
+
+  </div>
+</div>
+
+<div class="message-addbtn-d"></div>
+<div class="message-addbtn">
+  <a href="{:U('addTopic?wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_btn weui_btn_primary">开始新留言</a>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

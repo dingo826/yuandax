@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:zuhheader" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+    <div class="j-centent">
+      <div class="j-wrap-1">
+      	<div class="j-wrap-2">
+        	<div class="j-wrap-3">
+             
+            	<!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                    	信息群发记录
+                        <div class="j-fr">
+                        	<a class="j-fz-14" href="{:U('index')}"><span class="icon-plus"></span> 新建群发</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_refresh()"><span class="icon-refresh"></span> 刷新</a>
+                            <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                        </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+                    <div class="j-m j-h10"></div>
+                    
+                    	<!--表单-->
+                    	<form action="" method="get" id="s_form">
+                        <div class="j-formbk j-m">
+                        	
+                        	<div class="tabbable">
+                              <ul class="nav nav-tabs nomargin">
+                                <li <eq name="status" value="">class="active"</eq>><a href="{:U('record')}">全部记录</a></li>
+                                <li <eq name="status" value="t">class="active"</eq>><a href="{:U('record?status=t')}">发送成功</a></li>
+                                <li <eq name="status" value="w">class="active"</eq>><a href="{:U('record?status=w')}">等待发送</a></li>
+                                <li <eq name="status" value="f">class="active"</eq>><a href="{:U('record?status=f')}">发送失败</a></li>
+                              </ul>
+                              <div class="tab-content tab-content-full">
+                                <div class="tab-pane active" id="tab1">
+                                	<table width="100%" cellpadding="0" cellspacing="0" class="table table-hover">
+                                        <tbody>
+                                            <tr class="first-noborder">
+                                                <td class="j-w-80">封面</td>
+                                                <td>内容</td>
+                                                <td class="j-w-80">类型</td>
+                                                <td class="j-w-80">状态</td>
+                                                <td class="j-w-100">发送时间</td>
+                                                <td class="j-w-150">操作</td>
+                                            </tr>
+                                            
+                                            <!--loop-->
+                                            <volist name="list" id="item">
+                                            <tr class="j-vtcl-mid">
+                                                <td><eq name="item.type" value="mpnews"><img src="{$item[news][$item[cover_id]][picurl]}" width="80" height="44" /><else />文本</eq></td>
+                                                <td>
+                                                <eq name="item.type" value="text">
+                                                {$item.content}
+                                                <else />
+                                                <volist name="item.news" id="nl">
+                                                  [图文标题]{$nl.title}<br />
+                                                </volist>
+                                                </eq>
+                                                </td>
+                                                <td><eq name="item.type" value="mpnews">图文<else />文本</eq></td>
+                                                <td>
+                                                <eq name="item.status" value="t"><span class="label label-success">发送成功</span></eq>
+                                                <eq name="item.status" value="w"><span class="label label-success">等待发送</span></eq>
+                                                <eq name="item.status" value="f"><span class="label label-warning">发送失败</span></eq>
+                                                </td>
+                                                <td>{$item.sendtime|date="Y-m-d H:i:s",###}</td>
+                                                <td>
+                                                    <a href="javascript:;" onclick="J_delete(this)" data-url="{:U('del?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-remove"></span> 删除</a>
+                                                	<eq name="item.type" value="mpnews"><a href="{:U('index?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-pencil"></span> 编辑</a></eq>
+                                                    <a href="{:U('reSend?id='.$item['id'])}" class="j-delete-1 j-block-2"><span class="icon-share"></span> 重发</a>
+                                                </td>
+                                            </tr>
+                                            </volist>
+                                            <!--loop-->
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!--表单-->
+                        
+                        <div class="j-m">
+                        	<div class="pages pagination j-fr">
+                            <ul>
+                            {$pages}
+                            </ul>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+                
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+function search_key(){
+	$("#s_form").submit();
+}
+</script>
+</body>
+</html>

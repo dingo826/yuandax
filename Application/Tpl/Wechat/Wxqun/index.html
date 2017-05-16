@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>微信群</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="weui_panel weui_panel_access circle-index">
+  <div class="weui_panel_bd">
+    <!-- loop -->
+    <volist name="list" id="item">
+    <a onClick="J_load_cp(this)" data-url="{:U('detail?id='.$item['id'].'&wid='.$item['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_media_box weui_media_appmsg">
+      <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb filleted-corner" src="{$item.qunzerwm}">
+      </div>
+      <div class="weui_media_bd">
+        <h4 class="weui_media_title"><span class="lable-circle bg-green">{$item.sname}</span></h4>
+        <h4 class="weui_media_title">{$item.qunname}</h4>
+        <p class="weui_media_desc">{$item.qunnotice}</p>
+      </div>
+    </a>
+    </volist>
+    <!-- loop -->
+  </div>
+</div>
+<div class="footer"></div>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script>
+function J_load_cp(a){
+  if(J_load_cp._init!=1){
+    J_load_cp._init =1;
+    J_load_cp.ids   =0;
+    J_load_cp.cache ={};
+    
+    J_load_cp.loaddata=function(requestUrl,cache){
+      if(J_load_cp.cache[requestUrl]){
+        $("body").append(J_load_cp.cache[requestUrl].data);
+        setTimeout(function(){$("#"+J_load_cp.cache[requestUrl].id).addClass("loadcp-show");},100);
+        return false;
+      }
+      
+      $.post(requestUrl,'',function(data){
+        var id='cpid_'+J_load_cp.ids;
+        J_load_cp.ids++;
+        
+        data=data.replace('replaceid',id);
+        if(cache){
+          J_load_cp.cache[requestUrl]={};
+          J_load_cp.cache[requestUrl].data=data;
+          J_load_cp.cache[requestUrl].id=id;
+        }
+        
+        $("body").append(data);
+        setTimeout(function(){$("#"+id).addClass("loadcp-show");},100);
+      },"html");
+    }
+  }
+  
+  var requestUrl=$(a).attr("data-url");
+  var cache=$(a).attr("cache") ? $(a).attr("cache") : false;
+  J_load_cp.loaddata(requestUrl,cache);
+}
+
+//划出界面 然后删除该界面 0.3s
+function close_slide(a){
+  $(a).parent().parent().removeClass("loadcp-show");
+  setTimeout(function(){
+    $(a).parent().parent().remove();
+  },350);
+}
+</script>
+<include file="Public:footer" />
+</body>
+</html>

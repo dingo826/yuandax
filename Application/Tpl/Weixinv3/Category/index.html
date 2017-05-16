@@ -1,0 +1,461 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+  <include file="Public:left" />
+    
+  <div class="j-centent">
+    <div class="j-wrap-1">
+      <div class="j-wrap-2">
+        <div class="j-wrap-3">
+          
+          <include file="Public:v3topnavn_neirong" />
+          
+          <form id="s_form">
+          <input type="hidden" name="cid" value="">
+          <!--模块-->
+          <div class="box">
+            <div class="title spacing">
+              {$classname.classname|default='网站栏目'}
+              <include file="Public:category_$classname['type']" />
+              <div class="j-fr j-newbtn-group" id="btn-all">
+                <a class="j-newbtn" id="btn-1" href="{:U('category/add')}">
+                  <span class="icon-plus"></span> 添加新栏目
+                </a>
+                <neq name="Think.ACTION_NAME" value="index">
+                <a class="j-newbtn red" id="btn-2" href="{:U('article/add?cid='.$cid)}">
+                  <span class="icon-plus"></span> 添加新文章
+                </a>
+                <a class="j-newbtn green" id="btn-3" href="{:U('article/publishwx')}">
+                  转载微信文章
+                </a>
+                </neq>
+              </div>
+            </div>
+            
+            <div class="j-hr-1"></div>
+            <eq name="status" value="2">
+            <!-- 搜索和移动 -->
+            <div class="box-top-addon">
+            
+              <div class="j-fl">
+                <a class="btn" onclick="setall(this)">
+                  全选
+                </a>
+                <div class="btn-group">
+                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    移动到
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                  <volist name="calist" id="cv">
+                    <li><a href="javascript:;" onclick="Cat.move_article(this)" cid="{$cv['id']}">{$cv.classname}</a></li>
+                  </volist>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="j-fr form-search">
+                <div class="input-append">
+                  <input placeholder="输入搜索关键字" name="keyword" type="text" class="span2 search-query">
+                  <a onClick="search_key()" type="submit" class="btn"><i class="icon-search"></i></a>
+                </div>
+              </div>
+              <div class="j-m"></div>
+            </div>
+            <!-- 搜索和移动end -->
+            
+            <!-- 列表 -->
+            <div class="j-common-tablelist centertxt">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="">
+                    <th width="15"></th>
+                    <th width="80">封面</th>
+                    <th>标题</th>
+                    <th width="100">日期</th>
+                    <th width="70">状态</th>
+                    <th width="120">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <!-- loop -->
+                  <volist name="list" id="item">
+                  <tr>
+                    <td><input type="checkbox" name="moveid[]" value="{$item.id}"></td>
+                    <td><img src="{$item.picurl}"></td>
+                    <td>{$item.title}</td>
+                    <td>{$item.etime|date="Y-m-d",###}<br /> {$item.etime|date="H:i:s",###}</td>
+                    <td class="color-1">显示</td>
+                    <td class="color-1">
+                      <a href="">置顶</a>
+                      <a href="">推荐</a>
+                      <!--<eq name="item.top" value="1">
+                      <a href="{:U('article/settop?id='.$item['id'].'&val=0')}" class="j-delete-1 j-block-2"><span class="icon-arrow-up"></span> 置顶</a>
+                      <else/>
+                      <a href="{:U('article/settop?id='.$item['id'].'&val=1')}" class="j-delete-1 j-block-2"><span class="icon-arrow-up" style="color: #666;"></span> 置顶</a>
+                      </eq>
+                       
+                      <eq name="item.news_reco" value="1">
+                      <a href="{:U('article/setrec?id='.$item['id'].'&val=0')}" class="j-delete-1 j-block-2"><span class="icon-thumbs-up"></span> 推荐</a>
+                      <else/>
+                      <a href="{:U('article/setrec?id='.$item['id'].'&val=1')}" class="j-delete-1 j-block-2"><span class="icon-thumbs-up" style="color: #666;"></span> 推荐</a>
+                      </eq>-->
+                      <a href="{:U('article/edit?id='.$item['id'])}">修改</a>
+                      <a href="javascript:;" onclick="J_delete(this)" data-url="{:U('article/del/?id='.$item['id'].'&cid='.$item['cid'])}">删除</a>
+                    </td>
+                  </tr>
+                  </volist>
+                  <!-- loop -->
+                  
+                </tbody>
+              </table>
+              
+              <div class="j-m">
+                <div class="pages pagination j-fr">
+                  <ul>
+                  {$page}
+                  </ul>
+                </div>
+                <div class="j-m"></div>
+              </div>
+            </div>
+            <!-- 列表end -->
+            <else/>
+            
+            <!-- 栏目分类 undeleted不可删除 unshow不显示-->
+            <div class="categorylist">
+            
+            <notempty name="list">
+              <!-- loop -->
+              <volist name="list" id="item">
+              <div class="item">
+                <div class="c" sortid="{$item.sort}" categoryid="{$item.id}">
+                  <div class="commands">
+                    <span><a class="pre" onclick="Cat.move_pre(this)">前移</a></span>
+                    <span><a class="back" onclick="Cat.move_after(this)">后移</a></span>
+                    <span><a class="edit" href="{:U('edit?id='.$item['id'])}">编辑</a></span>
+                    <span><a class="del" onclick="Cat.del(this)">删除</a></span>
+                    <div class="j-m"></div>
+                  </div>
+                  
+                  <a class="a-sort" href="{:U('category/zilei?id='.$item['id'])}">
+                    <div class="icon-cver">
+                      <table><tbody><tr><td>
+                        <span class="{$item.icon}"></span>
+                        <!--<div style="background-image:url({$item.picurl_s})"></div>-->
+                      </td></tr></tbody></table>
+                    </div>
+                    <div class="c-title">{$item.classname}</div>
+                    <div class="c-descs">描述</div>
+                  </a>
+                </div>
+              </div>
+              </volist>
+              <!-- loop -->
+              </notempty>
+              
+            </div>
+            <div class="j-m"></div>
+            <!-- 栏目分类end -->
+            </eq>
+          </div>
+          <!--模块结束-->
+          </form>
+          <div class="j-m j-h20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 弹窗 发布确认 -->
+<div class="mass-dialog" id="confirm-del">
+  <div class="mass-dialog-c">
+    <div class="mass-dialog-content">
+      <div class="mass-confirmbox">
+        <div class="confirm-title">是否确认删除？</div>
+      </div>
+    </div>
+    
+    <div class="mass-dialog-bottom">
+      <a class="confirm-btn green" onclick="Cat.delaction(this)">确定</a>
+      <a class="confirm-btn" onclick="J_hide('confirm-del')">取消</a>
+    </div>
+  </div>
+</div>
+<!-- 弹窗 -->
+
+<!-- 弹窗 发布确认 -->
+<div class="mass-dialog" id="confirm-undeleted">
+  <div class="mass-dialog-c">
+    <div class="mass-dialog-content">
+      <div class="mass-confirmbox">
+        <div class="confirm-title">提示</div>
+        <div class="confirm-msg">请先将该分类的文章或子分类进行移动或删除！</div>
+        
+      </div>
+    </div>
+    
+    <div class="mass-dialog-bottom">
+      <a class="confirm-btn green" onclick="J_hide('confirm-undeleted')">确定</a>
+    </div>
+  </div>
+</div>
+<!-- 弹窗 -->
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+
+<script>
+var Cat={};
+
+//后移
+Cat.move_after=function(a){
+  if(Cat.movelock==1){
+    console.log("request-lock");
+    return;
+  }
+  
+  Cat.movelock=1;
+  
+  var aim=$(a).parent().parent().parent();
+  var c=aim.parent();
+  var sortid=aim.attr("sortid");
+  var catid=aim.attr("categoryid");
+  
+  var c2=c.next();
+  var aim2=c2.find(".c");
+  var sortid2=aim2.attr("sortid");
+  var catid2=aim2.attr("categoryid");
+  
+  $.post("{:U('change')}",{
+    change:[
+      {categoryid:catid,sortid:sortid2},
+      {categoryid:catid2,sortid:sortid}
+    ]
+  },function(status){
+    if(status==1){
+      aim.attr("sortid",sortid2);
+      aim2.attr("sortid",sortid);
+
+      c.append(aim2.clone());
+      c2.append(aim.clone());
+    
+      aim.remove();
+      aim2.remove();
+      Cat.movelock=0;
+      return;
+    }
+    
+    if(status==-1){
+      Cat.movelock=0;
+      J_msgshow("网络错误，请重试");
+    }
+  },"html");
+  
+  
+  /*setTimeout(function(){
+    aim.attr("sortid",sortid2);
+    aim2.attr("sortid",sortid);
+
+    c.append(aim2.clone());
+    c2.append(aim.clone());
+  
+    aim.remove();
+    aim2.remove();
+  },2000);*/
+}
+
+//前移
+Cat.move_pre=function(a){
+  if(Cat.movelock==1){
+    console.log("request-lock");
+    return;
+  }
+  
+  Cat.movelock=1;
+  
+  var aim=$(a).parent().parent().parent();
+  var c=aim.parent();
+  var sortid=aim.attr("sortid");
+  var catid=aim.attr("categoryid");
+  
+  var c2=c.prev();
+  var aim2=c2.find(".c");
+  var sortid2=aim2.attr("sortid");
+  var catid2=aim2.attr("categoryid");
+  
+  $.post("{:U('change')}",{
+    change:[
+      {categoryid:catid,sortid:sortid2},
+      {categoryid:catid2,sortid:sortid}
+    ]
+  },function(status){
+    if(status==1){
+      aim.attr("sortid",sortid2);
+      aim2.attr("sortid",sortid);
+
+      c.append(aim2.clone());
+      c2.append(aim.clone());
+    
+      aim.remove();
+      aim2.remove();
+      Cat.movelock=0;
+      return;
+    }
+    
+    if(status==-1){
+      Cat.movelock=0;
+      J_msgshow("网络错误，请重试");
+    }
+  },"html");
+  
+  /*setTimeout(function(){
+    aim.attr("sortid",sortid2);
+    aim2.attr("sortid",sortid);
+
+    c.append(aim2.clone());
+    c2.append(aim.clone());
+  
+    aim.remove();
+    aim2.remove();
+  },2000);*/
+}
+
+//删除
+Cat.del=function(a){
+  var aim=$(a).parent().parent().parent();
+  var id=aim.attr('categoryid');
+  
+  if(aim.is(".undeleted")){
+    J_show("confirm-undeleted");
+    return false;
+  }
+
+  $.post("{:U('checkdel')}",{
+    id:id,
+  },function(status){
+    if(status==0){
+      aim.addClass("undeleted");
+      J_show("confirm-undeleted");
+    }else{
+      Cat.delid=id;
+      J_show("confirm-del");
+    }
+  },"html");
+}
+
+//删除提交
+Cat.delaction=function(a){
+  var aim=$(".categorylist .c[categoryid='"+Cat.delid+"']");
+  var id=aim.attr("categoryid");
+  
+  $(a).addClass("lock").html("提交中");
+  
+  if(Cat.dellock){
+    return false;
+  }
+  
+  Cat.dellock=true;
+  $.post("{:U('del')}",{id:id},function(status){
+    $(a).removeClass("lock").html("确定");
+    Cat.dellock=false;
+    
+    if(status==1){
+      aim.parent().remove();
+      J_msgshow("删除成功");
+      J_hide("confirm-del");
+    }else{
+      J_msgshow("网络错误，请重试");
+    }
+  });
+}
+
+//文章分类移动
+Cat.move_article=function(a){
+  var cid=$(a).attr("cid");
+  
+  if($(".j-common-tablelist :checked").length<=0){
+    J_msgshow("请先选择移动的文章");
+    return false;
+  }
+  
+  $("input[name='cid']").val(cid);
+  
+  $.post("{:U('category/move')}",$("#s_form").serialize(),function(status){
+    if(status==1){
+      location.reload(true);
+    }else{
+      J_msgshow("网络错误，请重试");
+    }
+  },"html");
+}
+
+//初始化
+$(document).ready(function(){
+  var status={$status|default=0};
+  
+  if(status==1){
+    $("#btn-all a").addClass("lock");
+  }
+  
+  if(status==2){
+    $("#btn-1").addClass("lock");
+  }
+  
+  if(status==0){
+    $("#btn-2").addClass("lock");
+    $("#btn-3").addClass("lock");
+  }
+});
+
+function setall(a){
+  var t=$(a).attr("status");
+  
+  if(!t || t=="0"){
+    $(".j-common-tablelist input:checkbox").prop("checked",true);
+    $(a).attr("status","1");
+    return;
+  }
+  
+  $(".j-common-tablelist input:checkbox").removeAttr("checked");
+  $(a).attr("status","0");
+}
+</script>
+</body>
+</html>

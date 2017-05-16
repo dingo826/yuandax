@@ -1,0 +1,24 @@
+body{font-size: 14px; background-color: #dbd9d7}
+.table{padding: 0; margin: 0; width: 100%; border-spacing: 0; border: 0}
+.table td{padding: 0; border:0; vertical-align: middle;}
+.table.padding td{padding: 1px}
+
+.list{margin: 15px}
+.list .item{position: relative; background: #f1f2f4; border-radius: 6px; overflow: hidden; display: flex; display: -webkit-flex; -webkit-box-shadow:0px 3px 5px #8E9194; box-shadow:0px 3px 5px #8E9194; margin: 10px 0}
+.list .item:active{opacity: .8}
+.list .item .item-tile{display: inline-flex; display: -webkit-inline-flex; flex: 1; -webkit-flex:1; position: relative;}
+.list .item .thumb{width: 60px; height: 60px; overflow: hidden;}
+.list .item .thumb img{width: 60px; height: 60px}
+.list .item .title{position: absolute;  width: 100%; line-height:30px; text-indent: 1em}
+.list .item .headtitle{font-size: 16px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%;}
+.list .item .subtitle{color: #acafb6; width: 100%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.list .item .icon{display: inline-flex; display: -webkit-inline-flex; background: url(../img/arr1.png) no-repeat center center; width: 25px; background-size: 12px}
+
+.page{display: flex; display: -webkit-flex; margin: 15px}
+.page .item{-webkit-flex:1; flex:1;}
+.page .pagenum{text-align: center; line-height: 36px}
+.page .btn{display: block; text-align: center; background: #f1f2f4; padding: 8px 0; border-radius: 6px}
+.page .btn:active{opacity: .5}
+
+.footer{text-align: center; min-height: 30px; clear: both;}
+.footer a{line-height: 50px}

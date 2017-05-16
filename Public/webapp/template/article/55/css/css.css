@@ -1,0 +1,10 @@
+body{}
+
+.headcover,.headcover img{width: 100%; display: block;}
+.title{background: #f0f0f0; border-bottom: solid 1px #bababa; margin: 0; padding: 8px 15px}
+.title .t{font-size: 24px}
+.title .time{color: #999}
+.title .author{color: #7D7DF7; margin-left: 8px}
+
+.article{background-color: #FFF}
+.article .content{}

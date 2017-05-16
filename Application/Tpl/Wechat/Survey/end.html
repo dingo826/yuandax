@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$detail.title}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="msg">
+  <div class="weui_msg">
+    <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+    <div class="weui_text_area">
+      <h2 class="weui_msg_title">调研完成</h2>
+      <p class="weui_msg_desc">感谢您为社区做的贡献，我们将做的更好！</p>
+    </div>
+  </div>
+</div>
+
+<div class="weui_btn_area">
+  <a class="weui_btn weui_btn_primary" href="{:U('index?wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}">返回首页</a>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

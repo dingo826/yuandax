@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+<link href="/static/weixin/css/newindex.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tbody>
+        	<tr>
+            	<td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+	<include file="Public:left" />
+    
+  <div class="j-centent">
+    <div class="j-wrap-1">
+      <div class="j-wrap-2">
+        <div class="j-wrap-3">
+          <!-- box -->
+          <div class="j-m j-h10"></div>
+          <div class="box">
+            <div class="title spacing">基础设置</div>
+            <div class="j-m j-h1 j-bkcl2"></div>
+            <div class="spacing">
+              <a href="{:U('shequ/basicinfo')}" class="j-bottom-box">
+                <div class="j-m j-h10"></div>
+                <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td class="icon j-bkcl8">
+                        <div class="j-m j-h15"></div>
+                        <span class="fa fa-building-o j-fcolor-1"></span>
+                      </td>
+                      <td>
+                        <div class="t j-ml-2">社区信息</div>
+                        <div class="j-m j-h8"></div>
+                        <div class="desc j-ml-2">社区基本信息、简介、岗位设置和社区团队设置</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </a>
+              
+              <a href="{:U('replysubscribe/index')}" class="j-bottom-box">
+                <div class="j-m j-h10"></div>
+                <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td class="icon j-bkcl8">
+                        <div class="j-m j-h15"></div>
+                        <span class="fa fa-comments-o j-fcolor-1"></span>
+                      </td>
+                      <td>
+                        <div class="t j-ml-2">系统设置</div>
+                        <div class="j-m j-h8"></div>
+                        <div class="desc j-ml-2">关注时回复、无匹配回复和自定义回复设置</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </a>
+              
+              <a href="{:U('category/index')}" class="j-bottom-box">
+                <div class="j-m j-h10"></div>
+                <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td class="icon j-bkcl8">
+                        <div class="j-m j-h15"></div>
+                        <span class="icon-th-large j-fcolor-1"></span>
+                      </td>
+                      <td>
+                        <div class="t j-ml-2">社区官网</div>
+                        <div class="j-m j-h8"></div>
+                        <div class="desc j-ml-2">关注时回复、无匹配回复和自定义回复设置</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </a>
+
+              <div class="j-m j-h1"></div>
+            </div>
+          </div>
+          <!-- boxend -->
+          
+          <!-- box -->
+          <div class="j-m j-h10"></div>
+          <div class="box">
+            <div class="title spacing">帐户设置</div>
+            <div class="j-m j-h1 j-bkcl2"></div>
+            <div class="spacing">
+              <a href="{:U('account/index')}" class="j-bottom-box">
+                <div class="j-m j-h10"></div>
+                <table class="tbl" border="0" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td class="icon j-bkcl15">
+                        <div class="j-m j-h15"></div>
+                        <span class="fa fa-user j-fcolor-1"></span>
+                      </td>
+                      <td>
+                        <div class="t j-ml-2">管理帐号</div>
+                        <div class="j-m j-h8"></div>
+                        <div class="desc j-ml-2">管理员联系信息登记及密码修改服务</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </a>
+
+              <div class="j-m j-h1"></div>
+            </div>
+          </div>
+          <!-- boxend -->
+          
+          <div class="j-m j-h20"></div>
+          <include file="Weixin2:Public:footer" />
+          <div class="j-m j-h20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<!--js-->
+</body>
+</html>

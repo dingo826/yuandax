@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>活动报名</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/style/activity.css">
+</head>
+
+<body>
+<div class="activity-aim j-flex j-flex-center">
+  <div class="flex">
+    <div class="c">
+      <div class="count"><span>{$hdall|default='0'}人</span></div>
+      <div class="txt">参与人数</div>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="c">
+      <div class="count"><span>{$hdbming|default='0'}个</span></div>
+      <div class="txt">进行中活动</div>
+    </div>
+  </div>
+  <!--<div class="flex">
+    <div class="c">
+      <div class="count"><span>1000人</span></div>
+      <div class="txt">结束活动</div>
+    </div>
+  </div>-->
+  <div class="flex">
+    <a href="">
+    <div class="c">
+      <div class="count"><span class="color-green">{$myhd|default='0'}个</span></div>
+      <div class="txt">我的活动</div>
+    </div>
+    </a>
+  </div>
+</div>
+
+<div class="activity-list">
+  <!-- loop -->
+  <volist name="list" id="item">
+  <a href="{:U('detail?id='.$item['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}">
+    <div class="item">
+      <div class="content">
+        <div class="j-flex j-flex-center">
+          <div class="avatar"><img src="{$basic.logo}"></div>
+          <div class="flex username">{$basic.abbr}</div>
+          <div class="time">{$item.ctime|date="Y-m-d",###}</div>
+        </div>
+        
+        <div class="title">{$item.title}<eq name="item.baoxian" value="1"><span class="label green">免费保险</span></eq></div>
+        
+        <div class="desc">{$item.desc}</div>
+        
+        <div class="desc"><img src="{$item.picurl}"></div>
+      </div>
+      
+      <div class="info j-flex j-flex-center">
+        <div class="flex activity-theme-color"><span class="icon-user"></span> {$item.nums|default='0'}</div>
+        <div class="flex"><span class="icon-heart"></span> {$item.dianzs|default='0'}</div>
+        
+        <gt name="item.bbtime" value="$nowtime"><div class="flex color-orange">即将报名</div><else/>
+        <gt name="item.betime" value="$nowtime"><div class="flex color-green">报名进行中</div><else/>
+        <div class="flex color-gray">报名结束</div>
+        </gt>
+        </gt>
+        
+      </div>
+    </div>
+  </a>
+  </volist>
+  <!-- loop -->
+
+</div>
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+</body>
+</html>

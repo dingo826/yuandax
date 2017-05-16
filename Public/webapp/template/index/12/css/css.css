@@ -1,0 +1,25 @@
+/* 背景 */
+body{background-color: #e95b60}
+
+/* 滚动 */
+.head{margin:15px}
+.swiper-container img{width: 100%; display: block; border-radius: 10px 10px 0 0}
+
+/* 联系电话 */
+.telephone{margin: 0 auto; padding: 8px 0; background-color: #df3840; text-align: center; color: #FFF; display: block; border-radius:0 0 10px 10px}
+
+/* 菜单 */
+.menu{padding:0; margin: 10px 0 0 0; background: url(../img/v67_1.png) repeat; background-size: 6px 6px; border-bottom: 1px solid #d83e46; border-top: 1px solid #d83e46}
+.menu .item{width: 50%; display: block; float: left; height: 100px; color: #FFF; box-sizing: border-box; border-top: 1px solid #ec6064; border-left: 1px solid #ec6064; background: -webkit-gradient(linear, 0 0, 100% 100%, from(transparent), to(transparent),color-stop(50%, transparent), color-stop(50%, rgba(10,10,10,0.03))),
+ -webkit-gradient(linear, 0 100%, 100% 0, from(rgba(0,0,0,0.03)), to(transparent), color-stop(50%, rgba(0,0,0,0.03)), color-stop(50%, transparent) ); background-size: 150px 150px;}
+.menu .item:nth-child(1),.menu .item:nth-child(2){border-top: none}
+.menu .item:active{opacity: 0.6}
+.menu .item .icon{text-align: center; font-size: 40px; line-height: 45px; margin-top: 10px}
+.menu .item .title{width: 90%; margin: 0 auto; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; line-height: 30px; text-align: center;}
+
+.footer{line-height: 50px; clear: both; text-align: center; height: 10px}
+
+/* 小于等于250 */
+@media (max-width: 250px) {
+  .menu .item{width: 100%; margin: 5px auto}
+}

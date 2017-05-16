@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>居民卡</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<form id="form" onSubmit="return Validator.Validate(this,4)">
+<div class="weui_cells weui_cells_form">
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" name="truename" type="text" placeholder="请输入姓名" value="{$minfo.name}" datatype="Require" msg="请输入姓名">
+    </div>
+  </div>
+  
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">电话</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" name="tel" type="number" placeholder="请输入电话" value="{$minfo.tel}" datatype="Mobile" msg="请正确输入电话">
+    </div>
+  </div>
+  
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">生日</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" name="birthday" type="date" />
+    </div>
+  </div>
+</div>
+
+<div class="weui_cells_title">选择性别</div>
+<div class="weui_cells weui_cells_radio">
+  <label class="weui_cell weui_check_label">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>男</p>
+      </div>
+      <div class="weui_cell_ft">
+          <input type="radio" name="sex" value="1" class="weui_check" <eq name="minfo.sex" value="1"> checked</eq>>
+          <span class="weui_icon_checked"></span>
+      </div>
+  </label>
+  <label class="weui_cell weui_check_label">
+
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>女</p>
+      </div>
+      <div class="weui_cell_ft">
+          <input type="radio" name="sex" value="2" class="weui_check" <eq name="minfo.sex" value="2"> checked</eq>>
+          <span class="weui_icon_checked"></span>
+      </div>
+  </label>
+</div>
+
+<div class="weui_cells weui_cells_form">
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">楼号</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" type="text" name="buildingNo" placeholder="请输入楼号" value="<gt name='minfo.buildingNo' value='0'>{$minfo.buildingNo}</gt>" />
+    </div>
+  </div>
+  
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">单元号</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" type="text" name="unit" placeholder="请输入单元号" value="<gt name='minfo.unit' value='0'>{$minfo.unit}</gt>" />
+    </div>
+  </div>
+  
+  <div class="weui_cell">
+    <div class="weui_cell_hd"><label class="weui_label">门牌号</label></div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" type="text" name="doorNumber" placeholder="请输入门牌号" value="<gt name='minfo.doorNumber' value='0'>{$minfo.doorNumber}</gt>" />
+    </div>
+  </div>
+</div>
+
+<div class="weui_cells_title">选择居民类型</div>
+<div class="weui_cells weui_cells_radio">
+  <label class="weui_cell weui_check_label">
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>房东</p>
+      </div>
+      <div class="weui_cell_ft">
+          <input type="radio" name="householdType" value="1" class="weui_check" checked>
+          <span class="weui_icon_checked"></span>
+      </div>
+  </label>
+  <label class="weui_cell weui_check_label">
+
+      <div class="weui_cell_bd weui_cell_primary">
+        <p>租客</p>
+      </div>
+      <div class="weui_cell_ft">
+          <input type="radio" name="householdType" value="0" class="weui_check">
+          <span class="weui_icon_checked"></span>
+      </div>
+  </label>
+</div>
+
+<div class="weui_btn_area">
+   <input type="button" onClick="send()" class="weui_btn weui_btn_primary" value="保存">
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/zepto.min.js"></script>
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+
+<script>
+url = location.href;
+function send(){
+  if(Validator.Validate($("#form")[0],4)){
+    var data=$("#form").serialize();
+    
+    $.post(url,data);
+  }
+}
+</script>
+<include file="Public:footer" />
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微社区系统</title>
+
+<link href="/static/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/plugin/fontawesome/css/font-awesome4.min.css" rel="stylesheet">
+<link href="/static/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/static/weixin/css/style.css" rel="stylesheet">
+<link href="/static/weixin/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="j-fix j-full j-phone-min-pointer">
+  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+      <tbody>
+          <tr>
+              <td colspan="2" class="j-h72">
+<!--头部-->
+<include file="Public:header" />
+<!--头部-->
+                </td>
+            </tr>
+            <tr>
+                <td class="j-container">
+<!--内容-->
+<div class="j-full">
+  <include file="Public:left" />
+
+    <div class="j-centent">
+      <div class="j-wrap-1">
+        <div class="j-wrap-2">
+          <div class="j-wrap-3">
+
+              <!--模块-->
+                <div class="j-m j-h10"></div>
+                <div class="box">
+                    <div class="title spacing">
+                      居民资料
+                      <div class="j-fr">
+                        <a class="j-fz-14" href="javascript:;" onClick="J_goback()"><span class="icon-reply"></span> 返回</a>
+                      </div>
+                    </div>
+                    <div class="j-m j-h1 j-bkcl2"></div>
+                    <div class="j-m-spacing">
+
+
+                      <!--表单-->
+                      <form action="" method="post" id="s_form" onSubmit="return Validator.Validate(this,4)">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="j-table j-table-sortline-dashed j-table-vertival-mid">
+                          <thead>
+
+                            </thead>
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">居民编号</td>
+                                                        <td>
+                                                          <input type="text" disabled value="{$uinfo.cardnum}">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">状态</td>
+                                                        <td>
+                                                          <label class="j-mr8"><input type="radio" name="freeze" value="0"> 正常</label>
+                                                          <label><input type="radio" name="freeze" value="1"> 冻结</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">微信ID</td>
+                                                        <td>
+                                                          {$uinfo.wechatid}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">实名认证</td>
+                                                        <td>
+                                                          <label class="j-mt4"><input type="checkbox" name="real_name" value="1" /> 实名认证</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">创建日期</td>
+                                                        <td>
+                                                          {$uinfo.ctime|date="Y年m月d日 H:i:s",###}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="j-m j-h5"></div>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">更新日期</td>
+                                                        <td>
+                                                          {$uinfo.etime|date="Y年m月d日 H:i:s",###}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="j-m j-h5"></div>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">姓名</td>
+                                                        <td>
+                                                          <input type="text" name="truename" value="{$uinfo.name}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">性别</td>
+                                                        <td>
+                                                          <label class="j-mr8"><input type="radio" name="sex" value="1"> 男</label>
+                                                          <label><input type="radio" name="sex" value="2"> 女</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">生日</td>
+                                                        <td>
+                                                          <input type="text" name="birthday" id="timepickers-1" value="{$uinfo.birthday}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">身份证</td>
+                                                        <td>
+                                                          <input type="text" name="id_card" value="{$uinfo.id_card}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">手机</td>
+                                                        <td>
+                                                          <input type="text" name="tel" value="{$uinfo.tel}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                        <!--start-input:text-->
+                                      <div class="input-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">QQ</td>
+                                                        <td>
+                                                          <input type="text" name="qq" value="{$uinfo.qq}" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="input-group">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">用户类型</td>
+                                                        <td>
+                                                          <label class="j-mr8"><input type="radio" name="householdType" value="0"> 租客</label>
+                                                          <label class="j-mr8"><input type="radio" name="householdType" value="1"> 房东</label>
+                                                          <label><input type="radio" name="householdType" value="2"> 未知</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+
+                                     
+                                    </td>
+                                </tr>
+								
+								<tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="textarea-group">
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel">地址</td>
+                                                        <td>
+                                                          <input type="text" name="buildingNo" value="{$uinfo.buildingNo}" class="j-w10"> 栋（幢）
+                                                          <input type="text" name="unit" value="{$uinfo.unit}" class="j-w10"> 单元
+                                                          <input type="text" name="doorNumber" value="{$uinfo.doorNumber}" class="j-w10"> 号
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+								
+                                <tr>
+                                  <td>
+                                      <!--start-input:text-->
+                                      <div class="textarea-group j-fz-14">
+                                          <div class="j-m j-h5"></div>
+                                          <table width="100%" class="j-table-noborder" cellpadding="0" cellspacing="0">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="j-w-80 j-input-lalel"></td>
+                                                      <td>
+
+                                                        <table class="table table-bordered">
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>动作</td>
+                                                              <td>时间</td>
+                                                            </tr>
+
+                                                            <!-- loop -->
+                                                            <volist name="history" id="item">
+                                                            <tr>
+                                                              <td class="j-fcolor-red">
+                                                              <if condition="$item.event eq 'subscribe'">关注
+										                      <else />取消关注
+										                      </if></td>
+                                                              <td>{$item.time|date="Y-m-d H:i:s",###}</td>
+                                                            </tr>
+                                                            </volist>
+                                                          </tbody>
+                                                        </table>
+                                                      </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end-input:text-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="j-m">
+                          <input class="j-button-red j-pct j-mt20" type="submit" value="确定">
+                        </div>
+                        </form>
+                        <!--表单-->
+                    </div>
+                    <div class="j-m j-h10"></div>
+                </div>
+                <!--模块结束-->
+
+                <div class="j-m j-h20"></div>
+                <include file="Public:footer" />
+                <div class="j-m j-h20"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--内容-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--js-->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/plugin/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/plugin/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/plugin/datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/static/weixin/js/site.js"></script>
+<script src="/static/js/validator.js"></script>
+
+<script>
+$(this).ready(function(){
+  //数据初始化
+
+  //状态
+  $('input:radio[name="freeze"][value="{$uinfo.freeze}"]').attr("checked",true);
+
+  //实名认证
+  $('input:checkbox[name="real_name"][value="{$uinfo.real_name}"]').attr("checked",true);
+
+  //性别 2=女 1=男
+  $('input:radio[name="sex"][value="{$uinfo.sex}"]').attr("checked",true);
+
+  //用户类型 0=租客 1=房东 2=未知
+  $('input:radio[name="householdType"][value="{$uinfo.householdType}"]').attr("checked",true);
+  
+  //时间选择
+  $("#timepickers-1").datetimepicker({
+    format: 'yyyy-mm-dd',
+    language:  'zh-CN',
+    minView: 2
+  });
+});
+</script>
+</body>
+</html>

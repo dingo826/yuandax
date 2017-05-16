@@ -1,0 +1,281 @@
+<include file="Public:header" />
+<div class=" banner ">
+<div class="wap">
+	<div class="b_login">
+	<b>登录系统</b>
+	<div class="user"><i></i>
+        <input type="hidden" value="1" name="tabid">
+		<input name="username" id="username" type="text" value="{$cookie_us}" class="login_btxt" onkeydown="keydown_Enter(event)"><div class="clear"></div></div>
+	<div class=" user password"><i></i><input type="password" maxlength="40" name="password" id="password" onkeydown="keydown_Enter(event)"><div class="clear"></div></div>
+	<label class="checkbox_i h666"><input type="checkbox" id="rememberme" checked  value="1"> 记住账号</label>
+	<div><input type="submit" value="登 录"  id="btn-login"></div>
+	
+	
+	
+	</div>
+	
+	
+</div>
+
+<!---->
+	<div class="b_login b_login_r">
+	<b>关注我们</b>
+	<i class="backgr"></i>
+	用微信扫描二维码<br>
+	关注微信公众平台
+	
+	
+	
+	
+	</div>
+    <!---->
+
+
+</div>
+
+<div class="notice">
+<div class="wap">
+<div class="notice_l">动态：</div>
+<ul>
+    <volist name="list" id="v">
+	<li><a href="/news/detail/id/{$v.id}">【{$cateList[$v['type']]}】{$v.title}</a></li>
+	</volist>
+</ul>
+<a href="/news.html" class="more_i">更多>></a>
+</div>
+
+
+
+</div>
+
+
+<div class="index_b">
+	<div class="wap">
+	<div class="index_b_text">若您在使用我们的服务时遇到问题，您可以选择联系在线QQ或者提交售后工单寻求帮助，<br>	
+	我们专业的售后工程师团队将为您提供5*8小时不间断的技术服务</div>
+	<div class="index_contact">
+		<ul><li>
+		<div class="index_qq">在线QQ服务</div><br>
+		<div class="index_460">适合场景<br>
+		客户任何业务或服务上的<br>
+		咨询、投诉、意见或建议均可</div>
+		<div class="index_qq_t">客服号码</div>
+<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3033358697&amp;site=qq&amp;menu=yes" target="_blank" title="源达客服" rel="nofollow">3033358697 </a>		
+		</li>
+		
+		<li>
+		<div class="index_qq index_yw ">运维括管服务</div><br>
+		<div class="index_460">适合场景<br>
+		客户无法自助完成的运维类<br>
+		需求可提交工单人工协助完成</div>
+		<div class="index_qq_time">受理时间</div>
+		随时提单，三个工作日<br>
+		之内完成受理。
+		
+		
+		</li>
+		
+		<li>
+		<div class="index_qq index_zb">值班电话服务</div><br>
+		<div class="index_460">适合场景<br>
+		客户任何业务或服务上的<br>
+		咨询、投诉、意见或建议均可</div>
+		<div class="index_qq_t">值班电话</div>
+	<span class="green">0571-28107319</span>
+		
+		
+		
+		</li></ul>
+	
+	
+	</div>
+	<div class="clear"></div>
+	<div class="index_b_text index_font_16">服务时间：周一至周五：9：00～18：00 法定节假日：9:00~12:00,14:00~18:00</div>
+	
+	
+	</div>
+
+</div>
+
+
+<include file="Public:footer" />
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#btn-login').click(function() {
+
+            loginAction()
+
+        });
+
+        $('.login_table').keydown(function(e) {
+
+            if (13 == e.keyCode) {
+
+                loginAction();
+
+            }
+			
+        });
+
+    });
+	
+	function loginAction() {
+
+            //$('#error_box').hide();
+
+            var userAgent = window.navigator.userAgent.toLowerCase();
+
+            var ie6 = $.browser.msie && /msie 6\.0/i.test(userAgent);
+
+            if (ie6) {
+
+                alert('请不要使用ie6及以下等低版本浏览器');
+
+                return false;
+
+            }
+			
+            // 提交前检验
+            if ('' == $('#username').val() || '' == $('#password').val()) {
+
+                //$('#username').focus();
+
+                //$('#error_tips').text('请输入账号');
+				//alert("请输入账号密码");
+
+                //$('#error_box').slideDown(400);
+
+                //setTimeout(function() {
+
+                    //$('#error_box').hide();
+
+                //},
+                //1000);
+
+                //return false;
+
+            }
+			
+            $.post('/login.html', {
+                username: $('#username').val(),
+                password: $('#password').val(),
+                keepalive: $('#keepalive').attr('value'),
+				rememberme: $("#rememberme").attr("checked") ? '1' : '0'
+            },
+            function(rs) {
+
+                //$('#error_tips').text(rs.error);
+
+                //$('#error_box').slideDown(400);
+
+                setTimeout(function() {
+
+                    //$('#error_box').hide();
+
+                },
+                1000);
+
+                if (rs.errno == 200) {
+
+                    setTimeout(function() {
+
+                        location.href = rs.url_route;
+
+                    },
+                    600);
+
+                } else {
+
+                    alert(rs.error);
+
+                }
+
+            },
+            'json');
+
+        }
+
+    function changeCheckbox() {
+
+        var new_value = (parseInt($('#keepalive').attr('value')) + 1) % 2;
+
+        $('#keepalive').attr('value', new_value);
+
+        if (1 == new_value) {
+
+            $('#keepalive').addClass('checked');
+
+        } else {
+
+            $('#keepalive').removeClass('checked');
+
+        }
+
+    }
+
+    function bindEnterKey(event) {
+
+        if (13 == event.keyCode) {
+
+            $('#btn-login').click();
+
+        }
+
+    }
+	
+	function keydown_Enter(event){
+		var keyCode = event.keyCode?event.keyCode:event.which?event.which:event.charCode;
+		if (keyCode ==13){
+			loginAction();
+		}
+	}
+</script>
+<script>
+    function AddToFavorite() {
+
+        if (document.all) {
+
+            window.external.addFavorite(document.URL, document.title); //ie 360
+        } else if (window.sidebar) {
+
+            window.sidebar.addPanel(document.title, document.URL, ""); //ff
+        } else {
+
+            window.external.addFavorite(document.URL, document.title); //opera
+        }
+
+        return false;
+
+    }
+
+    $(function() {
+
+        //普通用户vs卡号用户登录切换
+        jQuery("ul.login_tab").find("li").click(function() {
+
+            var ind = jQuery(this).parent().children("li").index(jQuery(this));
+
+            jQuery(this).addClass("hover").siblings().removeClass("hover");
+
+            jQuery(this).parents("ul").siblings("div.login_form").hide().eq(ind).show();
+
+        });
+
+        //判断错误 获得焦点
+        var login_btxt = jQuery('.login_btxt');
+
+        if (0 == jQuery('.login_wrongtip').length) {
+
+            login_btxt.eq(0).focus();
+
+        } else {
+
+            login_btxt.eq(2).focus();
+
+        }
+
+    })
+</script>
+</html>

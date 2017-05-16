@@ -1,0 +1,15 @@
+/* 背景 */
+body{background:url(../img/bk2.jpg) no-repeat center bottom; background-attachment: fixed; background-size: cover;}
+
+/* 滚动 */
+.swiper-container img{width: 100%; display: block;}
+
+/* 菜单 */
+.menu{padding:0; margin: 25px auto;}
+.menu .item{height: 80px; width: 80%; display: block; border: none; margin-bottom: 10px; color: #FFF; background: url(../img/icon.png) no-repeat 95% center rgba(0,0,0,0.6);}
+
+.menu .item .title{text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 80px; font-size: 16px; text-indent: 1em; width: 95%}
+.menu .item:active{opacity: 0.8}
+
+.footer{line-height: 50px; clear: both; text-align: center;}
+.footer a{font-size: 12px; text-shadow:2px 2px 5px #FFF;}

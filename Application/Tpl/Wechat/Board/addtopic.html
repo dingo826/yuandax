@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>{$board.name|default='社区留言板'}</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+
+<body>
+<form action="" method="post" onSubmit="return Validator.Validate(this,4);">
+<div class="weui_cells_title"></div>
+
+<div class="weui_cells weui_cells_form">
+  <div class="weui_cell">
+    <div class="weui_cell_bd weui_cell_primary">
+      <textarea id="contents" name="contents" class="weui_textarea" placeholder="请输入留言" rows="5" datatype="Require" msg="请输入留言内容"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="weui_cells weui_cells_checkbox">
+  <label class="weui_cell weui_check_label" for="s11">
+    <div class="weui_cell_hd">
+      <input type="checkbox" class="weui_check" name="userPublic" id="s11" <eq name="board.public" value="0"> checked</eq>>
+      <i class="weui_icon_checked"></i>
+    </div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <p>不公开 勾选后管理员无法将该信息公布</p>
+    </div>
+  </label>
+</div>
+                
+<div class="weui_btn_area">
+   <input type="submit" class="weui_btn weui_btn_primary" id="showTooltips" value="提交留言">
+</div>
+</form>
+
+<script src="__PUBLIC__/webapp/script/validator.js"></script>
+<script>
+i = 0;
+function dd() {
+	i++;
+	alert(i);
+	return false;
+}
+</script>
+<include file="Public:footer" />
+</body>
+</html>

@@ -1,0 +1,18 @@
+* {-webkit-tap-highlight-color: rgba(0,0,0,0);}
+body {-webkit-touch-callout: none;-webkit-text-size-adjust: none;-webkit-user-select: none;font-family:-apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;margin:0 auto;padding:0; word-break: break-all;font-size:14px;color: #444}
+a{color: #444; outline: none; text-decoration: none;}
+a:hover,a:active,a:focus{text-decoration: none;}
+img{border:none}
+input,select{font: inherit}
+.clear{clear: both; width: 100%}
+
+/* 弹性布局 */
+.j-flex{display: flex; display: -webkit-flex; display: -webkit-box;}
+.j-flex-vtc{-webkit-box-orient: vertical; -webkit-flex-flow: column}
+.j-flex .flex .fc{position: absolute; width: 100%; top:-8px}
+.j-flex .flex .c{position: absolute; width: 100%}
+.j-flex .flex{flex: 1; -webkit-flex:1; position: relative; -webkit-box-flex:1}
+.j-flex .flex-2{flex: 2; -webkit-flex:2; position: relative; -webkit-box-flex:2}
+.j-flex .flex-3{flex: 3; -webkit-flex:3; position: relative; -webkit-box-flex:3}
+.j-flex .fix{width: 1px}
+.j-flex-center{-webkit-box-align: center; -webkit-align-items: center; align-items: center}

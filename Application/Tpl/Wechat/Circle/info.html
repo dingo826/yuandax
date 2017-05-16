@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>社区圈子</title>
+
+<link href="__PUBLIC__/webapp/style/app.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/webapp/plugin/weiui/weui.min.css">
+<link href="__PUBLIC__/webapp/style/css.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="weui_cells weui_cells_form circle-member">
+  <div class="weui_cell">
+    <div class="weui_cell_bd weui_cell_primary">
+      <div class="weui_uploader">
+        <div class="weui_uploader_hd weui_cell">
+          <div class="weui_cell_bd weui_cell_primary">圈子成员</div>
+        </div>
+        <div class="weui_uploader_bd">
+          <ul class="weui_uploader_files">
+            <!-- loop -->
+            <volist name="memberList" id="vo">
+            <li class="weui_uploader_file" style="background-image:url('{$vo.bigheadimgurl}')"><div class="username">{$vo.name}</div></li>
+            </volist>
+            <!-- loop -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="weui_cells">
+  <div class="weui_cell">
+    <div class="weui_cell_bd weui_cell_primary">
+      <p>我的昵称</p>
+    </div>
+    <div class="weui_cell_ft">昵称</div>
+  </div>
+  
+  <div class="weui_cell">
+    <div class="weui_cell_bd weui_cell_primary">
+      <p>显示成员昵称</p>
+    </div>
+    <div class="weui_cell_ft">说明文字</div>
+  </div>
+</div>
+
+<div class="weui_panel weui_panel_access">
+  <div class="weui_panel_bd">
+      <div class="weui_media_box weui_media_text">
+          <h4 class="weui_media_title">圈子介绍</h4>
+          <p class="weui_media_desc">{$details.description}</p>
+      </div>
+  </div>
+</div>
+        
+<div class="weui_btn_area">
+  <a href="{:U('quite?id='.$tget['id'].'&wid='.$tget['wid'].'&token='.$tget['token'].'&wxref='.$tget['wxref'])}" class="weui_btn weui_btn_warn">退出圈子</a>
+</div>
+
+
+<include file="menu" />
+<include file="Public:footer" />
+</body>
+</html>
